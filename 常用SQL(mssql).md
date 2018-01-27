@@ -1,14 +1,7 @@
 # 常用SQL(sql server)
-## 目录 {#Index}
-[TRAN](#TRAN)  
-[锁表](#TableLock)  
-[日期格式化](#DateFormat)  
-[利用游标遍历表](#Cursor)  
-[查询数据库中表结构](#ExportStruct)   
-[循环切割字符串](#Split)   
-[OPENXML](#OPENXML)  
+## 目录
 
-## TRAN {#TRAN}
+## TRAN
 ```
 ALTER PROCEDURE [dbo].[Proc_Test_commit1] 
     @result int output, --成功 1; 失败 0
@@ -39,10 +32,9 @@ END CATCH
 END
 ```
    
-[返回目录](#Index)   
    
 
-## 锁表 {#TableLock}
+## 锁表
 ```
 --读锁
 SELECT * FROM table WITH (HOLDLOCK)
@@ -52,9 +44,7 @@ SELECT * FROM table WITH (TABLOCKX)
 
 ```
    
-[返回目录](#Index)   
-   
-## 日期格式化 {#DateFormat}
+## 日期格式化
 ```
   0 或 100   (*)     默认值   mon   dd   yyyy   hh:miAM（或   PM）     
   1   101   美国   mm/dd/yyyy     
@@ -121,11 +111,9 @@ Select CONVERT(varchar(100), GETDATE(), 121): 2006-05-16 10:57:49.700
 Select CONVERT(varchar(100), GETDATE(), 126): 2006-05-16T10:57:49.827
 Select CONVERT(varchar(100), GETDATE(), 130): 18 ???? ?????? 1427 10:57:49:907AM
 Select CONVERT(varchar(100), GETDATE(), 131): 18/04/1427 10:57:49:920AM
-```
+``` 
    
-[返回目录](#Index)   
-   
-## 利用游标遍历表 {#Cursor}
+## 利用游标遍历表
 ```
 DECLARE  @tablename varchar(100),
          @columnsname varchar(100) , 
@@ -173,10 +161,8 @@ CLOSE curTable
 --销毁游标
 DEALLOCATE curTable
 ```
-  
-[返回目录](#Index)   
    
-## 查询数据库中表结构 {#ExportStruct}
+## 查询数据库中表结构
 ```
 SELECT
 	表名 =
@@ -244,10 +230,9 @@ LEFT JOIN sys.extended_properties F
 ORDER BY A.id, A.colorder
 
 ```
-   
-[返回目录](#Index)   
+  
     
-## 循环切割字符串 {#Split}
+## 循环切割字符串
 ```
 CREATE FUNCTION [dbo].[fn_getForgeJSONInfo]
 (
@@ -277,12 +262,8 @@ BEGIN
 	RETURN @str
 END
 ```
-
-   
-[返回目录](#Index)   
-   
   
-## OPENXML^*new* {#OPENXML}
+## OPENXML
 ```
 DECLARE @xmlDoc xml
 DECLARE @idoc int
@@ -313,5 +294,3 @@ price varchar(40) 'price')
 EXEC sp_xml_removedocument @idoc  
 
 ```
-   
-[返回目录](#Index)   
