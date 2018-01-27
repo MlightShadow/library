@@ -1,6 +1,4 @@
 # 常用SQL(sql server)
-## 目录
-
 ## TRAN
 ```
 ALTER PROCEDURE [dbo].[Proc_Test_commit1] 
