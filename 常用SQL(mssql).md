@@ -16,27 +16,28 @@ ALTER PROCEDURE [dbo].[Proc_Test_commit1]
     @message nvarchar(20) output
 AS
 BEGIN
-    SET NOCOUNT ON --设置无返回影响行数,以提高执行效率
+    --设置无返回影响行数,以提高执行效率
+    SET NOCOUNT ON
     --开启全部事务回滚
-	--SET XACT_ABORT ON
-BEGIN TRY 
-      BEGIN TRAN yy --开始事务
-        insert into Test_Commit (b) values (3)
-        insert into Test_Commit (a,b) values (1,3)
-        SET @result=1
+    --SET XACT_ABORT ON
+BEGIN TRY
+    BEGIN TRAN yy --开始事务
+    INSERT INTO Test_Commit (b) VALUES (3)
+    INSERT INTO Test_Commit (a,b) VALUES (1,3)
+    SET @result=1
         
-        RAISERROR ('异常', 16, 1 ) -- 产生异常到catch统一回滚
-      COMMIT TRAN yy --提交事务
+    RAISERROR ('异常', 16, 1 ) -- 产生异常到catch统一回滚
+    COMMIT TRAN yy --提交事务
 END TRY   
 BEGIN CATCH
-        SET @message= ERROR_MESSAGE() 
-        SET @result=0
-        rollback tran yy        
-        --insert into SYS_Proc_Message([Message]) values(ERROR_MESSAGE())
-        print ERROR_MESSAGE()
+    SET @message= ERROR_MESSAGE() 
+    SET @result=0
+    ROLLBACK TRAN yy        
+
+    PRINT ERROR_MESSAGE()
 END CATCH
-        SET NOCOUNT OFF; --恢复设置 
-        --SET XACT_ABORT OFF
+    SET NOCOUNT OFF; --恢复设置 
+    --SET XACT_ABORT OFF
 END
 ```
 [返回目录](#目录)  
@@ -53,72 +54,49 @@ SELECT * FROM table WITH (TABLOCKX)
 [返回目录](#目录)  
    
 ## 日期格式化
-```SQL
-  0 或 100   (*)     默认值   mon   dd   yyyy   hh:miAM（或   PM）     
-  1   101   美国   mm/dd/yyyy     
-  2   102   ANSI   yy.mm.dd     
-  3   103   英国/法国   dd/mm/yy     
-  4   104   德国   dd.mm.yy     
-  5   105   意大利   dd-mm-yy     
-  6   106   -   dd   mon   yy     
-  7   107   -   mon   dd,   yy     
-  8   108   -   hh:mm:ss     
-  9   或   109 (*) 默认值+毫秒   mon   dd   yyyy   hh:mi:ss:mmmAM（或   PM）     
-  10   110   美国   mm-dd-yy     
-  11   111   日本   yy/mm/dd     
-  12   112   ISO   yymmdd     
-  13   或   113   (*) 欧洲默认值 + 毫秒   dd   mon   yyyy   hh:mm:ss:mmm(24h)     
-  14   114   -   hh:mi:ss:mmm(24h)     
-  20   或   120   (*)     ODBC   规范   yyyy-mm-dd   hh:mm:ss[.fff]     
-  21   或   121   (*)     ODBC   规范（带毫秒）   yyyy-mm-dd   hh:mm:ss[.fff]     
-  126(***)   ISO8601   yyyy-mm-dd   Thh:mm:ss:mmm（不含空格）     
-  130*   科威特   dd   mon   yyyy   hh:mi:ss:mmmAM     
-  131*   科威特   dd/mm/yy   hh:mi:ss:mmmAM   
-```
-[返回目录](#目录)  
 
 ```SQL
-Select CONVERT(varchar(100), GETDATE(), 0): 05 16 2006 10:57AM
-Select CONVERT(varchar(100), GETDATE(), 1): 05/16/06
-Select CONVERT(varchar(100), GETDATE(), 2): 06.05.16
-Select CONVERT(varchar(100), GETDATE(), 3): 16/05/06
-Select CONVERT(varchar(100), GETDATE(), 4): 16.05.06
-Select CONVERT(varchar(100), GETDATE(), 5): 16-05-06
-Select CONVERT(varchar(100), GETDATE(), 6): 16 05 06
-Select CONVERT(varchar(100), GETDATE(), 7): 05 16, 06
-Select CONVERT(varchar(100), GETDATE(), 8): 10:57:46
-Select CONVERT(varchar(100), GETDATE(), 9): 05 16 2006 10:57:46:827AM
-Select CONVERT(varchar(100), GETDATE(), 10): 05-16-06
-Select CONVERT(varchar(100), GETDATE(), 11): 06/05/16
-Select CONVERT(varchar(100), GETDATE(), 12): 060516
-Select CONVERT(varchar(100), GETDATE(), 13): 16 05 2006 10:57:46:937
-Select CONVERT(varchar(100), GETDATE(), 14): 10:57:46:967
-Select CONVERT(varchar(100), GETDATE(), 20): 2006-05-16 10:57:47
-Select CONVERT(varchar(100), GETDATE(), 21): 2006-05-16 10:57:47.157
-Select CONVERT(varchar(100), GETDATE(), 22): 05/16/06 10:57:47 AM
-Select CONVERT(varchar(100), GETDATE(), 23): 2006-05-16
-Select CONVERT(varchar(100), GETDATE(), 24): 10:57:47
-Select CONVERT(varchar(100), GETDATE(), 25): 2006-05-16 10:57:47.250
-Select CONVERT(varchar(100), GETDATE(), 100): 05 16 2006 10:57AM
-Select CONVERT(varchar(100), GETDATE(), 101): 05/16/2006
-Select CONVERT(varchar(100), GETDATE(), 102): 2006.05.16
-Select CONVERT(varchar(100), GETDATE(), 103): 16/05/2006
-Select CONVERT(varchar(100), GETDATE(), 104): 16.05.2006
-Select CONVERT(varchar(100), GETDATE(), 105): 16-05-2006
-Select CONVERT(varchar(100), GETDATE(), 106): 16 05 2006
-Select CONVERT(varchar(100), GETDATE(), 107): 05 16, 2006    
-Select CONVERT(varchar(100), GETDATE(), 108): 10:57:49
-Select CONVERT(varchar(100), GETDATE(), 109): 05 16 2006 10:57:49:437AM
-Select CONVERT(varchar(100), GETDATE(), 110): 05-16-2006
-Select CONVERT(varchar(100), GETDATE(), 111): 2006/05/16
-Select CONVERT(varchar(100), GETDATE(), 112): 20060516
-Select CONVERT(varchar(100), GETDATE(), 113): 16 05 2006 10:57:49:513
-Select CONVERT(varchar(100), GETDATE(), 114): 10:57:49:547
-Select CONVERT(varchar(100), GETDATE(), 120): 2006-05-16 10:57:49
-Select CONVERT(varchar(100), GETDATE(), 121): 2006-05-16 10:57:49.700
-Select CONVERT(varchar(100), GETDATE(), 126): 2006-05-16T10:57:49.827
-Select CONVERT(varchar(100), GETDATE(), 130): 18 ???? ?????? 1427 10:57:49:907AM
-Select CONVERT(varchar(100), GETDATE(), 131): 18/04/1427 10:57:49:920AM
+Select CONVERT(varchar(100), GETDATE(), 0) -- 05 16 2006 10:57AM
+Select CONVERT(varchar(100), GETDATE(), 1) -- 05/16/06
+Select CONVERT(varchar(100), GETDATE(), 2) -- 06.05.16
+Select CONVERT(varchar(100), GETDATE(), 3) -- 16/05/06
+Select CONVERT(varchar(100), GETDATE(), 4) -- 16.05.06
+Select CONVERT(varchar(100), GETDATE(), 5) -- 16-05-06
+Select CONVERT(varchar(100), GETDATE(), 6) -- 16 05 06
+Select CONVERT(varchar(100), GETDATE(), 7) -- 05 16, 06
+Select CONVERT(varchar(100), GETDATE(), 8) -- 10:57:46
+Select CONVERT(varchar(100), GETDATE(), 9) -- 05 16 2006 10:57:46:827AM
+Select CONVERT(varchar(100), GETDATE(), 10) -- 05-16-06
+Select CONVERT(varchar(100), GETDATE(), 11) -- 06/05/16
+Select CONVERT(varchar(100), GETDATE(), 12) -- 060516
+Select CONVERT(varchar(100), GETDATE(), 13) -- 16 05 2006 10:57:46:937
+Select CONVERT(varchar(100), GETDATE(), 14) -- 10:57:46:967
+Select CONVERT(varchar(100), GETDATE(), 20) -- 2006-05-16 10:57:47
+Select CONVERT(varchar(100), GETDATE(), 21) -- 2006-05-16 10:57:47.157
+Select CONVERT(varchar(100), GETDATE(), 22) -- 05/16/06 10:57:47 AM
+Select CONVERT(varchar(100), GETDATE(), 23) -- 2006-05-16
+Select CONVERT(varchar(100), GETDATE(), 24) -- 10:57:47
+Select CONVERT(varchar(100), GETDATE(), 25) -- 2006-05-16 10:57:47.250
+Select CONVERT(varchar(100), GETDATE(), 100) -- 05 16 2006 10:57AM
+Select CONVERT(varchar(100), GETDATE(), 101) -- 05/16/2006
+Select CONVERT(varchar(100), GETDATE(), 102) -- 2006.05.16
+Select CONVERT(varchar(100), GETDATE(), 103) -- 16/05/2006
+Select CONVERT(varchar(100), GETDATE(), 104) -- 16.05.2006
+Select CONVERT(varchar(100), GETDATE(), 105) -- 16-05-2006
+Select CONVERT(varchar(100), GETDATE(), 106) -- 16 05 2006
+Select CONVERT(varchar(100), GETDATE(), 107) -- 05 16, 2006    
+Select CONVERT(varchar(100), GETDATE(), 108) -- 10:57:49
+Select CONVERT(varchar(100), GETDATE(), 109) -- 05 16 2006 10:57:49:437AM
+Select CONVERT(varchar(100), GETDATE(), 110) -- 05-16-2006
+Select CONVERT(varchar(100), GETDATE(), 111) -- 2006/05/16
+Select CONVERT(varchar(100), GETDATE(), 112) -- 20060516
+Select CONVERT(varchar(100), GETDATE(), 113) -- 16 05 2006 10:57:49:513
+Select CONVERT(varchar(100), GETDATE(), 114) -- 10:57:49:547
+Select CONVERT(varchar(100), GETDATE(), 120) -- 2006-05-16 10:57:49
+Select CONVERT(varchar(100), GETDATE(), 121) -- 2006-05-16 10:57:49.700
+Select CONVERT(varchar(100), GETDATE(), 126) -- 2006-05-16T10:57:49.827
+Select CONVERT(varchar(100), GETDATE(), 130) -- 18 ???? ?????? 1427 10:57:49:907AM
+Select CONVERT(varchar(100), GETDATE(), 131) -- 18/04/1427 10:57:49:920AM
 ``` 
 [返回目录](#目录)  
 
