@@ -292,3 +292,5 @@ price varchar(40) 'price')
 EXEC sp_xml_removedocument @idoc  
 
 ```
+
+
