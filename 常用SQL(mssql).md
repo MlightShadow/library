@@ -116,18 +116,19 @@ Select CONVERT(varchar(100), GETDATE(), 131): 18/04/1427 10:57:49:920AM
 DECLARE  @tablename varchar(100),
          @columnsname varchar(100) , 
          @sql varchar(300)
---建立游标         
-declare curTable cursor fast_forward|readonly
-        for SELECT
-	objects.name AS tablename,
-	columns.name AS columnsname
-FROM sys.objects
-LEFT JOIN sys.columns
-	ON columns.object_id = objects.object_id
-LEFT JOIN sys.types
-	ON types.system_type_id = columns.system_type_id
-WHERE types.name = 'int'
-ORDER BY objects.name ASC
+--建立游标         
+DECLARE curTable CURSOR fast_forward|readonly
+        FOR 
+	SELECT
+	    objects.name AS tablename,
+	    columns.name AS columnsname
+	FROM sys.objects
+	LEFT JOIN sys.columns
+	    ON columns.object_id = objects.object_id
+	LEFT JOIN sys.types
+            ON types.system_type_id = columns.system_type_id
+	WHERE types.name = 'int'
+	ORDER BY objects.name ASC
 
 --初始化游标
 OPEN curTable
@@ -138,20 +139,19 @@ FETCH NEXT FROM curTable INTO @tablename, @columnsname
 WHILE @@FETCH_STATUS = 0
 BEGIN
 
-SET @sql = 'SELECT
-	*
-FROM ' + @tablename + '
-WHERE ' + @columnsname + ' = ' + '2'
+	SET @sql = 'SELECT
+		*
+	FROM ' + @tablename + '
+	WHERE ' + @columnsname + ' = ' + '2'
 
-EXEC (@sql)
-IF @@rowcount > 0
-BEGIN
-PRINT @sql
-PRINT @tablename
-END
+	EXEC (@sql)
+	IF @@rowcount > 0
+	BEGIN
+		PRINT @sql
+		PRINT @tablename
+	END
 
-FETCH NEXT FROM curTable
-INTO @tablename, @columnsname
+	FETCH NEXT FROM curTable INTO @tablename, @columnsname
 END
 
 --关闭游标
