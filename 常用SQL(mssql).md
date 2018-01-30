@@ -279,8 +279,7 @@ SET @xmlDoc = '<books>
 					</book>
 				</books>'
 --准备句柄
-EXEC sp_xml_preparedocument	@idoc OUTPUT,
-							@xmlDoc;
+EXEC sp_xml_preparedocument @idoc OUTPUT, @xmlDoc;
 print @idoc				
 SELECT
 	*
