@@ -42,7 +42,7 @@ END
 [返回目录](#目录)  
 
 ## 锁表
-```
+```SQL
 --读锁
 SELECT * FROM table WITH (HOLDLOCK)
 
@@ -53,7 +53,7 @@ SELECT * FROM table WITH (TABLOCKX)
 [返回目录](#目录)  
    
 ## 日期格式化
-```
+```SQL
   0 或 100   (*)     默认值   mon   dd   yyyy   hh:miAM（或   PM）     
   1   101   美国   mm/dd/yyyy     
   2   102   ANSI   yy.mm.dd     
@@ -77,7 +77,7 @@ SELECT * FROM table WITH (TABLOCKX)
 ```
 [返回目录](#目录)  
 
-```
+```SQL
 Select CONVERT(varchar(100), GETDATE(), 0): 05 16 2006 10:57AM
 Select CONVERT(varchar(100), GETDATE(), 1): 05/16/06
 Select CONVERT(varchar(100), GETDATE(), 2): 06.05.16
@@ -123,7 +123,7 @@ Select CONVERT(varchar(100), GETDATE(), 131): 18/04/1427 10:57:49:920AM
 [返回目录](#目录)  
 
 ## 利用游标遍历表
-```
+```SQL
 DECLARE  @tablename varchar(100),
          @columnsname varchar(100) , 
          @sql varchar(300)
@@ -173,7 +173,7 @@ DEALLOCATE curTable
 [返回目录](#目录)  
 
 ## 查询数据库中表结构
-```
+```SQL
 SELECT
 	表名 =
 		CASE
@@ -243,7 +243,7 @@ ORDER BY A.id, A.colorder
 [返回目录](#目录)  
     
 ## 循环切割字符串
-```
+```SQL
 CREATE FUNCTION [dbo].[fn_getForgeJSONInfo]
 (
 	@str VARCHAR(8000), @subStr varchar(50), @index INT
@@ -275,7 +275,7 @@ END
 [返回目录](#目录)   
 
 ## OPENXML
-```
+```SQL
 DECLARE @xmlDoc xml
 DECLARE @idoc int
 
