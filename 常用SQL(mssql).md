@@ -1,6 +1,14 @@
 # 常用SQL(sql server)
-[TRAN](#TRAN)
-[TRAN](#锁表)
+
+## 目录
+[TRAN](#TRAN)   
+[锁表](#锁表)    
+[日期格式化](#日期格式化)     
+[利用游标遍历表](#利用游标遍历表)   
+[查询数据库中表结构](#查询数据库中表结构)    
+[循环切割字符串](#循环切割字符串)   
+[OPENXML](#OPENXML)   
+
 ## TRAN
 ```
 ALTER PROCEDURE [dbo].[Proc_Test_commit1] 
@@ -31,8 +39,7 @@ END CATCH
         --SET XACT_ABORT OFF
 END
 ```
-   
-   
+[返回目录](#目录)  
 
 ## 锁表
 ```
@@ -43,6 +50,7 @@ SELECT * FROM table WITH (HOLDLOCK)
 SELECT * FROM table WITH (TABLOCKX)
 
 ```
+[返回目录](#目录)  
    
 ## 日期格式化
 ```
@@ -67,7 +75,7 @@ SELECT * FROM table WITH (TABLOCKX)
   130*   科威特   dd   mon   yyyy   hh:mi:ss:mmmAM     
   131*   科威特   dd/mm/yy   hh:mi:ss:mmmAM   
 ```
-
+[返回目录](#目录)  
 
 ```
 Select CONVERT(varchar(100), GETDATE(), 0): 05 16 2006 10:57AM
@@ -112,7 +120,8 @@ Select CONVERT(varchar(100), GETDATE(), 126): 2006-05-16T10:57:49.827
 Select CONVERT(varchar(100), GETDATE(), 130): 18 ???? ?????? 1427 10:57:49:907AM
 Select CONVERT(varchar(100), GETDATE(), 131): 18/04/1427 10:57:49:920AM
 ``` 
-   
+[返回目录](#目录)  
+
 ## 利用游标遍历表
 ```
 DECLARE  @tablename varchar(100),
@@ -161,7 +170,8 @@ CLOSE curTable
 --销毁游标
 DEALLOCATE curTable
 ```
-   
+[返回目录](#目录)  
+
 ## 查询数据库中表结构
 ```
 SELECT
@@ -230,7 +240,7 @@ LEFT JOIN sys.extended_properties F
 ORDER BY A.id, A.colorder
 
 ```
-  
+[返回目录](#目录)  
     
 ## 循环切割字符串
 ```
@@ -262,7 +272,8 @@ BEGIN
 	RETURN @str
 END
 ```
-  
+[返回目录](#目录)   
+
 ## OPENXML
 ```
 DECLARE @xmlDoc xml
@@ -293,5 +304,5 @@ price varchar(40) 'price')
 EXEC sp_xml_removedocument @idoc  
 
 ```
-
+[返回目录](#目录)   
 
