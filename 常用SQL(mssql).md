@@ -117,7 +117,7 @@ DECLARE  @tablename varchar(100),
          @columnsname varchar(100) , 
          @sql varchar(300)
 --建立游标         
-declare curTable cursor fast_forward
+declare curTable cursor fast_forward|readonly
         for SELECT
 	objects.name AS tablename,
 	columns.name AS columnsname
