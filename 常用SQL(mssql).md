@@ -10,7 +10,7 @@
 [OPENXML](#openxml)    
 
 ## TRAN
-```
+```SQL
 ALTER PROCEDURE [dbo].[Proc_Test_commit1] 
     @result int output, --成功 1; 失败 0
     @message nvarchar(20) output
