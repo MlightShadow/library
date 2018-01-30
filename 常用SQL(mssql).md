@@ -1,13 +1,13 @@
 # 常用SQL(sql server)
 
 ## 目录
-[TRAN](#TRAN)   
+[TRAN](#tran)    
 [锁表](#锁表)    
 [日期格式化](#日期格式化)     
 [利用游标遍历表](#利用游标遍历表)   
 [查询数据库中表结构](#查询数据库中表结构)    
 [循环切割字符串](#循环切割字符串)   
-[OPENXML](#OPENXML)   
+[OPENXML](#openxml)    
 
 ## TRAN
 ```
