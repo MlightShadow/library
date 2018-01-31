@@ -11,7 +11,7 @@ If there is any infringement, please contact me to delete
 ## 3.FNIS
 `FNIS` 是老滚的人物动作MOD有了这个为基础老滚中的角色就可以解锁很多姿势
 
-`Skyrim.FNIS.Creature.Pack.v5.3.mod.rar` 接下来这个, 不要解压, 不要解压, 不要解压, 直接把之前下载安装好的 `Nexus Mod Manager` 打开 `FNIS` 拖到 `Mods列表` 画面然后双击安装, 会提示说有新版本, 你也可以去找新版本装, 但是我确定是不是有效, 点否直接安装就行
+`Skyrim.FNIS.Creature.Pack.v5.3.mod.rar` 接下来这个, 不要解压, 不要解压, 不要解压, 直接把之前下载安装好的 `Nexus Mod Manager` 打开, 将 `FNIS` 拖到 `Mods列表` 画面然后双击安装, 会提示说有新版本, 你也可以去找新版本装, 但是我确定是不是有效, 点否直接安装就行
 
 ## 4.SKYUI
 `Skyui5.1-CN-MOD.zip` 这个是个UI调整的Mod, 如果你觉得原版UI不方便操作可以试试, 和装FNIS一样的步骤
