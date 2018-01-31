@@ -1,4 +1,6 @@
 # MOD...哦不 老滚5 安装指南
+如有侵权请联系, 请联系本人予以删除  
+If there is any infringement, please contact me to delete 
 
 ## 1.Nexus Mod Manager
 其实还有另一个Mod管理器, 我忘了叫啥了, 就用这个吧, 直接搜索就行下载一个 `0.63.x` 版本以上的就行我这边还用的 `0.63.1`, 直接安装, 需要些洋文基础, 用法自行摸索一下, 或者提Issues问我
