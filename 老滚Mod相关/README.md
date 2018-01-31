@@ -1,5 +1,5 @@
 # MOD...哦不 老滚5 安装指南
-如有侵权请联系, 请联系本人予以删除  
+如有侵权请联系本人予以删除  
 If there is any infringement, please contact me to delete 
 
 ## 1.Nexus Mod Manager
