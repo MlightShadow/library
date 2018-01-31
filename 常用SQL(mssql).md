@@ -152,71 +152,59 @@ DEALLOCATE curTable
 
 ## 查询数据库中表结构
 ```SQL
-SELECT
-	表名 =
-		CASE
-			WHEN A.colorder = 1 THEN D.name
-			ELSE ''
-		END,
-	表说明 =
-			CASE
-				WHEN A.colorder = 1 THEN ISNULL(F.value, '')
-				ELSE ''
-			END,
-	字段序号 = A.colorder,
-	字段名 = A.name,
-	字段说明 = ISNULL(G.[value], ''),
-	标识 =
-		CASE
-			WHEN COLUMNPROPERTY(A.id, A.name, 'IsIdentity') = 1 THEN '√'
-			ELSE ''
-		END,
-	主键 =
-		CASE
-			WHEN EXISTS (SELECT
-						1
-					FROM sysobjects
-					WHERE xtype = 'PK'
-					AND parent_obj = A.id
-					AND name IN (SELECT
-							name
-						FROM sysindexes
-						WHERE indid IN (SELECT
-								indid
-							FROM sysindexkeys
-							WHERE id = A.id
-							AND colid = A.colid))) THEN '√'
-			ELSE ''
-		END,
-	类型 = B.name,
-	占用字节数 = A.Length,
-	长度 = COLUMNPROPERTY(A.id, A.name, 'PRECISION'),
-	小数位数 = ISNULL(COLUMNPROPERTY(A.id, A.name, 'Scale'), 0),
-	允许空 =
-			CASE
-				WHEN A.isnullable = 1 THEN '√'
-				ELSE ''
-			END,
-	默认值 = ISNULL(E.Text, '')
+SELECT 表名 = CASE 
+		WHEN A.colorder = 1 THEN D.name
+		ELSE ''
+	END, 表说明 = CASE 
+		WHEN A.colorder = 1 THEN ISNULL(F.value, '')
+		ELSE ''
+	END
+	, 字段序号 = A.colorder, 字段名 = A.name
+	, 字段说明 = ISNULL(G.[value], '')
+	, 标识 = CASE 
+		WHEN COLUMNPROPERTY(A.id, A.name, 'IsIdentity') = 1 THEN '√'
+		ELSE ''
+	END, 主键 = CASE 
+		WHEN EXISTS (
+			SELECT 1
+			FROM sysobjects
+			WHERE xtype = 'PK'
+				AND parent_obj = A.id
+				AND name IN (
+					SELECT name
+					FROM sysindexes
+					WHERE indid IN (
+						SELECT indid
+						FROM sysindexkeys
+						WHERE id = A.id
+							AND colid = A.colid
+					)
+				)
+		) THEN '√'
+		ELSE ''
+	END
+	, 类型 = B.name, 占用字节数 = A.Length
+	, 长度 = COLUMNPROPERTY(A.id, A.name, 'PRECISION')
+	, 小数位数 = ISNULL(COLUMNPROPERTY(A.id, A.name, 'Scale'), 0)
+	, 允许空 = CASE 
+		WHEN A.isnullable = 1 THEN '√'
+		ELSE ''
+	END
+	, 默认值 = ISNULL(E.Text, '')
 FROM syscolumns A
-LEFT JOIN systypes B
-	ON A.xusertype = B.xusertype
-INNER JOIN sysobjects D
+	LEFT JOIN systypes B ON A.xusertype = B.xusertype
+	INNER JOIN sysobjects D
 	ON A.id = D.id
-	AND D.xtype = 'U'
-	AND D.name <> 'dtproperties'
-LEFT JOIN syscomments E
-	ON A.cdefault = E.id
-LEFT JOIN sys.extended_properties G
+		AND D.xtype = 'U'
+		AND D.name <> 'dtproperties'
+	LEFT JOIN syscomments E ON A.cdefault = E.id
+	LEFT JOIN sys.extended_properties G
 	ON A.id = G.major_id
-	AND A.colid = G.minor_id
-LEFT JOIN sys.extended_properties F
+		AND A.colid = G.minor_id
+	LEFT JOIN sys.extended_properties F
 	ON D.id = F.major_id
-	AND F.minor_id = 0
---如果只查询指定表,加上此条件
---where d.name='OrderInfo'    
+		AND F.minor_id = 0
 ORDER BY A.id, A.colorder
-
 ```
 [返回目录](#目录)  
     
@@ -258,17 +246,17 @@ DECLARE @xmlDoc xml
 DECLARE @idoc int
 
 SET @xmlDoc = '<books>
-					<book id="0001">
-						<title>book1</title>
-						<author>author1</author>
-						<price>21</price>
-					</book>
-					<book id="0002">
-						<title>book2</title>
-						<author>author2</author>
-						<price>79</price>
-					</book>
-				</books>'
+	      	  <book id="0001">
+	      	     <title>book1</title>
+	      	     <author>author1</author>
+	      	     <price>21</price>
+	      	  </book>
+	      	  <book id="0002">
+	      	     <title>book2</title>
+	      	     <author>author2</author>
+	      	     <price>79</price>
+	      	  </book>
+	      </books>'
 --准备句柄
 EXEC sp_xml_preparedocument @idoc OUTPUT, @xmlDoc;
 print @idoc				
