@@ -16,5 +16,8 @@ If there is any infringement, please contact me to delete
 ## 4.SKYUI
 `Skyui5.1-CN-MOD.zip` 这个是个UI调整的Mod, 如果你觉得原版UI不方便操作可以试试, 和装 `FNIS` 一样的步骤
 
+## Project Optimization
+安装方法和普通插件一样, 可以优化运行速度
+
 ## 相关资料
 [八国联军慈禧太后付费特供版老滚](https://pan.baidu.com/s/1kUJPSMV#list/path=%2F)
