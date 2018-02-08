@@ -1,21 +1,21 @@
-### °²×°ruby
+### å®‰è£…ruby
 
 ```
 sudo apt-get install ruby-full
 ```
 
-¼ì²é»·¾³±äÁ¿ÅäÖÃ
+æ£€æŸ¥ç¯å¢ƒé…ç½®
 ```
 which ruby
 ```
 
-### °²×°mysql
+### å®‰è£…mysql
 
 ```
 sudo apt-get install mysql-server
 ```
 
-¼ì²é»·¾³±äÁ¿ÅäÖÃ
+æ£€æŸ¥ç¯å¢ƒé…ç½®
 ```
 which mysql
 ```
