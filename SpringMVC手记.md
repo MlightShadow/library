@@ -1,18 +1,18 @@
-#SpringMVC教程
-#序章
-##搭建项目
-###Maven 简介
+# SpringMVC教程
+# 序章
+## 搭建项目
+### Maven 简介
 使用 `Maven` 可以非常方便的搭建 `SpringMVC` 项目, 并且可以在版本变动时, 快速更新依赖的 `jar`
 
 **提示** 这里使用的还只是 `eclipse` 中整合的 `Maven`, 一般在官网中下载的 `Eclipse JavaEE IDE` 就带有了该插件
 
 >
-######新建一个 Maven Project  
+###### 新建一个 Maven Project  
 以下为搭建步骤: 
 * new 一个新的 `maven project`
 * next 选择 `maven-archetype-webapp`
 
-####配置文件 pom.xml
+#### 配置文件 pom.xml
 >根目录 `pom.xml` 这是主要需要配置的一个文件
 
 这里给出一个最简配置
@@ -62,7 +62,7 @@
 
 以上配置完成后即已经完成最简 `SpringMVC` 的引用
 
-###配置SpringMVC
+### 配置SpringMVC
 这里给出 `SpringMVC` 的最简配置  
 
 `WEB-INF` 中 `web.xml` 覆盖如下配置
@@ -122,7 +122,7 @@
 **提示**
 安装过 `Spring` 相应IDE插件的情况下`<beans xmlns>` `<web-app xmlns>` 中的属性可以相应点选出来
 
-##Hello World
+## Hello World
 之前我们已经定义了 `view` 路径 `/WEB-INF/view/` 以及 `controller` 包 `com.springmvc.controller` 之后我们不再赘述, 新建`controller` 以及 `view` 都默认为以此为默认包名与默认根目录
 
 在 `controller` 包下新建 `Java` 文件, 任意取名  
@@ -169,27 +169,27 @@ public class Home {
 
 序章到此完结撒花
 
-##附
+## 附
 Spring官网 `spring-framework` 传送门: http://projects.spring.io/spring-framework/  
 Eclipse官网传送门: https://www.eclipse.org/
 
-
-#RequestMapping
-##请求URL
-##请求方法
-##请求参数
-##请求头
-##Ant风格通配符
-##PathVariable
+TODO
+# RequestMapping
+## 请求URL
+## 请求方法
+## 请求参数
+## 请求头
+## Ant风格通配符
+## PathVariable
 支持REST URL
 
-##HiddenHttpMethodFilter
+## HiddenHttpMethodFilter
 RequestMethod四请求方式 GET POST PUT DELETE
 
-##RequestParam
+## RequestParam
 
-##RequestHeader
+## RequestHeader
 
-##POJO参数与级联属性
+## POJO参数与级联属性
 
-##Controller使用Servlet原生API参数
+## Controller使用Servlet原生API参数
