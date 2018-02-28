@@ -1,0 +1,29 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<div id="app">
+  {{ message }}
+  <ch1></ch1>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+
+Vue.component('ch1', {
+  template: '<h1>自定义组件!</h1>'
+})
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</script>
+</body>
+</html>

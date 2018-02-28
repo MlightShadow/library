@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>ctl DEMO</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- 引入 Bootstrap -->
+	   <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+   </head>
+   <body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">ctl demo</a>
+    </div>
+    </div>
+</nav>
+   
+   <div style="margin:100px">
+   role environment people
+   
+
+   <div class="dropdown">
+   
+      <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">enemy</a>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">cm</a>
+        </li>
+        <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">attack</a>
+        </li>
+    </ul>
+	
+	<div class="dropdown">
+   
+      <a class="dropdown-toggle" id="dropdownM" data-toggle="dropdown">food</a>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownM">
+        <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">take</a>
+        </li>
+        <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">destroy</a>
+        </li>
+    </ul>
+</div>
+   </div>
+		<nav class="navbar navbar-default navbar-fixed-bottom " role="navigation">
+
+			<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<a class="navbar-brand" data-toggle="modal" data-target="#modal_c">c</a>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<a class="navbar-brand"  data-toggle="modal" data-target="#modal_b">b</a>
+				</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<a class="navbar-brand"  data-toggle="modal" data-target="#modal_m">m</a>
+				</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<a class="navbar-brand"  data-toggle="modal" data-target="#modal_s">s</a>
+				</div>
+			</div>
+		</nav>
+   
+	<!-- modal c -->
+<div class="modal fade" id="modal_c" tabindex="-1" role="dialog" aria-labelledby="modal_c_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal_c_label">c name</h4>
+            </div>
+            <div class="modal-body">c name
+			<br/>
+			
+		lv 1<br/>
+		s:100<br/>
+		i:20<br/>
+		m:10
+			
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- modal b -->
+<div class="modal fade" id="modal_b" tabindex="-1" role="dialog" aria-labelledby="modal_b_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal_b_label">bag</h4>
+            </div>
+            <div class="modal-body"><table class="table table-bordered">
+								<tr>
+				<td>   <div class="dropdown">
+   
+      <a class="dropdown-toggle" id="dropdownM1" data-toggle="dropdown">food</a>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownM1">
+        <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">drop</a>
+        </li>
+        <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">use</a>
+        </li>
+    </ul></td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				</tr>								<tr>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				</tr>								<tr>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				</tr>								<tr>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				</tr>								<tr>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				</tr>								<tr>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				<td>item</td>
+				</tr>
+			</table></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- modal m -->
+<div class="modal fade" id="modal_m" tabindex="-1" role="dialog" aria-labelledby="modal_m_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal_m_label">m</h4>
+            </div>
+			            <div class="modal-body">
+						map image
+</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- modal s -->
+<div class="modal fade" id="modal_s" tabindex="-1" role="dialog" aria-labelledby="modal_s_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal_s_label">s</h4>
+            </div>
+            <div class="modal-body"><ul class="list-group">
+    <li class="list-group-item">s1</li>
+    <li class="list-group-item">s2</li>
+    <li class="list-group-item">s3</li>
+    <li class="list-group-item">s4</li>
+    <li class="list-group-item">s5</li>
+</ul></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+   
+   
+   
+   
+		<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>	
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   </body>
+</html>
