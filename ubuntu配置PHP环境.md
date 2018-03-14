@@ -1,4 +1,4 @@
-# UbuntuÅäÖÃPHP»·¾³
+ï»¿# Ubuntué…ç½®PHPç¯å¢ƒ
 # Apache
 ```
 sudo apt-get install apache2
