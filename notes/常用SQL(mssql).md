@@ -1,17 +1,19 @@
 # 常用SQL(sql server)
 
 ## 目录
-[TRAN](#tran)    
-[锁表](#锁表)    
-[日期格式化](#日期格式化)     
-[利用游标遍历表](#利用游标遍历表)   
-[查询数据库中表结构](#查询数据库中表结构)    
-[循环切割字符串](#循环切割字符串)   
-[OPENXML](#openxml)    
+
+[TRAN](#tran)
+[锁表](#锁表)
+[日期格式化](#日期格式化)
+[利用游标遍历表](#利用游标遍历表)
+[查询数据库中表结构](#查询数据库中表结构)
+[循环切割字符串](#循环切割字符串)
+[OPENXML](#openxml)
 
 ## TRAN
+
 ```SQL
-ALTER PROCEDURE [dbo].[Proc_Test_commit1] 
+ALTER PROCEDURE [dbo].[Proc_Test_commit1]
     @result int output, --成功 1; 失败 0
     @message nvarchar(20) output
 AS
@@ -25,24 +27,25 @@ BEGIN TRY
     INSERT INTO Test_Commit (b) VALUES (3)
     INSERT INTO Test_Commit (a,b) VALUES (1,3)
     SET @result=1
-        
     RAISERROR ('异常', 16, 1 ) -- 产生异常到catch统一回滚
     COMMIT TRAN yy --提交事务
-END TRY   
+END TRY
 BEGIN CATCH
-    SET @message= ERROR_MESSAGE() 
+    SET @message= ERROR_MESSAGE()
     SET @result=0
-    ROLLBACK TRAN yy        
+    ROLLBACK TRAN yy
 
     PRINT ERROR_MESSAGE()
 END CATCH
-    SET NOCOUNT OFF; --恢复设置 
+    SET NOCOUNT OFF; --恢复设置
     --SET XACT_ABORT OFF
 END
 ```
+
 [返回目录](#目录)  
 
 ## 锁表
+
 ```SQL
 --读锁
 SELECT * FROM table WITH (HOLDLOCK)
@@ -51,8 +54,9 @@ SELECT * FROM table WITH (HOLDLOCK)
 SELECT * FROM table WITH (TABLOCKX)
 
 ```
+
 [返回目录](#目录)  
-   
+
 ## 日期格式化
 
 ```SQL
@@ -97,27 +101,29 @@ Select CONVERT(varchar(100), GETDATE(), 121) -- 2006-05-16 10:57:49.700
 Select CONVERT(varchar(100), GETDATE(), 126) -- 2006-05-16T10:57:49.827
 Select CONVERT(varchar(100), GETDATE(), 130) -- 18 ???? ?????? 1427 10:57:49:907AM
 Select CONVERT(varchar(100), GETDATE(), 131) -- 18/04/1427 10:57:49:920AM
-``` 
+```
+
 [返回目录](#目录)  
 
 ## 利用游标遍历表
+
 ```SQL
 DECLARE  @tablename varchar(100),
-         @columnsname varchar(100) , 
+         @columnsname varchar(100),
          @sql varchar(300)
---建立游标         
+--建立游标
 DECLARE curTable CURSOR fast_forward|readonly
-        FOR 
-	SELECT
-	    objects.name AS tablename,
-	    columns.name AS columnsname
-	FROM sys.objects
-	LEFT JOIN sys.columns
-	    ON columns.object_id = objects.object_id
-	LEFT JOIN sys.types
+        FOR
+SELECT
+        objects.name AS tablename,
+        columns.name AS columnsname
+    FROM sys.objects
+    LEFT JOIN sys.columns
+        ON columns.object_id = objects.object_id
+    LEFT JOIN sys.types
             ON types.system_type_id = columns.system_type_id
-	WHERE types.name = 'int'
-	ORDER BY objects.name ASC
+    WHERE types.name = 'int'
+    ORDER BY objects.name ASC
 
 --初始化游标
 OPEN curTable
@@ -128,19 +134,19 @@ FETCH NEXT FROM curTable INTO @tablename, @columnsname
 WHILE @@FETCH_STATUS = 0
 BEGIN
 
-	SET @sql = 'SELECT
-		*
-	FROM ' + @tablename + '
-	WHERE ' + @columnsname + ' = ' + '2'
+    SET @sql = 'SELECT
+        *
+    FROM ' + @tablename + '
+    WHERE ' + @columnsname + ' = ' + '2'
 
-	EXEC (@sql)
-	IF @@rowcount > 0
-	BEGIN
-		PRINT @sql
-		PRINT @tablename
-	END
+    EXEC (@sql)
+    IF @@rowcount > 0
+    BEGIN
+        PRINT @sql
+        PRINT @tablename
+    END
 
-	FETCH NEXT FROM curTable INTO @tablename, @columnsname
+    FETCH NEXT FROM curTable INTO @tablename, @columnsname
 END
 
 --关闭游标
@@ -148,120 +154,126 @@ CLOSE curTable
 --销毁游标
 DEALLOCATE curTable
 ```
+
 [返回目录](#目录)  
 
 ## 查询数据库中表结构
+
 ```SQL
-SELECT 表名 = CASE 
-		WHEN A.colorder = 1 THEN D.name
-		ELSE ''
-	END, 表说明 = CASE 
-		WHEN A.colorder = 1 THEN ISNULL(F.value, '')
-		ELSE ''
-	END
-	, 字段序号 = A.colorder, 字段名 = A.name
-	, 字段说明 = ISNULL(G.[value], '')
-	, 标识 = CASE 
-		WHEN COLUMNPROPERTY(A.id, A.name, 'IsIdentity') = 1 THEN '√'
-		ELSE ''
-	END, 主键 = CASE 
-		WHEN EXISTS (
-			SELECT 1
-			FROM sysobjects
-			WHERE xtype = 'PK'
-				AND parent_obj = A.id
-				AND name IN (
-					SELECT name
-					FROM sysindexes
-					WHERE indid IN (
-						SELECT indid
-						FROM sysindexkeys
-						WHERE id = A.id
-							AND colid = A.colid
-					)
-				)
-		) THEN '√'
-		ELSE ''
-	END
-	, 类型 = B.name, 占用字节数 = A.Length
-	, 长度 = COLUMNPROPERTY(A.id, A.name, 'PRECISION')
-	, 小数位数 = ISNULL(COLUMNPROPERTY(A.id, A.name, 'Scale'), 0)
-	, 允许空 = CASE 
-		WHEN A.isnullable = 1 THEN '√'
-		ELSE ''
-	END
-	, 默认值 = ISNULL(E.Text, '')
+SELECT 表名 = CASE
+        WHEN A.colorder = 1 THEN D.name
+        ELSE ''
+    END, 表说明 = CASE
+        WHEN A.colorder = 1 THEN ISNULL(F.value, '')
+        ELSE ''
+    END
+    , 字段序号 = A.colorder, 字段名 = A.name
+    , 字段说明 = ISNULL(G.[value], '')
+    , 标识 = CASE
+        WHEN COLUMNPROPERTY(A.id, A.name, 'IsIdentity') = 1 THEN '√'
+        ELSE ''
+    END, 主键 = CASE
+        WHEN EXISTS (
+            SELECT 1
+            FROM sysobjects
+            WHERE xtype = 'PK'
+                AND parent_obj = A.id
+                AND name IN (
+                    SELECT name
+                    FROM sysindexes
+                    WHERE indid IN (
+                        SELECT indid
+                        FROM sysindexkeys
+                        WHERE id = A.id
+                            AND colid = A.colid
+                    )
+                )
+        ) THEN '√'
+        ELSE ''
+    END
+    , 类型 = B.name, 占用字节数 = A.Length
+    , 长度 = COLUMNPROPERTY(A.id, A.name, 'PRECISION')
+    , 小数位数 = ISNULL(COLUMNPROPERTY(A.id, A.name, 'Scale'), 0)
+    , 允许空 = CASE
+        WHEN A.isnullable = 1 THEN '√'
+        ELSE ''
+    END
+    , 默认值 = ISNULL(E.Text, '')
 FROM syscolumns A
-	LEFT JOIN systypes B ON A.xusertype = B.xusertype
-	INNER JOIN sysobjects D
-	ON A.id = D.id
-		AND D.xtype = 'U'
-		AND D.name <> 'dtproperties'
-	LEFT JOIN syscomments E ON A.cdefault = E.id
-	LEFT JOIN sys.extended_properties G
-	ON A.id = G.major_id
-		AND A.colid = G.minor_id
-	LEFT JOIN sys.extended_properties F
-	ON D.id = F.major_id
-		AND F.minor_id = 0
+    LEFT JOIN systypes B ON A.xusertype = B.xusertype
+    INNER JOIN sysobjects D
+    ON A.id = D.id
+        AND D.xtype = 'U'
+        AND D.name <> 'dtproperties'
+    LEFT JOIN syscomments E ON A.cdefault = E.id
+    LEFT JOIN sys.extended_properties G
+    ON A.id = G.major_id
+        AND A.colid = G.minor_id
+    LEFT JOIN sys.extended_properties F
+    ON D.id = F.major_id
+        AND F.minor_id = 0
 ORDER BY A.id, A.colorder
 ```
+
 [返回目录](#目录)  
-    
+
 ## 循环切割字符串
+
 ```SQL
 CREATE FUNCTION [dbo].[fn_getForgeJSONInfo]
 (
-	@str VARCHAR(8000), @subStr varchar(50), @index INT
+    @str VARCHAR(8000), @subStr varchar(50), @index INT
 )
 returns varchar(50)
 
 BEGIN
-	DECLARE @N INT
-	SET @N = -1
-	WHILE @N <> @index
-	BEGIN
-		SET @N += 1
-		IF @N = @index 
-		BEGIN
-			IF(CHARINDEX(@subStr, @str) > 0)
-			BEGIN
-				SET @str = LEFT(@str, CHARINDEX(@subStr, @str) - 1)
-			END
-		END 
-		ELSE 
-		BEGIN
-			SET @str = RIGHT(@str, LEN(@str) - CHARINDEX(@subStr, @str))
-		END
-	END
-	
-	RETURN @str
+    DECLARE @N INT
+    SET @N = -1
+    WHILE @N <> @index
+    BEGIN
+        SET @N += 1
+        IF @N = @index
+        BEGIN
+            IF(CHARINDEX(@subStr, @str) > 0)
+            BEGIN
+                SET @str = LEFT(@str, CHARINDEX(@subStr, @str) - 1)
+            END
+        END 
+        ELSE 
+        BEGIN
+            SET @str = RIGHT(@str, LEN(@str) - CHARINDEX(@subStr, @str))
+        END
+    END
+
+    RETURN @str
 END
 ```
-[返回目录](#目录)   
+
+[返回目录](#目录)
 
 ## OPENXML
+
 ```SQL
 DECLARE @xmlDoc xml
 DECLARE @idoc int
 
 SET @xmlDoc = '<books>
-	      	  <book id="0001">
-	      	     <title>book1</title>
-	      	     <author>author1</author>
-	      	     <price>21</price>
-	      	  </book>
-	      	  <book id="0002">
-	      	     <title>book2</title>
-	      	     <author>author2</author>
-	      	     <price>79</price>
-	      	  </book>
-	      </books>'
+                <book id="0001">
+                   <title>book1</title>
+                   <author>author1</author>
+                   <price>21</price>
+                </book>
+                <book id="0002">
+                   <title>book2</title>
+                   <author>author2</author>
+                   <price>79</price>
+                </book>
+          </books>'
 --准备句柄
 EXEC sp_xml_preparedocument @idoc OUTPUT, @xmlDoc;
-print @idoc				
+print @idoc
 SELECT
-	*
+    *
 FROM OPENXML(@idoc, '/books/book', 1)
 WITH (title varchar(20) 'title',
 author varchar(11) 'author',
@@ -270,5 +282,5 @@ price varchar(40) 'price')
 EXEC sp_xml_removedocument @idoc  
 
 ```
-[返回目录](#目录)   
 
+[返回目录](#目录)
