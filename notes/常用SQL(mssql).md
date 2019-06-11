@@ -88,7 +88,7 @@ Select CONVERT(varchar(100), GETDATE(), 103) -- 16/05/2006
 Select CONVERT(varchar(100), GETDATE(), 104) -- 16.05.2006
 Select CONVERT(varchar(100), GETDATE(), 105) -- 16-05-2006
 Select CONVERT(varchar(100), GETDATE(), 106) -- 16 05 2006
-Select CONVERT(varchar(100), GETDATE(), 107) -- 05 16, 2006    
+Select CONVERT(varchar(100), GETDATE(), 107) -- 05 16, 2006
 Select CONVERT(varchar(100), GETDATE(), 108) -- 10:57:49
 Select CONVERT(varchar(100), GETDATE(), 109) -- 05 16 2006 10:57:49:437AM
 Select CONVERT(varchar(100), GETDATE(), 110) -- 05-16-2006
@@ -238,8 +238,8 @@ BEGIN
             BEGIN
                 SET @str = LEFT(@str, CHARINDEX(@subStr, @str) - 1)
             END
-        END 
-        ELSE 
+        END
+        ELSE
         BEGIN
             SET @str = RIGHT(@str, LEN(@str) - CHARINDEX(@subStr, @str))
         END
