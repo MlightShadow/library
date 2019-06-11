@@ -122,11 +122,11 @@ ul, ol {
   padding-left: 30px;
 }
 
-ul li > :first-child, 
-ol li > :first-child, 
-ul li ul:first-of-type, 
-ol li ol:first-of-type, 
-ul li ol:first-of-type, 
+ul li > :first-child,
+ol li > :first-child,
+ul li ul:first-of-type,
+ol li ol:first-of-type,
+ul li ol:first-of-type,
 ol li ul:first-of-type {
   margin-top: 0px;
 }
@@ -190,7 +190,6 @@ code, tt {
   white-space: nowrap;
   border: 1px solid #eaeaea;
 
- 
   background-color: #f8f8f8;
   border-radius: 3px;
 }
