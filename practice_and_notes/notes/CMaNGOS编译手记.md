@@ -1,22 +1,22 @@
-# CMaNGOS±àÒë²¿Êð½Ì³Ì
+# CMaNGOSç¼–è¯‘éƒ¨ç½²æ•™ç¨‹
 
-ËùÓÐÐèÒªµÄÔ´Âë¶¼ÔÚ https://cmangos.net/ ¹ÙÍøCommit historyµÄgithubÁ´½ÓÖÐ
+æ‰€æœ‰éœ€è¦çš„æºç éƒ½åœ¨ https://cmangos.net/ å®˜ç½‘Commit historyçš„githubé“¾æŽ¥ä¸­
 
-# ÐèÒª×¼±¸µÄÔ´Âë 
-* ºËÐÄ ÕâÀï¾ÍÊÇ¹ÙÍøËùÃèÊöµÄ`core` µ½DBµ¼Èë²¿·Ö¹ÙÍøÓÃÕâ¸ö´ÊÃèÊöµÄÕâ²¿·ÖÔ´Âëhttps://github.com/cmangos/mangos-classic
-* DB²»¶à½âÊÍ, µ¼ÈëdbµÄhttps://github.com/cmangos/classic-db
+# éœ€è¦å‡†å¤‡çš„æºç  
+* æ ¸å¿ƒ è¿™é‡Œå°±æ˜¯å®˜ç½‘æ‰€æè¿°çš„`core` åˆ°DBå¯¼å…¥éƒ¨åˆ†å®˜ç½‘ç”¨è¿™ä¸ªè¯æè¿°çš„è¿™éƒ¨åˆ†æºç https://github.com/cmangos/mangos-classic
+* DBä¸å¤šè§£é‡Š, å¯¼å…¥dbçš„https://github.com/cmangos/classic-db
 
-# »·¾³²¿Êð
-Ê×ÏÈÎÒÃÇÐèÒªboost»·¾³ ÏÂÔØboost 
-¹ÙÍø¸ø³öÁËÏà¹Øwindows»·¾³ÏÂµÄÏÂÔØÃûµ¥ Ê×ÏÈÎÒ±àÒëµÄÊ±ºòµÄÔ´ÂëÒÑ¾­²»ÔÙÖ§³Ömsvc14ÒÔÏÂµÄ°æ±¾ËùÒÔÔÚboost¹ÙÍøÉÏÄãÖ»ÄÜÏÂÔØ msvc14 ºÍmsvc14.1µÄÔ´Âë°æ±¾(´Ë´¦¾Þ¿Ó) ¶ÔÓ¦32Î»64Î»¸ù¾Ý×Ô¼ºµÄÇé¿öÑ¡Ôñ
+# çŽ¯å¢ƒéƒ¨ç½²
+é¦–å…ˆæˆ‘ä»¬éœ€è¦boostçŽ¯å¢ƒ ä¸‹è½½boost 
+å®˜ç½‘ç»™å‡ºäº†ç›¸å…³windowsçŽ¯å¢ƒä¸‹çš„ä¸‹è½½åå• é¦–å…ˆæˆ‘ç¼–è¯‘çš„æ—¶å€™çš„æºç å·²ç»ä¸å†æ”¯æŒmsvc14ä»¥ä¸‹çš„ç‰ˆæœ¬æ‰€ä»¥åœ¨boostå®˜ç½‘ä¸Šä½ åªèƒ½ä¸‹è½½ msvc14 å’Œmsvc14.1çš„æºç ç‰ˆæœ¬(æ­¤å¤„å·¨å‘) å¯¹åº”32ä½64ä½æ ¹æ®è‡ªå·±çš„æƒ…å†µé€‰æ‹©
 
 # CMAKE
-¾ßÌåÊÇÉ¶×Ô¼ºÈ¥²é
-ÏÂÔØ×îÐÂ°æ±¾¾ÍÐÐÁËÎÒÒ²Ã»ÓÐ×¢ÒâÓÐÊ²Ã´Çø±ð
-¶ÔÓ¦¹ÙÍøwikiÕâ²¿·ÖÍêÈ«Ã»ÓÐ¿Ó Íê³ÉºóÓÃ¶ÔÓ¦msvc14 »òÕß14.1 °æ±¾µÄvs ±àÒë Íê³Éºó¾ÍºÃÁË Ö±½Ó±àÒërelease ²»ÐèÒª±àÒëdebug×Ô¼ºÃæ±ÚË¼¹ýÎªÉ¶
+å…·ä½“æ˜¯å•¥è‡ªå·±åŽ»æŸ¥
+ä¸‹è½½æœ€æ–°ç‰ˆæœ¬å°±è¡Œäº†æˆ‘ä¹Ÿæ²¡æœ‰æ³¨æ„æœ‰ä»€ä¹ˆåŒºåˆ«
+å¯¹åº”å®˜ç½‘wikiè¿™éƒ¨åˆ†å®Œå…¨æ²¡æœ‰å‘ å®ŒæˆåŽç”¨å¯¹åº”msvc14 æˆ–è€…14.1 ç‰ˆæœ¬çš„vs ç¼–è¯‘ å®ŒæˆåŽå°±å¥½äº† ç›´æŽ¥ç¼–è¯‘release ä¸éœ€è¦ç¼–è¯‘debugè‡ªå·±é¢å£æ€è¿‡ä¸ºå•¥
 
-# DBµ¼Èë
-ÍøÉÏËµÊÇÐèÒªmysql5.5 ÎÒ×Ô¼ºÒ²Ã»¹Ü·´ÕýÕâÄêÍ·´ó¼ÒÔç¾ÍÓÃ5.7ÁË ÎªÉ¶? ,×Ô¼ºÃæ±ÚË¼¹ýÈ¥, µ¼ÈëµÄÊ±ºò¾­³£»á±¨´í ÒòÎªÓÐµÄÖ´ÐÐÌ«³¤ÁË ÎÒÕâ±ßÓÃ·Ö²ðÖ´ÐÐµÄ°ì·¨½â¾öÁË ÁíÍâÖ±½ÓÔÚ·þÎñÆ÷»ú×ÓÉÏÖ´ÐÐ Ô¶³Ì»¹ÓÐ´«ÊäÎÊÌâ ÁíÍâÖ´ÐÐÓÐÉèÖÃÖ´ÐÐ×î´ó×Ö½ÚµÄ max byteÉ¶µÄÎÒÍüÁË ×Ô¼º²é°É ×¢ÒâÕâ±ßÏÈµ¼ÈëµÄsql »¹ÊÇ coreÖÐµÄsql ÎÄ¼þ¼ÐÀïµÄ ÁíÍâµÄsqlµÈÕâ²¿·ÖÍê³ÉÁË¸ù¾Ý¹ÙÍøÅäÖÃshÎÄ¼þÖ´ÐÐ ×¢Òâ×°ÉÏgitÊ¹ÓÃ¸ü¼Ñ ¹ÙÍø¶à´ÎÌáµ½ÁË ÁíÍâshµ¼ÈëµÄÊ±ºòÓÐ×Ö·ûÀàÐÍ±¨´íÊ²Ã´x99 ÄÃnotepad³öÀ´×ª×ÖÂë windowsÆ½Ì¨×ª¸öÎ¢ÈíµÄÄÇ¸öAÉ¶µÄÎÒÍüÁË ·´ÕýÕâ¸öºÍutf8 
+# DBå¯¼å…¥
+ç½‘ä¸Šè¯´æ˜¯éœ€è¦mysql5.5 æˆ‘è‡ªå·±ä¹Ÿæ²¡ç®¡åæ­£è¿™å¹´å¤´å¤§å®¶æ—©å°±ç”¨5.7äº† ä¸ºå•¥? ,è‡ªå·±é¢å£æ€è¿‡åŽ», å¯¼å…¥çš„æ—¶å€™ç»å¸¸ä¼šæŠ¥é”™ å› ä¸ºæœ‰çš„æ‰§è¡Œå¤ªé•¿äº† æˆ‘è¿™è¾¹ç”¨åˆ†æ‹†æ‰§è¡Œçš„åŠžæ³•è§£å†³äº† å¦å¤–ç›´æŽ¥åœ¨æœåŠ¡å™¨æœºå­ä¸Šæ‰§è¡Œ è¿œç¨‹è¿˜æœ‰ä¼ è¾“é—®é¢˜ å¦å¤–æ‰§è¡Œæœ‰è®¾ç½®æ‰§è¡Œæœ€å¤§å­—èŠ‚çš„ max byteå•¥çš„æˆ‘å¿˜äº† è‡ªå·±æŸ¥å§ æ³¨æ„è¿™è¾¹å…ˆå¯¼å…¥çš„sql è¿˜æ˜¯ coreä¸­çš„sql æ–‡ä»¶å¤¹é‡Œçš„ å¦å¤–çš„sqlç­‰è¿™éƒ¨åˆ†å®Œæˆäº†æ ¹æ®å®˜ç½‘é…ç½®shæ–‡ä»¶æ‰§è¡Œ æ³¨æ„è£…ä¸Šgitä½¿ç”¨æ›´ä½³ å®˜ç½‘å¤šæ¬¡æåˆ°äº† å¦å¤–shå¯¼å…¥çš„æ—¶å€™æœ‰å­—ç¬¦ç±»åž‹æŠ¥é”™ä»€ä¹ˆx99 æ‹¿notepadå‡ºæ¥è½¬å­—ç  windowså¹³å°è½¬ä¸ªå¾®è½¯çš„é‚£ä¸ªAå•¥çš„æˆ‘å¿˜äº† åæ­£è¿™ä¸ªå’Œutf8 
 
-# ÌáÈ¡¹¤¾ß
-×îºó±àÒëÌáÈ¡¹¤¾ßcmake ¹´Ñ¡ extractorºÍgame¾Í¿ÉÒÔ±àÒëÁË ´Ë´¦¾Þ¿Ó
+# æå–å·¥å…·
+æœ€åŽç¼–è¯‘æå–å·¥å…·cmake å‹¾é€‰ extractorå’Œgameå°±å¯ä»¥ç¼–è¯‘äº† æ­¤å¤„å·¨å‘
