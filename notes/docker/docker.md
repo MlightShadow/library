@@ -34,13 +34,13 @@ win10 开启 Hyper-V, 大部分linux, mac, respdebian可以安装docker 原文�
 
 ### 3.1 获取
 
-```docker
+```none
 docker pull [选项] [Docker Registry <域名/IP>[:端口号]/]仓库名[:标签]
 ```
 
 原文例子
 
-```docker
+```none
 $ docker pull ubuntu:16.04
 16.04: Pulling from library/ubuntu
 bf5d46315322: Pull complete
@@ -56,7 +56,7 @@ Status: Downloaded newer image for ubuntu:16.04
 
 原文例子
 
-```docker
+```none
 $ docker run -it --rm ubuntu:16.04 bash
 root@e7009c6ce357:
 ```
@@ -68,13 +68,13 @@ root@e7009c6ce357:
 
 ### 3.3 列出镜像
 
-```docker
+```none
 docker image ls
 ```
 
 ### 3.4 删除镜像
 
-```docker
+```none
 docker image rm [选项] <镜像1> [<镜像2> ...]
 
 docker rmi [选项] <镜像1> [<镜像2> ...]
@@ -243,8 +243,12 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 
 #### 4.3.9 VOLUME
 
-* `VOLUME ["<路径1>", "<路径2>"...]`
-* `VOLUME <路径>`
+```dockerfile
+VOLUME ["<路径1>", "<路径2>"...]
+VOLUME <路径>
+```
+
+
 
 为了防止运行时用户忘记将动态文件所保存目录挂载为卷, 在 Dockerfile 中, 我们可以事先指定某些目录挂载为匿名卷, 这样在运行时如果用户不指定挂载, 其应用也可以正常运行, 不会向容器存储层写入大量数据
 
@@ -255,7 +259,7 @@ VOLUME /data
 这里的 /data 目录就会在运行时自动挂载为匿名卷, 任何向 /data 中写入的信息都不会记录进容器存储层, 从而保证了容器存储层的无状态化
 运行时可以覆盖这个挂载设置
 
-```bash
+```none
 docker run -d -v mydata:/data xxxx
 ```
 
@@ -263,7 +267,9 @@ docker run -d -v mydata:/data xxxx
 
 #### 4.3.10 EXPOSE
 
-`EXPOSE <端口1> [<端口2>...]`
+```dockerfile
+EXPOSE <端口1> [<端口2>...]
+```
 
 EXPOSE 指令是声明运行时容器提供服务端口, 这只是一个声明, 在运行时并不会因为这个声明应用就会开启这个端口的服务
 
@@ -278,6 +284,12 @@ EXPOSE 指令是声明运行时容器提供服务端口, 这只是一个声明, 
 * EXPOSE 仅仅是声明容器打算使用什么端口而已, 并不会自动在宿主进行端口映射
 
 #### 4.3.11 WORKDIR
+
+```dockerfile
+WORKDIR <工作目录路径>
+```
+
+使用 WORKDIR 指令可以来指定工作目录(或者称为当前目录), 以后各层的当前目录就被改为指定的目录, 如该目录不存在, WORKDIR 会帮你建立目录
 
 #### 4.3.12 USER
 
