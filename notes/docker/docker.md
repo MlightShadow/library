@@ -208,6 +208,12 @@ ADD 指令和 COPY 的格式和性质基本一致, 但是在 COPY 基础上增�
 
 #### 4.3.5 CMD
 
+CMD 指令的格式和 RUN 相似, 也是两种格式:
+
+* shell 格式: `CMD <命令>`
+* exec 格式: `CMD ["可执行文件", "参数1", "参数2"...]`
+* 参数列表格式: `CMD ["参数1", "参数2"...]` 在指定了 ENTRYPOINT 指令后, 用 CMD 指定具体的参数
+
 #### 4.3.6 ENTRYPOINT
 
 场景一: 让镜像变成像命令一样使用
@@ -247,8 +253,6 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 VOLUME ["<路径1>", "<路径2>"...]
 VOLUME <路径>
 ```
-
-
 
 为了防止运行时用户忘记将动态文件所保存目录挂载为卷, 在 Dockerfile 中, 我们可以事先指定某些目录挂载为匿名卷, 这样在运行时如果用户不指定挂载, 其应用也可以正常运行, 不会向容器存储层写入大量数据
 
@@ -294,5 +298,27 @@ WORKDIR <工作目录路径>
 #### 4.3.12 USER
 
 #### 4.3.13 HEALTHCHECK
+
+```dockerfile
+HEALTHCHECK [选项] CMD <命令> #设置检查容器健康状况的命令
+HEALTHCHECK NONE #如果基础镜像有健康检查指令，使用这行可以屏蔽掉其健康检查指令
+```
+
+当在一个镜像指定了 HEALTHCHECK 指令后, 用其启动容器, 初始状态会为 starting, 在 HEALTHCHECK 指令检查成功后变为 healthy, 如果连续一定次数失败, 则会变为 unhealthy
+
+HEALTHCHECK 支持下列选项:
+
+* `--interval=<间隔>`: 两次健康检查的间隔, 默认为 30 秒
+* `--timeout=<时长>`: 健康检查命令运行超时时间, 如果超过这个时间, 本次健康检查就被视为失败, 默认 30 秒
+* `--retries=<次数>`: 当连续失败指定次数后, 则将容器状态视为 unhealthy, 默认 3 次
+
+```dockerfile
+FROM nginx
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+HEALTHCHECK --interval=5s --timeout=3s \
+  CMD curl -fs http://localhost/ || exit 1
+```
+
+为了帮助排障, 健康检查命令的输出（包括 stdout 以及 stderr）都会被存储于健康状态里, 可以用 docker inspect 来查看
 
 #### 4.3.14 ONBUILD
