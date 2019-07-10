@@ -60,15 +60,11 @@ server {
   
     location / {  
         root   /usr/share/nginx/html;  
-       # root   /usr/nginx/html;  
         index  index.html index.htm;  
         autoindex  on;  
-    try_files $uri /index/index/page.html;  
-        #try_files $uri /index/map/page.html;  
+        try_files $uri /index/index/page.html;  
     }  
-  
-    #error_page  404              /404.html;  
-  
+
     # redirect server error pages to the static page /50x.html  
     #  
     error_page   500 502 503 504  /50x.html;  
