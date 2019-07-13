@@ -108,3 +108,5 @@ docker run -itd \
 -v /home/pi/docker_conf/nginx/conf.d:/etc/nginx/conf.d \
 nginx:latest
 ```
+
+注意: 对于容器中的配置多个端口分发请求需要使用局域网ip否则会在容器内转发
