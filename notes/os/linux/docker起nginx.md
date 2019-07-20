@@ -65,6 +65,10 @@ server {
         try_files $uri /index/index/page.html;  
     }  
 
+    location /api {
+        proxy_pass http://ip:port/;
+    }
+
     # redirect server error pages to the static page /50x.html  
     #  
     error_page   500 502 503 504  /50x.html;  
@@ -109,4 +113,4 @@ docker run -itd \
 nginx:latest
 ```
 
-注意: 对于容器中的配置多个端口分发请求需要使用局域网ip否则会在容器内转发
+注意: 对于容器中的配置多个端口分发请求不要用 127.0.0.1 或者 localhost, 否则只会在容器内转发
