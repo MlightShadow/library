@@ -1,5 +1,7 @@
 # NW.JS 使用方法
 
+[参考](https://www.cnblogs.com/yswenli/archive/2018/01/31/8393787.html)
+
 首先[官网](https://nwjs.io/)下载NW.js的最新发布包
 
 直接解压即可
