@@ -15,4 +15,4 @@
 
 Generator 可以没有`yield`
 
-
+`yield` 在普通的函数中会报错
