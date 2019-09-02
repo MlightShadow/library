@@ -1,6 +1,6 @@
 # etc
 
-欢迎投稿(pr), 修正(pr), 现在还没脸要star
+[stars](https://github.com/MlightShadow/etc/blob/master/stars.md) - star过的项目整理
 
 ## chip
 
