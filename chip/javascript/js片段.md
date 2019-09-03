@@ -11,3 +11,17 @@ function rate(win_rate) {
     return (BASE_RATE / win_rate) * (1 - TAX_RATE)
 }
 ```
+
+根据xpath获取元素
+
+```js
+function _x(STR_XPATH) {
+    var xresult = document.evaluate(STR_XPATH, document, null, XPathResult.ANY_TYPE, null);
+    var xnodes = [];
+    var xres;
+    while (xres = xresult.iterateNext()) {
+        xnodes.push(xres);
+    }
+    return xnodes;
+}
+```
