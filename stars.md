@@ -41,6 +41,9 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [herozhou/vue-framework-wz vue后台管理框架](https://github.com/herozhou/vue-framework-wz)
 * [framework7io/framework7 Full featured HTML framework for building iOS & Android apps](https://github.com/framework7io/framework7)
 * [JeffreySu/WeiXinMPSDK 微信公众平台SDK Senparc.Weixin for C#，支持.NET Framework及.NET Core。已支持微信公众号、小程序、小游戏、企业号、企业微信、开放平台、微信支付、JSSDK、微信周边等全平台。 WeChat SDK for C#.](https://github.com/JeffreySu/WeiXinMPSDK)
+* [fivethree-team/nestjs-prisma-starter Starter template for NestJS includes Graphql with Prisma Client, Passport-JWT authentication, Swagger Api and Docker](https://github.com/fivethree-team/nestjs-prisma-starter)
+* [NarHakobyan/awesome-nest-boilerplate Awesome NestJS Boilerplate, Typescript, Postgres, TypeORM](https://github.com/NarHakobyan/awesome-nest-boilerplate)
+* [nestjs/nest A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications on top of TypeScript & JavaScript (ES6, ES7, ES8)](https://github.com/nestjs/nest)
 
 ---
 
@@ -61,6 +64,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [mrdoob/three.js JavaScript 3D library.](https://github.com/mrdoob/three.js)
 * [liabru/matter-js a 2D rigid body physics engine for the web ▲● ■](https://github.com/liabru/matter-js)
 * [Popmotion/popmotion Simple animation libraries for delightful user interfaces](https://github.com/Popmotion/popmotion)
+* [BurntSushi/ripgrep ripgrep recursively searches directories for a regex pattern](https://github.com/BurntSushi/ripgrep)
 
 ---
 
@@ -155,6 +159,12 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [phobal/ivideo 一个可以观看国内主流视频平台所有视频的客户端（Mac、Windows、Linux） A client that can watch video of domestic(China) mainstream video platform](https://github.com/phobal/ivideo)
 * [fate233/chatbot-zh-torch7 中文Neural conversational model in Torch (聊天机器人)](https://github.com/fate233/chatbot-zh-torch7)
 * [clappr/clappr An extensible media player for the web (网页视频播放)](https://github.com/clappr/clappr)
+* [sampotts/plyr A simple HTML5, YouTube and Vimeo player](https://github.com/sampotts/plyr)
+* [chenshenhai / pictool A front-end image processing gadget](https://github.com/chenshenhai/pictool)
+* [t9tio/wewe Open group chat messages to the world](https://github.com/t9tio/wewe)
+* [tebelorg/TagUI-Python Python package for digital process automation (RPA) (自动化测试工具)](https://github.com/tebelorg/TagUI-Python)
+* [GavinZhuLei/vue-form-making 基于Vue的表单设计器，让表单开发简单而高效。](https://github.com/GavinZhuLei/vue-form-making)
+* [nicolargo/glances Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems. (监控)](https://github.com/nicolargo/glances)
 
 ### 内网穿透
 
@@ -165,6 +175,11 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [peterq/pan-light 百度网盘不限速客户端, golang + qt5, 跨平台图形界面](https://github.com/peterq/pan-light)
 * [b3log/baidu-netdisk-downloaderx 一款图形界面的百度网盘不限速下载器，支持 Windows、Linux 和 Mac。](https://github.com/b3log/baidu-netdisk-downloaderx)
 * [dengyuhan/magnetW 磁力搜网页版 - 磁力链接聚合搜索 - https://bt.biedian.me](https://github.com/dengyuhan/magnetW)
+
+#### 12306
+
+* [testerSunshine/12306 12306智能刷票，订票](https://github.com/testerSunshine/12306)
+* [pjialin/py12306 12306 购票助手，支持分布式，多账号，多任务购票以及 Web 页面管理](https://github.com/pjialin/py12306)
 
 ---
 
@@ -211,12 +226,16 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [donnemartin/system-design-primer 系统设计入门](https://github.com/donnemartin/system-design-primer)
 * [stanzhai/be-a-professional-programmer 成为专业程序员路上用到的各种优秀资料、神器及框架](https://github.com/stanzhai/be-a-professional-programmer)
 * [phodal/growth-ebook Growth Engineering: The Definitive Guide。全栈增长工程师指南](https://github.com/phodal/growth-ebook)
+* [juliandavidmr/awesome-nestjs Curated list of NestJS](https://github.com/juliandavidmr/awesome-nestjs)
+* [loonggg/DevMoneySharing 独立开发者赚钱经验分享](https://github.com/loonggg/DevMoneySharing)
 
 ### 期刊
 
+* [richshaw2015/oh-my-rss An online RSS service based on Scrapy and Django](https://github.com/richshaw2015/oh-my-rss)
 * [ruanyf/weekly 科技爱好者周刊，每周五发布](https://github.com/ruanyf/weekly)
 * [guanguans/favorite-link 每日收集喜欢的开源项目](https://github.com/guanguans/favorite-link)
 * [521xueweihan/HelloGitHub Find pearls on open-source seashore 分享 GitHub 上有趣、入门级的开源项目](https://github.com/521xueweihan/HelloGitHub)
+* [dt-fe/weekly 前端精读周刊](https://github.com/dt-fe/weekly)
 
 ---
 
