@@ -120,6 +120,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [chaitin/xray 安全评估工具](https://github.com/chaitin/xray)
 * [hacklcx/HFish 扩展企业安全测试主动诱导型开源蜜罐框架系统，记录黑客攻击手段](https://github.com/hacklcx/HFish)
 * [raddyfiy/caidao-official-version 中国菜刀官方版本，拒绝黑吃黑，来路清晰](https://github.com/raddyfiy/caidao-official-version)
+* [uknowsec/Active-Directory-Pentest-Notes 个人域渗透学习笔记](https://github.com/uknowsec/Active-Directory-Pentest-Notes)
 
 ### 协同工具
 
@@ -165,10 +166,12 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [tebelorg/TagUI-Python Python package for digital process automation (RPA) (自动化测试工具)](https://github.com/tebelorg/TagUI-Python)
 * [GavinZhuLei/vue-form-making 基于Vue的表单设计器，让表单开发简单而高效。](https://github.com/GavinZhuLei/vue-form-making)
 * [nicolargo/glances Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems. (监控)](https://github.com/nicolargo/glances)
+* [n0tr00t/Sreg Sreg可对使用者通过输入email、phone、username的返回用户注册的所有互联网护照信息。](https://github.com/n0tr00t/Sreg)
 
 ### 内网穿透
 
 * [cnlh/nps 一款轻量级、功能强大的内网穿透代理服务器。支持tcp、udp流量转发，支持内网http代理、内网socks5代理，同时支持snappy压缩、站点保护、加密传输、多路复用、header修改等。支持web图形化管理，集成多用户模式。](https://github.com/cnlh/nps)
+* [idlefire/ew 内网穿透(跨平台)](https://github.com/idlefire/ew)
 
 ### 下载工具
 
