@@ -1,14 +1,14 @@
-# etc
+# library
 
 欢迎推荐, 欢迎勘误
 
-[manual](https://github.com/MlightShadow/etc/tree/master/manual) 手册  
-[notes](https://github.com/MlightShadow/etc/tree/master/notes) 笔记  
-[snippet](https://github.com/MlightShadow/etc/tree/master/snippet) 代码片段  
+[manual](https://github.com/MlightShadow/library/tree/master/manual) 手册  
+[notes](https://github.com/MlightShadow/library/tree/master/notes) 笔记  
+[snippet](https://github.com/MlightShadow/library/tree/master/snippet) 代码片段  
 
 ## 收藏汇总
 
-[stars](https://github.com/MlightShadow/etc/blob/master/stars.md) - star过的项目整理  
+[stars](https://github.com/MlightShadow/library/blob/master/stars.md) - star过的项目整理  
 
 ## 阅读
 
