@@ -1,6 +1,6 @@
 # etc
 
-[stars](https://github.com/MlightShadow/etc/blob/master/stars.md) - star过的项目整理
+[stars](https://github.com/MlightShadow/etc/blob/master/stars.md) - star过的项目整理  
 [阅读材料](https://github.com/MlightShadow/etc/blob/master/阅读材料.md)
 
 ## manual
