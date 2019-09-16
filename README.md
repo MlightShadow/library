@@ -1,7 +1,7 @@
 # etc
 
 [stars](https://github.com/MlightShadow/etc/blob/master/stars.md) - star过的项目整理  
-[阅读材料](https://github.com/MlightShadow/etc/blob/master/阅读材料.md)
+[每日阅读材料](https://github.com/MlightShadow/etc/blob/master/阅读材料.md)
 
 ## manual
 
@@ -17,6 +17,6 @@
 
 ## 在线工具网站汇总
 
-[https://oktools.net/](https://oktools.net/)
-[http://asciiflow.com/](http://asciiflow.com/)
-[https://www.emojicopy.com/](https://www.emojicopy.com/)
+[在线小工具合集, json格式化, 正则等 https://oktools.net/](https://oktools.net/)  
+[ascii画图工具 http://asciiflow.com/](http://asciiflow.com/)  
+[emoji cheat sheet https://www.emojicopy.com/](https://www.emojicopy.com/)
