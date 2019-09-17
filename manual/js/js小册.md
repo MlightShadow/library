@@ -425,9 +425,56 @@ const { SourceMapConsumer, SourceNode } = require("source-map");
 
 ## 函数
 
-### 函数参数
+### 默认值
+
+没有添加在尾部的参数不能省略必须显式添加 `undefined`
+
+以下传递方式报错
+
+```javascript
+f(1, ,2)
+```
+
+使用默认值时, 不可使用同名参数
+
+length只返回没有指定默认值的参数个数, rest也不会计入, 不是尾参数的带默认值参数之后的参数也不会计入length
 
 `function func (arg1, arg2, ...rest)` 可获取剩余所有参数
+
+当指定默认值时函数参数列表会形成一个独立的作用域, 在不指定默认值时不会出现这个作用域
+
+```javascript
+var x = 1;
+
+function f(x, y = x) {
+  console.log(y);
+}
+
+f(2) // 2
+
+let x = 1;
+
+function f(y = x) {
+  let x = 2;
+  console.log(y);
+}
+
+f() // 1
+```
+
+默认值设置必填参数检查
+
+```javascript
+function throwIfMissing() {
+  throw new Error('Missing parameter');
+}
+
+function foo(mustBeProvided = throwIfMissing()) {
+  return mustBeProvided;
+}
+
+foo()
+```
 
 ### call(), apply(), bind()
 
