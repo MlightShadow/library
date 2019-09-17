@@ -439,8 +439,6 @@ f(1, ,2)
 
 length只返回没有指定默认值的参数个数, rest也不会计入, 不是尾参数的带默认值参数之后的参数也不会计入length
 
-`function func (arg1, arg2, ...rest)` 可获取剩余所有参数
-
 当指定默认值时函数参数列表会形成一个独立的作用域, 在不指定默认值时不会出现这个作用域
 
 ```javascript
@@ -475,6 +473,125 @@ function foo(mustBeProvided = throwIfMissing()) {
 
 foo()
 ```
+
+### rest 参数
+
+`function func (arg1, arg2, ...rest)` 可获取剩余所有参数
+
+```javascript
+function add(...values) {
+  let sum = 0;
+
+  for (var val of values) {
+    sum += val;
+  }
+
+  return sum;
+}
+
+add(2, 5, 3)
+```
+
+`arguments` 并不是数组所以使用没有 `rest` 方便, `rest` 就是一个数组
+
+`rest` 参数之后不能再有其他参数, 否则报错
+
+`length` 在有 `rest` 参数的情况下并不包含 `rest`
+
+### 严格模式的一些注意
+
+当使用默认值, 解构赋值, 扩展运算符的情况下, 函数内部无法被显示的设置为严格模式, 否则会报错
+
+以下为两种合法模式, 全局严格模式或者在外部包含一个立即执行的函数并在函数体中显式声明严格模式
+
+```javascript
+'use strict';
+
+function doSomething(a, b = a) {
+  // code
+}
+```
+
+```javascript
+const doSomething = (function () {
+  'use strict';
+  return function(value = 42) {
+    return value;
+  };
+}());
+```
+
+### name
+
+返回函数名
+`Funciton` 构造函数返回 `anonymous`
+`bind` 返回的函数会有 `bound` 前缀
+
+```javascript
+const bar = function baz() {};
+bar.name//baz
+
+(new Function).name // "anonymous"
+
+function foo() {};
+foo.bind({}).name // "bound foo"
+
+(function(){}).bind({}).name // "bound "
+
+```
+
+### 箭头函数
+
+```javascript
+var f = v => v;
+var sum = (num1, num2) => num1 + num2;
+var sum = (num1, num2) => { return num1 + num2; }
+```
+
+如果直接返回对象需要加圆括号以避免被解释为代码块
+
+```javascript
+let getTempItem = id => ({ id: id, name: "Temp" });
+```
+
+只有一行, 无返回值情况下
+
+```javascript
+let fn = () => void doesNotReturn();
+```
+
+同样可以使用解构
+
+```javascript
+const full = ({ first, last }) => first + ' ' + last;
+```
+
+示例:
+
+```javascript
+const isEven = n => n % 2 === 0;
+const square = n => n * n;
+
+[1,2,3].map(x => x * x);
+
+var result = values.sort((a, b) => a - b);
+
+const numbers = (...nums) => nums;
+numbers(1, 2, 3, 4, 5)
+const headAndTail = (head, ...tail) => [head, tail];
+headAndTail(1, 2, 3, 4, 5)
+```
+
+箭头函数注意:
+
+* 函数体内的this对象为定义时所在的对象, 而非使用时所在对象
+* 不可以当作构造函数, 使用new命令抛出错误
+* 不可以使用arguments对象
+* 不能使用yield, 即不能作为generator函数
+
+### 箭头函数中的this
+
+TODO
 
 ### call(), apply(), bind()
 
