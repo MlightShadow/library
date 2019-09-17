@@ -11,6 +11,300 @@ JS 复习巩固用
 * Boolean
 * null & undefined
 
+### 解构赋值
+
+#### 数组解构赋值
+
+```javascript
+let [foo, [[bar], baz]] = [1, [[2], 3]];
+let [ , , third] = ["foo", "bar", "baz"];
+let [x, , y] = [1, 2, 3];
+let [head, ...tail] = [1, 2, 3, 4];
+let [x, y, ...z] = ['a'];
+```
+
+如果解构不成功则为 `undefined`
+
+当等号右边值转为对象后不具备`iterator`接口, 或者本身不具备`iterator`接口, 则无法解构, 且报错
+
+```javascript
+let [foo] = 1;
+let [foo] = false;
+let [foo] = NaN;
+let [foo] = undefined;
+let [foo] = null;
+let [foo] = {};
+```
+
+解构时可以指定默认值, 当元素为 `undefined` 时则为默认值
+
+注意: `null` 不是 `undefined`
+
+```javascript
+let [x, y = 'b'] = ['a', undefined];
+```
+
+#### 对象解构赋值
+
+对象结构赋值时右值必须包含相同属性名才能取到值
+
+```javascript
+let { foo, baz } = { foo: 'aaa', bar: 'bbb' };
+```
+
+这其中 `baz` 则为 `undefined`
+
+可以解构到相应对象的方法方便使用
+
+```javascript
+let { log, sin, cos } = Math;
+```
+
+以下为两个解构时属性名与变量名不同的写法, 其中 `foo` 称为模式而 `baz` 则是变量
+之前的解构写法其实是这种写法的简写
+
+```javascript
+let { foo: baz } = { foo: 'aaa', bar: 'bbb' };
+
+let obj = { first: 'hello', last: 'world' };
+let { first: f, last: l } = obj;
+```
+
+也可以嵌套解构, 嵌套时就需要使用模式来进行解构, 此处 `p` 即为模式
+
+```javascript
+let obj = {
+  p: [
+    'Hello',
+    { y: 'World' }
+  ]
+};
+
+let { p: [x, { y }] } = obj;
+```
+
+解构是父对象不存在则会报错
+
+```javascript
+let {foo: {bar}} = {baz: 'baz'};
+```
+
+解构赋值能够取到继承属性
+
+```javascript
+const obj1 = {};
+const obj2 = { foo: 'bar' };
+Object.setPrototypeOf(obj1, obj2);
+
+const { foo } = obj1;
+```
+
+默认值设置方式与数组类似, 作用机制与数组相同, 需要严格等于 `undefined` 才有效
+
+```javascript
+var {x = 3} = {x: undefined};
+```
+
+注意以下几点:
+
+以下这种写法 `{x}` 会被认为是代码块, 解释器将显示为错误
+
+```javascript
+let x;
+{x} = {x: 1};
+```
+
+需要采用以下写法
+
+```javascript
+let x;
+({x} = {x: 1});
+```
+
+以下代码虽然不会报错, 但是毫无意义
+
+```javascript
+({} = [true, false]);
+({} = 'abc');
+({} = []);
+```
+
+可以使用对象解构数组, 因为数组的本质也是对象
+
+```javascript
+let arr = [1, 2, 3];
+let {0 : first, [arr.length - 1] : last} = arr;
+```
+
+#### 字符串解构赋值
+
+以数组解析, 以对象解析都可以
+
+```javascript
+const [a, b, c, d, e] = 'hello';
+let {length : len} = 'hello';
+```
+
+#### 数值和布尔解构赋值
+
+```javascript
+let {toString: s} = 123;
+let {toString: s} = true;
+```
+
+数字与布尔值转为对象对 `toString` 属性进行解构复制可以获得相应布尔值
+
+对 `undefined` 和 `null` 进解构赋值会报错
+
+#### 函数参数解构赋值
+
+其中第三例与第四例不同的是: 第三例为 `x`, `y` 设置了默认值, 并且设置了传入对象的默认值, 而第四例仅为传入的对象参数设置了默认值, 等同于第五例
+
+```javascript
+function add([x, y]){
+  return x + y;
+}
+
+[[1, 2], [3, 4]].map(([a, b]) => a + b);
+
+function move({x = 0, y = 0} = {}) {
+  return [x, y];
+}
+
+function move({x, y} = { x: 0, y: 0 }) {
+  return [x, y];
+}
+
+[1, undefined, 3].map((x = 'yes') => x);
+
+```
+
+#### 解构赋值注意点
+
+当模式中出现圆括号时可能导致歧义, 尽量不要再模式中使用圆括号
+
+以下是正确的使用情况
+
+```javascript
+[(b)] = [3];
+({ p: (d) } = {});
+[(parseInt.prop)] = [3];
+```
+
+以下都是错误用例
+
+```javascript
+let [(a)] = [1];
+
+let {x: (c)} = {};
+let ({x: c}) = {};
+let {(x: c)} = {};
+let {(x): c} = {};
+
+let { o: ({ p: p }) } = { o: { p: 2 } };
+
+function f([(z)]) { return z; }
+
+function f([z,(x)]) { return x; }
+
+({ p: a }) = { p: 42 };
+([a]) = [5];
+
+[({ p: a }), { x: c }] = [{}, {}];
+```
+
+#### 解构常用示例
+
+变量交换
+
+```javascript
+let x = 1;
+let y = 2;
+
+[x, y] = [y, x];
+```
+
+获取多个函数返回值
+
+```javascript
+function example() {
+  return [1, 2, 3];
+}
+let [a, b, c] = example();
+
+function example() {
+  return {
+    foo: 1,
+    bar: 2
+  };
+}
+let { foo, bar } = example();
+```
+
+函数参数定义, 注意: 数组需要有序放置, 而对象则可以无序放置
+
+```javascript
+function f([x, y, z]) { ... }
+f([1, 2, 3]);
+
+function f({x, y, z}) { ... }
+f({z: 3, y: 2, x: 1});
+```
+
+同样可以加入默认值
+
+```javascript
+jQuery.ajax = function (url, {
+  async = true,
+  beforeSend = function () {},
+  cache = true,
+  complete = function () {},
+  crossDomain = false,
+  global = true,
+  // ... more config
+} = {}) {
+  // ... do stuff
+};
+```
+
+提取 `JSON` 数据
+
+```javascript
+let jsonData = {
+  id: 42,
+  status: "OK",
+  data: [867, 5309]
+};
+
+let { id, status, data: number } = jsonData;
+```
+
+遍历Map时
+
+```javascript
+const map = new Map();
+map.set('first', 'hello');
+map.set('second', 'world');
+
+for (let [key, value] of map) {
+  console.log(key + " is " + value);
+}
+
+for (let [key] of map) {
+  // ...
+}
+
+for (let [,value] of map) {
+  // ...
+}
+```
+
+加载模块时
+
+```javascript
+const { SourceMapConsumer, SourceNode } = require("source-map");
+```
+
 ## 数组
 
 给数组的 `length` 属性赋值可以改变数组大小
