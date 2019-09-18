@@ -251,6 +251,22 @@ Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
 
 TODO
 
+#### Proxy
+
+TODO
+
+#### Reflect
+
+TODO
+
+#### Promise
+
+TODO
+
+#### Iterator
+
+TODO
+
 ### Map
 
 ```javascript
@@ -808,6 +824,14 @@ TODO
 * ES2017 函数参数现在允许尾逗号
 * ES2019 catch允许省略err参数
 
+### Generator
+
+TODO
+
+### async
+
+TODO
+
 ### call(), apply(), bind()
 
 ```javascript
@@ -828,10 +852,16 @@ obj.fn.bind(pram1, pram2, pram3)
 
 `find()` 返回 `fn()` 中 `this` 被修改后的函数, 不会直接执行 `fn()`, 其他与 `call()` 一致
 
-## 模块
+## Module
+
+TODO
 
 ## 示例
 
 ### 浏览器端文件操作
+
+TODO
+
+## 解释器
 
 TODO
