@@ -593,6 +593,72 @@ headAndTail(1, 2, 3, 4, 5)
 
 TODO
 
+### 嵌套箭头函数
+
+```javascript
+let insert = (value) => ({into: (array) => ({after: (afterValue) => {
+  array.splice(array.indexOf(afterValue) + 1, 0, value);
+  return array;
+}})});
+
+insert(2).into([1, 3]).after(1);
+```
+
+pipeline 前一个函数的输出是后一个函数的输入
+
+```javascript
+const pipeline = (...funcs) =>
+  val => funcs.reduce((a, b) => b(a), val);
+
+const plus1 = a => a + 1;
+const mult2 = a => a * 2;
+const addThenMult = pipeline(plus1, mult2);
+
+addThenMult(5)
+```
+
+简洁一点的写法
+
+```javascript
+const plus1 = a => a + 1;
+const mult2 = a => a * 2;
+
+mult2(plus1(5))
+```
+
+### 箭头函数与λ演算
+
+TODO
+
+### 尾调用
+
+由于尾调用是函数操作的最后一步所以可以删除外部函数调用帧, 只保留被调用的函数调用帧, 从而节省内存
+
+```javascript
+function f() {
+  return g(3);
+}
+f();
+```
+
+这里f函数执行到最后一步即可删除f的调用帧, 只保留g(3)的调用帧即可
+
+这称之为尾部优化(Tail call optimization) 利用尾部优化可以实现尾递归
+
+### 柯里化(currying)
+
+TODO
+
+### 蹦床函数
+
+TODO
+
+### 函数的其他一些特性
+
+* ES2019 toString()返回函数代码本身, 之前会省略空格
+* ES2017 函数参数现在允许尾逗号
+* ES2019 catch允许省略err参数
+
 ### call(), apply(), bind()
 
 ```javascript
