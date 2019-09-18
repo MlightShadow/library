@@ -97,12 +97,14 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [junyanz/iGAN Interactive Image Generation via Generative Adversarial Networks(涂鸦生成图片)](https://github.com/junyanz/iGAN)
 * [DmitryUlyanov/deep-image-prior Image restoration with neural networks but without learning. (图片修补)](https://github.com/DmitryUlyanov/deep-image-prior)
 * [MashiMaroLjc/elegance A deeplearning application of mobile photography (去除抖动)](https://github.com/MashiMaroLjc/elegance)
+* [harveyaot/DianJing 点睛 - 头条号文章标题生成工具 （Dianjing, AI to write Title for Articles）](https://github.com/harveyaot/DianJing)
 
 ### api
 
 * [huchenme/github-trending-api The missing APIs for GitHub trending projects and developers](https://github.com/huchenme/github-trending-api)
 * [justauth/JustAuth 史上最全的整合第三方登录的开源库。目前已支持Github、Gitee、微博、钉钉、百度、Coding、腾讯云开发者平台、OSChina、支付宝、QQ、微信、淘宝、Google、Facebook、抖音、领英、小米、微软、今日头条、Teambition、StackOverflow、Pinterest、人人、华为和企业微信等第三方平台的授权登录。 Login, so easy!](https://github.com/justauth/JustAuth)
 * [Binaryify/NeteaseCloudMusicApi 网易云音乐 Node.js API service](https://github.com/Binaryify/NeteaseCloudMusicApi)
+* [public-apis/public-apis A collective list of free APIs for use in software and web development.](https://github.com/public-apis/public-apis)
 
 ---
 
@@ -190,6 +192,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 面试与算法题
 
+* [CyC2018/CS-Notes Tech Interview Guide 技术面试必备基础知识、Leetcode 题解、Java、C++、Python、后端面试、操作系统、计算机网络、系统设计](https://github.com/CyC2018/CS-Notes)
 * [frank-lam/fullstack-tutorial fullstack tutorial 2019，后台技术栈/架构师之路/全栈开发社区，春招/秋招/校招/面试](https://github.com/frank-lam/fullstack-tutorial)
 * [imhuay/Algorithm_Interview_Notes-Chinese 2018/2019/校招/春招/秋招/算法/机器学习(Machine Learning)/深度学习(Deep Learning)/自然语言处理(NLP)/C/C++/Python/面试笔记](https://github.com/imhuay/Algorithm_Interview_Notes-Chinese)
 * [azl397985856/leetcode LeetCode Solutions: A Record of My Problem Solving Journey.( leetcode题解，记录自己的leetcode解题之路。)](https://github.com/azl397985856/leetcode)
@@ -210,6 +213,8 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 手册
 
+* [d2l-ai/d2l-zh《动手学深度学习》：面向中文读者、能运行、可讨论。英文版即伯克利“深度学习导论”教材。](https://github.com/d2l-ai/d2l-zh)
+* [florinpop17/app-ideas A Collection of application ideas which can be used to improve your coding skills.](https://github.com/florinpop17/app-ideas)
 * [justjavac/free-programming-books-zh_CN 免费的计算机编程类中文书籍，欢迎投稿](https://github.com/justjavac/free-programming-books-zh_CN)
 * [godruoyi/restful-api-specification RESTful API 设计规范](https://github.com/godruoyi/restful-api-specification)
 * [StabilityMan/StabilityGuide 【稳定大于一切】打造国内稳定性领域知识库，让无法解决的问题少一点点，让世界的确定性多一点点。](https://github.com/StabilityMan/StabilityGuide)
@@ -246,3 +251,4 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 * [zhaoolee/ChineseBQB Chinese sticker pack,More joy / 表情包的博物馆, Github最有毒的仓库, 中国表情包大集合, 聚欢乐~](https://github.com/zhaoolee/ChineseBQB)
 * [robb0wen/synthwave-vscode Synthwave inspired colour theme for VS Code(vscode 84年代风格主题, 做主题里唯一去过夜店的)](https://github.com/robb0wen/synthwave-vscode)
+* [gxtrobot/bustag a tag and recommend system for old bus driver](https://github.com/gxtrobot/bustag)
