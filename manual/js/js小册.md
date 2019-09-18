@@ -102,6 +102,155 @@ class TankHero extends Hero {
 obj.hasOwnProperty('toString');
 ```
 
+#### 属性简洁表达
+
+```javascript
+function f(x, y) {
+  return {x, y};
+}
+```
+
+在大括号中变量名就是属性名, 变量值就是属性值
+
+```javascript
+const o = {
+  method() {
+    return "Hello!";
+  }
+};
+```
+
+方法也可以简写
+
+模组输出就是这样
+
+```javascript
+module.exports = { getItem, setItem, clear };
+```
+
+属性的setter, getter也是这样的写法
+
+```javascript
+const cart = {
+  _wheels: 4,
+
+  get wheels () {
+    return this._wheels;
+  },
+
+  set wheels (value) {
+    if (value < this._wheels) {
+      throw new Error('数值太小了！');
+    }
+    this._wheels = value;
+  }
+}
+```
+
+输出时同样可以使用
+
+```javascript
+let user = {
+  name: 'test'
+};
+
+let foo = {
+  bar: 'baz'
+};
+
+console.log(user, foo)
+// {name: "test"} {bar: "baz"}
+console.log({user, foo})
+// {user: {name: "test"}, foo: {bar: "baz"}}
+```
+
+#### 属性名表达式
+
+```javascript
+let lastWord = 'last word';
+
+const a = {
+  'first word': 'hello',
+  [lastWord]: 'world'
+};
+
+a['first word'] // "hello"
+a[lastWord] // "world"
+a['last word'] // "world"
+
+let obj = {
+  ['h' + 'ello']() {
+    return 'hi';
+  }
+};
+
+obj.hello() // hi
+```
+
+注意: 不得与简洁表达式同时使用
+
+#### 对象.name
+
+TODO
+
+#### 属性枚举与遍历
+
+每个属性包含一个描述对象(Descriptor), 该对象可用来控制属性行为
+
+`Object.getOwnPropertyDescriptor()` 方法可获取该属性的描述对象
+
+```javascript
+let obj = { foo: 123 };
+Object.getOwnPropertyDescriptor(obj, 'foo')
+//  {
+//    value: 123,
+//    writable: true,
+//    enumerable: true,
+//    configurable: true
+//  }
+```
+
+其中`enumerable`属性称为可枚举性, 如果该属性为false, 则某些操作会忽略该属性
+其中包括:
+
+* `for ... in`循环
+* `Object.keys()`
+* `JSON.stringify()`
+* `Object.assign()`
+
+以上方法只会对具有可枚举性为true的属性起作用
+
+对象原型的 `toString()` 和数组的 `length` 属性就是可枚举性为 `false` 的属性
+
+ES6 中所有原型方法都是不可枚举的
+
+`for ... in` 与 `Object.keys()` 的区别在于 `for ... in` 会返回自身属性与继承属性, 而`Object.keys()` 只会返回自身属性, 注意区分
+
+#### 属性遍历
+
+* for ... in
+* Object.keys(obj)
+* Object.getOwnPropertyNames(obj)
+* Object.getOwnPropertySymbols(obj)
+* Reflect.ownKeys(obj)
+
+```javascript
+Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
+// ['2', '10', 'b', 'a', Symbol()]
+```
+
+遍历顺序 数值键, 字符串键, Symbol键
+
+#### super
+
+指向当前对象的原型对象
+
+只能用在对象方法中, 不能用于属性
+
+#### 对象扩展运算符
+
+TODO
+
 ### Map
 
 ```javascript
@@ -521,7 +670,7 @@ const doSomething = (function () {
 }());
 ```
 
-### name
+### 函数.name
 
 返回函数名
 `Funciton` 构造函数返回 `anonymous`
