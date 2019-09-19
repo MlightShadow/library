@@ -267,7 +267,93 @@ var proxy = new Proxy({}, {
 
 如果handler中没有任何拦截操作, 就等同于操作原对象
 
+```javascript
+var object = { proxy: new Proxy(target, handler) };
+```
 
+Proxy 可以作为其他对象的原型对象
+
+```javascript
+var proxy = new Proxy({}, {
+  get: function(target, property) {
+    return 35;
+  }
+});
+
+let obj = Object.create(proxy);
+```
+
+```javascript
+var handler = {
+  get: function(target, name) {
+    if (name === 'prototype') {
+      return Object.prototype;
+    }
+    return 'Hello, ' + name;
+  },
+
+  apply: function(target, thisBinding, args) {
+    return args[0];
+  },
+
+  construct: function(target, args) {
+    return {value: args[1]};
+  }
+};
+
+var fproxy = new Proxy(function(x, y) {
+  return x + y;
+}, handler);
+
+fproxy(1, 2) // 1
+new fproxy(1, 2) // {value: 2}
+fproxy.prototype === Object.prototype // true
+fproxy.foo === "Hello, foo" // true
+```
+
+同一个拦截器可以设置拦截多个操作
+
+##### 13种拦截操作
+
+以下内容需要一一进行详细实践 TODO
+
+* get(target, propKey, receiver): 对象属性读取拦截
+* set(target, propKey, value, receiver): 对象属性设置拦截
+* has(target, propKey): `propKeys in proxy` 操作拦截
+* deleteProperty(target, propKey): `delete proxy[propKey]` 操作拦截
+* ownKeys(target): `Object.getOwnPropertyNames(proxy)`, `Object.getOwnPropertySymbols(proxy)`, `Object.keys(proxy)`, `for...in` 操作拦截
+* getOwnPropertyDescriptor(target, propKey): `Object.getOwnPropertyDescriptor(proxy, propKey)` 操作拦截
+* defineProperty(target, propKey, propDesc): `Object.defineProperty(proxy, propKey, propDesc)`, `Object.defineProperties(proxy, propDescs)` 操作拦截
+* preventExtensions(target): `Object.preventExtensions(proxy)` 操作拦截
+* getPrototypeOf(target): `Object.getPrototypeOf(proxy)` 操作拦截
+* isExtensible(target): `Object.isExtensible(proxy)` 操作拦截
+* setPrototypeOf(target, proto): `Object.setPrototypeOf(proxy, proto)` 操作拦截
+* apply(target, object, args): `proxy(...args)`, `proxy.call(object, ...args)`, `proxy.apply(...)` 操作拦截
+* construct(target, args): `new proxy(...args)` 操作拦截
+
+##### revocable()
+
+`Proxy.revocable()` 在返回 `Proxy` 实例的同时会返回一个可以取消该实例的 `revoke` 属性
+执行 `revoke` 之后再访问 `Proxy` 实例会报错
+
+```javascript
+let target = {};
+let handler = {};
+
+let {proxy, revoke} = Proxy.revocable(target, handler);
+
+proxy.foo = 123;
+proxy.foo // 123
+
+revoke();
+proxy.foo // TypeError: Revoked
+```
+
+可用于使用proxy执行后需要收回代理权的场景
+
+##### 关于Proxy中的this
+
+##### Proxy的应用
 
 #### Reflect
 
