@@ -253,7 +253,21 @@ TODO
 
 #### Proxy
 
-TODO
+```javascript
+var proxy = new Proxy(target, handler);
+```
+
+```javascript
+var proxy = new Proxy({}, {
+  get: function(target, property) {
+    return 35;
+  }
+});
+```
+
+如果handler中没有任何拦截操作, 就等同于操作原对象
+
+
 
 #### Reflect
 
