@@ -22,6 +22,8 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 开发框架
 
+#### java
+
 * [一个基于Spring Boot & MyBatis的种子项目，用于快速构建中小型API、RESTful API项目~](https://github.com/lihengming/spring-boot-api-project-seed)
 * [hope-for/hope-boot 一款现代化的脚手架项目。企业开发？接外包？赚外快？还是学习？这都能满足你，居家必备，值得拥有整合Springboot2，单点登陆+tk.mybatis+shiro+redis+thymeleaf+maven+swagger前后端分离接口管理+代码生成+定时任务+数据库版本管理flyway+hutool工具包，等实用技术。](https://github.com/hope-for/hope-boot)
 * [huangjian888/jeeweb-mybatis-springboot Springboot2.0+redis+SpringMVC+Spring+Mybatis+Mybatis Plus的Java web分布式开发系统；NettySocketIo排队系统/排队模块/排队框架,它是一款具有代码生成功能的智能快速开发平台；是以Spring Framework为核心容器，Spring MVC为模型视图控制器，Mybatis为数据访问层， Apache Shiro/Sp…](https://github.com/huangjian888/jeeweb-mybatis-springboot)
@@ -32,18 +34,29 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [zhaopei8948/maintain springboot + springmvc ＋Spring Security + mybatis + PageHelper(Mybatis分页插件) + druid + (maven/gradle) + thymeleaf + bootstrap 组成的框架,基于Jersey, Swagger,SwaggerUi的restful API](https://github.com/zhaopei8948/maintain)
 * [ueboot/ueboot springboot2.0、spring-data-jpa、iView3、Vue2 、代码生成器、shiro权限管理、前后端分离、java后台管理系统快速开发框架，通过该框架可以在分钟级别内完成单表的前后端增删改查功能。脚手架工程: https://github.com/ueboot/ueboot-starter ，基于这个工程可以直接开发](https://github.com/ueboot/ueboot)
 * [RAOE/next1-boot springboot2.1.4、mybatis、bootstrap、代码生成器、shiro权限管理、前后端分离、自用型java通用后台管理系统快速开发框架 集成通用controller 通用mapper 通用service、脚手架、起手式，让web后台开发变得简单～！！](https://github.com/RAOE/next1-boot)
+
+#### js
+
 * [NervJS/taro 多端统一开发框架，支持用 React 的开发方式编写一次代码，生成能运行在微信/百度/支付宝/字节跳动/ QQ 小程序、快应用、H5、React Native 等的应用。 https://taro.jd.com/](https://github.com/NervJS/taro)
 * [lss5270/vue-admin-spa 基于vue2.0生态的后台管理系统模板（spa）。 a vue management system template based on ：vue2.0 + vue-router + vuex + element-ui +ES6+ webpack + npm。](https://github.com/lss5270/vue-admin-spa)
-* [mfitzp/15-minute-apps 15 minute (small) desktop apps built with PyQt](https://github.com/mfitzp/15-minute-apps)
 * [WYseven/vue2-basic-demo 这里是关于学习vue2.0的相关例子和项目，欢迎一起学习！](https://github.com/WYseven/vue2-basic-demo)
-* [thinkcmf/thinkcmf ThinkCMF是一款支持Swoole的开源内容管理框架，基于ThinkPHP5.1开发，同时支持PHP-FPM和Swoole双模式，让WEB开发更快!](https://github.com/thinkcmf/thinkcmf)
-* [Wechat-Group/WxJava WxJava （微信开发 Java SDK），支持包括微信支付、开放平台、小程序、企业微信/企业号和公众号等的后端开发](https://github.com/Wechat-Group/WxJava)
 * [herozhou/vue-framework-wz vue后台管理框架](https://github.com/herozhou/vue-framework-wz)
 * [framework7io/framework7 Full featured HTML framework for building iOS & Android apps](https://github.com/framework7io/framework7)
-* [JeffreySu/WeiXinMPSDK 微信公众平台SDK Senparc.Weixin for C#，支持.NET Framework及.NET Core。已支持微信公众号、小程序、小游戏、企业号、企业微信、开放平台、微信支付、JSSDK、微信周边等全平台。 WeChat SDK for C#.](https://github.com/JeffreySu/WeiXinMPSDK)
 * [fivethree-team/nestjs-prisma-starter Starter template for NestJS includes Graphql with Prisma Client, Passport-JWT authentication, Swagger Api and Docker](https://github.com/fivethree-team/nestjs-prisma-starter)
 * [NarHakobyan/awesome-nest-boilerplate Awesome NestJS Boilerplate, Typescript, Postgres, TypeORM](https://github.com/NarHakobyan/awesome-nest-boilerplate)
 * [nestjs/nest A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications on top of TypeScript & JavaScript (ES6, ES7, ES8)](https://github.com/nestjs/nest)
+
+#### python
+
+* [mfitzp/15-minute-apps 15 minute (small) desktop apps built with PyQt](https://github.com/mfitzp/15-minute-apps)
+
+#### php
+
+* [thinkcmf/thinkcmf ThinkCMF是一款支持Swoole的开源内容管理框架，基于ThinkPHP5.1开发，同时支持PHP-FPM和Swoole双模式，让WEB开发更快!](https://github.com/thinkcmf/thinkcmf)
+
+#### C sharp
+
+* [JeffreySu/WeiXinMPSDK 微信公众平台SDK Senparc.Weixin for C#，支持.NET Framework及.NET Core。已支持微信公众号、小程序、小游戏、企业号、企业微信、开放平台、微信支付、JSSDK、微信周边等全平台。 WeChat SDK for C#.](https://github.com/JeffreySu/WeiXinMPSDK)
 
 ---
 
@@ -65,6 +78,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [liabru/matter-js a 2D rigid body physics engine for the web ▲● ■](https://github.com/liabru/matter-js)
 * [Popmotion/popmotion Simple animation libraries for delightful user interfaces](https://github.com/Popmotion/popmotion)
 * [BurntSushi/ripgrep ripgrep recursively searches directories for a regex pattern](https://github.com/BurntSushi/ripgrep)
+* [Wechat-Group/WxJava WxJava （微信开发 Java SDK），支持包括微信支付、开放平台、小程序、企业微信/企业号和公众号等的后端开发](https://github.com/Wechat-Group/WxJava)
 
 ---
 
