@@ -357,7 +357,9 @@ proxy.foo // TypeError: Revoked
 
 #### Reflect
 
-TODO
+`Reflect` 中的方法与 `Proxy` 中一一对应
+
+`Reflect` 可以实现观察者模式 TODO
 
 #### Promise
 
