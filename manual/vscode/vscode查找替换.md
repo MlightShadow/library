@@ -27,7 +27,8 @@
 `service模块在com.samplestudio.reg2中`  
 `sample模块在com.samplestudio.reg2中`  
 
-在vscode中使用正则匹配模式输入如下内容`com\.samplestudio\.(reg|reg2)\.(.*)`  
+在vscode中使用正则匹配模式输入如下内容  
+`com\.samplestudio\.(reg|reg2)\.(.*)`  
 
 这样两个括号的位置就分别是`$1`, `$2`  
 
