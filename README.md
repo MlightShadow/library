@@ -27,7 +27,9 @@
 
 [在线小工具合集, json格式化, 正则等 https://oktools.net/](https://oktools.net/)  
 [ascii画图工具 http://asciiflow.com/](http://asciiflow.com/)  
-[emoji cheat sheet https://www.emojicopy.com/](https://www.emojicopy.com/)
+[emoji cheat sheet https://www.emojicopy.com/](https://www.emojicopy.com/)  
+[ascii 字符展示图1](http://www.network-science.de/ascii/)  
+[ascii 字符展示图2](https://www.bootschool.net/ascii)
 
 ## 工具书站
 
