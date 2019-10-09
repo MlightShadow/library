@@ -11,6 +11,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [cmangos/mangos-classic C(ontinued)-MaNGOS (Classic fork) is about: -- Doing WoW-Emulation Right!](https://github.com/cmangos/mangos-classic)
 * [mitallast/diablo-js Isometric minimal-code style game at html5 canvas and javascript](https://github.com/mitallast/diablo-js)
 * [nicolodavis/boardgame.io Open Source Game Engine for Turn-Based Games](https://github.com/nicolodavis/boardgame.io)
+* [Humpheh/goboy Multi-platform Nintendo Game Boy Color emulator written in Go](https://github.com/Humpheh/goboy)
 
 ## 框架
 
@@ -79,6 +80,8 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [Popmotion/popmotion Simple animation libraries for delightful user interfaces](https://github.com/Popmotion/popmotion)
 * [BurntSushi/ripgrep ripgrep recursively searches directories for a regex pattern](https://github.com/BurntSushi/ripgrep)
 * [Wechat-Group/WxJava WxJava （微信开发 Java SDK），支持包括微信支付、开放平台、小程序、企业微信/企业号和公众号等的后端开发](https://github.com/Wechat-Group/WxJava)
+* [pshihn/rough Create graphics with a hand-drawn, sketchy, appearance](https://github.com/pshihn/rough)
+* [sylnsfar/qrcode artistic QR Code in Python （Animated GIF qr code）- Python 艺术二维码生成器 （GIF动态二维码、图片二维码）](https://github.com/sylnsfar/qrcode)
 
 ---
 
@@ -130,6 +133,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [tophubs/TopList 今日热榜，一个获取各大热门网站热门头条的聚合网站，使用Go语言编写，多协程异步快速抓取信息](https://github.com/tophubs/TopList)
 * [Jack-Cherish/python-spider Python3网络爬虫实战：VIP视频破解助手；GEETEST验证码破解；小说、动漫下载；手机APP爬取；财务报表入库；火车票抢票；抖音APP视频下载；百万英雄辅助；网易云音乐下载；B站视频和弹幕下载；京东晒单图下载](https://github.com/Jack-Cherish/python-spider)
 * [facert/awesome-spider 爬虫集合](https://github.com/facert/awesome-spider)
+* [ZY2071/Crawler-for-Github-Trending A node crawler for github trending](https://github.com/ZY2071/Crawler-for-Github-Trending)
 
 ### 网络安全
 
@@ -183,6 +187,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [GavinZhuLei/vue-form-making 基于Vue的表单设计器，让表单开发简单而高效。](https://github.com/GavinZhuLei/vue-form-making)
 * [nicolargo/glances Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems. (监控)](https://github.com/nicolargo/glances)
 * [n0tr00t/Sreg Sreg可对使用者通过输入email、phone、username的返回用户注册的所有互联网护照信息。](https://github.com/n0tr00t/Sreg)
+* [github/hub A command-line tool that makes git easier to use with GitHub.](https://github.com/github/hub)
 
 ### 内网穿透
 
