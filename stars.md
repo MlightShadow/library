@@ -82,13 +82,13 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [Wechat-Group/WxJava WxJava （微信开发 Java SDK），支持包括微信支付、开放平台、小程序、企业微信/企业号和公众号等的后端开发](https://github.com/Wechat-Group/WxJava)
 * [pshihn/rough Create graphics with a hand-drawn, sketchy, appearance](https://github.com/pshihn/rough)
 * [sylnsfar/qrcode artistic QR Code in Python （Animated GIF qr code）- Python 艺术二维码生成器 （GIF动态二维码、图片二维码）](https://github.com/sylnsfar/qrcode)
+* [theajack/cnchar 好用小巧、功能全面的汉字简体 繁体 拼音 笔画js库](https://github.com/theajack/cnchar)
 
 ---
 
 ## 参考类
 
 * [qiurunze123/miaosha 秒杀系统设计与实现.互联网工程师进阶与分析](https://github.com/qiurunze123/miaosha)
-* [chinese-poetry/chinese-poetry 最全中华古诗词数据库, 唐宋两朝近一万四千古诗人, 接近5.5万首唐诗加26万宋诗. 两宋时期1564位词人，21050首词。](https://github.com/chinese-poetry/chinese-poetry)
 * [wuyouzhuguli/SpringAll 循序渐进，学习Spring Boot、Spring Boot & Shiro、Spring Cloud、Spring Security & Spring Security OAuth2，博客Spring系列源码](https://github.com/wuyouzhuguli/SpringAll)
 * [szerhusenBC/jwt-spring-security-demo A small demo for using JWT (Json Web Token) with Spring Security and Spring Boot 2](https://github.com/szerhusenBC/jwt-spring-security-demo)
 * [xkcoding/spring-boot-demo spring boot demo 是一个用来深度学习并实战 spring boot 的项目，目前总共包含 58 个集成demo，已经完成 48 个。 该项目已成功集成 actuator(监控)、admin(可视化监控)、logback(日志)、aopLog(通过AOP记录web请求日志)、统一异常处理(json级别和页面级别)、freemarker(模板引擎)、thymeleaf(模板引擎)…](https://github.com/xkcoding/spring-boot-demo)
@@ -134,6 +134,8 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [Jack-Cherish/python-spider Python3网络爬虫实战：VIP视频破解助手；GEETEST验证码破解；小说、动漫下载；手机APP爬取；财务报表入库；火车票抢票；抖音APP视频下载；百万英雄辅助；网易云音乐下载；B站视频和弹幕下载；京东晒单图下载](https://github.com/Jack-Cherish/python-spider)
 * [facert/awesome-spider 爬虫集合](https://github.com/facert/awesome-spider)
 * [ZY2071/Crawler-for-Github-Trending A node crawler for github trending](https://github.com/ZY2071/Crawler-for-Github-Trending)
+* [jumper2014/lianjia-beike-spider 链家网和贝壳网房价爬虫，采集北京上海广州深圳等21个中国主要城市的房价数据（小区，二手房，出租房，新房），稳定可靠快速！支持csv,MySQL, MongoDB,Excel, json存储，支持Python2和3，图表展示数据，注释丰富，点星支持](https://github.com/jumper2014/lianjia-beike-spider)
+* [kingname/GeneralNewsExtractor 新闻网页正文通用抽取器 Alpha 版.](https://github.com/kingname/GeneralNewsExtractor)
 
 ### 网络安全
 
@@ -188,6 +190,11 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [nicolargo/glances Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems. (监控)](https://github.com/nicolargo/glances)
 * [n0tr00t/Sreg Sreg可对使用者通过输入email、phone、username的返回用户注册的所有互联网护照信息。](https://github.com/n0tr00t/Sreg)
 * [github/hub A command-line tool that makes git easier to use with GitHub.](https://github.com/github/hub)
+* [wu-dada/baidupankey 查询百度网盘提取码](https://github.com/wu-dada/baidupankey)
+* [AnyListen/tools-ocr 树洞 OCR 文字识别（一款跨平台的 OCR 小工具）](https://github.com/AnyListen/tools-ocr)
+* [metabase/metabase The simplest, fastest way to get business intelligence and analytics to everyone in your company](https://github.com/metabase/metabase)
+* [eyunzhu/vatfs 影视全搜索|提供全网影视m3u8资源搜索,影视资源api,无广告快速播放](https://github.com/eyunzhu/vatfs)
+* [opendevops-cn/opendevops CODO是一款为用户提供企业多混合云、一站式DevOps、自动化运维、完全开源的云管理平台、自动化运维平台](https://github.com/opendevops-cn/opendevops)
 
 ### 内网穿透
 
@@ -208,6 +215,12 @@ star的项目稍微有点多了, 用个手册来做个导航.
 ---
 
 ## 阅读类
+
+### 收集合集
+
+* [iptv-org/iptv Collection of 8000+ publicly available IPTV channels from all over the world](https://github.com/iptv-org/iptv)
+* [chinese-poetry/chinese-poetry 最全中华古诗词数据库, 唐宋两朝近一万四千古诗人, 接近5.5万首唐诗加26万宋诗. 两宋时期1564位词人，21050首词。](https://github.com/chinese-poetry/chinese-poetry)
+* [Dictionaryphile/All_Dictionaries 宇宙最全在线词典网站导航](https://github.com/Dictionaryphile/All_Dictionaries)
 
 ### 面试与算法题
 
@@ -255,6 +268,11 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [phodal/growth-ebook Growth Engineering: The Definitive Guide。全栈增长工程师指南](https://github.com/phodal/growth-ebook)
 * [juliandavidmr/awesome-nestjs Curated list of NestJS](https://github.com/juliandavidmr/awesome-nestjs)
 * [loonggg/DevMoneySharing 独立开发者赚钱经验分享](https://github.com/loonggg/DevMoneySharing)
+* [March7/docker-lnmp docker lnmp 多容器部署方案。完全基于docker官方镜像，遵循最佳实践，一容器一进程。](https://github.com/March7/docker-lnmp)
+* [any86/any-rule 常用正则大全, 支持vscode扩展插件](https://github.com/any86/any-rule)
+* [wx-chevalier/Database-Series 深入浅出数据库存储：数据库理论、关系型数据库、文档型数据库、键值型数据库、New SQL、搜索引擎、数据仓库与 OLAP、大数据与数据中台](https://github.com/wx-chevalier/Database-Series)
+* [zmecust/learning-manual 个人学习手册（AI、Web、Quant）](https://github.com/zmecust/learning-manual)
+* [Liiked/VS-Code-Extension-Doc-ZH VS Code插件开发文档-中文版](https://github.com/Liiked/VS-Code-Extension-Doc-ZH)
 
 ### 期刊
 
