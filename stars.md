@@ -15,6 +15,15 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ## 框架
 
+### Hexo模板
+
+* [denjones/hexo-theme-chan A super simple and elegant theme for hexo (hexo主题)](https://github.com/denjones/hexo-theme-chan)
+* [EYHN/hexo-helper-live2d Add the Sseexxyyy live2d to your hexo! (hexo主题)](https://github.com/EYHN/hexo-helper-live2d)
+* [Fechin/hexo-theme-diaspora Hexo theme, Blog theme, Clean, Responsive theme (hexo主题)](https://github.com/Fechin/hexo-theme-diaspora)
+* [shinux/hexo-theme-adoubi yet another hexo theme (hexo主题)](https://github.com/shinux/hexo-theme-adoubi)
+* [Ben02/hexo-theme-Anatole A white and simple Hexo theme, originated from a Farbox theme (hexo主题)](https://github.com/Ben02/hexo-theme-Anatole)
+* [klugjo/hexo-theme-alpha-dust Original Futuristic Hexo Theme (hexo主题)](https://github.com/klugjo/hexo-theme-alpha-dust)
+
 ### 开源成品
 
 * [osbzr/gooderp_addons 可能是中国用户数最多的开源ERP](https://github.com/osbzr/gooderp_addons)
@@ -83,6 +92,8 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [pshihn/rough Create graphics with a hand-drawn, sketchy, appearance](https://github.com/pshihn/rough)
 * [sylnsfar/qrcode artistic QR Code in Python （Animated GIF qr code）- Python 艺术二维码生成器 （GIF动态二维码、图片二维码）](https://github.com/sylnsfar/qrcode)
 * [theajack/cnchar 好用小巧、功能全面的汉字简体 繁体 拼音 笔画js库](https://github.com/theajack/cnchar)
+* [timqian/chart.xkcd xkcd styled chart lib (手绘风格chart)](https://github.com/timqian/chart.xkcd)
+* [sampotts/plyr A simple HTML5, YouTube and Vimeo player](https://github.com/sampotts/plyr)
 
 ---
 
@@ -155,45 +166,43 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [killgcd/chromego ChromeGo 翻墙工具包](https://github.com/killgcd/chromego)
 * [FQrabbit/SSTap-Rule 支持更多游戏规则，让SSTap成为真正的“网游加速器”](https://github.com/FQrabbit/SSTap-Rule)
 
+### 视频播放工具
+
+* [ZyqGitHub1/h-player-v2 资源采集站在线播放](https://github.com/ZyqGitHub1/h-player-v2)
+* [eyunzhu/vatfs 影视全搜索|提供全网影视m3u8资源搜索,影视资源api,无广告快速播放](https://github.com/eyunzhu/vatfs)
+* [phobal/ivideo 一个可以观看国内主流视频平台所有视频的客户端（Mac、Windows、Linux） A client that can watch video of domestic(China) mainstream video platform](https://github.com/phobal/ivideo)
+* [clappr/clappr An extensible media player for the web (网页视频播放)](https://github.com/clappr/clappr)
+
+### bot
+
+* [TonyChen56/WeChatRobot PC版微信机器人](https://github.com/TonyChen56/WeChatRobot)
+* [fate233/chatbot-zh-torch7 中文Neural conversational model in Torch (聊天机器人)](https://github.com/fate233/chatbot-zh-torch7)
+* [pandolia/qqbot QQBot: A conversation robot base on Tencent's SmartQQ](https://github.com/pandolia/qqbot)
+
+### 测试工具
+
+* [liyasthomas/postwoman API request builder - Helps you create your requests faster, saving you precious time on your development. (api测试工具)](https://github.com/liyasthomas/postwoman)
+* [alipay/SoloPi Soloπ 自动化测试工具](https://github.com/alipay/SoloPi)
+* [tebelorg/TagUI-Python Python package for digital process automation (RPA) (自动化测试工具)](https://github.com/tebelorg/TagUI-Python)
+
 ### 杂项工具
 
 * [xland/xiangxuema “想学吗”个人知识管理与自媒体营销工具](https://github.com/xland/xiangxuema)
 * [zhning12/markdown-nice 支持自定义样式的在线微信Markdown排版工具](https://github.com/zhning12/markdown-nice)
-* [liyasthomas/postwoman API request builder - Helps you create your requests faster, saving you precious time on your development. (api测试工具)](https://github.com/liyasthomas/postwoman)
 * [alvarotrigo/fullPage.js fullPage plugin by Alvaro Trigo. Create full screen pages fast and simple (full screen pages HTML制作工具)](https://github.com/alvarotrigo/fullPage.js)
-* [webtorrent/webtorrent Streaming torrent client for the web (下载工具)](https://github.com/webtorrent/webtorrent)
-* [timqian/chart.xkcd xkcd styled chart lib (手绘风格chart)](https://github.com/timqian/chart.xkcd)
-* [alipay/SoloPi Soloπ 自动化测试工具](https://github.com/alipay/SoloPi)
 * [xtyxtyx/sorry 在线制作'sorry 为所欲为'的gif](https://github.com/xtyxtyx/sorry)
-* [TonyChen56/WeChatRobot PC版微信机器人](https://github.com/TonyChen56/WeChatRobot)
-* [ZyqGitHub1/h-player-v2 资源采集站在线播放](https://github.com/ZyqGitHub1/h-player-v2)
 * [pypa/pipenv Python Development Workflow for Humans. python 多环境配置工具](https://github.com/pypa/pipenv)
 * [qi19901212/Garbage 小程序云开发的垃圾分类小程序](https://github.com/qi19901212/Garbage)
-* [ZSAIm/iqiyi-parser 解析下载爱奇艺、哔哩哔哩、腾讯视频](https://github.com/ZSAIm/iqiyi-parser)
 * [microsoft/terminal The new Windows Terminal, and the original Windows console host -- all in the same place!(微软新的Terminal)](https://github.com/microsoft/terminal)
 * [crimx/ext-saladict Feature-rich inline translator. Chrome / Firefox Extension.(沙拉查词)](https://github.com/crimx/ext-saladict)
-* [pandolia/qqbot QQBot: A conversation robot base on Tencent's SmartQQ](https://github.com/pandolia/qqbot)
-* [denjones/hexo-theme-chan A super simple and elegant theme for hexo (hexo主题)](https://github.com/denjones/hexo-theme-chan)
-* [EYHN/hexo-helper-live2d Add the Sseexxyyy live2d to your hexo! (hexo主题)](https://github.com/EYHN/hexo-helper-live2d)
-* [Fechin/hexo-theme-diaspora Hexo theme, Blog theme, Clean, Responsive theme (hexo主题)](https://github.com/Fechin/hexo-theme-diaspora)
-* [shinux/hexo-theme-adoubi yet another hexo theme (hexo主题)](https://github.com/shinux/hexo-theme-adoubi)
-* [Ben02/hexo-theme-Anatole A white and simple Hexo theme, originated from a Farbox theme (hexo主题)](https://github.com/Ben02/hexo-theme-Anatole)
-* [klugjo/hexo-theme-alpha-dust Original Futuristic Hexo Theme (hexo主题)](https://github.com/klugjo/hexo-theme-alpha-dust)
-* [phobal/ivideo 一个可以观看国内主流视频平台所有视频的客户端（Mac、Windows、Linux） A client that can watch video of domestic(China) mainstream video platform](https://github.com/phobal/ivideo)
-* [fate233/chatbot-zh-torch7 中文Neural conversational model in Torch (聊天机器人)](https://github.com/fate233/chatbot-zh-torch7)
-* [clappr/clappr An extensible media player for the web (网页视频播放)](https://github.com/clappr/clappr)
-* [sampotts/plyr A simple HTML5, YouTube and Vimeo player](https://github.com/sampotts/plyr)
 * [chenshenhai / pictool A front-end image processing gadget](https://github.com/chenshenhai/pictool)
 * [t9tio/wewe Open group chat messages to the world](https://github.com/t9tio/wewe)
-* [tebelorg/TagUI-Python Python package for digital process automation (RPA) (自动化测试工具)](https://github.com/tebelorg/TagUI-Python)
 * [GavinZhuLei/vue-form-making 基于Vue的表单设计器，让表单开发简单而高效。](https://github.com/GavinZhuLei/vue-form-making)
 * [nicolargo/glances Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems. (监控)](https://github.com/nicolargo/glances)
 * [n0tr00t/Sreg Sreg可对使用者通过输入email、phone、username的返回用户注册的所有互联网护照信息。](https://github.com/n0tr00t/Sreg)
 * [github/hub A command-line tool that makes git easier to use with GitHub.](https://github.com/github/hub)
-* [wu-dada/baidupankey 查询百度网盘提取码](https://github.com/wu-dada/baidupankey)
 * [AnyListen/tools-ocr 树洞 OCR 文字识别（一款跨平台的 OCR 小工具）](https://github.com/AnyListen/tools-ocr)
 * [metabase/metabase The simplest, fastest way to get business intelligence and analytics to everyone in your company](https://github.com/metabase/metabase)
-* [eyunzhu/vatfs 影视全搜索|提供全网影视m3u8资源搜索,影视资源api,无广告快速播放](https://github.com/eyunzhu/vatfs)
 * [opendevops-cn/opendevops CODO是一款为用户提供企业多混合云、一站式DevOps、自动化运维、完全开源的云管理平台、自动化运维平台](https://github.com/opendevops-cn/opendevops)
 
 ### 内网穿透
@@ -206,6 +215,9 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [peterq/pan-light 百度网盘不限速客户端, golang + qt5, 跨平台图形界面](https://github.com/peterq/pan-light)
 * [b3log/baidu-netdisk-downloaderx 一款图形界面的百度网盘不限速下载器，支持 Windows、Linux 和 Mac。](https://github.com/b3log/baidu-netdisk-downloaderx)
 * [dengyuhan/magnetW 磁力搜网页版 - 磁力链接聚合搜索 - https://bt.biedian.me](https://github.com/dengyuhan/magnetW)
+* [wu-dada/baidupankey 查询百度网盘提取码](https://github.com/wu-dada/baidupankey)
+* [ZSAIm/iqiyi-parser 解析下载爱奇艺、哔哩哔哩、腾讯视频](https://github.com/ZSAIm/iqiyi-parser)
+* [webtorrent/webtorrent Streaming torrent client for the web (下载工具)](https://github.com/webtorrent/webtorrent)
 
 #### 12306
 
