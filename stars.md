@@ -204,6 +204,8 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [AnyListen/tools-ocr 树洞 OCR 文字识别（一款跨平台的 OCR 小工具）](https://github.com/AnyListen/tools-ocr)
 * [metabase/metabase The simplest, fastest way to get business intelligence and analytics to everyone in your company](https://github.com/metabase/metabase)
 * [opendevops-cn/opendevops CODO是一款为用户提供企业多混合云、一站式DevOps、自动化运维、完全开源的云管理平台、自动化运维平台](https://github.com/opendevops-cn/opendevops)
+* [marktext/marktext A simple and elegant markdown editor, available for Linux, macOS and Windows](https://github.com/marktext/marktext)
+* [denisidoro/navi An interactive cheatsheet tool for the command-line](https://github.com/denisidoro/navi)
 
 ### 内网穿透
 
@@ -244,6 +246,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [Snailclimb/JavaGuide【Java学习+面试指南】 一份涵盖大部分Java程序员所需要掌握的核心知识。](https://github.com/Snailclimb/JavaGuide)
 * [MisterBooo/LeetCodeAnimation Demonstrate all the questions on LeetCode in the form of animation.（用动画的形式呈现解LeetCode题目的思路）](https://github.com/MisterBooo/LeetCodeAnimation)
 * [xingshaocheng/architect-awesome 后端架构师技术图谱](https://github.com/xingshaocheng/architect-awesome)
+* [yifeikong/reverse-interview-zh 技术面试最后反问面试官的话](https://github.com/yifeikong/reverse-interview-zh)
 
 ### 书籍
 
@@ -285,6 +288,8 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [wx-chevalier/Database-Series 深入浅出数据库存储：数据库理论、关系型数据库、文档型数据库、键值型数据库、New SQL、搜索引擎、数据仓库与 OLAP、大数据与数据中台](https://github.com/wx-chevalier/Database-Series)
 * [zmecust/learning-manual 个人学习手册（AI、Web、Quant）](https://github.com/zmecust/learning-manual)
 * [Liiked/VS-Code-Extension-Doc-ZH VS Code插件开发文档-中文版](https://github.com/Liiked/VS-Code-Extension-Doc-ZH)
+* [chokcoco/iCSS 不止于 CSS(一个css例子手册)](https://github.com/chokcoco/iCSS)
+* [Nodejs-Roadmap](https://github.com/Q-Angelo/Nodejs-Roadmap)
 
 ### 期刊
 
