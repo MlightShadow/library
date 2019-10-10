@@ -290,6 +290,8 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [Liiked/VS-Code-Extension-Doc-ZH VS Code插件开发文档-中文版](https://github.com/Liiked/VS-Code-Extension-Doc-ZH)
 * [chokcoco/iCSS 不止于 CSS(一个css例子手册)](https://github.com/chokcoco/iCSS)
 * [Nodejs-Roadmap](https://github.com/Q-Angelo/Nodejs-Roadmap)
+* [doocs/advanced-java 互联网 Java 工程师进阶知识完全扫盲：涵盖高并发、分布式、高可用、微服务等领域知识，后端同学必看，前端同学也可学习](https://github.com/doocs/advanced-java)
+* [doocs/technical-books 国内外互联网技术大牛们都写了哪些书籍：计算机基础、网络、前端、后端、数据库、架构、大数据、深度学习...](https://github.com/doocs/technical-books)
 
 ### 期刊
 
@@ -306,3 +308,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [zhaoolee/ChineseBQB Chinese sticker pack,More joy / 表情包的博物馆, Github最有毒的仓库, 中国表情包大集合, 聚欢乐~](https://github.com/zhaoolee/ChineseBQB)
 * [robb0wen/synthwave-vscode Synthwave inspired colour theme for VS Code(vscode 84年代风格主题, 做主题里唯一去过夜店的)](https://github.com/robb0wen/synthwave-vscode)
 * [gxtrobot/bustag a tag and recommend system for old bus driver](https://github.com/gxtrobot/bustag)
+
+## 值得关注的社区
+
+* [Doocs GitHub 开源社区 Doocs，挖掘 IT 知识。欢迎各位开发者朋友加入我们，共同参与开源项目的维护。](https://github.com/doocs)
