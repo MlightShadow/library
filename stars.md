@@ -32,7 +32,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > Multi-platform Nintendo Game Boy Color emulator written in Go
 
-
 ## 框架
 
 ### Hexo模板
@@ -61,7 +60,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > Original Futuristic Hexo Theme (hexo主题)
 
-
 ### 开源成品
 
 * [osbzr/gooderp_addons](https://github.com/osbzr/gooderp_addons)
@@ -75,7 +73,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [b3log/symphony](https://github.com/b3log/symphony)
 
     > 一款用 Java 实现的现代化社区（论坛/BBS/社交网络/博客）平台。
-
 
 ### 开发框架
 
@@ -121,7 +118,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > springboot2.1.4、mybatis、bootstrap、代码生成器、shiro权限管理、前后端分离、自用型java通用后台管理系统快速开发框架 集成通用controller 通用mapper 通用service、脚手架、起手式，让web后台开发变得简单～！！
 
-
 #### js
 
 * [NervJS/taro](https://github.com/NervJS/taro)
@@ -156,13 +152,11 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications on top of TypeScript & JavaScript (ES6, ES7, ES8)
 
-
 #### python
 
 * [mfitzp/15-minute-apps](https://github.com/mfitzp/15-minute-apps)
 
     > 15 minute (small) desktop apps built with PyQt
-
 
 #### php
 
@@ -170,13 +164,11 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > ThinkCMF是一款支持Swoole的开源内容管理框架，基于ThinkPHP5.1开发，同时支持PHP-FPM和Swoole双模式，让WEB开发更快!
 
-
 #### C sharp
 
 * [JeffreySu/WeiXinMPSDK](https://github.com/JeffreySu/WeiXinMPSDK)
 
     > 微信公众平台SDK Senparc.Weixin for C#，支持.NET Framework及.NET Core。已支持微信公众号、小程序、小游戏、企业号、企业微信、开放平台、微信支付、JSSDK、微信周边等全平台。 WeChat SDK for C#.
-
 
 ---
 
@@ -270,7 +262,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > A simple HTML5, YouTube and Vimeo player
 
-
 ---
 
 ## 参考类
@@ -310,7 +301,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [bailicangdu/vue2-elm](https://github.com/bailicangdu/vue2-elm)
 
     > 基于 vue2 + vuex 构建一个具有 45 个页面的大型单页面应用
-
 
 ### AI
 
@@ -374,7 +364,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 点睛 - 头条号文章标题生成工具 （Dianjing, AI to write Title for Articles）
 
-
 ### api
 
 * [huchenme/github-trending-api](https://github.com/huchenme/github-trending-api)
@@ -392,7 +381,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [public-apis/public-apis](https://github.com/public-apis/public-apis)
 
     > A collective list of free APIs for use in software and web development.
-
 
 ---
 
@@ -428,7 +416,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 新闻网页正文通用抽取器 Alpha 版.
 
-
 ### 网络安全
 
 * [chaitin/xray](https://github.com/chaitin/xray)
@@ -447,7 +434,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 个人域渗透学习笔记
 
-
 ### 协同工具
 
 * [filegator/filegator](https://github.com/filegator/filegator)
@@ -457,7 +443,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [kanboard/kanboard](https://github.com/kanboard/kanboard)
 
     > Kanban project management software (项目管理工具)
-
 
 ### 梯子与梯子的使用方法
 
@@ -472,7 +457,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [FQrabbit/SSTap-Rule](https://github.com/FQrabbit/SSTap-Rule)
 
     > 支持更多游戏规则，让SSTap成为真正的“网游加速器”
-
 
 ### 视频播放工具
 
@@ -492,7 +476,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > An extensible media player for the web (网页视频播放)
 
-
 ### bot
 
 * [TonyChen56/WeChatRobot](https://github.com/TonyChen56/WeChatRobot)
@@ -505,11 +488,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 * [pandolia/qqbot](https://github.com/pandolia/qqbot)
 
-    > QQBot
-
-
-    > A conversation robot base on Tencent's SmartQQ
-
+    > QQBot A conversation robot base on Tencent's SmartQQ
 
 ### 测试工具
 
@@ -524,7 +503,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [tebelorg/TagUI-Python](https://github.com/tebelorg/TagUI-Python)
 
     > Python package for digital process automation (RPA) (自动化测试工具)
-
 
 ### 杂项工具
 
@@ -604,7 +582,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > An interactive cheatsheet tool for the command-line
 
-
 ### 内网穿透
 
 * [cnlh/nps](https://github.com/cnlh/nps)
@@ -614,7 +591,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [idlefire/ew](https://github.com/idlefire/ew)
 
     > 内网穿透(跨平台)
-
 
 ### 下载工具
 
@@ -642,7 +618,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > Streaming torrent client for the web (下载工具)
 
-
 #### 12306
 
 * [testerSunshine/12306](https://github.com/testerSunshine/12306)
@@ -652,7 +627,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [pjialin/py12306](https://github.com/pjialin/py12306)
 
     > 12306 购票助手，支持分布式，多账号，多任务购票以及 Web 页面管理
-
 
 ---
 
@@ -672,7 +646,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 宇宙最全在线词典网站导航
 
-
 ### 面试与算法题
 
 * [CyC2018/CS-Notes](https://github.com/CyC2018/CS-Notes)
@@ -689,10 +662,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 * [azl397985856/leetcode](https://github.com/azl397985856/leetcode)
 
-    > LeetCode Solutions
-
-
-    > A Record of My Problem Solving Journey.( leetcode题解，记录自己的leetcode解题之路。)
+    > LeetCode Solutions A Record of My Problem Solving Journey.( leetcode题解，记录自己的leetcode解题之路。)
 
 * [0voice/interview_internal_reference](https://github.com/0voice/interview_internal_reference)
 
@@ -713,7 +683,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [yifeikong/reverse-interview-zh](https://github.com/yifeikong/reverse-interview-zh)
 
     > 技术面试最后反问面试官的话
-
 
 ### 书籍
 
@@ -744,7 +713,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [xiaoweiChen/Cpp_Concurrency_In_Action](https://github.com/xiaoweiChen/Cpp_Concurrency_In_Action)
 
     > 作为对《C++ Concurrency in Action》英文版的中文翻译。
-
 
 ### 手册
 
@@ -834,10 +802,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 * [phodal/growth-ebook](https://github.com/phodal/growth-ebook)
 
-    > Growth Engineering
-
-
-    > The Definitive Guide。全栈增长工程师指南
+    > Growth Engineering The Definitive Guide。全栈增长工程师指南
 
 * [juliandavidmr/awesome-nestjs](https://github.com/juliandavidmr/awesome-nestjs)
 
@@ -880,7 +845,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 国内外互联网技术大牛们都写了哪些书籍：计算机基础、网络、前端、后端、数据库、架构、大数据、深度学习...
 
-
 ### 期刊
 
 * [richshaw2015/oh-my-rss](https://github.com/richshaw2015/oh-my-rss)
@@ -903,7 +867,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 前端精读周刊
 
-
 ---
 
 ## 沙雕雕
@@ -920,10 +883,8 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > a tag and recommend system for old bus driver
 
-
 ## 值得关注的社区
 
 * [Doocs](https://github.com/doocs)
 
     > GitHub 开源社区 Doocs，挖掘 IT 知识。欢迎各位开发者朋友加入我们，共同参与开源项目的维护。
-
