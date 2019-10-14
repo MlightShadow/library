@@ -49,7 +49,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 #### js
 
-* [NervJS/taro](https://github.com/NervJS/taro): 多端统一开发框架，支持用 React 的开发方式编写一次代码，生成能运行在微信/百度/支付宝/字节跳动/ QQ 小程序、快应用、H5、React Native 等的应用。 https://taro.jd.com/
+* [NervJS/taro](https://github.com/NervJS/taro): 多端统一开发框架，支持用 React 的开发方式编写一次代码，生成能运行在微信/百度/支付宝/字节跳动/ QQ 小程序、快应用、H5、React Native 等的应用。
 * [lss5270/vue-admin-spa](https://github.com/lss5270/vue-admin-spa): 基于vue2.0生态的后台管理系统模板（spa）。 a vue management system template based on ：vue2.0 + vue-router + vuex + element-ui +ES6+ webpack + npm。
 * [WYseven/vue2-basic-demo](https://github.com/WYseven/vue2-basic-demo): 这里是关于学习vue2.0的相关例子和项目，欢迎一起学习！
 * [herozhou/vue-framework-wz](https://github.com/herozhou/vue-framework-wz): vue后台管理框架
