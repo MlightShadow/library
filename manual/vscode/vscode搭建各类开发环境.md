@@ -11,6 +11,15 @@
 * C#
 * vscode-solution-explorer
 * .NET Core Test Explorer
+* NuGet Package Manager
+
+NuGet Package Manager 存在问题需要修改 `C:\Users\Administrator\.vscode\extensions\jmrog.vscode-nuget-package-manager-1.1.6\out\src\actions\add-methods\fetchPackageVersions.js` 文件, 否则无法正常获取包版本
+
+修改 `promise` 中代码, 添加 `.toLowerCase()`
+
+```javascript
+`${versionsUrl}${selectedPackageName.toLowerCase()}/index.json`
+```
 
 ## JAVA
 
