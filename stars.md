@@ -34,32 +34,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ## 框架
 
-### Hexo模板
-
-* [denjones/hexo-theme-chan](https://github.com/denjones/hexo-theme-chan)
-
-    > A super simple and elegant theme for hexo (hexo主题)
-
-* [EYHN/hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
-
-    > Add the Sseexxyyy live2d to your hexo! (hexo主题)
-
-* [Fechin/hexo-theme-diaspora](https://github.com/Fechin/hexo-theme-diaspora)
-
-    > Hexo theme, Blog theme, Clean, Responsive theme (hexo主题)
-
-* [shinux/hexo-theme-adoubi](https://github.com/shinux/hexo-theme-adoubi)
-
-    > yet another hexo theme (hexo主题)
-
-* [Ben02/hexo-theme-Anatole](https://github.com/Ben02/hexo-theme-Anatole)
-
-    > A white and simple Hexo theme, originated from a Farbox theme (hexo主题)
-
-* [klugjo/hexo-theme-alpha-dust](https://github.com/klugjo/hexo-theme-alpha-dust)
-
-    > Original Futuristic Hexo Theme (hexo主题)
-
 ### 开源成品
 
 * [osbzr/gooderp_addons](https://github.com/osbzr/gooderp_addons)
@@ -74,9 +48,17 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 一款用 Java 实现的现代化社区（论坛/BBS/社交网络/博客）平台。
 
+* [yinxin630/fiora](https://github.com/yinxin630/fiora)
+
+    > An interesting chat application power by socket.io, koa, mongodb and react
+
 ### 开发框架
 
 #### java
+
+* [elunez/eladmin](https://github.com/elunez/eladmin)
+
+    > 项目基于 Spring Boot 2.1.0 、 Jpa、 Spring Security、redis、Vue的前后端分离的后台管理系统，项目采用分模块开发方式， 权限控制采用 RBAC，支持数据字典与数据权限管理，支持一键生成前后端代码，支持动态路由
 
 * [lihengming/spring-boot-api-project-seed](https://github.com/lihengming/spring-boot-api-project-seed)
 
@@ -170,6 +152,14 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 微信公众平台SDK Senparc.Weixin for C#，支持.NET Framework及.NET Core。已支持微信公众号、小程序、小游戏、企业号、企业微信、开放平台、微信支付、JSSDK、微信周边等全平台。 WeChat SDK for C#.
 
+* [AmosLi443061626/.Net-Core-Development](https://github.com/AmosLi443061626/.Net-Core-Development)
+
+    > 简易的开发框架(微服务) Asp.Net Core 2.0 + Mysql Orm + Ioc + Redis + AOP + RabbitMQ + Autofac + Swagger
+
+* [cq-panda/Vue.NetCore](https://github.com/cq-panda/Vue.NetCore)
+
+    > .NetCore+Vue，前后端后离，支持前后端业务代码扩展的快速开发框架，Vol.Vue为前端项目，Vue.Net后台项目
+
 ---
 
 ## 基础库
@@ -262,6 +252,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > A simple HTML5, YouTube and Vimeo player
 
+* [request/request](https://github.com/request/request)
+
+    > Simplified HTTP request client.
+
 ---
 
 ## 参考类
@@ -302,7 +296,15 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 基于 vue2 + vuex 构建一个具有 45 个页面的大型单页面应用
 
+* [heucoder/dimensionality_reduction_alo_codes](https://github.com/heucoder/dimensionality_reduction_alo_codes)
+
+    > PCA、LDA、MDS、LLE、TSNE等降维算法的python实现
+
 ### AI
+
+* [Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB)
+
+    > 1MB轻量级人脸检测模型 (1MB lightweight face detection model)
 
 * [jcjohnson/neural-style](https://github.com/jcjohnson/neural-style)
 
@@ -582,6 +584,14 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > An interactive cheatsheet tool for the command-line
 
+* [square/shift](https://github.com/square/shift)
+
+    > shift is an application that helps you run schema migrations on MySQL databases
+
+* [NickCarneiro/curlconverter](https://github.com/NickCarneiro/curlconverter)
+
+    > convert curl commands to python, javascript, php, R, Go, Rust, Dart, JSON, Ansible
+
 ### 内网穿透
 
 * [cnlh/nps](https://github.com/cnlh/nps)
@@ -645,6 +655,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [Dictionaryphile/All_Dictionaries](https://github.com/Dictionaryphile/All_Dictionaries)
 
     > 宇宙最全在线词典网站导航
+
+* [modood/Administrative-divisions-of-China](https://github.com/modood/Administrative-divisions-of-China)  
+
+    > 中华人民共和国行政区划：省级（省份直辖市自治区）、 地级（城市）、 县级（区县）、 乡级（乡镇街道）、 村级（村委会居委会） ，中国省市区镇村二级三级四级五级联动地址数据 Node.js 爬虫。
 
 ### 面试与算法题
 
@@ -715,6 +729,18 @@ star的项目稍微有点多了, 用个手册来做个导航.
     > 作为对《C++ Concurrency in Action》英文版的中文翻译。
 
 ### 手册
+
+* [heibaiying/BigData-Notes](https://github.com/heibaiying/BigData-Notes)
+
+    > 大数据入门指南
+
+* [jaywcjlove/linux-command](https://github.com/jaywcjlove/linux-command)
+
+    > Linux命令大全搜索工具，内容包含Linux命令手册、详解、学习、搜集。
+
+* [judasn/Linux-Tutorial](https://github.com/judasn/Linux-Tutorial)
+
+    > 《Java 程序员眼中的 Linux》 linux教程
 
 * [kon9chunkit/GitHub-Chinese-Top-Charts](https://github.com/kon9chunkit/GitHub-Chinese-Top-Charts)
 
@@ -837,6 +863,9 @@ star的项目稍微有点多了, 用个手册来做个导航.
     > 不止于 CSS(一个css例子手册)
 
 * [Nodejs-Roadmap](https://github.com/Q-Angelo/Nodejs-Roadmap)
+
+    > Node.js 服务端的开发指南
+
 * [doocs/advanced-java](https://github.com/doocs/advanced-java)
 
     > 互联网 Java 工程师进阶知识完全扫盲：涵盖高并发、分布式、高可用、微服务等领域知识，后端同学必看，前端同学也可学习
@@ -844,6 +873,18 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [doocs/technical-books](https://github.com/doocs/technical-books)
 
     > 国内外互联网技术大牛们都写了哪些书籍：计算机基础、网络、前端、后端、数据库、架构、大数据、深度学习...
+
+* [wx-chevalier/Business-Series](https://github.com/wx-chevalier/Business-Series)
+
+    > 熊说财经与科技 ~ 某熊的创业之路
+
+* [seaswalker/spring-analysis](https://github.com/seaswalker/spring-analysis)
+
+    > Spring源码阅读
+
+* [shihyu/python_ebook](https://github.com/shihyu/python_ebook)
+
+    > (python相关电子书但是没有什么说明之类的, 只是一堆合集)
 
 ### 期刊
 
@@ -875,10 +916,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > Chinese sticker pack,More joy / 表情包的博物馆, Github最有毒的仓库, 中国表情包大集合, 聚欢乐~
 
-* [robb0wen/synthwave-vscode](https://github.com/robb0wen/synthwave-vscode)
-
-    > Synthwave inspired colour theme for VS Code(vscode 84年代风格主题, 做主题里唯一去过夜店的)
-
 * [gxtrobot/bustag](https://github.com/gxtrobot/bustag)
 
     > a tag and recommend system for old bus driver
@@ -888,3 +925,43 @@ star的项目稍微有点多了, 用个手册来做个导航.
 * [Doocs](https://github.com/doocs)
 
     > GitHub 开源社区 Doocs，挖掘 IT 知识。欢迎各位开发者朋友加入我们，共同参与开源项目的维护。
+
+## 外观
+
+### 字体
+
+* [microsoft/cascadia-code](https://github.com/microsoft/cascadia-code)
+
+    > This is a fun, new monospaced font that includes programming ligatures and is designed to enhance the modern look and feel of the Windows Terminal.
+
+### vscode 主题
+
+* [robb0wen/synthwave-vscode](https://github.com/robb0wen/synthwave-vscode)
+
+    > Synthwave inspired colour theme for VS Code(vscode 84年代风格主题, 做主题里唯一去过夜店的)
+
+### Hexo模板
+
+* [denjones/hexo-theme-chan](https://github.com/denjones/hexo-theme-chan)
+
+    > A super simple and elegant theme for hexo (hexo主题)
+
+* [EYHN/hexo-helper-live2d](https://github.com/EYHN/hexo-helper-live2d)
+
+    > Add the Sseexxyyy live2d to your hexo! (hexo主题)
+
+* [Fechin/hexo-theme-diaspora](https://github.com/Fechin/hexo-theme-diaspora)
+
+    > Hexo theme, Blog theme, Clean, Responsive theme (hexo主题)
+
+* [shinux/hexo-theme-adoubi](https://github.com/shinux/hexo-theme-adoubi)
+
+    > yet another hexo theme (hexo主题)
+
+* [Ben02/hexo-theme-Anatole](https://github.com/Ben02/hexo-theme-Anatole)
+
+    > A white and simple Hexo theme, originated from a Farbox theme (hexo主题)
+
+* [klugjo/hexo-theme-alpha-dust](https://github.com/klugjo/hexo-theme-alpha-dust)
+
+    > Original Futuristic Hexo Theme (hexo主题)
