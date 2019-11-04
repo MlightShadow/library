@@ -51,3 +51,5 @@ setting:
 * Java Extension Pack
 * Debugger for Java
 * Java Test Runner
+* Lombok Annotations Support for VS Code
+    > 使用Lombok相关注解不写getter/setter, 构造函数等. 需要添加该插件
