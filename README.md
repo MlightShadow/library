@@ -35,3 +35,16 @@
 
 [腾讯云开发者手册](https://cloud.tencent.com/developer/devdocs)  
 [runoob](https://www.runoob.com/)
+
+## 镜像网站
+
+* [163](http://mirrors.163.com/)
+* [sohu](http://mirrors.sohu.com/)
+* [osc](http://mirrors.oschina.net/)
+* [首都在线](http://mirrors.yun-idc.com/)
+* [阿里-opsx.alibaba.com/mirror](https://opsx.alibaba.com/mirror)
+* [阿里-mirrors.aliyun.com](http://mirrors.aliyun.com/)
+* [lupa](http://mirror.lupaworld.com/)
+* [bitcomm](http://centos.bitcomm.cn/)
+
+[镜像网站-参考](https://segmentfault.com/a/1190000000375848)
