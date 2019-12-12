@@ -52,9 +52,17 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > An interesting chat application power by socket.io, koa, mongodb and react
 
+* [newbee-ltd/newbee-mall](https://github.com/newbee-ltd/newbee-mall)
+
+    > newbee-mall 项目（新蜂商城）是一套电商系统，包括 newbee-mall 商城系统及 newbee-mall-admin 商城后台管理系统，基于 Spring Boot 2.X 及相关技术栈开发。 前台商城系统包含首页门户、商品分类、新品上线、首页轮播、商品推荐、商品搜索、商品展示、购物车、订单结算、订单流程、个人订单管理、会员中心、帮助中心等模块。 后台管理系统包含数据面板、轮播图管理、商品管理、订单管理、会员管理、分类管理、设置等模块。
+
 ### 开发框架
 
 #### java
+
+* [zhoutaoo/SpringCloud](https://github.com/zhoutaoo/SpringCloud)
+
+    > 基于SpringCloud2.1的微服务开发脚手架，整合了spring-security-oauth2、nacos、feign、sentinel、springcloud-gateway等。服务治理方面引入elasticsearch、skywalking、springboot-admin、zipkin等，让项目开发快速进入业务开发，而不需过多时间花费在架构搭建上。持续更新中
 
 * [elunez/eladmin](https://github.com/elunez/eladmin)
 
@@ -101,6 +109,14 @@ star的项目稍微有点多了, 用个手册来做个导航.
     > springboot2.1.4、mybatis、bootstrap、代码生成器、shiro权限管理、前后端分离、自用型java通用后台管理系统快速开发框架 集成通用controller 通用mapper 通用service、脚手架、起手式，让web后台开发变得简单～！！
 
 #### js
+
+* [elunez/eladmin-web](https://github.com/elunez/eladmin-web)
+
+    > eladmin前端源码，项目基于 Spring Boot 2.1.0 、 Spring Boot Jpa、 Spring Security、Redis、Vue的前后端分离后台管理系统， 权限控制采用 RBAC，菜单动态路由
+
+* [wdlhao/vue2-element-touzi-admin](https://github.com/wdlhao/vue2-element-touzi-admin)
+
+    > 基于vue2.0 +vuex+ element-ui后台管理系统
 
 * [NervJS/taro](https://github.com/NervJS/taro)
 
@@ -163,6 +179,22 @@ star的项目稍微有点多了, 用个手册来做个导航.
 ---
 
 ## 基础库
+
+* [eligrey/FileSaver.js](https://github.com/eligrey/FileSaver.js)
+
+    > An HTML5 saveAs() FileSaver implementation
+
+* [dli/paint](https://github.com/dli/paint)
+
+    > Fluid Paint
+
+* [alibaba/kiwi](https://github.com/alibaba/kiwi)
+
+    > Kiwi-国际化全流程解决方案
+
+* [chriskiehl/Gooey](https://github.com/chriskiehl/Gooey)
+
+    > Turn (almost) any Python command line program into a full GUI application with one line
 
 * [Mckinsey666/bullet](https://github.com/Mckinsey666/bullet)
 
@@ -492,6 +524,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > QQBot A conversation robot base on Tencent's SmartQQ
 
+* [Hanson/weibot](https://github.com/Hanson/weibot)
+
+    > 微博爬虫，模拟登录，数据抓取
+
 ### 测试工具
 
 * [liyasthomas/postwoman](https://github.com/liyasthomas/postwoman)
@@ -507,6 +543,34 @@ star的项目稍微有点多了, 用个手册来做个导航.
     > Python package for digital process automation (RPA) (自动化测试工具)
 
 ### 杂项工具
+
+* [CoatiSoftware/Sourcetrail](https://github.com/CoatiSoftware/Sourcetrail)
+
+    > Sourcetrail - free and open-source interactive source explorer (能帮助语言学习的工具)
+
+* [netdata/netdata](https://github.com/netdata/netdata)
+
+    > Real-time performance monitoring, done right! (实时资源监控)
+
+* [Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+
+    > Display and control your Android device
+
+* [didi/DoraemonKit](https://github.com/didi/DoraemonKit)
+
+    > 简称 "DoKit" 。一款功能齐全的客户端（ iOS 、Android、微信小程序 ）研发助手，你值得拥有。
+
+* [KubeOperator/KubeOperator](https://github.com/KubeOperator/KubeOperator)
+
+    > KubeOperator 是一个开源项目，通过 Web UI 在 VMware、OpenStack 和物理机上规划、部署和运营生产级别的 Kubernetes 集群。支持内网离线环境，已通过 CNCF 的 Kubernetes 软件一致性认证。
+
+* [icowan/shorter](https://github.com/icowan/shorter)
+
+    > 短链小工具
+
+* [tomlockwood/dn](https://github.com/tomlockwood/dn)
+
+    > Daily notes command line tool
 
 * [xland/xiangxuema](https://github.com/xland/xiangxuema)
 
@@ -644,6 +708,14 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 收集合集
 
+* [uiwjs/province-city-china](https://github.com/uiwjs/province-city-china)
+
+    > 最全最新中国【省、市、区县、乡镇街道】json,csv,sql数据
+
+* [timqian/chinese-independent-blogs](https://github.com/timqian/chinese-independent-blogs)
+
+    > 中文独立博客列表
+
 * [iptv-org/iptv](https://github.com/iptv-org/iptv)
 
     > Collection of 8000+ publicly available IPTV channels from all over the world
@@ -700,6 +772,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 书籍
 
+* [qibaoguang/Spring-Boot-Reference-Guide](https://github.com/qibaoguang/Spring-Boot-Reference-Guide)
+
+    > Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》
+
 * [LingCoder/OnJava8](https://github.com/LingCoder/OnJava8)
 
     > 《OnJava 8》中文版，又名《Java编程思想》 第5版
@@ -728,7 +804,43 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 作为对《C++ Concurrency in Action》英文版的中文翻译。
 
+* [yeasy/docker_practice](https://github.com/yeasy/docker_practice)
+  
+    > Learn and understand Docker technologies, with real DevOps practice!  Docker — 从入门到实践
+
 ### 手册
+
+* [forezp/SpringBootLearning](https://github.com/forezp/SpringBootLearning)
+
+    > 《Spring Boot教程》源码
+
+* [ityouknow/spring-boot-examples](https://github.com/ityouknow/spring-boot-examples)
+
+    > about learning Spring Boot via examples. Spring Boot 教程、技术栈示例代码，快速简单上手教程。
+
+* [javascript-tutorial/zh.javascript.info](https://github.com/javascript-tutorial/zh.javascript.info)
+
+    > 现代 JavaScript 教程（The Modern JavaScript Tutorial）
+
+* [52fhy/shell-book](https://github.com/52fhy/shell-book)
+
+    > Shell脚本学习系列教程：6小节内容轻松掌握shell编程。
+
+* [dunwu/linux-tutorial](https://github.com/dunwu/linux-tutorial)
+
+    >  Linux教程，主要内容：Linux 命令、Linux 系统运维、软件运维、精选常用Shell脚本
+
+* [jaywcjlove/shell-tutorial](https://github.com/jaywcjlove/shell-tutorial)
+
+    > Shell入门教程（Shell tutorial book）
+
+* [wangdoc/shell-tutorial](https://github.com/wangdoc/shell-tutorial)
+
+    > Bash 教程
+
+* [wzb56/13_questions_of_shell](https://github.com/wzb56/13_questions_of_shell)
+
+    > shell十三问--shell教程（markdown 版本）
 
 * [heibaiying/BigData-Notes](https://github.com/heibaiying/BigData-Notes)
 
