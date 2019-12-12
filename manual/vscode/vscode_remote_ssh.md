@@ -6,7 +6,7 @@
 ```json
 "remote.SSH.path": "path\\to\\ssh.exe"
 ```
-
+建议点击SSH TARGETS右上角Configure图标配置, 避免文件夹不存在的情况手动添加
 配置remote的config的时候注意, `HostName` 是IP, 而 `Host` 是连接名
 
 ```yml
