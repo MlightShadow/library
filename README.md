@@ -41,6 +41,14 @@
 * [腾讯云开发者手册](https://cloud.tencent.com/developer/devdocs)  
 * [runoob](https://www.runoob.com/)
 
+### 下载站
+
+* [pkgs.org](https://pkgs.org/)
+* [MSDN](https://msdn.itellyou.cn/)
+* [mvnrepository](https://mvnrepository.com/)
+* [npmjs.com](https://www.npmjs.com/)
+* [pypi.org](https://pypi.org/)
+
 ### 镜像网站
 
 * [163](http://mirrors.163.com/)
