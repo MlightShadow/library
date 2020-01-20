@@ -194,7 +194,7 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 * [jwilber/roughViz](https://github.com/jwilber/roughViz)
 
-    > Reusable JavaScript library for creating sketchy/hand-drawn styled charts in the browser. 
+    > Reusable JavaScript library for creating sketchy/hand-drawn styled charts in the browser.
 
 * [KilledByAPixel/JSONCrush](https://github.com/KilledByAPixel/JSONCrush)
 
