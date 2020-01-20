@@ -2,8 +2,7 @@
 
 欢迎推荐, 欢迎勘误
 
-[manual](https://github.com/MlightShadow/library/tree/master/manual) 手册  
-[notes](https://github.com/MlightShadow/library/tree/master/notes) 笔记  
+[manual](https://github.com/MlightShadow/library/tree/master/manual) 手册, 笔记  
 [snippet](https://github.com/MlightShadow/library/tree/master/snippet) 代码片段  
 
 ## 收藏汇总
