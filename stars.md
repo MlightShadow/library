@@ -36,6 +36,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 开源成品
 
+* [anonaddy/anonaddy](https://github.com/anonaddy/anonaddy)
+
+    > Anonymous email forwarding
+
 * [osbzr/gooderp_addons](https://github.com/osbzr/gooderp_addons)
 
     > 可能是中国用户数最多的开源ERP
@@ -110,6 +114,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 #### js
 
+* [docsifyjs/docsify](https://github.com/docsifyjs/docsify)
+
+    >  A magical documentation site generator.
+
 * [elunez/eladmin-web](https://github.com/elunez/eladmin-web)
 
     > eladmin前端源码，项目基于 Spring Boot 2.1.0 、 Spring Boot Jpa、 Spring Security、Redis、Vue的前后端分离后台管理系统， 权限控制采用 RBAC，菜单动态路由
@@ -179,6 +187,22 @@ star的项目稍微有点多了, 用个手册来做个导航.
 ---
 
 ## 基础库
+
+* [nicejade/markdown-online-editor](https://github.com/nicejade/markdown-online-editor)
+
+    > 基于 Vue、Vditor，所构建的在线 Markdown 编辑器，支持流程图、甘特图、时序图、任务列表、HTML 自动转换为 Markdown 等功能。
+
+* [jwilber/roughViz](https://github.com/jwilber/roughViz)
+
+    > Reusable JavaScript library for creating sketchy/hand-drawn styled charts in the browser. 
+
+* [KilledByAPixel/JSONCrush](https://github.com/KilledByAPixel/JSONCrush)
+
+    > Compress JSON into URL friendly strings
+
+* [sxei/pinyinjs](https://github.com/sxei/pinyinjs)
+
+    > 一个实现汉字与拼音互转的小巧web工具库 (不是很好但还可以)
 
 * [eligrey/FileSaver.js](https://github.com/eligrey/FileSaver.js)
 
@@ -290,49 +314,11 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ---
 
-## 参考类
-
-* [qiurunze123/miaosha](https://github.com/qiurunze123/miaosha)
-
-    > 秒杀系统设计与实现.互联网工程师进阶与分析
-
-* [wuyouzhuguli/SpringAll](https://github.com/wuyouzhuguli/SpringAll)
-
-    > 循序渐进，学习Spring Boot、Spring Boot & Shiro、Spring Cloud、Spring Security & Spring Security OAuth2，博客Spring系列源码
-
-* [szerhusenBC/jwt-spring-security-demo](https://github.com/szerhusenBC/jwt-spring-security-demo)
-
-    > A small demo for using JWT (Json Web Token) with Spring Security and Spring Boot 2
-
-* [xkcoding/spring-boot-demo](https://github.com/xkcoding/spring-boot-demo)
-
-    > spring boot demo 是一个用来深度学习并实战 spring boot 的项目，目前总共包含 58 个集成demo，已经完成 48 个。 该项目已成功集成 actuator(监控)、admin(可视化监控)、logback(日志)、aopLog(通过AOP记录web请求日志)、统一异常处理(json级别和页面级别)、freemarker(模板引擎)、thymeleaf(模板引擎)…
-
-* [MyBeany/mySpringBoot](https://github.com/MyBeany/mySpringBoot)
-
-    > 从零搭建自己的springboot后台框架
-
-* [30-seconds/30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code)
-
-    > A curated collection of useful JavaScript snippets that you can understand in 30 seconds or less. (有用的js代码片段)
-
-* [you-dont-need/You-Dont-Need-JavaScript](https://github.com/you-dont-need/You-Dont-Need-JavaScript)
-
-    > CSS is powerful, you can do a lot of things without JS. (css awesome)
-
-* [bailicangdu/vue2-happyfri](https://github.com/bailicangdu/vue2-happyfri)
-
-    > vue2 + vue-router + vuex 入门项目
-
-* [bailicangdu/vue2-elm](https://github.com/bailicangdu/vue2-elm)
-
-    > 基于 vue2 + vuex 构建一个具有 45 个页面的大型单页面应用
-
-* [heucoder/dimensionality_reduction_alo_codes](https://github.com/heucoder/dimensionality_reduction_alo_codes)
-
-    > PCA、LDA、MDS、LLE、TSNE等降维算法的python实现
-
 ### AI
+
+* [magenta/drumbot](https://github.com/magenta/drumbot)
+
+    > Play real-time music with a machine learning drummer that drums based on your melody.
 
 * [Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB)
 
@@ -544,6 +530,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 杂项工具
 
+* [slap-editor/slap](https://github.com/slap-editor/slap)
+
+    > Sublime-like terminal-based text editor
+
 * [CoatiSoftware/Sourcetrail](https://github.com/CoatiSoftware/Sourcetrail)
 
     > Sourcetrail - free and open-source interactive source explorer (能帮助语言学习的工具)
@@ -706,7 +696,53 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ## 阅读类
 
+### 参考类
+
+* [qiurunze123/miaosha](https://github.com/qiurunze123/miaosha)
+
+    > 秒杀系统设计与实现.互联网工程师进阶与分析
+
+* [wuyouzhuguli/SpringAll](https://github.com/wuyouzhuguli/SpringAll)
+
+    > 循序渐进，学习Spring Boot、Spring Boot & Shiro、Spring Cloud、Spring Security & Spring Security OAuth2，博客Spring系列源码
+
+* [szerhusenBC/jwt-spring-security-demo](https://github.com/szerhusenBC/jwt-spring-security-demo)
+
+    > A small demo for using JWT (Json Web Token) with Spring Security and Spring Boot 2
+
+* [xkcoding/spring-boot-demo](https://github.com/xkcoding/spring-boot-demo)
+
+    > spring boot demo 是一个用来深度学习并实战 spring boot 的项目，目前总共包含 58 个集成demo，已经完成 48 个。 该项目已成功集成 actuator(监控)、admin(可视化监控)、logback(日志)、aopLog(通过AOP记录web请求日志)、统一异常处理(json级别和页面级别)、freemarker(模板引擎)、thymeleaf(模板引擎)…
+
+* [MyBeany/mySpringBoot](https://github.com/MyBeany/mySpringBoot)
+
+    > 从零搭建自己的springboot后台框架
+
+* [30-seconds/30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code)
+
+    > A curated collection of useful JavaScript snippets that you can understand in 30 seconds or less. (有用的js代码片段)
+
+* [you-dont-need/You-Dont-Need-JavaScript](https://github.com/you-dont-need/You-Dont-Need-JavaScript)
+
+    > CSS is powerful, you can do a lot of things without JS. (css awesome)
+
+* [bailicangdu/vue2-happyfri](https://github.com/bailicangdu/vue2-happyfri)
+
+    > vue2 + vue-router + vuex 入门项目
+
+* [bailicangdu/vue2-elm](https://github.com/bailicangdu/vue2-elm)
+
+    > 基于 vue2 + vuex 构建一个具有 45 个页面的大型单页面应用
+
+* [heucoder/dimensionality_reduction_alo_codes](https://github.com/heucoder/dimensionality_reduction_alo_codes)
+
+    > PCA、LDA、MDS、LLE、TSNE等降维算法的python实现
+
 ### 收集合集
+
+* [Atarity/deploy-your-own-saas](https://github.com/Atarity/deploy-your-own-saas)
+
+    > List of "only yours" cloud services for everyday needs
 
 * [uiwjs/province-city-china](https://github.com/uiwjs/province-city-china)
 
@@ -808,7 +844,15 @@ star的项目稍微有点多了, 用个手册来做个导航.
   
     > Learn and understand Docker technologies, with real DevOps practice!  Docker — 从入门到实践
 
+* [NLRX-WJC/Learn-Vue-Source-Code](https://github.com/NLRX-WJC/Learn-Vue-Source-Code)
+
+    > 逐行剖析Vue.js源码
+
 ### 手册
+
+* [shimohq/chinese-programmer-wrong-pronunciation](https://github.com/shimohq/chinese-programmer-wrong-pronunciation)
+
+    > 中国程序员容易发音错误的单词
 
 * [forezp/SpringBootLearning](https://github.com/forezp/SpringBootLearning)
 
