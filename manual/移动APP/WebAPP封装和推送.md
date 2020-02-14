@@ -1,11 +1,12 @@
 # WebAPP封装和推送
 
-## 参考文档
+## 参考文档与相关链接
 
 * [Android消息推送：手把手教你集成小米推送](https://www.jianshu.com/p/b1134bebc2d4)
 * [Android消息推送：第三方消息推送平台详细解析](https://www.jianshu.com/p/d77eaca4e52a)
 * [手把手教你实现iOS 远程推送](https://www.jianshu.com/p/2c8cf1ccf625)
 * [iOS两种推送方式的区别](https://www.jianshu.com/p/7c9678704ae2)
+* [iOS 原生推送（APNS）的实现](https://www.cnblogs.com/yxb-123/p/9900780.html)
 * [变色龙WApp帮助](https://www.kancloud.cn/bslapp/wapp/1007582)
 * [统一推送联盟](http://chinaupa.com/)
 
