@@ -4,15 +4,17 @@
 
 * [Android消息推送：手把手教你集成小米推送](https://www.jianshu.com/p/b1134bebc2d4)
 * [Android消息推送：第三方消息推送平台详细解析](https://www.jianshu.com/p/d77eaca4e52a)
-* [变色龙WApp帮助](https://www.kancloud.cn/bslapp/wapp/1007582)
 * [手把手教你实现iOS 远程推送](https://www.jianshu.com/p/2c8cf1ccf625)
 * [iOS两种推送方式的区别](https://www.jianshu.com/p/7c9678704ae2)
+* [变色龙WApp帮助](https://www.kancloud.cn/bslapp/wapp/1007582)
 
 ## 关于WebAPP
 
 ## 原理
 
 ### 封装原理
+
+通过APP中内置浏览核心, 在APP打开时访问相应网站主页, 从而达到将网站页面转换为APP的效果, 从而实现一次开发多端上线
 
 ### 推送原理
 
