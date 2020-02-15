@@ -2,6 +2,7 @@
 
 ## 参考文档与相关链接
 
+* [Android App消息推送 实现原理](https://blog.csdn.net/u012232736/article/details/80315295)
 * [Android消息推送：手把手教你集成小米推送](https://www.jianshu.com/p/b1134bebc2d4)
 * [Android消息推送：第三方消息推送平台详细解析](https://www.jianshu.com/p/d77eaca4e52a)
 * [手把手教你实现iOS 远程推送](https://www.jianshu.com/p/2c8cf1ccf625)
