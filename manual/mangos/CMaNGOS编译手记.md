@@ -1,6 +1,15 @@
-# CMaNGOS编译部署Tips
+# CMaNGOS编译部署说明文档
 
-总结了一些官方文档没有提到的内容, 可以参考
+本文主要内容来自 CMaNGOS wiki 中的 [Installation-Instructions](https://github.com/cmangos/issues/wiki/Installation-Instructions) 章节, 在自己编译部署的过程中总结了一些经验, 如果遇到类似的情况可以参考
+
+**注意**: 请先阅读官方文档, 可以在有困难时参考本文做解决, 或者实践之前参考本文给出的相应意见再去尝试以避免踩坑
+
+## 需要准备的工具 (Windows)
+
+* Git
+* CMAKE
+* Visual C++ 2015 及以上 (建议: 直接使用 vs2017 社区版 (免费), 安装时只需安装 C++ 支持即可)
+* MySQL5.7 及以上 (原文意思可以用多种版本, 但是避免麻烦我们建议直接MySQL5.7 及以上)
 
 ## 需要准备的源码
 
