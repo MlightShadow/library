@@ -60,5 +60,6 @@
 * [阿里-mirrors.aliyun.com](http://mirrors.aliyun.com/)
 * [lupa](http://mirror.lupaworld.com/)
 * [bitcomm](http://centos.bitcomm.cn/)
+* [taobao.org](https://npm.taobao.org/mirrors)
 
 [镜像网站-参考](https://segmentfault.com/a/1190000000375848)
