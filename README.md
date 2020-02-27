@@ -25,7 +25,7 @@
 * [今日热榜，一个获取各大热门网站热门头条的聚合网站 - printf520.com/hot](https://www.printf520.com/hot.html)  
 * [dt-fe/weekly](https://github.com/dt-fe/weekly)  
 * [唐巧的博客](http://blog.devtang.com/)  
-* [caoz的梦呓](https://blog.csdn.net/caoz/)
+* ~~[caoz的梦呓](https://blog.csdn.net/caoz/)~~
 
 ### 在线工具网站汇总
 
@@ -54,12 +54,8 @@
 
 * [163](http://mirrors.163.com/)
 * [sohu](http://mirrors.sohu.com/)
-* [osc](http://mirrors.oschina.net/)
 * [首都在线](http://mirrors.yun-idc.com/)
-* [阿里-opsx.alibaba.com/mirror](https://opsx.alibaba.com/mirror)
-* [阿里-mirrors.aliyun.com](http://mirrors.aliyun.com/)
-* [lupa](http://mirror.lupaworld.com/)
-* [bitcomm](http://centos.bitcomm.cn/)
+* [阿里-mirrors.aliyun.com](https://developer.aliyun.com/mirror/)
 * [taobao.org](https://npm.taobao.org/mirrors)
 
 [镜像网站-参考](https://segmentfault.com/a/1190000000375848)
