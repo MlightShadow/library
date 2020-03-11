@@ -57,5 +57,7 @@
 * [首都在线](http://mirrors.yun-idc.com/)
 * [阿里-mirrors.aliyun.com](https://developer.aliyun.com/mirror/)
 * [taobao.org](https://npm.taobao.org/mirrors)
+* [huaweicloud](https://mirrors.huaweicloud.com/)
+* [tsinghua.edu.cn](https://mirrors.tuna.tsinghua.edu.cn/)
 
 [镜像网站-参考](https://segmentfault.com/a/1190000000375848)
