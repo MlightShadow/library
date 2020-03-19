@@ -56,6 +56,7 @@
 * [sohu](http://mirrors.sohu.com/)
 * [首都在线](http://mirrors.yun-idc.com/)
 * [阿里-mirrors.aliyun.com](https://developer.aliyun.com/mirror/)
+* [腾讯](https://mirrors.cloud.tencent.com)
 * [taobao.org](https://npm.taobao.org/mirrors)
 * [huaweicloud](https://mirrors.huaweicloud.com/)
 * [tsinghua.edu.cn](https://mirrors.tuna.tsinghua.edu.cn/)
