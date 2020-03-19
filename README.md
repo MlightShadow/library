@@ -25,7 +25,7 @@
 * [今日热榜，一个获取各大热门网站热门头条的聚合网站 - printf520.com/hot](https://www.printf520.com/hot.html)  
 * [dt-fe/weekly](https://github.com/dt-fe/weekly)  
 * [唐巧的博客](http://blog.devtang.com/)  
-* ~~[caoz的梦呓](https://blog.csdn.net/caoz/)~~
+* [caoz的梦呓](https://blog.csdn.net/caoz/)
 
 ### 在线工具网站汇总
 
@@ -59,5 +59,12 @@
 * [taobao.org](https://npm.taobao.org/mirrors)
 * [huaweicloud](https://mirrors.huaweicloud.com/)
 * [tsinghua.edu.cn](https://mirrors.tuna.tsinghua.edu.cn/)
+
+### linux命令查询站点
+
+* [jaywcjlove的linux-command](https://jaywcjlove.gitee.io/linux-command/) 推荐, 速度快内容全, [仓库地址](https://github.com/jaywcjlove/linux-command)
+* [linuxcool](https://www.linuxcool.com/) 模糊查询比较好, 但是命令选项等不全
+* [linuxde](https://man.linuxde.net/) 查询速度一般, 内容十分丰富, 举例到位
+
 
 [镜像网站-参考](https://segmentfault.com/a/1190000000375848)
