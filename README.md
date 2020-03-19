@@ -1,4 +1,4 @@
-# library
+# 图书馆
 
 欢迎推荐, 欢迎勘误
 
@@ -42,23 +42,14 @@
 * [腾讯云开发者手册](https://cloud.tencent.com/developer/devdocs)  
 * [runoob](https://www.runoob.com/)
 
-### 下载站
-
-* [pkgs.org](https://pkgs.org/)
-* [MSDN](https://msdn.itellyou.cn/)
-* [mvnrepository](https://mvnrepository.com/)
-* [npmjs.com](https://www.npmjs.com/)
-* [pypi.org](https://pypi.org/)
-
 ### 镜像网站
 
+* [阿里-mirrors.aliyun.com](https://developer.aliyun.com/mirror/) 推荐
+* [huaweicloud](https://mirrors.huaweicloud.com/) 推荐
+* [腾讯](https://mirrors.cloud.tencent.com) 推荐
 * [163](http://mirrors.163.com/)
 * [sohu](http://mirrors.sohu.com/)
 * [首都在线](http://mirrors.yun-idc.com/)
-* [阿里-mirrors.aliyun.com](https://developer.aliyun.com/mirror/)
-* [腾讯](https://mirrors.cloud.tencent.com)
-* [taobao.org](https://npm.taobao.org/mirrors)
-* [huaweicloud](https://mirrors.huaweicloud.com/)
 * [tsinghua.edu.cn](https://mirrors.tuna.tsinghua.edu.cn/)
 
 ### linux命令查询站点
@@ -67,5 +58,10 @@
 * [linuxcool](https://www.linuxcool.com/) 模糊查询比较好, 但是命令选项等不全
 * [linuxde](https://man.linuxde.net/) 查询速度一般, 内容十分丰富, 举例到位
 
+### 下载站
 
-[镜像网站-参考](https://segmentfault.com/a/1190000000375848)
+* [pkgs.org](https://pkgs.org/)
+* [MSDN](https://msdn.itellyou.cn/)
+* [mvnrepository](https://mvnrepository.com/)
+* [npmjs.com](https://www.npmjs.com/)
+* [pypi.org](https://pypi.org/)
