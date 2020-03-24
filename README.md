@@ -47,10 +47,10 @@
 * [阿里-mirrors.aliyun.com](https://developer.aliyun.com/mirror/) 推荐
 * [huaweicloud](https://mirrors.huaweicloud.com/) 推荐
 * [腾讯](https://mirrors.cloud.tencent.com) 推荐
+* [tsinghua.edu.cn](https://mirrors.tuna.tsinghua.edu.cn/) [帮助页有比较详细](https://mirror.tuna.tsinghua.edu.cn/help)
 * [163](http://mirrors.163.com/)
 * [sohu](http://mirrors.sohu.com/)
 * [首都在线](http://mirrors.yun-idc.com/)
-* [tsinghua.edu.cn](https://mirrors.tuna.tsinghua.edu.cn/) [帮助页有比较详细](https://mirror.tuna.tsinghua.edu.cn/help)
 
 ### linux命令查询站点
 
