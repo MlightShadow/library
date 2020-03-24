@@ -50,7 +50,7 @@
 * [163](http://mirrors.163.com/)
 * [sohu](http://mirrors.sohu.com/)
 * [首都在线](http://mirrors.yun-idc.com/)
-* [tsinghua.edu.cn](https://mirrors.tuna.tsinghua.edu.cn/)
+* [tsinghua.edu.cn](https://mirrors.tuna.tsinghua.edu.cn/) [帮助页有比较详细](https://mirror.tuna.tsinghua.edu.cn/help)
 
 ### linux命令查询站点
 
