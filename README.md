@@ -39,6 +39,7 @@
 
 ### 工具书站
 
+* [鸟哥的 Linux 私房菜](http://cn.linux.vbird.org/)
 * [腾讯云开发者手册](https://cloud.tencent.com/developer/devdocs)  
 * [runoob](https://www.runoob.com/)
 
