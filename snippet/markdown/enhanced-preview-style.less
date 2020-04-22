@@ -1,9 +1,11 @@
 // /* Please visit the URL below for more information: */
 // /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */ 
+@main_font : 'Ubuntu Mono';
+@default_letter_font : 'Consolas';
+@default_hanzi_font : 'Microsoft YaHei';
 
 .markdown-preview.markdown-preview {
-
-  font-family: 'Ubuntu Mono', 'Consolas', 'Microsoft YaHei';
+  font-family: @main_font, @default_letter_font, @default_hanzi_font;
   font-size: 14px;
 
   code {
@@ -306,7 +308,7 @@
   code,
   tt {
     font-size: 14px;
-    font-family: 'Ubuntu Mono', 'Consolas', 'Microsoft YaHei';
+    font-family: @main_font, @default_letter_font, @default_hanzi_font;
   }
 
   code,
@@ -349,31 +351,13 @@
     border: none;
   }
 
-  kbd {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #DDDDDD;
-    background-image: linear-gradient(#F1F1F1, #DDDDDD);
-    background-repeat: repeat-x;
-    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
-    border-image: none;
-    border-radius: 2px 2px 2px 2px;
-    border-style: solid;
-    border-width: 1px;
-    font-family: 'Ubuntu Mono', 'Consolas', 'Microsoft YaHei';
-    line-height: 10px;
-    padding: 1px 4px;
-  }
-
   /* QUOTES
 =============================================================================*/
 
   blockquote {
-    border-left: 4px solid #DDD;
+    border-left: 4px solid #0D0;
     padding: 0 15px;
-    color: #777;
+    color: #080;
   }
 
   blockquote>:first-child {
@@ -429,21 +413,23 @@
     max-width: 100%
   }
 
-  strong {
-    background-color: #FFD700;
+/*delete
+===========================================================
+*/
+
+  p>s {
+    color: #aaa
+    
   }
 
-  em {
-    background-color: #B4EEB4;
-    font-style: normal;
+  p > s > * {
+    color: #aaa
   }
 
-  strong em {
-    background-color: #FFF;
-    font-style: italic;
-  }
+/**/
 
-  del strong {
-    background-color: #FFC1C1
-  }
+strong {
+  color: #f50;
+}
+
 }
