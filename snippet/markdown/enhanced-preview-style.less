@@ -170,40 +170,40 @@
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 40px;
     color: #000;
+    counter-reset: counter_h2;
   }
 
   h2 {
-    font-size: 25px;
+    font-size: 35px;
     border-bottom: 1px solid #ccc;
     color: #000;
     text-align: right;
-    counter-reset: counter_h3;
+    counter-increment: counter_h2;
+  }
+
+  h2:before{
+    color: #00e;
+    font-size: 40px;
+    content: '§'counter(counter_h2)' ';
   }
 
   h3 {
-    counter-increment: counter_h3;
-    font-size: 20px;
-  }
-
-  h3:before{
-    color: #009;
-    font-size: 35px;
-    content: '§'counter(counter_h3)' ';
+    font-size: 25px;
   }
 
   h4 {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   h5 {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   h6 {
     color: #777;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   body>h2:first-child,
