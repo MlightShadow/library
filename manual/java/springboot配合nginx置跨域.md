@@ -3,7 +3,10 @@
 这边配置要与nginx转发的路径一致
 
 ```java
-registry.addMapping("/apis/**").allowedOrigins("*").allowCredentials(true).allowedMethods("GET", "POST", "DELETE", "PUT", "OPTIONS");
+registry.addMapping("/apis/**")
+    .allowedOrigins("*")
+        .allowCredentials(true)
+            .allowedMethods("GET", "POST", "DELETE", "PUT", "OPTIONS");
 ```
 
 ```none
