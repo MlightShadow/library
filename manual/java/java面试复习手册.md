@@ -100,10 +100,17 @@
 
 ### 集合
 
-* List 和 Set 区别
-* List 和 Map 区别
+* List, Set 和 Map 区别
+    > Set 是不能有重复的, 其本质是数组, 可以通过equals()方法对比, 可以通过contaians()方法获取set是否包含某一对象
+    > List 包含有arraylist(可变数组访问快但是插入删除慢)和linkedlist(链表插入删除快但是访问慢)
+    > Map 键值对, 不允许重复, 底层由数组和链表实现, 通过hash值来确定在数组中的某个链表中, hash值由Object的hashCode()方法产生, 可以重写这一方法获得自己独特的hash规则防止hash碰撞(大量的数据对应有限的集合, 势必会出现重复, 如果被利用会出现可用性问题)
+    > 不同的场合需要以不同的判断使用
+
 * Arraylist 与 LinkedList 区别
 * ArrayList 与 Vector 区别
+
+    > 都是List, 都是通过数组实现, Vector相比ArrayList具有线程同步
+
 * HashMap 和 Hashtable 的区别
 * HashSet 和 HashMap 区别
 * HashMap 和 ConcurrentHashMap 的区别
