@@ -36,7 +36,8 @@
 * [ascii 字符展示图2](https://www.bootschool.net/ascii)
 * [复杂图片=>字符图](https://www.degraeve.com/img2txt.php)
 * [sweethome3d 家装设计](http://www.sweethome3d.com/)
-* [easypronunciation](https://easypronunciation.com/zh/)
+* [口语学习网站 easypronunciation](https://easypronunciation.com/zh/)
+* [基于机器学习的信息抽取和检索系统 magi](https://magi.com)
 
 ### 工具书站
 
