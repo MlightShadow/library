@@ -4,10 +4,6 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ---
 
-[toc]
-
----
-
 ## 游戏
 
 * [mozilla/BrowserQuest](https://github.com/mozilla/BrowserQuest)
