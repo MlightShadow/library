@@ -63,6 +63,7 @@
 * [163](http://mirrors.163.com/)
 * [sohu](http://mirrors.sohu.com/)
 * [首都在线](http://mirrors.yun-idc.com/)
+* [taobao镜像](https://npm.taobao.org/mirrors/)
 
 ### linux命令查询站点
 
