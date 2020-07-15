@@ -15,7 +15,7 @@
 
 ### 不错的导航站点
 
-[adzhp](https://adzhp.cn)
+* [adzhp](https://adzhp.cn)
 
 ### 阅读
 
