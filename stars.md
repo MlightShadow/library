@@ -1,8 +1,10 @@
 # stars
 
 star的项目稍微有点多了, 用个手册来做个导航.  
-以后这个会包括stars在内, 但不仅限于  
-但是肯定没有[sindresorhus/awesome](https://github.com/sindresorhus/awesome)强
+
+---
+
+[toc]
 
 ---
 
