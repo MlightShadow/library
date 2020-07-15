@@ -13,10 +13,6 @@
 
 ## 站点
 
-### 不错的导航站点
-
-* [adzhp](https://adzhp.cn)
-
 ### 阅读
 
 每天读一读, 有益摸鱼  
@@ -30,6 +26,12 @@
 * [dt-fe/weekly](https://github.com/dt-fe/weekly)  
 * [唐巧的博客](http://blog.devtang.com/)  
 * [caoz的梦呓](https://blog.csdn.net/caoz/)
+* [纯洁的微笑](http://ityouknow.com/)
+
+### 集合类站点
+
+* [fuun.fun/](https://fuun.fun/)
+* [adzhp](https://adzhp.cn)
 
 ### 在线工具网站汇总
 
@@ -43,7 +45,6 @@
 * [口语学习网站 easypronunciation](https://easypronunciation.com/zh/)
 * [基于机器学习的信息抽取和检索系统 magi](https://magi.com)
 * [www.keybr.com](https://www.keybr.com/)
-* [fuun.fun/](https://fuun.fun/)
 
 ### 学习站
 
