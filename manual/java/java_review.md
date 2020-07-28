@@ -114,6 +114,10 @@
     > 都是List, 都是通过数组实现, Vector相比ArrayList具有线程同步
 
 * HashMap 和 Hashtable 的区别
+
+    > hashMap: 是由数组和链表组成的, 谈到哈希碰撞的问题: 通过精心安排可以使某数组下的链表查询时间大大加长,从而破坏其访问速度, 解决办法是改写其`hashCode()`的方法
+    > 
+
 * HashSet 和 HashMap 区别
 * HashMap 和 ConcurrentHashMap 的区别
 * HashMap 的工作原理及代码实现
@@ -193,17 +197,68 @@
 
 * BeanFactory 和 ApplicationContext 有什么区别
 * Spring Bean 的生命周期
+
+    > 
+
 * Spring IOC 如何实现
+
+    > 通过反射产生对象, 通过DI注入对象(DI是实现IOC的最常见方式)
+    > *两种注入方式 `setter注入` 和 `构造方法注入`*
+
 * 说说 Spring AOP
+
+    > 是一个基于AOP编程的框架, 旨在降低代码重复的同时降低耦合性(主要用于日志, 事务, 权限, 异常处理等方面)
+    > *常用的两个aop编程框架 spring aop, AspectJ*
+    > TODO 在spring aop 和 aspectJ 中实现aop
+
+|名称|说明|
+|---|---|
+|Joinpoint（连接点）|指那些被拦截到的点，在 Spring 中，可以被动态代理拦截目标类的方法。|
+|Pointcut（切入点）|指要对哪些 Joinpoint 进行拦截，即被拦截的连接点。|
+|Advice（通知）|指拦截到 Joinpoint 之后要做的事情，即对切入点增强的内容。|
+|Target（目标）|指代理的目标对象。|
+|Weaving（植入）|指把增强代码应用到目标上，生成代理对象的过程。|
+|Proxy（代理）|指生成的代理对象。|
+|Aspect（切面）|切入点和通知的结合。|
+
 * Spring AOP 实现原理
+
+    > 基于代理模式, 并使用JDK(通过java.lang.reflect.Proxy实现), CGLIB(Code Generation Library 一个高性能代码生成包, 被很多主流AOP框架所使用)动态代理来实现
+    >*cglib 的底层是asm(小而快的字节码处理框架)*
+
 * 动态代理（cglib 与 JDK）
+
+    > 这在上面的aop原理中已经包含了, 可以反答aop或者继续深入吧
+
 * Spring 事务实现方式
+
+    > xml方式声明管理和annotation注解方式声明管理
+
 * Spring 事务底层原理
+
+    > 基于aop
+
 * 如何自定义注解实现功能
-* Spring MVC 运行流程
-* Spring MVC 启动流程
+
+* Spring MVC 运行流程, Spring MVC 启动流程
+
+    > 两个题目差不多意思
+    > 
+
 * Spring 的单例实现原理
+
+    > 通过将bean指定为singleton, 具体实现方法也就是单例模式, 需要达到线程安全和懒加载都不复杂
+
 * Spring 框架中用到了哪些设计模式
+
+    > * 工厂设计模式 : Spring使用工厂模式通过 BeanFactory、ApplicationContext 创建 bean 对象。
+    > * 代理设计模式 : Spring AOP 功能的实现。
+    > * 单例设计模式 : Spring 中的 Bean 默认都是单例的。
+    > * 模板方法模式 : Spring 中 jdbcTemplate、hibernateTemplate 等以 Template 结尾的对数据库操作的类，它们就使用到了模板模式。
+    > * 包装器设计模式 : 我们的项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。
+    > * 观察者模式: Spring 事件驱动模型就是观察者模式很经典的一个应用。
+    > * 适配器模式 :Spring AOP 的增强或通知(Advice)使用到了适配器模式、spring MVC 中也是用到了适配器模式适配Controller
+
 * Spring 其他产品（Srping Boot、Spring Cloud、Spring Secuirity、Spring Data、Spring AMQP 等）
 
 ### Netty
@@ -247,7 +302,7 @@
 * 谈谈业务中使用分布式的场景
 * Session 分布式方案
 * 分布式锁的场景
-* 分布是锁的实现方案
+* 分布式锁的实现方案
 * 分布式事务
 * 集群与负载均衡的算法与实现
 * 说说分库与分表设计
