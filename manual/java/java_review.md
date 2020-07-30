@@ -4,8 +4,6 @@
 
 [题目-参考资料](https://juejin.im/post/5a94a8ca6fb9a0635c049e67)
 
-## 
-
 ## 基础篇
 
 ### 基本功
@@ -97,8 +95,32 @@
     > 第五步：对结果resultSet进行处理；
     > 第六步：倒叙释放资源resultSet-》preparedStatement-》connection。
 
-* MVC 设计思想
+* MVC 设计思想(MVC是什么)
+
+    > *就答MVC是什么就行了, 有时候出题的就是看着面大答的少*
+    > model, view, controller 对应三种职责, 模型, 视图, 控制器
+    > model: 主要包含数据获取, 逻辑处理, 设计为单一职责的处理单元
+    > view: 前端展现的视图单元, 可以通过cotroller指定渲染
+    > controller: 相当于view与model的胶水层, 主要将多个model和view结合起来
+
 * equals 与 == 的区别
+
+    > `equals` 是对象值相等, `==` 是指针地址相等
+    > 栈区中的`int, float...`等基础类型是可以使用`==`的
+    > 有一个特殊情况, `""` 是可以使用==的 `""` 是在堆区的 比如 `"" == ""` 是true
+    > 另外, `String str = ""; str == ""` 也是true
+    > 以上的String 虽然是String 但是指向的是常量, 这是jvm优化的产物, 所以相同字符串指向同一对象, 只有 `new String("")` 时才会产生新的对象, 同时注意如果 `new` 的时候常量不存在也会向常量池中添加该对象的字符串常量但是地址并不相等是两个对象
+
+    ```java
+    String str1 = "";
+    String str2 = "";
+    String str3 = new String("");
+
+    out.println(str1 == str2); // true
+    out.println("" == ""); // true
+    out.println(str1 == ""); // true
+    out.println(str1 == str3); // false
+    ```
 
 ### 集合
 
@@ -211,15 +233,15 @@
     > *常用的两个aop编程框架 spring aop, AspectJ*
     > TODO 在spring aop 和 aspectJ 中实现aop
 
-|名称|说明|
-|---|---|
-|Joinpoint（连接点）|指那些被拦截到的点，在 Spring 中，可以被动态代理拦截目标类的方法。|
-|Pointcut（切入点）|指要对哪些 Joinpoint 进行拦截，即被拦截的连接点。|
-|Advice（通知）|指拦截到 Joinpoint 之后要做的事情，即对切入点增强的内容。|
-|Target（目标）|指代理的目标对象。|
-|Weaving（植入）|指把增强代码应用到目标上，生成代理对象的过程。|
-|Proxy（代理）|指生成的代理对象。|
-|Aspect（切面）|切入点和通知的结合。|
+    |名称|说明|
+    |---|---|
+    |Joinpoint（连接点）|指那些被拦截到的点，在 Spring 中，可以被动态代理拦截目标类的方法。|
+    |Pointcut（切入点）|指要对哪些 Joinpoint 进行拦截，即被拦截的连接点。|
+    |Advice（通知）|指拦截到 Joinpoint 之后要做的事情，即对切入点增强的内容。|
+    |Target（目标）|指代理的目标对象。|
+    |Weaving（植入）|指把增强代码应用到目标上，生成代理对象的过程。|
+    |Proxy（代理）|指生成的代理对象。|
+    |Aspect（切面）|切入点和通知的结合。|
 
 * Spring AOP 实现原理
 
@@ -372,14 +394,3 @@
 * 说说你对敏捷开发的实践
 * 说说你对开发运维的实践
 * 介绍下工作中的一个对自己最有价值的项目，以及在这个过程中的角色
-
-### 软实力
-
-* 说说你的亮点
-* 说说你最近在看什么书
-* 说说你觉得最有意义的技术书籍
-* 工作之余做什么事情
-* 说说个人发展方向方面的思考
-* 说说你认为的服务端开发工程师应该具备哪些能力
-* 说说你认为的架构师是什么样的，架构师主要做什么
-* 说说你所理解的技术专家
