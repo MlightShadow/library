@@ -131,6 +131,9 @@
     > 不同的场合需要以不同的判断使用
 
 * Arraylist 与 LinkedList 区别
+
+    > `ArrayList` 基于索引, 查询速度和尾部删除插入较快, 而`LinkedList` 通过链表实现,所以插入删除较快
+
 * ArrayList 与 Vector 区别
 
     > 都是List, 都是通过数组实现, Vector相比ArrayList具有线程同步
@@ -138,11 +141,16 @@
 * HashMap 和 Hashtable 的区别
 
     > hashMap: 是由数组和链表组成的, 谈到哈希碰撞的问题: 通过精心安排可以使某数组下的链表查询时间大大加长,从而破坏其访问速度, 解决办法是改写其`hashCode()`的方法
-    > 
+    >
 
 * HashSet 和 HashMap 区别
+
+    > 是set和map的典型实现, 一个是无序集合, 一个是kv对集合
+
 * HashMap 和 ConcurrentHashMap 的区别
+
 * HashMap 的工作原理及代码实现
+
 * ConcurrentHashMap 的工作原理及代码实现
 
 ### 线程
