@@ -45,6 +45,10 @@
 * [口语学习网站 easypronunciation](https://easypronunciation.com/zh/)
 * [基于机器学习的信息抽取和检索系统 magi](https://magi.com)
 * [www.keybr.com](https://www.keybr.com/)
+* [多种高级语言转换汇编的学习站点godbolt](https://godbolt.org/)
+* [在线视频编辑站点storycreatorapp](https://storycreatorapp.com/)
+* [文本粘贴pasteme](https://pasteme.cn/)
+* [文本粘贴ubuntu-paste](https://paste.ubuntu.com/)
 
 ### 学习站
 
