@@ -49,6 +49,7 @@
 * [在线视频编辑站点storycreatorapp](https://storycreatorapp.com/)
 * [文本粘贴pasteme](https://pasteme.cn/)
 * [文本粘贴ubuntu-paste](https://paste.ubuntu.com/)
+* [zebrastudio文本编辑可导出为html和md](https://zebrastudio.tech/)
 
 ### 学习站
 
