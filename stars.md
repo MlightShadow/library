@@ -2,9 +2,21 @@
 
 star的项目稍微有点多了, 用个手册来做个导航.  
 
+* [pcottle/learnGitBranching](https://github.com/pcottle/learnGitBranching)
+
+    > An interactive git visualization to challenge and educate!
+
+* [521xueweihan/GitHub520](https://github.com/521xueweihan/GitHub520)
+
+    > 让你“爱”上 GitHub，解决访问时图裂、加载慢的问题。
+
 ---
 
 ## 游戏
+
+* [Rapiz1/DungeonRush](https://github.com/Rapiz1/DungeonRush)
+
+    > A game inspired by Snake, written in pure C with SDL
 
 * [mozilla/BrowserQuest](https://github.com/mozilla/BrowserQuest)
 
@@ -33,6 +45,14 @@ star的项目稍微有点多了, 用个手册来做个导航.
 ## 框架
 
 ### 开源成品
+
+* [ruby-china/homeland](https://github.com/ruby-china/homeland)
+
+    > Open source discussion website.
+
+* [shen100/mili](https://github.com/shen100/mili)
+
+    > mili 是一个开源的社区系统，界面优雅，功能丰富
 
 * [anonaddy/anonaddy](https://github.com/anonaddy/anonaddy)
 
@@ -112,6 +132,26 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 #### js
 
+* [monoplasty/vue-monoplasty-slide-verify](https://github.com/monoplasty/vue-monoplasty-slide-verify)
+
+    > vue slide verify online preview
+
+* [akxcv/vuera](https://github.com/akxcv/vuera)
+
+    > Vue in React, React in Vue. Seamless integration of the two
+
+* [mengshukeji/Luckysheet](https://github.com/mengshukeji/Luckysheet)
+
+    > Luckysheet is an online spreadsheet like excel that is powerful, simple to configure, and completely open source.
+
+* [Requarks/wiki](https://github.com/Requarks/wiki)
+
+    > Wiki.js | A modern, lightweight and powerful wiki app built on Node.js
+
+* [unix/func](https://github.com/unix/func)
+
+    > Modern Command Line Framework.
+
 * [docsifyjs/docsify](https://github.com/docsifyjs/docsify)
 
     >  A magical documentation site generator.
@@ -158,11 +198,31 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 #### python
 
+* [jindaxiang/akshare](https://github.com/jindaxiang/akshare)
+
+    > AkShare is an elegant and simple financial data interface library for Python, built for human beings! 开源财经数据接口库
+
+* [chubin/wttr.in](https://github.com/chubin/wttr.in)
+
+    > The right way to check the weather
+
+* [willmcgugan/rich](https://github.com/willmcgugan/rich)
+
+    > Rich is a Python library for rich text and beautiful formatting in the terminal.
+
+* [fighting41love/funNLP](https://github.com/fighting41love/funNLP)
+
+    > 中英文敏感词、语言检测、中外手机/电话归属地/运营商查询、名字推断性别、手机号抽取、身份证抽取、邮箱抽取、中日文人名库、中文缩写库、拆字词典、词汇情感值、停用词、反动词表、暴恐词表、繁简体转换、英文模拟中文发音、汪峰歌词生成器、职业名称词库、同义词库、反义词库、否定词库、汽车品牌词库、汽车零件词库、连续英文切割、各种中文词向量、公司名字大全、古诗词库、IT词库、财经词库、成语词库、地名词库、历史名人词库、诗词词库、医学词库、饮食词库、法律词库、汽车词库、动物词库、中文聊天语料、中文谣言数据、百度中文问答数据集、句子相似度匹配算法集合、bert资源、文本生成&摘要相关工具、cocoNLP信息抽取工具、国内电话号码正则匹配、清华大学XLORE:中英文跨语言百科知识图谱、清华大学人工智能技术…
+
 * [mfitzp/15-minute-apps](https://github.com/mfitzp/15-minute-apps)
 
     > 15 minute (small) desktop apps built with PyQt
 
 #### php
+
+* [passbolt/passbolt_api](https://github.com/passbolt/passbolt_api)
+
+    > Passbolt CE Backend, a JSON API written with Cakephp
 
 * [thinkcmf/thinkcmf](https://github.com/thinkcmf/thinkcmf)
 
@@ -313,6 +373,26 @@ star的项目稍微有点多了, 用个手册来做个导航.
 ---
 
 ### AI
+
+* [minivision-ai/photo2cartoon](https://github.com/minivision-ai/photo2cartoon)
+
+    > 人像卡通化探索项目 (photo-to-cartoon translation project)
+
+* [LingDong-/shan-shui-inf](https://github.com/LingDong-/shan-shui-inf)
+
+    > Procedurally generated Chinese landscape painting
+
+* [acccco/zebra-editor-core](https://github.com/acccco/zebra-editor-core)
+
+    > 一款强大、现代的可视化编辑器
+
+* [gradio-app/gradio](https://github.com/gradio-app/gradio)
+
+    > Create UIs for prototyping your machine learning model in 3 minutes
+
+* [alievk/avatarify](https://github.com/alievk/avatarify)
+
+    > 视频会议虚拟形象
 
 * [magenta/drumbot](https://github.com/magenta/drumbot)
 
@@ -514,6 +594,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 测试工具
 
+* [HelloZeroNet/ZeroNet](https://github.com/HelloZeroNet/ZeroNet)
+
+    > ZeroNet - Decentralized websites using Bitcoin crypto and BitTorrent network
+
 * [liyasthomas/postwoman](https://github.com/liyasthomas/postwoman)
 
     > API request builder - Helps you create your requests faster, saving you precious time on your development. (api测试工具)
@@ -527,6 +611,46 @@ star的项目稍微有点多了, 用个手册来做个导航.
     > Python package for digital process automation (RPA) (自动化测试工具)
 
 ### 杂项工具
+
+* [taojy123/KeymouseGo](https://github.com/taojy123/KeymouseGo)
+
+    > 类似按键精灵的鼠标键盘录制和自动化操作 模拟点击和键入 | simulate mouse clicks and keyboard input
+
+* [star7th/showdoc](https://github.com/star7th/showdoc)
+
+    > ShowDoc is a tool greatly applicable for an IT team to share documents online一个非常适合IT团队的在线API文档、技术文档工具
+
+* [zerosoul/breathe-relaxer](https://github.com/zerosoul/breathe-relaxer)
+
+    > A relaxing breathing app with a visual director to tell you when to breathe in, hold and breathe out
+
+* [zerosoul/honeyed-words-generator](https://github.com/zerosoul/honeyed-words-generator)
+
+    > 在线生成土味情话
+
+* [philc/vimium](https://github.com/philc/vimium)
+
+    > The hacker's browser.
+
+* [ChungZH/notepanda](https://github.com/ChungZH/notepanda)
+
+    > A simple cross-platform notepad. Based on Qt and C++.
+
+* [godcong/fate](https://github.com/godcong/fate)
+
+    > fate 命运 起名 算命 宝宝起名 起名助手 宝宝取名
+
+* [NetchX/Netch](https://github.com/NetchX/Netch)
+
+    > Game accelerator. Support Socks5, Shadowsocks, ShadowsocksR, V2Ray, Trojan proxies. UDP NAT FullCone
+
+* [Zettlr/Zettlr](https://github.com/Zettlr/Zettlr)
+
+    > A Markdown Editor for the 21st century.
+
+* [LucienShui/PasteMe](https://github.com/LucienShui/PasteMe)
+
+    > PasteMe 是一个无需注册的文本分享平台，可以为文本设置密码和阅后即焚，支持二维码分享和各种一键复制，最大化释放你的双手，针对代码提供了额外的高亮功能。主站点已全站 CDN 以及 GZIP 传输，有着好看的前端（嘤嘤嘤）和优秀的访问速度。
 
 * [slap-editor/slap](https://github.com/slap-editor/slap)
 
@@ -656,6 +780,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 下载工具
 
+* [webtorrent/webtorrent-desktop](https://github.com/webtorrent/webtorrent-desktop)
+
+    > Streaming torrent app for Mac, Windows, and Linux
+
 * [peterq/pan-light](https://github.com/peterq/pan-light)
 
     > 百度网盘不限速客户端, golang + qt5, 跨平台图形界面
@@ -690,11 +818,37 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 12306 购票助手，支持分布式，多账号，多任务购票以及 Web 页面管理
 
+#### 语言类工具
+
+* [ymm-tech/gods-pen](https://github.com/ymm-tech/gods-pen)
+
+    > 基于vue的高扩展在线网页制作平台，可自定义组件，可添加脚本，可数据统计。A mobile page builder/editor, similar with amolink.
+
+* [sdras/cssgridgenerator](https://github.com/sdras/cssgridgenerator)
+
+    > Generate basic CSS Grid code to make dynamic layouts!
+
+* [plotly/falcon](https://github.com/plotly/falcon)
+
+    > Free, open-source SQL client for Windows and Mac
+
+* [cookieY/Yearn@eing](https://github.com/cookieY/Yearning)
+
+    > A most popular sql audit platform for mysql
+
+* [fjc0k/tbify](https://github.com/fjc0k/tbify)
+
+    > 使用淘宝镜像运行命令: tbify [nvm|npm|npx|yarn|pnpm|...]
+
 ---
 
 ## 阅读类
 
 ### 参考类
+
+* [fengyuhetao/shell](https://github.com/fengyuhetao/shell)
+
+    > Linux命令行与shell脚本编程大全案例
 
 * [qiurunze123/miaosha](https://github.com/qiurunze123/miaosha)
 
@@ -738,6 +892,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 收集合集
 
+* [phodal/awesome-iot](https://github.com/phodal/awesome-iot)
+
+    > Awesome IoT. A collaborative list of great resources about IoT Framework, Library, OS, Platform
+
 * [Atarity/deploy-your-own-saas](https://github.com/Atarity/deploy-your-own-saas)
 
     > List of "only yours" cloud services for everyday needs
@@ -767,6 +925,22 @@ star的项目稍微有点多了, 用个手册来做个导航.
     > 中华人民共和国行政区划：省级（省份直辖市自治区）、 地级（城市）、 县级（区县）、 乡级（乡镇街道）、 村级（村委会居委会） ，中国省市区镇村二级三级四级五级联动地址数据 Node.js 爬虫。
 
 ### 面试与算法题
+
+* [wolverinn/Waking-Up](https://github.com/wolverinn/Waking-Up)
+
+    > 计算机基础（计算机网络/操作系统/数据库/Git...）面试问题全面总结，包含详细的follow-up question以及答案；全部采用【问题+追问+答案】的形式，即拿即用，直击互联网大厂面试rocket；可用于模拟面试、面试前复习、短期内快速备战面试...
+
+* [doocs/leetcode](https://github.com/doocs/leetcode)
+
+    > LeetCode solutions in any programming language | 多种编程语言实现 LeetCode、《剑指 Offer（第 2 版）》、《程序员面试金典（第 6 版）》题解
+
+* [doocs/coding-interview](https://github.com/doocs/coding-interview)
+
+    > 代码面试题集，包括剑指 Offer、编程之美等
+
+* [labuladong/fucking-algorithm](https://github.com/labuladong/fucking-algorithm)
+
+    > 刷算法全靠套路，认准 labuladong 就够了！English version supported! Crack LeetCode, not only how, but also why.
 
 * [CyC2018/CS-Notes](https://github.com/CyC2018/CS-Notes)
 
@@ -805,6 +979,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
     > 技术面试最后反问面试官的话
 
 ### 书籍
+
+* [apachecn/thinking-in-java-zh](https://github.com/apachecn/thinking-in-java-zh)
+
+    > Java 编程思想
 
 * [qibaoguang/Spring-Boot-Reference-Guide](https://github.com/qibaoguang/Spring-Boot-Reference-Guide)
 
@@ -846,7 +1024,59 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
     > 逐行剖析Vue.js源码
 
-### 手册
+### 手册, 教程
+
+* [JakubVojvoda/design-patterns-cpp](https://github.com/JakubVojvoda/design-patterns-cpp)
+
+    > C++ Design Patterns
+
+* [AnthonyCalandra/modern-cpp-features](https://github.com/AnthonyCalandra/modern-cpp-features)
+
+    > A cheatsheet of modern C++ language and library features.
+
+* [Light-City/CPlusPlusThings](https://github.com/Light-City/CPlusPlusThings)
+
+    > C++那些事
+
+* [geektutu/7days-golang](https://github.com/geektutu/7days-golang)
+
+    > 7 days golang apps from scratch (web framework Gee, distributed cache GeeCache, object relational mapping ORM framework GeeORM etc) 7天用Go动手写/从零实现系列
+
+* [RedSpider1/concurrent](https://github.com/RedSpider1/concurrent)
+
+    > 这是RedSpider社区成员原创与维护的Java多线程系列文章。
+
+* [TommyZihao/ZihaoTutorialOfRaspberryPi](https://github.com/TommyZihao/ZihaoTutorialOfRaspberryPi)
+
+    > 子豪兄的零基础树莓派教程，代码存放地及更新勘误
+
+* [hyj1991/easy-monitor](https://github.com/hyj1991/easy-monitor)
+
+    > 企业级 Node.js 应用性能监控与线上故障定位解决方案
+
+* [byhieg/JavaTutorial](https://github.com/byhieg/JavaTutorial)
+
+    > Java教程，包括多线程，泛型，反射，IO，容器类,注解
+
+* [fuzhengwei/CodeGuide](https://github.com/fuzhengwei/CodeGuide)
+
+    > 本代码库是作者小傅哥多年从事一线互联网 Java 开发的学习历程技术汇总，旨在为大家提供一个清晰详细的学习教程，侧重点更倾向编写Java核心内容。如果本仓库能为您提供帮助，请给予支持(关注、点赞、分享)！
+
+* [ZhongFuCheng3y/3y](https://github.com/ZhongFuCheng3y/3y)
+
+    > 从Java基础、JavaWeb基础到常用的框架再到面试题都有完整的教程，几乎涵盖了Java后端必备的知识点
+
+* [doocs/source-code-hunter](https://github.com/doocs/source-code-hunter)
+
+    > 从源码层面，剖析挖掘互联网行业主流技术的底层实现原理，为广大开发者 “提升技术深度” 提供便利。目前开放 Spring 全家桶，Mybatis、Netty、Dubbo 框架，及 Redis、Tomcat 中间件等
+
+* [doocs/jvm](https://github.com/doocs/jvm)
+
+    > JVM 底层原理知识总结
+
+* [wistbean/learn_python3_spider](https://github.com/wistbean/learn_python3_spider)
+
+    > python爬虫教程系列、从0到1学习python爬虫，包括浏览器抓包，手机APP抓包，如 fiddler、mitmproxy，各种爬虫涉及的模块的使用，如：requests、beautifulSoup、selenium、appium、scrapy等，以及IP代理，验证码识别，Mysql，MongoDB数据库的python使用，多线程多进程爬虫的使用，css 爬虫加密逆向破解，JS爬虫逆向，分布式爬虫，爬虫项目实战实例等
 
 * [shimohq/chinese-programmer-wrong-pronunciation](https://github.com/shimohq/chinese-programmer-wrong-pronunciation)
 
@@ -1042,6 +1272,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 期刊
 
+* [anyant/rssant](https://github.com/anyant/rssant)
+
+    > 蚁阅 - 让 RSS 更好用，轻松订阅你喜欢的博客和资讯
+
 * [richshaw2015/oh-my-rss](https://github.com/richshaw2015/oh-my-rss)
 
     > An online RSS service based on Scrapy and Django
@@ -1083,6 +1317,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 ## 外观
 
 ### 字体
+
+* [welai/glow-sans](https://github.com/welai/glow-sans)
+
+    > SHSans-derived CJK font family with a more concise & modern look. 未来荧黑·未來熒黑·ヒカリ角ゴ：基于思源黑体改造，拥有粗度和宽度系列，更加简明现代的超大字体家族。
 
 * [microsoft/cascadia-code](https://github.com/microsoft/cascadia-code)
 
