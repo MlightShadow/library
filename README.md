@@ -35,6 +35,7 @@
 
 ### 在线工具网站汇总
 
+* [Rico's cheatsheets 代码命令备查](https://devhints.io/)
 * [在线小工具合集, json格式化, 正则等 https://oktools.net/](https://oktools.net/)  
 * [ascii画图工具 http://asciiflow.com/](http://asciiflow.com/)  
 * [emoji cheat sheet https://www.emojicopy.com/](https://www.emojicopy.com/)  
