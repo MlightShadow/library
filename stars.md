@@ -82,6 +82,14 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 #### java
 
+* [baomidou/mybatis-plus](https://github.com/baomidou/mybatis-plus)
+
+    > An powerful enhanced toolkit of MyBatis for simplify development
+
+* [moshowgame/SpringBootCodeGenerator](https://github.com/moshowgame/SpringBootCodeGenerator)
+
+    > √基于SpringBoot2+Freemarker的代码生成器，√以释放双手为目的，√支持mysql/oracle/pgsql三大数据库， √用DDL-SQL语句生成JPA/JdbcTemplate/Mybatis/MybatisPlus/BeetlSQL相关代码.
+
 * [zhoutaoo/SpringCloud](https://github.com/zhoutaoo/SpringCloud)
 
     > 基于SpringCloud2.1的微服务开发脚手架，整合了spring-security-oauth2、nacos、feign、sentinel、springcloud-gateway等。服务治理方面引入elasticsearch、skywalking、springboot-admin、zipkin等，让项目开发快速进入业务开发，而不需过多时间花费在架构搭建上。持续更新中
@@ -131,6 +139,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
     > springboot2.1.4、mybatis、bootstrap、代码生成器、shiro权限管理、前后端分离、自用型java通用后台管理系统快速开发框架 集成通用controller 通用mapper 通用service、脚手架、起手式，让web后台开发变得简单～！！
 
 #### js
+
+* [SheetJS/sheetjs](https://github.com/SheetJS/sheetjs)
+
+    > SheetJS Community Edition -- Spreadsheet Data Toolkit
 
 * [monoplasty/vue-monoplasty-slide-verify](https://github.com/monoplasty/vue-monoplasty-slide-verify)
 
@@ -197,6 +209,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
     > A progressive Node.js framework for building efficient, scalable, and enterprise-grade server-side applications on top of TypeScript & JavaScript (ES6, ES7, ES8)
 
 #### python
+
+* [teamssix/pigat](https://github.com/teamssix/pigat)
+
+    > pigat ( Passive Intelligence Gathering Aggregation Tool ) 被动信息收集聚合工具
 
 * [jindaxiang/akshare](https://github.com/jindaxiang/akshare)
 
@@ -612,6 +628,14 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 杂项工具
 
+* [dbeaver/dbeaver](https://github.com/dbeaver/dbeaver)
+
+    > Free universal database tool and SQL client
+
+* [ventoy/Ventoy](https://github.com/ventoy/Ventoy)
+
+    > A new bootable USB solution.
+
 * [taojy123/KeymouseGo](https://github.com/taojy123/KeymouseGo)
 
     > 类似按键精灵的鼠标键盘录制和自动化操作 模拟点击和键入 | simulate mouse clicks and keyboard input
@@ -892,6 +916,18 @@ star的项目稍微有点多了, 用个手册来做个导航.
 
 ### 收集合集
 
+* [ruanyf/free-books](https://github.com/ruanyf/free-books)
+
+    > 互联网上的免费书籍
+
+* [zhaoolee/OnlineToolsBook](https://github.com/zhaoolee/OnlineToolsBook)
+
+    > 🍭在线工具秘籍,为在线工具写一本优质说明书,让在线工具造福人类~ Online tool cheats, write a quality manual for online tools, make online tools benefit humanity~
+
+* [Mr-xn/Penetration_Testing_POC](https://github.com/Mr-xn/Penetration_Testing_POC)
+
+    > 渗透测试有关的POC、EXP、脚本、提权、小工具等，欢迎补充、完善---About penetration-testing python-script poc getshell csrf xss cms php-getshell domainmod-xss penetration-testing-poc csrf-webshell cobub-razor cve rce sql sql-poc poc-exp bypass oa-getshell cve-cms
+
 * [phodal/awesome-iot](https://github.com/phodal/awesome-iot)
 
     > Awesome IoT. A collaborative list of great resources about IoT Framework, Library, OS, Platform
@@ -925,6 +961,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
     > 中华人民共和国行政区划：省级（省份直辖市自治区）、 地级（城市）、 县级（区县）、 乡级（乡镇街道）、 村级（村委会居委会） ，中国省市区镇村二级三级四级五级联动地址数据 Node.js 爬虫。
 
 ### 面试与算法题
+
+* [geekxh/hello-algorithm](https://github.com/geekxh/hello-algorithm)
+
+    > 🌍 东半球最酷的学习项目 | 1、我写的三十万字算法图解 2、千本开源电子书 3、100 张思维导图 4、100 篇大厂面经 5、30 个学习专题 🚀 🚀 🚀 右上角点个 star，加入我们万人学习群！English Supported！
 
 * [wolverinn/Waking-Up](https://github.com/wolverinn/Waking-Up)
 
@@ -1317,6 +1357,10 @@ star的项目稍微有点多了, 用个手册来做个导航.
 ## 外观
 
 ### 字体
+
+* [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
+
+    > Iconic font aggregator, collection, & patcher. 3,600+ icons, 50+ patched fonts: Hack, Source Code Pro, more. Glyph collections: Font Awesome, Material Design Icons, Octicons, & more
 
 * [welai/glow-sans](https://github.com/welai/glow-sans)
 
