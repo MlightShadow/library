@@ -51,6 +51,7 @@
 * [文本粘贴pasteme](https://pasteme.cn/)
 * [文本粘贴ubuntu-paste](https://paste.ubuntu.com/)
 * [zebrastudio文本编辑可导出为html和md](https://zebrastudio.tech/)
+* [basic-english](http://ogden.basic-english.org/)
 
 ### 学习站
 
