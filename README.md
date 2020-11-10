@@ -13,6 +13,26 @@
 
 ## 站点
 
+### 开发工具站
+
+* [在线小工具合集, json格式化, 正则等 https://oktools.net/](https://oktools.net/)  
+
+### 开发参考手册
+
+#### 多语言
+
+* [Rico's cheatsheets 代码命令备查](https://devhints.io/)
+
+#### 命令行工具
+
+* [jaywcjlove的linux-command](https://jaywcjlove.gitee.io/linux-command/) 推荐, 速度快内容全, [仓库地址](https://github.com/jaywcjlove/linux-command)
+* [linuxcool](https://www.linuxcool.com/) 模糊查询比较好, 但是命令选项等不全
+* [linuxde](https://man.linuxde.net/) 查询速度一般, 内容十分丰富, 举例到位
+
+#### JS系
+
+* [MDN（Mozilla）JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference)
+
 ### 阅读
 
 每天读一读, 有益摸鱼  
@@ -35,8 +55,6 @@
 
 ### 在线工具网站汇总
 
-* [Rico's cheatsheets 代码命令备查](https://devhints.io/)
-* [在线小工具合集, json格式化, 正则等 https://oktools.net/](https://oktools.net/)  
 * [ascii画图工具 http://asciiflow.com/](http://asciiflow.com/)  
 * [emoji cheat sheet https://www.emojicopy.com/](https://www.emojicopy.com/)  
 * [ascii 字符展示图1](http://www.network-science.de/ascii/)  
@@ -72,12 +90,6 @@
 * [首都在线](http://mirrors.yun-idc.com/)
 * [taobao镜像](https://npm.taobao.org/mirrors/)
 
-### linux命令查询站点
-
-* [jaywcjlove的linux-command](https://jaywcjlove.gitee.io/linux-command/) 推荐, 速度快内容全, [仓库地址](https://github.com/jaywcjlove/linux-command)
-* [linuxcool](https://www.linuxcool.com/) 模糊查询比较好, 但是命令选项等不全
-* [linuxde](https://man.linuxde.net/) 查询速度一般, 内容十分丰富, 举例到位
-
 ### 下载站
 
 * [pkgs.org](https://pkgs.org/)
@@ -89,3 +101,4 @@
 ### 好用的工具
 
 * [typora](https://github.com/typora) 一个不错的markdown工具
+
