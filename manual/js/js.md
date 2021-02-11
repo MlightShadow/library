@@ -18,4 +18,3 @@ call 能够显式的传入上下文对象
 apply 与 call 类似
 bind 绑定上下文及参数
 partial 在无上下文时进行参数绑定
-
