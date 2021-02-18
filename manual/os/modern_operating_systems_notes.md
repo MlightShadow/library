@@ -1,4 +1,4 @@
-# 现代操作系统(第三版)笔记
+# 操作系统知识笔记
 
 ## 索引
 
@@ -43,7 +43,72 @@
 * 子进程拥有与父进程一样的UID
 * 用户可能是某个组的成员, 每个组也有一个GID(Group IDentification)标识
 
+### 进程的相关知识
+
+#### PID & PPID
+
+pid是用于标识和区分进程的id, 非0正整数, 其中linux pid为1是init进程, 在整个系统运行过程中都会存在
+
+ppid 是父进程的id, linux中(除去init进程以外)所有进程都是由已经存在的进程(父进程)调用fork接口产生的, 而init则是所有进程的源头
+
+#### 进程状态
+
+linux 中包含7种进程状态:
+* 运行 R running
+* 睡眠 S sleeping
+* 不可中断睡眠 D disk sleep
+* 停止 T stopped
+* 跟踪停止 t tracing stop
+* 死亡 X dead
+* 僵尸 Z zombie
+
+shell 中使用ps aux 显示的进程状态与上面不同, 如下所示:
+* O 正在运行
+* S sleeping
+* R runable or running
+* I idle
+* Z zombie
+* T traced
+* B 进程等待内存页 
+* D 不可中断睡眠
+* N nice 低优先级任务
+* s 进程是会话期首进程
+* \+ 进程属于前台进程组
+* | 进程是多线程的
+* < 高优先级任务
+
+##### 死锁
+
+两个进程都想要请求对方的资源, 且都不释放自己所占有的资源
+
+##### 活锁
+
+两个进程同时请求同一个资源却又都让出资源, 资源即不被占用, 两个进程也无法继续运行
+
+##### 饿死
+
+等待资源的进程被后来的进程不断的优先使用无法占用资源
+
+#### 退出码
+
+进程退出时会返回0-255整数的退出码, 0为正常
+
+#### 文件锁
+
+#### 进程类型
+
+* 孤儿进程: 失去父进程的进程, 这样的进程一般可以被托管给pid为1的init进程, 进而成为守护进程
+* 僵尸进程: 当进程运行结束, 父进程却没有使用wait或者waitpid调用获取该进程的进程状态, 使得系统一直保存有该进程的进程描述
+* 守护进程: 长时间运行的进程, 且不受部分终端信号影响的进程, 可通过 nohup 实现
+
 ### 进程间通信 (Inter Process Communication, IPC)
+
+* 管道 pipe
+* 信号 signal
+* 内核消息队列 message
+* 共享内存 shared memory
+* 信号量 semaphore
+* 套接口 socket
 
 三个问题: 
 
@@ -59,6 +124,7 @@ Peterson解法, 给予了一个得以解决第二个问题的方法
 访问 -> 忙等待 -> 放行 
 
 Peterson解法在运行具有调度优先级时会出现低调度等级的进程无法离开临界区, 从而阻塞高调度等级进程锁死临界区的情况
+
 
 
 
@@ -87,43 +153,43 @@ Peterson解法在运行具有调度优先级时会出现低调度等级的进程
 
 #### 进程管理
 
-|调用|说明|
-|---|---|
-|`pid = fork()`|创建与父进程相同的子进程|
-|`pid = waitpid(pid, &statloc, options)`|等待一个子进程终止|
-|`s = execve(name, argv, environp)`|替代一个子进程的核型映像|
-|`exit(status)`|终止进程执行并返回状态|
+| 调用                                    | 说明                     |
+| --------------------------------------- | ------------------------ |
+| `pid = fork()`                          | 创建与父进程相同的子进程 |
+| `pid = waitpid(pid, &statloc, options)` | 等待一个子进程终止       |
+| `s = execve(name, argv, environp)`      | 替代一个子进程的核型映像 |
+| `exit(status)`                          | 终止进程执行并返回状态   |
 
 #### 文件管理
 
-|调用|说明|
-|---|---|
-|`fd = open(file, how, ...)`|打开一个文件供读, 写或两者|
-|`s = close(fd)`|关闭一个打开的文件|
-|`n = read(fd, buffer, nbytes)`|把数据从一个文件读到缓冲区中|
-|`n = write(fd, buffer, nbytes)`|把数据从缓冲区写到一个文件中|
-|`position = lseek(fd, offset, whence)`|移动文件指针|
-|`s = stat(name, &buf)`|获取文件状态信息|
+| 调用                                   | 说明                         |
+| -------------------------------------- | ---------------------------- |
+| `fd = open(file, how, ...)`            | 打开一个文件供读, 写或两者   |
+| `s = close(fd)`                        | 关闭一个打开的文件           |
+| `n = read(fd, buffer, nbytes)`         | 把数据从一个文件读到缓冲区中 |
+| `n = write(fd, buffer, nbytes)`        | 把数据从缓冲区写到一个文件中 |
+| `position = lseek(fd, offset, whence)` | 移动文件指针                 |
+| `s = stat(name, &buf)`                 | 获取文件状态信息             |
 
 #### 目录和文件系统管理
 
-|调用|说明|
-|---|---|
-|`s = mkdir(name, mode)`|创建一个新目录|
-|`s = rmdir(name)`|删去一个空目录|
-|`s = link(name1, name2)`|创建一个新目录项name2, 并指向name1|
-|`s = unlink(name)`|删去一个目录项|
-|`s = mount(special, name, flag)`|安装一个文件系统|
-|`s = umount(special)`|卸载一个文件系统|
+| 调用                             | 说明                               |
+| -------------------------------- | ---------------------------------- |
+| `s = mkdir(name, mode)`          | 创建一个新目录                     |
+| `s = rmdir(name)`                | 删去一个空目录                     |
+| `s = link(name1, name2)`         | 创建一个新目录项name2, 并指向name1 |
+| `s = unlink(name)`               | 删去一个目录项                     |
+| `s = mount(special, name, flag)` | 安装一个文件系统                   |
+| `s = umount(special)`            | 卸载一个文件系统                   |
 
 #### 杂项
 
-|调用|说明|
-|---|---|
-|`s = chdir(dir name)`|改变工作目录|
-|`s = chmod(name, mode)`|修改一个文件的保护位|
-|`s = kill(pid, signal)`|发送信号给一个进程|
-|`seconds = time(&seconds)`|自1970年1月1日起的流逝时间(时间戳)|
+| 调用                       | 说明                               |
+| -------------------------- | ---------------------------------- |
+| `s = chdir(dir name)`      | 改变工作目录                       |
+| `s = chmod(name, mode)`    | 修改一个文件的保护位               |
+| `s = kill(pid, signal)`    | 发送信号给一个进程                 |
+| `seconds = time(&seconds)` | 自1970年1月1日起的流逝时间(时间戳) |
 
 ### read系统
 
