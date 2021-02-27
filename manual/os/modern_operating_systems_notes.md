@@ -1,5 +1,11 @@
 # 操作系统知识笔记
 
+参考书籍: 
+
+* 现代操作系统
+* [理解linux进程](https://github.com/tobegit3hub/understand_linux_process)
+* [操作系统思考](https://github.com/wizardforcel/think-os-zh)
+
 ## 索引
 
 [部分概念及硬件知识](#部分概念及硬件知识)  
