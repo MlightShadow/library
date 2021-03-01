@@ -18,10 +18,11 @@
 * [jaywcjlove的linux-command](https://jaywcjlove.gitee.io/linux-command/) 非常推荐的linux命令查询站点[仓库地址](https://github.com/jaywcjlove/linux-command)
 * [Rico's cheatsheets 代码命令备查](https://devhints.io/)
 * [MDN（Mozilla）JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference)
+* 学点啥 [learn-x-by-doing-y](https://aquadzn.github.io/learn-x-by-doing-y)
 
 ### 阅读
 
-每天读一读, 有益摸鱼  
+每天读一读, 有益摸鱼
 
 * [ruanyf/weekly 科技爱好者周刊，每周五发布](https://github.com/ruanyf/weekly)  
 * [guanguans/favorite-link 每日收集喜欢的开源项目](https://github.com/guanguans/favorite-link)  
@@ -60,11 +61,11 @@
 
 ### 学习站
 
-* [鸟哥的 Linux 私房菜](http://cn.linux.vbird.org/)
-* [腾讯云开发者手册](https://cloud.tencent.com/developer/devdocs)  
-* [runoob](https://www.runoob.com/)
-* [c.biancheng.net](http://c.biancheng.net/)
-* [设计模式](https://refactoringguru.cn/design-patterns)
+- [鸟哥的 Linux 私房菜](http://cn.linux.vbird.org/)
+- [腾讯云开发者手册](https://cloud.tencent.com/developer/devdocs)
+- [runoob](https://www.runoob.com/)
+- [c.biancheng.net](http://c.biancheng.net/)
+- [设计模式](https://refactoringguru.cn/design-patterns)
 
 ### 镜像&下载站 
 
