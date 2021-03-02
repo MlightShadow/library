@@ -82,6 +82,8 @@
 * [mvnrepository](https://mvnrepository.com/)
 * [npmjs.com](https://www.npmjs.com/)
 * [pypi.org](https://pypi.org/)
+* [vscode 插件站](https://marketplace.visualstudio.com/vscode)
+* [oss-code 插件站](https://open-vsx.org/)
 
 ### 集合类站点
 
