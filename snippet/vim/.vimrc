@@ -23,6 +23,7 @@ set cursorline
 set showmatch
 
 " 缩进
+filetype indent on
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -43,3 +44,7 @@ set linebreak
 set wrapmargin=2
 set laststatus=2
 set ruler
+
+" 代码高亮
+syntax enable
+syntax on
