@@ -29,6 +29,7 @@
 * [521xueweihan/HelloGitHub Find pearls on open-source seashore 分享 GitHub 上有趣、入门级的开源项目](https://github.com/521xueweihan/HelloGitHub)  
 * [今日热榜，摸鱼神器 - tophub.fun](https://tophub.fun/)  
 * [今日热榜，一个获取各大热门网站热门头条的聚合网站 - printf520.com/hot](https://www.printf520.com/hot.html)  
+* [buzzing](https://www.buzzing.cc/)
 * [dt-fe/weekly](https://github.com/dt-fe/weekly)  
 * [唐巧的博客](http://blog.devtang.com/)  
 * [caoz的梦呓](https://blog.csdn.net/caoz/)
