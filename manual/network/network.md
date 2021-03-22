@@ -53,6 +53,24 @@
 
 IP封包的大小最大为65535bytes
 
+IP 封包的组成
+
+1. version (4bits)
+2. IHL(internet header length) (4bits)
+3. total length
+4. identification
+5. flags
+6. fragment offset
+7. time to live(ttl)
+8. protocol number
+9. header checksum
+10. source address
+11. destination adress
+12. options
+13. padding
+
+以上为32bits * 6 (192bits)
+
 * 组成与分级
 * 种类和获取
 
