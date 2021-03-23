@@ -53,25 +53,56 @@
 
 IP封包的大小最大为65535bytes
 
-IP 封包的组成
+IP 封包的组成(IPv4)
 
 1. version (4bits)
+    IP封包版本
+
 2. IHL(internet header length) (4bits)
-3. total length
-4. identification
-5. flags
-6. fragment offset
-7. time to live(ttl)
-8. protocol number
-9. header checksum
-10. source address
-11. destination adress
-12. options
-13. padding
+    IP封包的表头长度
+
+3. total length (16bits)
+    IP封包总量 最多为65536bytes
+
+4. identification (16bits)
+    IP分段所属的IP封包标识
+
+5. flags (3bits)
+    封包标识, `0DM` D位若为0则表示可分段否则1表示不可分段, M位为0则为IP最后分段, 否则1为非最后分段
+
+6. fragment offset (13bits)
+    分段偏移
+
+7. time to live(ttl) (8bits)
+    表示该封包的存活时间
+
+8. protocol number (8bits)
+    封包协议名称
+
+9. header checksum (16bits)
+    表头检查码
+
+10. source address (32bits)
+    来源地址
+    
+11. destination adress (32bits)
+    目标地址
+
+12. options (19bits)
+    其他参数 
+
+13. padding (13bits)
+    补齐
 
 以上为32bits * 6 (192bits)
 
-* 组成与分级
+* 组成与分级 (IPv4)
+
+
+
+
+
+
 * 种类和获取
 
 ### 路由
