@@ -86,12 +86,29 @@ IP 封包的组成(IPv4)
 
 以上为32bits * 6 (192bits)
 
+#### TCP
+
+##### 三次握手
+
+1. 客户端发起联机请求, 开启大于1024的端口, 发起表头带有SYN=1的TCP封包发送至服务端, 同时需要记下发送封包序号 SN(sequence number) 
+2. 服务端接收到封包, 且确定需要建立联机请求后需要返回SYN=1, ACK =1 的封包, 并且传出ack = sequence number(client) + 1的acknowledge号, 同时发送sequence number(server)给客户端, 注意这边的服务端SN(server) 不同于客户端, 由服务器自己建立
+3. 当客户端接受到服务端发回的封包, 则会再次发送ACK=1, acknowledge= sequence number(server) + 1 的数据封包
+4. 当服务端再次接收到ACK=1的封包后, 联机将被建立
+
+
+
 ### 通讯寻路
 
 #### IP
 
 * IPv4 (32位)
 * IPv6 (128位)
+
+
+##### 同一网段
+
+同一网段使用广播传递数据, 且Net_ID相同
+
 ##### 组成与分级 (IPv4)
 
 * A类: 以`0`开头的32位地址
@@ -108,6 +125,23 @@ IP 封包的组成(IPv4)
 
 私有IP 只能限于内网中使用, 不得用于Internet
 由于这样的性质内网ip无法被外网直接攻击, 但同时也无法被用于连接外网
+
+##### 127.0.0.0/8
+
+这个网段是Io, 不使用网卡
+
+##### 如何获取
+
+* 手动配置
+* DHCP
+
+##### 端口
+
+小于1024的端口启动在linux下需要root权限
+
+Socket Pair
+Source Address + Source Port
+Destinaion Address + Destination Port
 
 #### 路由
 
