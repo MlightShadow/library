@@ -85,6 +85,7 @@
 * [pypi.org](https://pypi.org/)
 * [vscode 插件站](https://marketplace.visualstudio.com/vscode)
 * [oss-code 插件站](https://open-vsx.org/)
+* [chrome下载站](https://www.chromedownloads.net)
 
 ### 集合类站点
 
