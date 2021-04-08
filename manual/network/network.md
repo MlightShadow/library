@@ -1,7 +1,8 @@
 # NETWORK
 
 参考文章:
-[鸟哥基础网络概念](http://cn.linux.vbird.org/linux_server/0110network_basic.php)
+* [鸟哥基础网络概念](http://cn.linux.vbird.org/linux_server/0110network_basic.php)
+* TCP/IP详解三卷
 
 ## 关于网络
 
