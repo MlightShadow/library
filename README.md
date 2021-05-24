@@ -24,6 +24,7 @@
 
 每天读一读, 有益摸鱼
 
+* [why's the design](https://draven.co/whys-the-design/)
 * [ruanyf/weekly 科技爱好者周刊，每周五发布](https://github.com/ruanyf/weekly)  
 * [guanguans/favorite-link 每日收集喜欢的开源项目](https://github.com/guanguans/favorite-link)  
 * [521xueweihan/HelloGitHub Find pearls on open-source seashore 分享 GitHub 上有趣、入门级的开源项目](https://github.com/521xueweihan/HelloGitHub)  
