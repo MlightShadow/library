@@ -21,6 +21,7 @@ set showcmd
 syntax on
 " 行高亮
 set cursorline
+highlight CursorLine   cterm=NONE ctermbg=240 ctermfg=NONE guibg=NONE guifg=NONE
 
 " 匹配括号
 set showmatch
