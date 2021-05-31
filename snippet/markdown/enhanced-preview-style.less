@@ -3,17 +3,20 @@
 @main_font : 'fira code';
 @default_letter_font : 'fira code';
 @default_hanzi_font : 'fira code';
+@code_font: 'console';
 
 .markdown-preview.markdown-preview {
     font-family: @main_font, @default_letter_font, @default_hanzi_font;
     font-size: 14px;
 
     code {
-        font-size: 1em !important;
+        font-family: @code_font;
+        font-size: 1.1em !important;
     }
 
     pre {
-        font-size: 1em !important;
+        font-family: @code_font;
+        font-size: 1.1em !important;
     }
 
     /* RESET
@@ -161,6 +164,7 @@
     h5 code,
     h6 tt,
     h6 code {
+        font-family: @code_font;
         font-size: inherit;
     }
 
@@ -308,11 +312,12 @@
     code,
     tt {
         font-size: 14px;
-        font-family: @main_font, @default_letter_font, @default_hanzi_font;
+        font-family: @code_font;
     }
 
     code,
     tt {
+        font-family: @code_font;
         color: #d14;
         margin: 0px 0px;
         padding: 0px 0px;
@@ -323,6 +328,7 @@
     }
 
     pre>code {
+        font-family: @code_font;
         color: #333;
         margin: 0;
         padding: 0;
@@ -343,6 +349,7 @@
 
     pre code,
     pre tt {
+        font-family: @code_font;
         background-color: transparent;
         border: none;
     }
@@ -433,4 +440,6 @@
         color: #f50;
     }
 }
+
+
 
