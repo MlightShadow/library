@@ -11,6 +11,12 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 
 call plug#end()
 
+" coc 插件
+let g:coc_global_extensions = [ 
+            \ 'coc-json', 
+            \ 'coc-java',
+            \ 'coc-vimlsp' ]
+
 "
 " vim配置
 set encoding=utf-8
