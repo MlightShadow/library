@@ -1,7 +1,5 @@
 " my nvim config
 "
-"
-"
 " vim-plug
 call plug#begin('~/.location/share/nvim/site/autoload/plugged')
 
@@ -15,7 +13,18 @@ call plug#end()
 let g:coc_global_extensions = [ 
             \ 'coc-json', 
             \ 'coc-java',
+            \ 'coc-tsserver',
             \ 'coc-vimlsp' ]
+
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+"nvim xsel
+"
+set clipboard+=unnamedplus
 
 "
 " vim配置
@@ -42,7 +51,7 @@ set softtabstop=4
 set autoindent
 
 set t_Co=256
-set mouse=a
+set mouse-=a
 
 " 搜索高亮
 set hlsearch
