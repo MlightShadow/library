@@ -14,6 +14,7 @@
 
 ### 日常
 
+* [linux c](http://akaedu.github.io/book/)
 * [在线小工具合集, json格式化, 正则等 https://oktools.net/](https://oktools.net/)  
 * [jaywcjlove的linux-command](https://jaywcjlove.gitee.io/linux-command/) 非常推荐的linux命令查询站点[仓库地址](https://github.com/jaywcjlove/linux-command)
 * [Rico's cheatsheets 代码命令备查](https://devhints.io/)
