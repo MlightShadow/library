@@ -188,13 +188,91 @@ class Singleton {
 
 #### 适配器
 
+##### 简介
+
+对调用接口进行一定程度上的修改为适合当前系统调用的接口方法,
+例如系统中使用某种第三方库时, 利用适配器进行解耦方便将来进行替换
+
+##### 实现
+
+```java
+    class OtherService {
+        public void dosomething(){
+
+        }
+    }
+    class Adapter {
+        private OtherService service = new OtherService();
+        public void local_service () {
+            this.service.dosomething();
+        }
+    } 
+```
+
 #### 桥接
 
 #### 组合
 
 #### 装饰
 
+##### 简介
+通过对具体实例的调用实现实例原有的功能
+同时可以通过添加新的方法实现原实例没有的功能
+
+装饰模式与适配器模式相比 装饰模式改变的是具体实现的功能
+而适配器则是改变的调用的方式
+
+##### 实现
+
+```java
+interface IRobot {
+    void dosomething();
+}
+
+class RobotI implements IRobot {
+    @Override
+    void dosomething(){
+        hit();
+    }
+}
+
+abstract class RobotII implements IRobot {
+    private IRobot robot;
+    public RobotII(IRobot robot) {
+        this.robot = robot;
+    }
+
+    @Override
+    void dosomething(){
+        this.robot.dosomething();
+    }
+```
+
 #### 外观
+
+##### 简介
+
+对用户隐藏具体的实现细节，简化客户端调用
+
+###### 实现
+
+```java 
+class OpA{
+    public void dosomething(){}
+}
+class OpB{
+    public void dosomething(){}
+}
+
+class Facade {
+    private OpA a = new OpA ();
+    private OpB b = new OpB ();
+    public void dowell(){
+        a.dosomething();
+        b.dosomething();
+    }
+}
+```
 
 #### 享元
 
@@ -212,9 +290,70 @@ class Singleton {
 
 #### 备忘录
 
-#### 观察者
+#### 观察者 (发布订阅)
+
+##### 简介
+
+发布方将订阅方添加到订阅列表，
+当进行消息发布时则调用订阅方的相关方法
+
+##### 实现 
+
+```java 
+interface IPublisher {
+    void addSubscriber ();
+    void notify();
+}
+interface ISubscriber {
+    void update(); 
+}
+
+class Publisher{
+    private List<ISubscriber> list = new ArrayList<>();
+    public void addSubscriber(ISubscriber subscriber) {
+        this.list.add(subscriber);    
+    }
+    public void notify() {
+        list.forEach(subscriber -> subscriber.update());
+    }
+}
+
+```
 
 #### 状态
+
+##### 简介
+
+将在状态的判断由ifelse这样的分支语句改为使用不同的类实现来实现
+
+##### 实现
+
+```java 
+interface IState {
+    void dosomething ();
+}
+
+class Context implements IState {
+    private IState state;
+    public state_change (IState state){
+        this.state = state;
+    }
+
+    public dosomething () {
+        this.state.dosomething();
+    }
+} 
+
+class StateA implements IState{
+    @Override
+    public void dosomething(){}
+}
+
+class StateB implements IState{
+    @Override
+    public void dosomething(){}
+}
+```
 
 #### 策略
 
