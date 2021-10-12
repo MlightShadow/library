@@ -228,8 +228,6 @@
 * BeanFactory 和 ApplicationContext 有什么区别
 * Spring Bean 的生命周期
 
-    > 
-
 * Spring IOC 如何实现
 
     > 通过反射产生对象, 通过DI注入对象(DI是实现IOC的最常见方式)
@@ -273,7 +271,6 @@
 * Spring MVC 运行流程, Spring MVC 启动流程
 
     > 两个题目差不多意思
-    > 
 
 * Spring 的单例实现原理
 

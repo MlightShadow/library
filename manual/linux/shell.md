@@ -1,12 +1,12 @@
-# shell 
+# shell
 
 ## bash 内建命令
 
 GNU bash，版本 5.1.8(1)-release (x86_64-pc-linux-gnu)
 这些 shell 命令是内部定义的。请输入 `help' 以获取一个列表。
-输入 `help 名称' 以得到有关函数`名称'的更多信息。
-使用 `info bash' 来获得关于 shell 的更多一般性信息。
-使用 `man -k' 或 `info' 来获取不在列表中的命令的更多信息。
+输入`help 名称' 以得到有关函数`名称'的更多信息。
+使用`info bash`来获得关于 shell 的更多一般性信息。
+使用`man -k` 或 `info` 来获取不在列表中的命令的更多信息。
 
 名称旁边的星号(*)表示该命令被禁用。
 
@@ -48,4 +48,3 @@ GNU bash，版本 5.1.8(1)-release (x86_64-pc-linux-gnu)
  getopts optstring name [arg ...]        wait [-fn] [-p var] [id ...]
  hash [-lr] [-p 路径名] [-dt] [名称 ..>  while 命令; do 命令; done
  help [-dms] [模式 ...]                  { 命令 ; }
-
