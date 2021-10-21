@@ -56,4 +56,3 @@ git clone -b 3.3.5 git://github.com/TrinityCore/TrinityCore.git
 为了避免更新和源代码构建冲突的问题, 我们创建一个特定的构建目录
 
 #### 编译配置
-

@@ -1,12 +1,14 @@
 # NETWORK
 
 参考文章:
+
 * [鸟哥基础网络概念](http://cn.linux.vbird.org/linux_server/0110network_basic.php)
 * TCP/IP详解三卷
 
 ## 关于网络
 
 网络需要解决的问题便是沟通的问题, 但凡沟通问题即包括两个方面送达与理解, 即:
+
 1. 需要知道信息送往何方(信封上的地址, 以及整个递送处理的体系)
 2. 送出何种信息且对方是否能理解(信件内的内容)
 
@@ -75,12 +77,12 @@ IP 封包的组成(IPv4)
 
 10. source address (32bits)
     来源地址
-    
+
 11. destination adress (32bits)
     目标地址
 
 12. options (19bits)
-    其他参数 
+    其他参数
 
 13. padding (13bits)
     补齐
@@ -91,7 +93,7 @@ IP 封包的组成(IPv4)
 
 ##### 三次握手
 
-1. 客户端发起联机请求, 开启大于1024的端口, 发起表头带有`SYN=1`的TCP封包发送至服务端, 同时需要记下发送封包序号 `SN(sequence number)` 也写作 `seq` 
+1. 客户端发起联机请求, 开启大于1024的端口, 发起表头带有`SYN=1`的TCP封包发送至服务端, 同时需要记下发送封包序号 `SN(sequence number)` 也写作 `seq`
 2. 服务端接收到封包, 且确定需要建立联机请求后需要返回`SYN=1, ACK =1`的封包, 并且传出`ack = seq(client) + 1`的`acknowledge`号, 同时发送`seq(server)`给客户端, 注意这边的服务端`seq(server)`不同于客户端, 由服务器自己建立
 3. 当客户端接受到服务端发回的封包, 则会再次发送 `ACK=1, acknowledge= seq(server) + 1` 的数据封包
 4. 当服务端再次接收到ACK=1的封包后, 联机将被建立
@@ -101,7 +103,7 @@ IP 封包的组成(IPv4)
 1. 客户端发送FIN=1 的封包
 2. 当服务端接收到之后发送ACK = 1 的封包同时根据 FIN的sequence number + 1 发送ack
 3. 服务端再次发送FIN 封包
-4. 当客户端收到服务端FIN封包后发送ACK =1, ack = sequence number (server) + 1 的封包 
+4. 当客户端收到服务端FIN封包后发送ACK =1, ack = sequence number (server) + 1 的封包
 5. 当服务端收到ACK封包后四次挥手完成
 
 ##### 握手与挥手的差异
@@ -116,7 +118,6 @@ IP 封包的组成(IPv4)
 
 * IPv4 (32位)
 * IPv6 (128位)
-
 
 ##### 同一网段
 
