@@ -4,6 +4,7 @@
 
 * [鸟哥基础网络概念](http://cn.linux.vbird.org/linux_server/0110network_basic.php)
 * TCP/IP详解三卷
+* 周志垒计算机网络视频课程
 
 ## 关于网络
 
@@ -13,6 +14,7 @@
 2. 送出何种信息且对方是否能理解(信件内的内容)
 
 如果从广义的方式来理解, `TCP/IP`是internet的实现基础, 但实现网络的方式并不只局限于此
+
 
 ## TCP/IP
 
@@ -26,10 +28,10 @@
 
 * 组成
 
-1. 链路层: 物理接口
-2. 网络层: IP, ICMP, IGMP, ARP, RARP
-3. 传输层: TCP, UDP
-4. 应用层: FTP, HTTP, SMTP, DNS等
+1. 链路层(router): 物理接口
+2. 网络层(router): IP, ICMP, IGMP, ARP, RARP
+3. 传输层(os): TCP, UDP
+4. 应用层(app): FTP, HTTP, SMTP, DNS等
 
 * OSI 七层协议 与 TCP/IP的四层对应
     1. 物理层 => 链路层
@@ -39,6 +41,15 @@
     5. 会话层 => 应用层
     6. 表现层 => 应用层
     7. 应用层 => 应用层
+
+### 传输控制层
+
+主要在内核中完成
+
+网络io读写即读写的socket中的queue( recv-Q, send-Q ) 根据类型的不同还分为bio, nio, aio
+
+
+
 
 ### 数据封装
 
@@ -91,6 +102,51 @@ IP 封包的组成(IPv4)
 
 #### TCP
 
+##### TCP封包
+
+1. Source Port, Destination Port (32bits)
+    来源端口, 目标端口
+
+2. Sequence Number (32bits)
+    封包序号
+
+3. Acknoledge Number (32bits)
+    回应序号
+
+4. Data Offset (4bits)
+    分段偏移
+
+5. Reserved (6bits)
+    保留字段
+
+6. Code(Control Flag) (6bits)
+    标志位字段 (UAPRSF.)
+    URG: 紧急指针有效
+    ACK: 确认序号有效
+    PSH: 传送接收方应该尽快将这个报文段交给应用层, 而不是在缓冲区中排队
+    RST: 重建连接即复
+    SYN: 表示建立连接
+    FIN: 释放一个连接
+    .: 包含ack
+7. Window (16bits)
+    滑动窗口, 进行流量控制
+
+8. Checksum (16bits)
+    确认码 校验和
+
+9. Urgent Pointer (16bits)
+    紧急指针字段
+
+10. Options (16bits)
+    选项
+
+11. Padding (16bits)
+    补齐
+
+以上为32bits * 6 (192bits)
+
+##### UDP封包
+
 ##### 三次握手
 
 1. 客户端发起联机请求, 开启大于1024的端口, 发起表头带有`SYN=1`的TCP封包发送至服务端, 同时需要记下发送封包序号 `SN(sequence number)` 也写作 `seq`
@@ -111,6 +167,7 @@ IP 封包的组成(IPv4)
 挥手时服务端接收到客户端的FIN封包, 仅仅表示客户端发送数据结束不再发送数据, 所以发送ACK作为应答, 而服务端发送至客户端的数据可能还未结束, 服务端在己方数据完全发送完成后才会发送FIN封包至客户端
 
 因此, 两次封包分开发送, 这也就是挥手与握手的最大差异
+
 
 ### 通讯寻路
 
