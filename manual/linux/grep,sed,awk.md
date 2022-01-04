@@ -6,4 +6,3 @@
 
 `awk command file`
 `command | awk command`
-

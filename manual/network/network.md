@@ -1,16 +1,20 @@
 # NETWORK
 
 参考文章:
+
 * [鸟哥基础网络概念](http://cn.linux.vbird.org/linux_server/0110network_basic.php)
 * TCP/IP详解三卷
+* 周志垒计算机网络视频课程
 
 ## 关于网络
 
 网络需要解决的问题便是沟通的问题, 但凡沟通问题即包括两个方面送达与理解, 即:
+
 1. 需要知道信息送往何方(信封上的地址, 以及整个递送处理的体系)
 2. 送出何种信息且对方是否能理解(信件内的内容)
 
 如果从广义的方式来理解, `TCP/IP`是internet的实现基础, 但实现网络的方式并不只局限于此
+
 
 ## TCP/IP
 
@@ -24,10 +28,10 @@
 
 * 组成
 
-1. 链路层: 物理接口
-2. 网络层: IP, ICMP, IGMP, ARP, RARP
-3. 传输层: TCP, UDP
-4. 应用层: FTP, HTTP, SMTP, DNS等
+1. 链路层(router): 物理接口
+2. 网络层(router): IP, ICMP, IGMP, ARP, RARP
+3. 传输层(os): TCP, UDP
+4. 应用层(app): FTP, HTTP, SMTP, DNS等
 
 * OSI 七层协议 与 TCP/IP的四层对应
     1. 物理层 => 链路层
@@ -37,6 +41,15 @@
     5. 会话层 => 应用层
     6. 表现层 => 应用层
     7. 应用层 => 应用层
+
+### 传输控制层
+
+主要在内核中完成
+
+网络io读写即读写的socket中的queue( recv-Q, send-Q ) 根据类型的不同还分为bio, nio, aio
+
+
+
 
 ### 数据封装
 
@@ -75,12 +88,12 @@ IP 封包的组成(IPv4)
 
 10. source address (32bits)
     来源地址
-    
+
 11. destination adress (32bits)
     目标地址
 
 12. options (19bits)
-    其他参数 
+    其他参数
 
 13. padding (13bits)
     补齐
@@ -89,9 +102,54 @@ IP 封包的组成(IPv4)
 
 #### TCP
 
+##### TCP封包
+
+1. Source Port, Destination Port (32bits)
+    来源端口, 目标端口
+
+2. Sequence Number (32bits)
+    封包序号
+
+3. Acknoledge Number (32bits)
+    回应序号
+
+4. Data Offset (4bits)
+    分段偏移
+
+5. Reserved (6bits)
+    保留字段
+
+6. Code(Control Flag) (6bits)
+    标志位字段 (UAPRSF.)
+    URG: 紧急指针有效
+    ACK: 确认序号有效
+    PSH: 传送接收方应该尽快将这个报文段交给应用层, 而不是在缓冲区中排队
+    RST: 重建连接即复
+    SYN: 表示建立连接
+    FIN: 释放一个连接
+    .: 包含ack
+7. Window (16bits)
+    滑动窗口, 进行流量控制
+
+8. Checksum (16bits)
+    确认码 校验和
+
+9. Urgent Pointer (16bits)
+    紧急指针字段
+
+10. Options (16bits)
+    选项
+
+11. Padding (16bits)
+    补齐
+
+以上为32bits * 6 (192bits)
+
+##### UDP封包
+
 ##### 三次握手
 
-1. 客户端发起联机请求, 开启大于1024的端口, 发起表头带有`SYN=1`的TCP封包发送至服务端, 同时需要记下发送封包序号 `SN(sequence number)` 也写作 `seq` 
+1. 客户端发起联机请求, 开启大于1024的端口, 发起表头带有`SYN=1`的TCP封包发送至服务端, 同时需要记下发送封包序号 `SN(sequence number)` 也写作 `seq`
 2. 服务端接收到封包, 且确定需要建立联机请求后需要返回`SYN=1, ACK =1`的封包, 并且传出`ack = seq(client) + 1`的`acknowledge`号, 同时发送`seq(server)`给客户端, 注意这边的服务端`seq(server)`不同于客户端, 由服务器自己建立
 3. 当客户端接受到服务端发回的封包, 则会再次发送 `ACK=1, acknowledge= seq(server) + 1` 的数据封包
 4. 当服务端再次接收到ACK=1的封包后, 联机将被建立
@@ -101,7 +159,7 @@ IP 封包的组成(IPv4)
 1. 客户端发送FIN=1 的封包
 2. 当服务端接收到之后发送ACK = 1 的封包同时根据 FIN的sequence number + 1 发送ack
 3. 服务端再次发送FIN 封包
-4. 当客户端收到服务端FIN封包后发送ACK =1, ack = sequence number (server) + 1 的封包 
+4. 当客户端收到服务端FIN封包后发送ACK =1, ack = sequence number (server) + 1 的封包
 5. 当服务端收到ACK封包后四次挥手完成
 
 ##### 握手与挥手的差异
@@ -110,13 +168,13 @@ IP 封包的组成(IPv4)
 
 因此, 两次封包分开发送, 这也就是挥手与握手的最大差异
 
+
 ### 通讯寻路
 
 #### IP
 
 * IPv4 (32位)
 * IPv6 (128位)
-
 
 ##### 同一网段
 

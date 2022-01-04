@@ -169,40 +169,71 @@
     }
 
     h1 {
-        font-size: 40px;
+        font-size: 32px;
         color: #000;
         counter-reset: counter_h2;
     }
 
     h2 {
-        font-size: 35px;
-        border-bottom: 1px solid #ccc;
-        color: #000;
+        font-size: 30px;
+        border-bottom: 3px dashed rgb(240, 80, 0);
+        color: rgb(240, 80, 0);
         text-align: right;
         counter-increment: counter_h2;
+        counter-reset: counter_h3;
     }
 
     h2:before {
-        color: #00e;
-        font-size: 40px;
+        color: rgb(240, 80, 0);
+        font-size: 30px;
         content: '§'counter(counter_h2)' ';
     }
 
     h3 {
         font-size: 25px;
+        color: rgb(84, 161, 48);
+        counter-increment: counter_h3;
+        counter-reset: counter_h4;
+    }
+    h3:before {
+        font-size: 25px;
+        color: rgb(84, 161, 48);
+        content: '§'counter(counter_h2)'.'counter(counter_h3)' ';
     }
 
     h4 {
         font-size: 20px;
+        color: rgb(11, 172, 172);
+        counter-increment: counter_h4;
+    }
+
+    h4:before
+    {
+        font-size: 20px;
+        color: rgb(11, 172, 172);
+        content: '#'counter(counter_h4)' ';
     }
 
     h5 {
-        font-size: 16px;
+        color: #6aa4df;
+        font-size: 18px;
+    }
+
+    h5:before {
+        font-size: 18px;
+        color: #6aa4df;
+        content: '> ';
     }
 
     h6 {
         color: #777;
         font-size: 16px;
+    }
+
+    h6:before {
+        color: #777;
+        font-size: 16px;
+        content: '- ';
     }
 
     body>h2:first-child,
@@ -357,17 +388,19 @@
     /* QUOTES
 =============================================================================*/
     blockquote {
-        border-left: 4px solid #0D0;
+        border-left: 5px dashed #0D0;
         padding: 0 15px;
         color: #080;
     }
 
     blockquote>:first-child {
         margin-top: 0px;
+        padding-top: 10px;
     }
 
     blockquote>:last-child {
         margin-bottom: 0px;
+        padding-bottom: 10px;
     }
 
     /* HORIZONTAL RULES
@@ -379,7 +412,7 @@
         overflow: hidden;
         border: none;
         background: transparent;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 3px dashed #ccc;
         padding: 0;
     }
 
@@ -392,6 +425,7 @@
 
     table th {
         font-weight: bold;
+        border-top: 2px solid #ccc;
     }
 
     table th,
@@ -400,17 +434,18 @@
     }
 
     table tr {
-        border-top: 1px solid #ccc;
+        border-top: 2px dashed #ccc;
         background-color: #fff;
     }
 
     table tr:nth-last-child(1) {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 2px solid #ccc;
     }
 
 
     table tr:nth-child(2n) {
         background-color: #fbfbfb;
+        border-top: 2px dashed #ccc;
     }
 
     /* IMAGES
@@ -437,9 +472,17 @@
     /* 强调
 ==================================================*/
     strong {
+        font-weight: 600;
         color: #f50;
+        border-bottom: 2px solid #f50;
+    }
+    em{
+        color:rgb(214, 52, 146)
     }
 }
+
+
+
 
 
 
