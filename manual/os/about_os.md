@@ -152,6 +152,64 @@ POSIX定义了线程的标准，定义的线程包叫做Pthread。
 
 #### 竞争条件
 
+#### 临界区
+
+#### 忙等待的互斥
+
+以下的解法本质上都是在进程想要进入临界区时，先检查是否允许进入，若不允许则原地等待，直到允许进入位置。
+
+即临界区忙则申请进程等待
+
+缺点：
+* 浪费cpu时间
+* 无法实现优先级调度
+
+实现忙等待互斥的几种方法：
+* 屏蔽中断：每个进程进入临界区后立即屏蔽所有中断，当进程离开则重新打开中断，这个方案非常不好。
+* 锁变量：使用一个变量记录当前临界区中是否已经有某个进程进入了，如果有则等待当前进程退出，但这样这个变量同样是一个共享的内存空间，在解决问题的同时创造了新的问题。
+* 严格轮换法：通过变量在两个值之间不停的轮换，使两个进程轮流进入临界区。但是这样两个进程相互耦合，如果其中一个进程因为临界区外的其他原因阻塞，则另一个进程也会被迫等待。
+* peterson解法：在锁变量的基础上增加了修改后的一个while检查，从而使得重写丢失后也不会出现两个进程同时进入临界区的情况。
+```c
+// peterson 解法
+
+#define FALSE 0
+#define TRUE 1
+#define N 2
+
+int turn;
+int interested[N];
+
+void enter_region(int process);
+{
+    int other;
+    other = 1 - process; // 这里只是表示这是另一个进程
+    interested[process] = TRUE; // 表示对临界区感兴趣 
+    turn = process; // 表示下一个进入的进程
+
+    /*
+        当两个进程同时争夺时，turn为后一个写入process的进程
+        则第一个进程因为turn != process 直接进入临界区
+        而第二个进程则在while循环
+        直到第一个进程退出将第二个进程视角的interested[other] 置为 FALSE
+    */
+    while(turn == process && interested[other] == TRUE);
+}
+
+void leave_region(int process);
+{
+    interested[process] = FALSE;
+}
+```
+
+* TSL(Test and Set Lock)或者XCHG：一种硬件支持的方案。
+
+> 忙等待的锁通常称为自旋锁(spin lock)
+
+#### 睡眠与唤醒
+
+> 生产者消费者问题
+> 
+
 
 ### 调度
 
