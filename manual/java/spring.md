@@ -313,7 +313,69 @@ User user = context.getBean("user",User.class);
 
 面向切面编程
 
+AOP的底层使用的是动态代理
 
+* 有接口的情况下使用JDK动态代理: 通过创建接口实现的代理对象从而对方法进行增强
+* 没有接口的情况下使用CGLIB动态代理: 通过创建其子类的代理对象从而对方法进行增强
+
+### JDK动态代理
+
+todo
+
+### AOP术语
+
+* 连接点：可以被增强的方法就称为连接点
+* 切入点：当前被增强的方法就称为切入点
+* 通知（增强, advice）：新增加的部分逻辑代码
+    * 前置通知@Before
+    * 后置通知(返回通知)@AfterReturning
+    * 环绕通知@Around
+    * 异常通知@AfterThrowing
+    * 最终通知@After
+* 切面：通知应用到切入点的过程就称为切面
+
+### Spring 使用 AOP
+
+spring 通过 AspectJ实现AOP的操作
+
+* 基于xml配置实现
+* 基于注解方式实现(推荐)
+
+#### 切入点表达式
+
+```java
+```
+
+#### 注解方式实现AOP
+
+```java
+@Component
+class User{
+    public void login(){}
+}
+
+@Component
+@Aspect
+class UserProxy{
+    @Before(value="execution()") // 里面属性值是增强表达式
+    public void before(){}
+
+    @Around()
+    public void around(ProceedingJoinPoint pjp)
+        throws Throwable{
+        // before
+        // 被增强的方法
+        pjp.proceed();
+        // after
+    }
+}
+```
+如果使用xml开启注解则在xml中添加如下启用aspectJ生成代理对象
+```xml
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+```
+
+#### XML方式实现AOP
 
 ## jdbc_template
 
