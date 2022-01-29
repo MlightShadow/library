@@ -404,4 +404,36 @@ class UserProxy{
 
 ## jdbc_template
 
-## 事务
+通过之前的方式创建需要使用jdbcTemplate的bean和注入dataSource属性
+
+创建对应数据库的实体类
+
+使用jdbcTemplate对实体进操作即可
+
+```java
+jdbcTemplate.update(sql, Object ...args);
+```
+
+增删改查
+批量增删改查
+
+### 事务
+
+@Transcational 常见属性功能
+
+* propagation:传播行为，调用方法时的事务行为, 例如：`@Transactional(propagation=Propagation.REQUIRED)`
+    * REQUIRED: 有事务就直接用当前的事务，没有事务启动新事务 
+    * REQUIRED_NEW: 无论是否有事务都启动新事务
+    * SUPPORTS: 
+    * NOT_SUPPORTS:
+    * MANDATORY:
+    * NEVER:
+    * NESTED:
+* ioslation:隔离级别, 多个事务之间的影响，涉及脏读，不可重复读，幻（虚）读 这类数据库问题
+* timeout:超时
+* readOnly:只读
+* rollbackFor:回滚
+* noRollbackFor:不回滚
+
+
+
