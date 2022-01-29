@@ -357,6 +357,16 @@ class User{
 @Component
 @Aspect
 class UserProxy{
+
+    //共通切入点
+    @Pointcut(value="execution()")
+    public void point(){}
+
+    //调用共通切入点 这样调用的就是同样的切入点了
+    @After(value="point()")
+    @Order(1)
+    public void after(){}
+
     @Before(value="execution()") // 里面属性值是增强表达式
     public void before(){}
 
@@ -370,12 +380,27 @@ class UserProxy{
     }
 }
 ```
+
+通过@Order(整型数值)来设置对同一方法增强的优先级，数值小优先级高
+
 如果使用xml开启注解则在xml中添加如下启用aspectJ生成代理对象
 ```xml
 <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 ```
 
+完全注解方式使用 `@EnableAspectJAutoProxy(proxyTargetClass=true)` 开启
+
 #### XML方式实现AOP
+
+```xml
+<aop:config>
+    <!--切入点-->
+    <aop:pointcut id="" expression="execution()" />
+    <aop:aspect ref="bean_id">
+        <aop:before method="before" pointcut-ref="method_name"/>
+    </aop:aspect>
+</aop:config>
+```
 
 ## jdbc_template
 
