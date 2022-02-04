@@ -430,10 +430,45 @@ jdbcTemplate.update(sql, Object ...args);
     * NEVER:
     * NESTED:
 * ioslation:隔离级别, 多个事务之间的影响，涉及脏读，不可重复读，幻（虚）读 这类数据库问题
-* timeout:超时
+    * READ UNCOMMITTED: 读未提交 有脏读，有不可重复读， 有幻读
+    * READ COMMITTED: 读已提交 无脏读
+    * REPEATABLE READ: 可重复读 无脏读，无不可重复读
+    * SERIALIZABLE: 串行化 无脏读，无重复读，无幻读
+* timeout:超时, 提交的超时时间，超时后回滚, 默认不超时: -1
 * readOnly:只读
-* rollbackFor:回滚
-* noRollbackFor:不回滚
+* 设置某些异常进行或不进行回滚
+    * rollbackFor:回滚
+    * noRollbackFor:不回滚
+
+#### XML进行事务管理
+
+```xml
+<bean id="transactionManager"
+    class="org.springfromwork.jdbc.datasource.DataSourceTranscationManager" >
+    <property name="dataSource" ref="dataSource"></property>
+</bean>
+
+<tx:advice id="txadvice">
+    <tx:attributes>
+        <tx:method name="methodname" propagation="REQUIRED"/>
+        <tx:method name="methodname*"/>
+    </tx:attributes>
+</tx:advice>
+
+<aop:config>
+    <aop:pointcut id="" expression=""/>
+    <aop:advisor ref="" />
+</aop:confing>
+```
 
 
+#### 注解方式进行事务管理
 
+## Spring5 的一些新特点
+
+* 基于java8
+* 内置了log4j2日志
+* @Nullable
+* 支持函数式编程通过GenericApplicationContext托管对象到spring
+* 支持整合junit5
+* SpringWebFlux
