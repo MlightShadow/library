@@ -22,8 +22,12 @@ springboot 是 springcloud 基础
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://maven.apache.org/POM/4.0.0 
+    https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -81,6 +85,8 @@ public class Application{
 ## 配置
 
 ### module
+
+TODO
 
 ### 配置文件
 
@@ -170,9 +176,11 @@ test:
 
 ### 自动配置原理
 
-## starter
+TODO
 
-## 日志
+## 整合框架
+
+### slf4j
 
 日志框架早期百花齐放 log4j, jul(java.util.logging), ...  后来逐渐出现了日志门面（一组日志定义的统一接口）其中有：
 * jcl(jakarta commons logging)
@@ -193,7 +201,7 @@ public class Apple {
 
 如果使用了其他日志门面，例如jcl+jul 可以添加转换依赖，转换为slf4j
 
-### spring-boot-starter-logging
+#### spring-boot-starter-logging
 springboot 推荐 slf4j + logback
 
 默认的info级别的输出
@@ -227,10 +235,16 @@ logging:
 
 ```
 
+TODO 其他日志的配置...
 
-### 背景
+自定义日志文件可以更好的配置日志功能, 但如果使用自定义日志配置文件则springboot中的日志配置就会失效
 
-## 整合框架
+可以根据不同的环境配置不同的日志输出格式
+
+当需要切换日志框架到其他框架，只需要手动排除springboot默认依赖，然后添加新的以来框架并且修改配置文件即可
+
+
+### Springboot Web
 
 ## 开发杂项
 ### 热部署
