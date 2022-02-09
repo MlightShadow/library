@@ -246,6 +246,20 @@ TODO 其他日志的配置...
 
 ### Springboot Web
 
+#### 接口服务测试或者调用
+
+* RestTemplate
+* WebClient (依赖webflux)
+* MockMvc (无需启动服务， 单元测试)
+
+可以用于restful接口的测试和访问
+
+#### 配置
+
+#### 
+
+#### 
+
 ## 开发杂项
 ### 热部署
 
