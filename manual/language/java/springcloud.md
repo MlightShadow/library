@@ -315,7 +315,7 @@ application.yml
 ```yaml
 spring:
     application:
-        name:  #注册名称
+        name: test-server #注册名称
 
     cloud: 
         nacos: 
@@ -323,7 +323,8 @@ spring:
             discovery: 
                 username: nacos
                 password: nacos
-                namespace: #用于隔离
+                namespace: namespace #用于隔离
+                ephemeral: false #是否为临时实例，false 表示为永久实例，服务down掉之后也不会在列表中删除
 ```
 
 @EnableDiscoveryClient 这注解以前要加， 新版本的SpringCloud不需要了，应该是1.4版本
@@ -332,9 +333,17 @@ spring:
 
 RestTemplate调用时通过添加@LoadBalance注解添加负载均衡调用, 负载均衡器可以帮助Nacos解析调用服务名称到地址
 
-此时调用时只需要通过`http://配置文件中注册时的服务名称/...`即可
+此时调用时只需要通过配置文件中注册时的服务名称`http://test-server/...`即可
 
-默认负载均衡为轮询(Ribbon提供)
+默认负载均衡为权重轮询(Ribbon提供)
+
+Nacos界面管理的一些属性：
+* 保护阈值： 当实例可用比低于阈值，不可用实例也会被分配到任务从而防止雪崩
+* 权重： 权重越大负载均衡分配访问越多
+
+Nacos中心下线服务，由于客户端拉取有延迟， 短时间内还可以访问当已下线的应用
+
+订阅者列表可以看到消费者的信息
 
 #### 分布式配置 Nacos Config
 
