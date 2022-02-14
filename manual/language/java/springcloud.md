@@ -8,7 +8,7 @@
 4. SOA架构: 统一管理服务，方便调用，但是有中心化强耦合的问题
 5. 微服务: 松散的中心化
 
-## 基础概念
+## 基础概念(微服务搭建需要哪些组件)
 
 ### 配置中心
 
@@ -268,8 +268,85 @@ A服务调用B服务，B服务调用C 此时突然大量请求调用A，A能抗�
 * 同一个jvm中运行多个版本的函数
 * 打包函数到指定云平台
 
+### CAP
+
+C 一致性
+A 可用性
+P 分区容错性
+
+保证可用性做集群会保障到 AP两个特性， 但是一致性会降低
+保证一致性的需要做主从架构，就没法保证可用性 这样就是只有CP
+
 常见组件
 
 * Spring Cloud Function
 
-## 
+## Spring Cloud Alibaba
+
+添加spring cloud alibaba dependencies依赖, 注意版本对应关系
+spring cloud alibaba 类似 spring boot starter parent 包含一个版本仲裁中心 (spring boot dependencies)
+
+通过 pom文件中的 dependencyManagement 实现继承 ,一般自定义的parent都习惯使用这种方式
+
+可以在 [spring could alibaba初始化向导](https://start.aliyun.com/bootstrap.html) 在线配置一份配置
+
+### Nacos
+
+下载Nacos服务项目代码(Github release)
+
+默认为集群形式，在/bin/startup.sh启动脚本中将mode='cluster' 改为 standalone
+/conf/application.properties 更改一些配置信息, 默认启动后实在内存，不进行数据持久化
+
+默认登陆名密码都是nacos
+
+核心功能：
+* 服务注册: 客户端注册到Nacos
+* 服务心跳: 服务默认5秒发送一次心跳
+* 服务同步: 多个Nacos服务之间同步信息
+* 服务发现: 消费者拉取Nacos服务列表
+* 服务健康检查: 15秒未收到服务心跳健康状态为false 30秒无心跳移除
+
+
+#### 服务注册/发现 Nacos Discovery
+
+项目添加 pom 添加 Nacos 依赖客户端 spring cloud starter alibaba nacos discovery
+
+application.yml
+```yaml
+spring:
+    application:
+        name:  #注册名称
+
+    cloud: 
+        nacos: 
+            server-addr: lcoalhost:8848
+            discovery: 
+                username: nacos
+                password: nacos
+                namespace: #用于隔离
+```
+
+@EnableDiscoveryClient 这注解以前要加， 新版本的SpringCloud不需要了，应该是1.4版本
+
+这样服务启动时会自动注册
+
+RestTemplate调用时通过添加@LoadBalance注解添加负载均衡调用, 负载均衡器可以帮助Nacos解析调用服务名称到地址
+
+此时调用时只需要通过`http://配置文件中注册时的服务名称/...`即可
+
+默认负载均衡为轮询(Ribbon提供)
+
+#### 分布式配置 Nacos Config
+
+
+
+### 服务熔断 Sentinel
+### 服务调用 Dubbo RPC / OpenFeign
+### 服务路由 Dubbo + Servlet
+### 分布式消息 SCS RocketMQ Binder
+### 消息总线 RocketMQ Bus
+### 负载均衡 Dubbo LoadBalance / Ribbon (Nacos集成)
+### 分布式事务 Seata
+### 分布式调度 Sidecar
+### Skywalking
+
