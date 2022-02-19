@@ -472,3 +472,56 @@ jdbcTemplate.update(sql, Object ...args);
 * 支持函数式编程通过GenericApplicationContext托管对象到spring
 * 支持整合junit5
 * SpringWebFlux
+
+
+## 附录
+
+### 常用注解
+
+#### bean声明&注入
+
+@Component
+@Service
+@Repository
+@Controller
+
+@AutoWired
+@Inject
+@Resource
+
+@Value
+
+#### aop相关
+
+@Aspect
+@After
+@Before
+@Around
+@PointCut
+
+#### 配置
+
+@Configuration
+@Bean 
+@ComponentScan
+@WishlyConfiguration
+@Profile
+@Conditional
+
+@EnableAspectJAutoProxy
+@EnalbeAsync
+@EnableScheduling
+@EnableWebMvc
+@EnableConfigurationProperties
+@EnableJpaRepositories
+@EnableTransactionManagement
+@EnableCaching
+
+
+#### 异步&定时任务
+@Async
+@Scheduled
+
+#### 测试
+@RunWith
+@ContextConfiguration
