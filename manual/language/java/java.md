@@ -147,9 +147,30 @@ Map的主要实现包括：
 
 线程合并`thread.join()`
 
+```java
+thread.start();
+thread.join();
+```
+
 线程类型:
 * 用户线程
 * 守护线程
+
+守护线程`thread.setDaemon(true)`
+
+java线程安全常用方法：
+
+* 同步代码块`synchronized(lock){ ... }` 任意对象都可以充当lock 例如`Object lock = new Object();` 或者使用`this` 指定为当前对象 `synchronized(this){ ... }` 还可以使用`XXObject.class` 使用这个对象来锁
+* 同步方法`synchronized`修饰的方法 它的锁是this 如果修饰静态对象则锁为 XXObject.class
+* Lock 来自juc 其定义了多种锁实现， 其中 `ReentrantLock` 进行lock和unlock 在这这间的代码可以加锁  这种方法最为灵活好用 而condition可以用于进程间合作 相较于 wait/notify 更加灵活
+
+
+等待唤醒机制
+* wait()
+* notify()
+* notifyAll()
+
+并且他们都是作用于关注这个锁的线程, 通过使用锁对象的wait和notify实现
 
 #### 扩展
 
