@@ -1,7 +1,23 @@
-# vim学习笔记
+# vim调教手册
 
-本文使用 vim或 vscode vim 模拟器编写完成
+## 技巧
 
-## 组合案件
+## 插件
+### ls
 
-所有切换到插入命令的复合命令都有等效的长命令
+### 美化
+
+## 开发环境范例
+
+### java开发环境
+
+coc-java
+
+coc.nvim the java server crashed 5 times in the last 3 minutes. the server will not be restarted
+
+https://github.com/neoclide/coc-java/issues/99
+JDT Lang Sever的57版可以正常使用
+https://download.eclipse.org/jdtls/milestones/0.57.0/
+解压替换到
+~/.config/coc/extensions/coc-java-data/server
+
