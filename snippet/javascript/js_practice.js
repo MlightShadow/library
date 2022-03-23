@@ -5,8 +5,8 @@ let variable = "hello, variables";
 console.log(variable);
 
 let varialbe1 = 1,
-  varialbe2 = 2,
-  variable3 = 3;
+    varialbe2 = 2,
+    variable3 = 3;
 console.log(varialbe1, varialbe2, variable3);
 
 let apple = "apple";
@@ -86,3 +86,24 @@ console.log(Boolean(undefined));
 console.log(Boolean(NaN));
 
 // operators
+let some_number = 1;
+let res = 1 + 2;
+res = 1 - 2;
+res = -some_number;
+res = 1 * 2;
+res = 1 / 2;
+res = 1 % 2;
+res = 1 ** 2;
+res += 5;
+res *= 5;
+
+console.log("1" + 1 + 1); // 111
+console.log(1 + 1 + "1"); // 21
+console.log(+"1"); // 1
+console.log(+"1" + +"1"); // 2
+
+let middle_number = 0;
+console.log(3 - (middle_number = 2 + 1));
+console.log(middle_number);
+
+
