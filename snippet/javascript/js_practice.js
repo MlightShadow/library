@@ -5,8 +5,8 @@ let variable = "hello, variables";
 console.log(variable);
 
 let varialbe1 = 1,
-    varialbe2 = 2,
-    variable3 = 3;
+  varialbe2 = 2,
+  variable3 = 3;
 console.log(varialbe1, varialbe2, variable3);
 
 let apple = "apple";
@@ -95,7 +95,13 @@ res = 1 / 2;
 res = 1 % 2;
 res = 1 ** 2;
 res += 5;
+res -= 5;
 res *= 5;
+res /= 5;
+res++;
+res--;
+--res;
+++res;
 
 console.log("1" + 1 + 1); // 111
 console.log(1 + 1 + "1"); // 21
@@ -106,4 +112,65 @@ let middle_number = 0;
 console.log(3 - (middle_number = 2 + 1));
 console.log(middle_number);
 
+let chain1, chain2, chain3;
+chain1 = chain2 = chain3 = 2 + 2;
+console.log(chain1, chain2, chain3);
 
+console.log((1 + 2, 3 + 4)); // 7
+
+console.log("z" > "a");
+console.log("zz" > "aa");
+
+console.log(0 > "-1");
+console.log(true == 1);
+
+let int0 = 0;
+let string0 = "0";
+
+console.log(Boolean(int0) == Boolean(string0));
+console.log(int0 == string0);
+console.log(int0 === string0);
+console.log(int0 !== string0);
+
+console.log(null === undefined);
+console.log(null == undefined);
+
+console.log(null > 0);
+console.log(null == 0);
+console.log(null >= 0);
+
+console.log(undefined > 0);
+console.log(undefined == 0);
+console.log(undefined >= 0);
+
+let find_first_true = 0 || 1 || 3;
+let find_string = "" || "" || "nice";
+console.log(find_first_true, find_string);
+
+let find_first_false = 1 || null || 3;
+console.log(find_first_false);
+
+console.log(!!"123");
+
+console.log(undefined ?? "123");
+console.log(null ?? "321");
+console.log(null ?? "");
+console.log("" ?? "??");
+
+console.log("start loop");
+label: for (let i = 0; i < 3; i++) {
+  console.log(i);
+  for (let j = 0; j < 3; j++) {
+    console.log(j);
+    break label;
+  }
+}
+
+console.log("start loop2");
+label2: for (let i = 0; i < 3; i++) {
+  console.log(i);
+  for (let j = 0; j < 3; j++) {
+    console.log(j);
+    continue label2;
+  }
+}
