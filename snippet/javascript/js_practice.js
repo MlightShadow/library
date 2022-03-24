@@ -174,3 +174,84 @@ label2: for (let i = 0; i < 3; i++) {
     continue label2;
   }
 }
+
+let switch_cond = "1";
+switch (switch_cond) {
+  case 1:
+    console.log("==");
+    break;
+  case "1":
+    console.log("===");
+    break;
+  default:
+    console.log("default===");
+    break;
+}
+
+function func(param) {
+  console.log(param);
+}
+
+func("hello,world");
+
+let obj = {
+  a: "a",
+};
+let base = 0;
+
+function change_obj(o, b) {
+  o.a = "c";
+  b = 1;
+}
+
+change_obj(obj, base);
+console.log(obj.a, base);
+
+function func2(param1, param2 = "default") {
+  console.log(param1, param2);
+}
+
+func2();
+func2(null, null);
+func2("", "");
+func2(false, false);
+
+function noreturn() {}
+function return_nothing() {
+  return;
+}
+console.log(noreturn());
+console.log(return_nothing());
+
+let func3 = function () {
+  return;
+};
+
+console.log(func2);
+console.log(func3);
+
+let vvv = func3;
+console.log(vvv());
+
+function callback(flag, fn1, fn2) {
+  if (flag) {
+    fn1();
+  } else {
+    fn2();
+  }
+}
+
+let get_func_to_outer;
+if (true) {
+  get_func_to_outer = function () {
+    console.log("escape!!!");
+  };
+}
+get_func_to_outer();
+
+let arrowfunc = () => "arrow";
+let arrowfunc2 = () => {
+  return "arrow";
+};
+console.log(arrowfunc());
+console.log(arrowfunc2());
