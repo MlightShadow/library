@@ -255,3 +255,42 @@ let arrowfunc2 = () => {
 };
 console.log(arrowfunc());
 console.log(arrowfunc2());
+
+let obj1 = new Object();
+let obj2 = {};
+
+let user = {
+  name: "zhangsan",
+  age: 22,
+};
+
+user.isAdmin = false;
+delete user.age;
+
+let user2 = {
+  "i am 007": false,
+};
+
+delete user2["i am 007"];
+
+let properties_name = "nice";
+let obj3 = {
+  [properties_name]: "yeah",
+};
+obj3[properties_name] = "okay";
+obj3["other" + properties_name] = "heihei,okay";
+
+function makeObj(name, age) {
+  return {
+    name,
+    age,
+    isAdmin: false,
+    let: "",
+    for: "",
+    return: "",
+    0: "this",
+    1: 1,
+  };
+}
+
+
