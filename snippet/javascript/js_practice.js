@@ -293,4 +293,19 @@ function makeObj(name, age) {
   };
 }
 
+let findpropties = makeObj();
+let wantfind = "name";
+console.log("name" in findpropties);
+console.log(wantfind in findpropties);
 
+for (let prop in findpropties) {
+  console.log(`${prop}: ${findpropties[prop]}`);
+}
+
+let obj10 = {};
+let obj20 = {};
+let obj10copy = obj10;
+console.log(obj10 === obj20);
+console.log(obj10 == obj20);
+console.log(obj10 === obj10copy);
+console.log(obj10 == obj10copy);
