@@ -69,9 +69,9 @@ bios自检 -> 启动grub -> 加载内核 -> 执行第一个进程 -> 配置系�
   
 当MBR加载到RAM中后 BIOS会将控制权交给MBR
 
-#### MBR
+#### UEFI & Legacy
 
-
+#### MBR & GPT
 
 #### GRUB
 
