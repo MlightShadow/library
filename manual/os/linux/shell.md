@@ -1,50 +1,140 @@
 # shell
 
-## bash 内建命令
+```shell
+#!/bin/bash
+# 注释
+echo "helloworld"
+```
 
-GNU bash，版本 5.1.8(1)-release (x86_64-pc-linux-gnu)
-这些 shell 命令是内部定义的。请输入 `help' 以获取一个列表。
-输入`help 名称' 以得到有关函数`名称'的更多信息。
-使用`info bash`来获得关于 shell 的更多一般性信息。
-使用`man -k` 或 `info` 来获取不在列表中的命令的更多信息。
+* `#!`: 定义脚本执行的解释器
+* `#`: 注释, 注释以 `#` 开头, 由于没有多行注释, 所以每一行都需要添加 `#`
+* `echo`: 
 
-名称旁边的星号(*)表示该命令被禁用。
+### 变量
 
- job_spec [&]                            history [-c] [-d 偏移量] [n] 或 hist>
- (( 表达式 ))                            if 命令; then 命令; [ elif 命令; the>
- . 文件名 [参数]                         jobs [-lnprs] [任务声明 ...] 或 jobs>
- :                                       kill [-s 信号声明 | -n 信号编号 | >
- [ 参数... ]                             let 参数 [参数 ...]
- [[ 表达式 ]]                            local [option] 名称[=值] ...
- alias [-p] [名称[=值] ... ]             logout [n]
- bg [任务声明 ...]                       mapfile [-d 分隔符] [-n 计数] [-O >
- bind [-lpvsPSVX] [-m 键映射] [-f 文>   popd [-n] [+N | -N]
- break [n]                               printf [-v var] 格式 [参数]
- builtin [shell 内建 [参数 ...]]         pushd [-n] [+N | -N | 目录]
- caller [表达式]                         pwd [-LP]
- case 词 in [模式 [| 模式]...) 命令 ;;>  read [-ers] [-a 数组] [-d 分隔符] [->
- cd [-L|[-P [-e]] [-@]] [目录]           readarray [-d 定界符] [-n 计数] [-O>
- command [-pVv] 命令 [参数 ...]          readonly [-aAf] [名称[=值] ...] 或 r>
- compgen [-abcdefgjksuv] [-o option] [>  return [n]
- complete [-abcdefgjksuv] [-pr] [-DEI]>  select NAME [in 词语 ... ;] do 命令;>
- compopt [-o|+o 选项] [-DEI] [名称 ...>  set [--abefhkmnptuvxBCHP] [-o 选项名>
- continue [n]                            shift [n]
- coproc [名称] 命令 [重定向]             shopt [-pqsu] [-o] [选项名 ...]
- declare [-aAfFgiIlnrtux] [-p] [name[=>  source 文件名 [参数]
- dirs [-clpv] [+N] [-N]                  suspend [-f]
- disown [-h] [-ar] [任务声明 ... | pid>  test [表达式]
- echo [-neE] [参数 ...]                  time [-p] 管道
- enable [-a] [-dnps] [-f 文件名] [名称>  times
- eval [参数 ...]                         trap [-lp] [[参数] 信号声明 ...]
- exec [-cl] [-a name] [command [argume>  true
- exit [n]                                type [-afptP] 名称 [名称 ...]
- export [-fn] [名称[=值] ...] 或 expor>  typeset [-aAfFgiIlnrtux] [-p] name[=>
- false                                   ulimit [-SHabcdefiklmnpqrstuvxPT] >
- fc [-e 编辑器名] [-lnr] [起始] [终结]>  umask [-p] [-S] [模式]
- fg [任务声明]                           unalias [-a] 名称 [名称 ...]
- for 名称 [in 词语 ... ] ; do 命令; do>  unset [-f] [-v] [-n] [名称 ...]
- for (( 表达式1; 表达式2; 表达式3 )); >  until 命令; do 命令; done
- function 名称 { 命令 ; } 或 name () {>  variables - 一些 shell 变量的名称>
- getopts optstring name [arg ...]        wait [-fn] [-p var] [id ...]
- hash [-lr] [-p 路径名] [-dt] [名称 ..>  while 命令; do 命令; done
- help [-dms] [模式 ...]                  { 命令 ; }
+命名规则:
+
+* 必须以英文字母开头
+* 只能使用数字, 字母, 下划线
+* 不能使用bash关键字
+
+```bash
+# 定义时注意等号不留空格
+variable=value
+```
+
+定义变量时不加 `$`
+
+#### 使用变量
+
+使用变量时需要加 `$`
+
+```bash
+echo $variable
+
+echo ${variable}
+
+# 使用${}用于帮助解释器识别边界 (tips: 这种写法和js具有一致性,方便记忆)
+echo "use ${variable}format like this"
+```
+
+#### 变量类型
+
+* 局部变量: 定义在脚本或命令中, 只在当前shell实例中有效, 无法被其他shell实例访问
+* 环境变量: 所有程序都能够访问
+* shell变量: shell程序的特殊变量
+
+#### 特殊变量(shell变量)
+
+| 变量 | 含义                                                               |
+| ---- | ------------------------------------------------------------------ |
+| `$0` | 当前脚本的文件名                                                   |
+| `$n` | 传递给脚本的参数, `$1`: 是第一个参数, `$2`: 是第二个参数, 依此类推 |
+| `$#` | 获取传递参数的个数                                                 |
+| `$*` | 获取传递的所有参数                                                 |
+| `$@` | 获取传递的所有参数, 参数中包含 `""`时, 与 `$*` 有差异              |
+| `$?` | 上一条命令的推出状态, 由 `exit` 设置                               |
+| `$$` | 当前shell脚本的进程ID                                              |
+
+##### `$*` 与 `$@`
+##### 退出状态
+
+### 输入&输出
+
+#### printf
+
+#### read
+
+### 转义字符
+
+使用 `echo` 输出时默认不转义字符, 添加 `-e` 选项对转义字符进行替换
+
+tips: `echo` 有一个 `-E` 选项, 表示禁止使用转义字符, 这和正则表达式的大写转义符一样用于表示与小写相反的功能
+
+### 命令替换
+
+### 变量替换
+
+### 运算符
+
+#### 算术运算符
+
+#### 关系运算符
+
+#### 布尔运算符
+
+#### 字符串运算符
+
+#### 文件测试运算符
+
+### 字符串
+
+#### 字符串拼接
+
+#### 获取字符串长度
+
+#### 截取字符串
+
+#### 查找字符串
+
+### 数组
+
+### 判断
+
+#### if
+
+#### case
+
+### 循环
+
+#### for
+
+#### while
+
+#### until
+
+#### break
+
+#### continue
+
+### 函数
+
+#### 定义函数
+
+#### 参数
+
+#### 获取返回值
+
+### 输入输出重定向
+
+### Here Document
+
+### /dev/null
+
+### shell文件包含
+
+### awk
+
+### grep
+
+### sed
