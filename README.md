@@ -1,4 +1,7 @@
-# 香菜蛋挞的穷酸图书馆
+# 书橱
+
+积极施工中
+[GNU/Linux 漫游指南](https://github.com/MlightShadow/library/tree/master/manual/os/linux/about_linux.md)
 
 欢迎推荐, 欢迎勘误
 
