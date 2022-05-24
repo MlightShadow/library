@@ -14,7 +14,7 @@
 
 ## Linux 启动
 
-### IDE，SATA， AHCI
+### IDE，SATA，AHCI
 
 IDE 是一种并行接口
 SATA 是串行接口
@@ -304,21 +304,9 @@ windows 常用的文件系统类型
 -   FAT
 -   NFS
 
-### 权限与目录
-
-#### 群组与用户
-
--   `/etc/passwd` 存放用户信息
--   `/etc/shadow` 存放密码
--   `/etc/group` 存放群组信息
-
-### 文件权限
-
 ### 类型
 
 ### 目录
-
-### 权限
 
 ### 挂载
 
@@ -326,7 +314,42 @@ windows 常用的文件系统类型
 
 ## 用户
 
+查看用户
+`id [option]... [username]...`
+
+```
+[root@localhost ~]# id www
+uid=500(www) gid=500(www) groups=500(www)
+```
+
+添加用户
+
+useradd
+
+添加组
+groupadd
+
+
+修改用户
+usermod
+
+
+passwd
+
+userdel
+
+#### 群组与用户
+
+-   `/etc/passwd` 存放用户信息
+-   `/etc/shadow` 存放密码
+-   `/etc/group` 存放群组信息
+
 ### 账户与组
+
+## 权限
+
+
+### 文件权限
 
 ## 管理
 
