@@ -1,0 +1,107 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.fontFamily": "UbuntuMono Nerd Font Mono, 楷体",
+    "editor.fontSize": 16,
+    "editor.fontWeight": "600",
+    "editor.fontLigatures": true,
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80,
+    "editor.rulers": [
+        40,
+        60,
+        80
+    ],
+    "editor.minimap.maxColumn": 80,
+    "editor.minimap.showSlider": "always",
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.scale": 2,
+    "editor.lineNumbers": "relative",
+    "editor.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorBlinking": "phase",
+    "editor.cursorWidth": 3,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "terminal.external.windowsExec": "D:\\Git\\bin\\bash.exe",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Git-Bash": {
+            "path": "D:\\Git\\bin\\bash.exe",
+            "args": []
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Git-Bash",
+    "highlightLine.borderStyle": "dashed",
+    "highlightLine.borderWidth": "2px",
+    "highlightLine.borderColor": "#f761eb",
+    "svn.path": "D:\\svn\\bin\\svn.exe",
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.tabWidth": 4,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "files.associations": {
+        "*.aspx": "aspnetcorerazor"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "workbench.colorCustomizations": {
+        "editorLineNumber.activeForeground": "#f761eb",
+        "editorLineNumber.foreground": "#73d0ff",
+        "editorCursor.foreground": "#f761eb"
+    },
+    "[less]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "codesnap.containerPadding": "0em",
+    "codesnap.showWindowControls": false,
+    "codesnap.roundedCorners": false,
+    "java.jdt.ls.java.home": "D:\\jdk-17.0.2",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "D:\\jdk-17.0.2",
+        },
+        {
+            "name": "JavaSE-1.8",
+            "path": "D:\\jdk8",
+            "default": true
+        },
+    ],
+    "maven.terminal.customEnv": [
+        {
+            "environmentVariable": "JAVA_HOME",
+            "value": "D:\\jdk-17.0.2"
+        }
+    ],
+    "java.configuration.maven.globalSettings": "D:\\apache-maven-3.8.5\\conf\\settings.xml",
+    "maven.executable.path": "D:\\apache-maven-3.8.5\\bin\\mvn",
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Sunset Theme",
+    "git.mergeEditor": false,
+    "leetcode.workspaceFolder": "C:\\Users\\Administrator\\.leetcode",
+    "leetcode.endpoint": "leetcode-cn",
+    "vscode_custom_css.imports": [
+        "file:///C:/Users/Administrator/vscode_custom.css"
+    ],
+    "screencastMode.verticalOffset": 10,
+    "screencastMode.keyboardOverlayTimeout": 500,
+    "screencastMode.fontSize": 20,
+    "rss.accounts": {
+        "5bcbf860-4dca-11ed-adba-25db2d81e034": {
+            "name": "Default",
+            "type": "local",
+            "feeds": []
+        }
+    },
+    "window.menuBarVisibility": "compact"
+}
