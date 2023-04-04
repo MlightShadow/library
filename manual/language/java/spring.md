@@ -7,17 +7,18 @@
 ### 目的和原理
 
 进行对象创建及管理调用
+
 * 创建对象
 * 注入属性(DI) 对ioc的具体实现
 * 装配调用
 
 实现的原理主要包含：
+
 * 工厂模式
 * 配置解析
 * 反射
 
 使用工厂模式创建对象，通过配置获取需要创建对象的类，使用反射创建对象。
-
 
 ### 以XML方式配置
 
@@ -148,6 +149,7 @@ ApplicationContext 有多个实现
 ##### 自动装配
 
 通过设置autowire属性通过某种方式自动装配
+
 * byName:bean的id属性与注入属性的属性名相同
 * byType:bean的class与注入属性的类型相同
 
@@ -165,6 +167,7 @@ ApplicationContext 有多个实现
 默认是单实例对象
 
 bean标签的scope属性：
+
 * singleton: 单例, spring启动时创建对象
 * prototype: 多例, 调用getbean时创建对象
 * request
@@ -175,10 +178,11 @@ bean标签的scope属性：
 ```
 
 bean生命周期
+
 1. 创建实例（无参构造方法）
 2. 属性注入(xml设置:bean标签中各种注入方法)
 3. 当实现bean后置处理器(实现BeanPostProcesser接口postProcessBeforeInitialization)时会将bean实例传递给后置处理器
-4. 调用配置的初始化方法(xml设置:bean标签中init-method属性) 
+4. 调用配置的初始化方法(xml设置:bean标签中init-method属性)
 5. 当实现bean后置处理器(实现BeanPostProcesser接口postProcessAfterInitialization)时会将bean实例传递给后置处理器
 6. 创建完成可以正常使用
 7. 容器关闭，调用配置的销毁方法(xml设置: bean标签中destroy-method属性)
@@ -204,6 +208,7 @@ type.name=xiaoming
 ```
 
 ### 以注解方式配置
+
 注解：`@注解名称(属性=属性值,属性=属性值,...)`
 
 注解可以用在类,方法,属性上
@@ -220,6 +225,7 @@ spring的注解引入spring-aop
 <context:component-scan base-package="com.company">
 </context:component-scan>
 ```
+
 #### 组件扫描相关配置
 
 ```xml
@@ -237,7 +243,6 @@ spring的注解引入spring-aop
         expression="com.company.controller" />
 </context:component-scan>
 ```
-
 
 #### 注解创建对象
 
@@ -327,11 +332,11 @@ todo
 * 连接点：可以被增强的方法就称为连接点
 * 切入点：当前被增强的方法就称为切入点
 * 通知（增强, advice）：新增加的部分逻辑代码
-    * 前置通知@Before
-    * 后置通知(返回通知)@AfterReturning
-    * 环绕通知@Around
-    * 异常通知@AfterThrowing
-    * 最终通知@After
+  * 前置通知@Before
+  * 后置通知(返回通知)@AfterReturning
+  * 环绕通知@Around
+  * 异常通知@AfterThrowing
+  * 最终通知@After
 * 切面：通知应用到切入点的过程就称为切面
 
 ### Spring 使用 AOP
@@ -384,6 +389,7 @@ class UserProxy{
 通过@Order(整型数值)来设置对同一方法增强的优先级，数值小优先级高
 
 如果使用xml开启注解则在xml中添加如下启用aspectJ生成代理对象
+
 ```xml
 <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 ```
@@ -422,23 +428,24 @@ jdbcTemplate.update(sql, Object ...args);
 @Transcational 常见属性功能
 
 * propagation:传播行为，调用方法时的事务行为, 例如：`@Transactional(propagation=Propagation.REQUIRED)`
-    * REQUIRED: 有事务就直接用当前的事务，没有事务启动新事务 
-    * REQUIRED_NEW: 无论是否有事务都启动新事务
-    * SUPPORTS: 
-    * NOT_SUPPORTS:
-    * MANDATORY:
-    * NEVER:
-    * NESTED:
+
+  * REQUIRED: 有事务就直接用当前的事务，没有事务启动新事务
+  * REQUIRED_NEW: 无论是否有事务都启动新事务
+  * SUPPORTS:
+  * NOT_SUPPORTS:
+  * MANDATORY:
+  * NEVER:
+  * NESTED:
 * ioslation:隔离级别, 多个事务之间的影响，涉及脏读，不可重复读，幻（虚）读 这类数据库问题
-    * READ UNCOMMITTED: 读未提交 有脏读，有不可重复读， 有幻读
-    * READ COMMITTED: 读已提交 无脏读
-    * REPEATABLE READ: 可重复读 无脏读，无不可重复读
-    * SERIALIZABLE: 串行化 无脏读，无重复读，无幻读
+  * READ UNCOMMITTED: 读未提交 有脏读，有不可重复读， 有幻读
+  * READ COMMITTED: 读已提交 无脏读
+  * REPEATABLE READ: 可重复读 无脏读，无不可重复读
+  * SERIALIZABLE: 串行化 无脏读，无重复读，无幻读
 * timeout:超时, 提交的超时时间，超时后回滚, 默认不超时: -1
 * readOnly:只读
 * 设置某些异常进行或不进行回滚
-    * rollbackFor:回滚
-    * noRollbackFor:不回滚
+  * rollbackFor:回滚
+  * noRollbackFor:不回滚
 
 #### XML进行事务管理
 
@@ -461,7 +468,6 @@ jdbcTemplate.update(sql, Object ...args);
 </aop:confing>
 ```
 
-
 #### 注解方式进行事务管理
 
 ## Spring5 的一些新特点
@@ -472,7 +478,6 @@ jdbcTemplate.update(sql, Object ...args);
 * 支持函数式编程通过GenericApplicationContext托管对象到spring
 * 支持整合junit5
 * SpringWebFlux
-
 
 ## 附录
 
@@ -502,7 +507,7 @@ jdbcTemplate.update(sql, Object ...args);
 #### 配置
 
 @Configuration
-@Bean 
+@Bean
 @ComponentScan
 @WishlyConfiguration
 @Profile
@@ -517,11 +522,12 @@ jdbcTemplate.update(sql, Object ...args);
 @EnableTransactionManagement
 @EnableCaching
 
-
 #### 异步&定时任务
+
 @Async
 @Scheduled
 
 #### 测试
+
 @RunWith
 @ContextConfiguration

@@ -13,29 +13,29 @@
 
 同数学语言一样, 通过 `()` 可以改变其优先级
 
-* `+`  : 加   
-* `-`  : 减   
-* `*`  : 乘   
-* `/`  : 除   
-* `%`  : 求余 
+* `+`  : 加
+* `-`  : 减
+* `*`  : 乘
+* `/`  : 除
+* `%`  : 求余
 
 逻辑运算符
 
 通常我喜欢称之为逻辑运算符
 无论是进行比较或者做一些与,或运算 这类运算符的结果一般用于反馈真假的判断
 
-* `>`  : 大于     
-* `<`  : 小于     
-* `==` : 等于     
-* `<=` : 小于等于 
-* `>=` : 大于等于 
-* `!`  : 非       
-* `!=` : 不等于   
-* `&&` : 与       
-* `||` : 或       
-* `&`  : 按位与   
-* `|`  : 按位或   
-* `^`  : 异或     
+* `>`  : 大于
+* `<`  : 小于
+* `==` : 等于
+* `<=` : 小于等于
+* `>=` : 大于等于
+* `!`  : 非
+* `!=` : 不等于
+* `&&` : 与
+* `||` : 或
+* `&`  : 按位与
+* `|`  : 按位或
+* `^`  : 异或
 
 todo 真值表
 
@@ -60,11 +60,14 @@ todo 真值表
 ## 泛型
 
 ## 集合
+
 java集合主要由两个接口派生
+
 * Collection : 用于存放单一元素 ， Collection还继承了Iterable接口，用于实现枚举
 * Map : 存放键值对
 
 Collection 主要有三个子接口及其若干实现：
+
 * List
   * Vector
   * ArrayList
@@ -79,11 +82,13 @@ Collection 主要有三个子接口及其若干实现：
   * ArrayDeque
 
 Map的主要实现包括：
+
 * HashTable
 * HashMap
 * TreeMap(Map的子接口SortedMap实现)
 
 简单的理解为：
+
 * List： 可以重复，元素有序
 * Set：不可以重复，无序
 * Queue：可以重复，元素有序
@@ -92,7 +97,6 @@ Map的主要实现包括：
 ### Collection
 
 当我们使用单一元素时创建Collection接口的集合是个好主意
-
 
 * List: 无需保证唯一元素
   * ArrayList
@@ -122,6 +126,7 @@ Map的主要实现包括：
 > 高性能，高扩展，高可用
 
 实现高性能就需要两个方面
+
 * 低延时 (提升延时相对困难，amdahl定律)
 * 高吞吐量
 
@@ -132,9 +137,10 @@ Map的主要实现包括：
 * 进程
 * 线程
 
-#### 基础
+#### 多线程基础
 
 创建方式：
+
 * 继承Thread： 重写run方法，通过start方法启动线程
 * 实现Runnable: 实现接口，重写run方法，通过Thread构造器传入runnable实现对象，通过start方法启动线程(同一个runnable对象启动多个线程共享该runnable对象)
 * 实现Callable
@@ -153,6 +159,7 @@ thread.join();
 ```
 
 线程类型:
+
 * 用户线程
 * 守护线程
 
@@ -164,8 +171,8 @@ java线程安全常用方法：
 * 同步方法`synchronized`修饰的方法 它的锁是this 如果修饰静态对象则锁为 XXObject.class
 * Lock 来自juc 其定义了多种锁实现， 其中 `ReentrantLock` 进行lock和unlock 在这这间的代码可以加锁  这种方法最为灵活好用 而condition可以用于进程间合作 相较于 wait/notify 更加灵活
 
-
 等待唤醒机制
+
 * wait()
 * notify()
 * notifyAll()
@@ -190,6 +197,7 @@ synchronized 属于悲观锁: 不管是否涉及安全的问题都上锁
 
 ABA问题: 判断是值相等，但是实际上值已经改变后又改回去了
 ABA解决办法:
+
 * StampeReference （记录版本号）
 * MarkableReference（记录布尔类型）
 
@@ -218,13 +226,40 @@ while(true){
 
 > 乐观锁 也叫 自旋锁，无锁（无悲观锁）
 
-
-
-
-
-
-
-
 ## JVM
 
 ## 设计模式
+
+## jdk一些常见问题
+
+### 驱动程序无法通过使用安全套接字层(SSL)加密与 SQL Server 建立安全连接
+
+> JDK 1.8；
+JDBC 驱动版本mssql-jdbc-6.4.0.jre8.jar
+在Eclipse下使用JDBC驱动程序连接SQL Server 2012数据库，报错信息如下：
+驱动程序无法通过使用安全套接字层(SSL)加密与 SQL Server 建立安全连接。
+错误:“The server selected protocol version TLS10 is not accepted by client preferences [TLS12]”。 ClientConnectionId:12d300ee-beb1-4677-80da-8936f5f80aac
+com.microsoft.sqlserver.jdbc.SQLServerException: 驱动程序无法通过使用安全套接字层(SSL)加密与 SQL Server 建立安全连接。
+错误:“The server selected protocol version TLS10 is not accepted by client preferences [TLS12]”。
+ClientConnectionId:12d300ee-beb1-4677-80da-8936f5f80aac
+
+The server selected protocol version TLS10 is not accepted by client preferences [TLS12]
+客户端client引用的协议版本是TLS12即TSL1.2的版本, 而服务端The server selected选择的协议版本还是TSL10即TSL1.0
+
+JDK1.8的安全策略里面，把低版本TSL1.0的安全算法禁用了，我们把它取消禁用就可以了。
+
+1. 首先找到`JAVAPATH/jre/lib/security`路径下的`java.security`文件，没看错，文件的后缀是`.security`
+
+2.修改里面的jdk.tls.disabledAlgorithms配置信息，禁用的算法目前有
+
+```text
+jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
+    DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL, \
+```
+
+将其中的TLSv1删除掉或者注释
+
+JAVA的安装路径下jdk,jre都要修改
+
+* JDK中 `JDKPATH/jre/lib/security/java.security`
+* JRE中 `JREPATH/lib/security/java.security`
