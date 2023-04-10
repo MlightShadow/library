@@ -14,6 +14,43 @@ springboot 是 springcloud 基础
 
 ## 快速开始
 
+新建 Spring Boot 项目的方法有很多，以下是其中几种常见的方法：
+
+
+* 使用 Spring Initializr：Spring Initializr 是 Spring 官方提供的一个 Web 工具，可以帮助用户快速创建 Spring Boot 项目。具体操作步骤如下：
+  * 打开 https://start.spring.io/ 页面；
+  选择项目的相关配置，包括项目类型、语言、依赖、版本等；
+  * 点击 Generate 按钮，下载生成的项目压缩包；
+  * 解压项目压缩包，使用 IDE（如 IntelliJ IDEA、Eclipse）导入项目即可。
+
+* 使用 IDE 创建项目：常见的 Java 开发工具如 IntelliJ IDEA、Eclipse 等都提供了创建 Spring Boot 项目的模板。通常只需要在 IDE 中选择相应的模板，填写项目的相关信息，即可生成 Spring Boot 项目。
+
+* 使用 Maven 或 Gradle 手动创建项目：可以使用 Maven 或 Gradle 构建工具手动创建 Spring Boot 项目。具体操作步骤如下：
+
+  * 在命令行或终端中执行 mvn archetype:generate -DgroupId=com.example -DartifactId=demo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 命令，生成 Maven 项目；
+
+  * 在 pom.xml 文件中添加 Spring Boot 相关的依赖，例如：
+
+    ```xml
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+    ```
+
+  * 在 src/main/java 目录下创建 Spring Boot 应用程序的入口类，并在该类中添加 @SpringBootApplication 注解；
+  * 在入口类中添加 main 方法，并在该方法中使用 SpringApplication.run() 方法启动 Spring Boot 应用程序。
+
+* 使用 Spring Boot CLI：Spring Boot CLI 是 Spring 官方提供的一个命令行工具，可以帮助用户快速创建 Spring Boot 项目。具体操作步骤如下：
+安装 Spring Boot CLI；
+  * 在命令行或终端中执行 spring init --dependencies=web my-project 命令，生成 Spring Boot 项目；
+  * 进入生成的项目目录，执行 ./gradlew bootRun 或 ./mvnw spring-boot:run 命令启动 Spring Boot 应用程序。
+
+无论使用哪种方法，创建 Spring Boot 项目的关键是要确定项目的类型、依赖和配置等信息。
+
+
 ### pom.xml
 
 使用[https://start.spring.io/](https://start.spring.io/) 创建初始化项目
