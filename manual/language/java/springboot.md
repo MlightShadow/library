@@ -266,3 +266,48 @@ TODO 其他日志的配置...
 依赖spring-boot-devtools
 
 在vscode里好像插件本身就有热部署
+
+
+## 其他
+
+nvim 如何启动spring boot项目
+
+启动 Spring Boot 项目有多种方式，以下是其中一种使用 nvim 启动 Spring Boot 项目的方法：
+
+打开 nvim 编辑器，并进入到 Spring Boot 项目的根目录。
+
+在 nvim 编辑器中输入 :!./mvnw spring-boot:run 命令，其中 mvnw 是 Spring Boot 项目自带的 Maven Wrapper，可以在不需要安装 Maven 的情况下运行 Maven 命令。
+
+按下回车键执行命令，Spring Boot 项目将会启动。在控制台中可以看到项目启动的日志信息。
+
+打开浏览器，访问 http://localhost:8080/，可以看到 Spring Boot 项目的首页。
+
+注意：在执行 :!./mvnw spring-boot:run 命令前，需要确保项目的依赖已经下载完毕。可以在项目根目录下执行 ./mvnw clean install 命令来下载依赖并编译项目。
+
+nvim 启动项目中的 tk.mybatis 的generator
+
+tk.mybatis 是一个 MyBatis 通用 Mapper 的扩展工具包，可以简化 MyBatis 的开发流程。如果要在 nvim 中启动 tk.mybatis 的 generator，可以按照以下步骤进行：
+
+在项目根目录下创建 generatorConfig.xml 文件，该文件是 tk.mybatis generator 的配置文件，用于生成 MyBatis 的 Mapper、Model 和 Example 等文件。
+
+在 generatorConfig.xml 文件中配置数据库连接信息、生成的文件路径、表名和字段映射关系等信息。具体的配置方式可以参考 tk.mybatis generator 的官方文档。
+
+在 nvim 编辑器中输入 :!java -jar generator.jar -configfile generatorConfig.xml 命令，其中 generator.jar 是 tk.mybatis generator 工具包的 jar 包文件，可以从 Maven 仓库中下载。执行该命令后，tk.mybatis generator 将会根据 generatorConfig.xml 文件中的配置信息生成相应的文件。
+
+在生成的文件中查看生成的 Mapper、Model 和 Example 等文件，确认生成是否成功。
+
+注意：在执行 :!java -jar generator.jar -configfile generatorConfig.xml 命令前，需要确保已经安装了 Java 运行环境，并且已经将 generator.jar 文件下载到了项目目录中。
+
+nvim 启动spring boot项目中的其他main函数
+
+在 Spring Boot 项目中，可能会存在多个 main 函数，如果要在 nvim 中启动其中一个 main 函数，可以按照以下步骤进行：
+
+打开 nvim 编辑器，并进入到 Spring Boot 项目的根目录。
+
+在 nvim 编辑器中输入 :!./mvnw spring-boot:run -Dspring-boot.run.main=<main-class> 命令，其中 <main-class> 是要启动的 main 函数所在的类的全限定名（包括包名和类名）。例如，如果要启动 com.example.demo.Main 类中的 main 函数，��么 <main-class> 就应该是 com.example.demo.Main。
+
+按下回车键执行命令，Spring Boot 项目将会启动。在控制台中可以看到项目启动的日志信息。
+
+打开浏览器，访问 http://localhost:8080/，可以看到 Spring Boot 项目的首页。
+
+注意：在执行 :!./mvnw spring-boot:run -Dspring-boot.run.main=<main-class> 命令前，需要确保项目的依赖已经下载完毕。可以在项目根目录下执行 ./mvnw clean install 命令来下载依赖并编译项目。同时，需要确保 <main-class> 参数是正确的，否则启动可能会失败。
