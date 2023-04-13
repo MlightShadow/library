@@ -1,24 +1,116 @@
 # MAVEN
 
-## 概述
-
-* 结构
-* 构建
-  * 定义
-  * 构
-  * 安装
-* 依赖
-  * 定位
-  * 范围
-  * 传递/阻断
-
 [toc]
 
-## 依赖管理
+## 概述
+
+* 创建项目：使用Maven的archetype命令创建项目骨架。例如，可以使用以下命令创建一个基于Java的Web项目：
+
+    ```shell
+    mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+    ```
+
+* 编写代码：在项目目录中编写项目的源代码和配置文件等。
+* 定义依赖：在pom.xml文件中定义项目的依赖。例如，可以使用以下代码定义JUnit测试框架的依赖：
+
+    ```xml
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    ```
+
+* 构建项目：在命令行中使用Maven的package命令构建项目。例如，可以使用以下命令将项目打包成war文件：
+
+    ```shell
+    mvn package
+    ```
+
+* 运行项目：使用Maven的tomcat插件或其他Web容器启动项目。例如，可以使用以下命令启动内置的Tomcat Web服务器：
+
+    ```shell
+    mvn tomcat7:run
+    ```
+
+通过以上步骤，就可以使用Maven构建和运行项目了。同时，Maven还提供了丰富的插件和配置选项，可以进行更加灵活和高效的项目构建和管理。
+
+## 骨架项目
+
+Maven骨架项目是一种预定义的项目模板，可以帮助您快速创建新的Maven项目。
+
+通过以下命令可以生成骨架项目
+
+```shell
+mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+```
+
+定义过程中需要填入 `groupId`, `artifactId`, `version`, `package` 信息，如果不指定骨架项目的类型`archetypeArtifactId` 则也需要选择，可选项包括以下常用Maven骨架项目：
+
+* Maven Quickstart Archetype：这是Maven的默认骨架项目，用于创建一个简单的Java项目。它包括一个Java类和一个测试类。
+* Maven Webapp Archetype：这个骨架项目用于创建一个基于Web的Java项目，包括一个Web应用程序的目录结构和配置文件。
+* Maven Spring MVC Archetype：这个骨架项目用于创建一个基于Spring MVC框架的Java Web项目。
+* Maven Struts 2 Archetype：这个骨架项目用于创建一个基于Struts 2框架的Java Web项目。
+* Maven Hibernate Archetype：这个骨架项目用于创建一个基于Hibernate框架的Java项目，包括Hibernate配置文件和实体类。
+* Maven OSGi Bundle Archetype：这个骨架项目用于创建一个基于OSGi框架的Java项目，可以用于构建插件化和可扩展的应用程序。
+* Maven Android Archetype：这个骨架项目用于创建一个基于Android平台的Java项目。
+
+Maven骨架项目可以帮助您快速创建新的Maven项目，并提供了一些常用的项目模板，您可以根据需要选择适合您的骨架项目。
+
+## 项目管理
+
+### 约定目录
+
+* src: 源码目录
+  * main: 主体程序目录
+    * java: java源码
+      * com: package目录
+    * resources: 配置文件
+  * test: 测试程序目录
+    * java: java源码
+      * com: package目录
+
+### 依赖管理
 
 现代java项目开发依赖项错综复杂，Maven可以自动下载、安装和管理项目所需的依赖。
 
-### jar包坐标
+#### 仓库
+
+##### 本地仓库
+
+Maven本地仓库是Maven在本地机器上存储构建项目所需的所有依赖项和插件的地方。以下是一些关于Maven本地仓库的知识：
+
+* 默认位置：Maven本地仓库的默认位置是用户主目录下的.m2/repository目录。
+* 仓库结构：Maven本地仓库的结构与远程仓库的结构相同，具有groupId、artifactId和version三个重要的元素。
+* 依赖解析：Maven在构建项目时会先查找本地仓库，如果找不到依赖项，则会从中央仓库或其他配置的远程仓库中下载依赖项。
+* 清理本地仓库：可以通过命令mvn dependency:purge-local-repository来清理本地仓库中不再需要的依赖项。
+* 本地仓库的备份：建议定期备份本地仓库，以避免意外删除或文件损坏导致的依赖项丢失。
+* 更改本地仓库的位置：可以通过在settings.xml文件中修改localRepository元素的值来更改本地仓库的默认位置。
+
+总之，Maven本地仓库是Maven构建项目必不可少的一部分，理解并正确使用它可以提高项目构建的效率和稳定性。
+
+##### Nexus仓库
+
+Maven Nexus仓库是一种流行的Maven仓库管理工具，它可以让您轻松地管理Maven仓库。以下是一些关于Maven Nexus仓库的知识：
+
+* Nexus仓库的作用：Nexus仓库可以作为中央仓库的代理，从而提高Maven构建的效率和稳定性。它还可以作为私有仓库，用于存储公司内部的依赖项和插件。
+
+* Nexus仓库的类型：Nexus仓库有三种类型：hosted仓库、proxy仓库和group仓库。hosted仓库是本地仓库，proxy仓库是远程仓库的代理，group仓库是多个仓库的集合。
+
+* Nexus仓库的安装：Nexus仓库可以通过下载二进制文件并解压缩来进行安装。安装后，您可以通过Web界面来管理仓库。
+
+* Nexus仓库的配置：Nexus仓库的配置包括仓库的URL、用户名和密码等信息。您可以通过Web界面或配置文件来进行配置。
+
+* Nexus仓库的使用：在Maven项目中，您可以将Nexus仓库配置为项目的远程仓库，以便Maven在构建项目时下载依赖项和插件。您还可以将Nexus仓库配置为Maven的中央仓库的代理，以提高构建效率。
+
+总之，Maven Nexus仓库是一个强大的Maven仓库管理工具，可以帮助您更好地管理Maven仓库，提高项目构建的效率和稳定性。
+
+[附：搭建方法](#搭建nexus仓库)
+
+#### jar包坐标
 
 这里的坐标是指代如何定位到一个jar包的三个字段
 
@@ -26,60 +118,45 @@
 `artifactId`：项目的唯一标识符，通常为项目名称。
 `version`：项目的版本号，遵循x.y.z的格式，其中x、y、z分别为主版本号、次版本号和修订版本号。
 
-## 项目管理
+#### 依赖范围
 
-### 项目管理概述
+* `compile`：默认依赖范围，依赖在编译、测试和运行时都可用, 这种类型在发布后能够传递依赖。
+* `provided`：依赖在编译和测试时可用，但在运行时由容器或其他方式提供，例如servlet-api和jsp-api等。
+* `runtime`：依赖在运行时可用，但在编译和测试时不需要，例如jdbc驱动等。
+* `test`：依赖仅在测试时可用，不参与项目的编译和运行，例如JUnit和Mockito等。
+* `system`：依赖在编译、测试和运行时都可用，但不会从Maven仓库中下载，需要手动指定路径和版本号等信息。
+* `import`：该依赖范围仅用于管理依赖的版本号，不参与项目的编译和运行。
 
-创建项目：使用Maven的archetype命令创建项目骨架。例如，可以使用以下命令创建一个基于Java的Web项目：
-
-```shell
-mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
-```
-
-编写代码：在项目目录中编写项目的源代码和配置文件等。
-
-定义依赖：在pom.xml文件中定义项目的依赖。例如，可以使用以下代码定义JUnit测试框架的依赖：
+**tips**: [maven repository](https://mvnrepository.com/)中查找到的定位配置都会自己带好以来范围，很少需要自己去修改, 尤其一些`provided`依赖使用`compile`可能会在部署时与部署环境产生冲突
 
 ```xml
 <dependencies>
     <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>my-library</artifactId>
+        <version>1.0.0</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.23</version>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.12</version>
+        <version>4.13.2</version>
         <scope>test</scope>
     </dependency>
 </dependencies>
 ```
-
-构建项目：在命令行中使用Maven的package命令构建项目。例如，可以使用以下命令将项目打包成war文件：
-
-```shell
-mvn package
-```
-
-运行项目：使用Maven的tomcat插件或其他Web容器启动项目。例如，可以使用以下命令启动内置的Tomcat Web服务器：
-
-```shell
-mvn tomcat7:run
-```
-
-通过以上步骤，就可以使用Maven构建和运行项目了。同时，Maven还提供了丰富的插件和配置选项，可以进行更加灵活和高效的项目构建和管理。
-
-### 定义
-
-在项目根目录下创建pom.xml文件，该文件包含了项目的基本信息、依赖和构建方式等。
-
-在一个类似`mvn archetype:generate`的命令中：
-`archetype`:称为插件，实际上就是某种子命令
-`generate`:称为目标, 具体的一种功能
-
-定义过程中需要填入 `groupId`, `artifactId`, `version`, `package` 信息
-
-```shell
-mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
-```
-
-以上命令可以设置生成的模板
 
 ### 继承
 
@@ -170,62 +247,7 @@ Maven聚合是指将多个Maven项目组合成一个大项目的过程。它可�
 
 **警告**：不要出现循环依赖的情况
 
-### 约定目录
-
-* src: 源码目录
-  * main: 主体程序目录
-    * java: java源码
-      * com: package目录
-    * resources: 配置文件
-  * test: 测试程序目录
-    * java: java源码
-      * com: package目录
-
-### 依赖
-
-在pom.xml中定义项目所需的依赖，Maven会自动下载、安装和管理这些依赖。
-
-关于依赖范围：
-
-* `compile`：默认依赖范围，依赖在编译、测试和运行时都可用, 这种类型在发布后能够传递依赖。
-* `provided`：依赖在编译和测试时可用，但在运行时由容器或其他方式提供，例如servlet-api和jsp-api等。
-* `runtime`：依赖在运行时可用，但在编译和测试时不需要，例如jdbc驱动等。
-* `test`：依赖仅在测试时可用，不参与项目的编译和运行，例如JUnit和Mockito等。
-* `system`：依赖在编译、测试和运行时都可用，但不会从Maven仓库中下载，需要手动指定路径和版本号等信息。
-* `import`：该依赖范围仅用于管理依赖的版本号，不参与项目的编译和运行。
-
-**tips**: [maven repository](https://mvnrepository.com/)中查找到的定位配置都会自己带好以来范围，很少需要自己去修改, 尤其一些`provided`依赖使用`compile`可能会在部署时与部署环境产生冲突
-
-```xml
-<dependencies>
-    <dependency>
-        <groupId>com.example</groupId>
-        <artifactId>my-library</artifactId>
-        <version>1.0.0</version>
-        <scope>compile</scope>
-    </dependency>
-    <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>servlet-api</artifactId>
-        <version>2.5</version>
-        <scope>provided</scope>
-    </dependency>
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.23</version>
-        <scope>runtime</scope>
-    </dependency>
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13.2</version>
-        <scope>test</scope>
-    </dependency>
-</dependencies>
-```
-
-依赖传递
+### 依赖传递
 
 Maven依赖传递指的是在Maven项目中，如果一个模块依赖于其他模块，那么这些依赖关系会自动传递给当前模块。
 
@@ -285,6 +307,32 @@ mvn clean package
 
 这样，在构建过程中就会排除指定的依赖项，避免了依赖传递带来的问题。
 
+## 命令
+
+在一个类似`mvn archetype:generate`的命令中：
+`archetype`:称为插件，实际上就是某种子命令
+`generate`:称为目标, 具体的一种功能
+
+## 生命周期管理
+
+Maven的生命周期是指在构建项目过程中，Maven定义了一系列的阶段（phase）和插件（plugin），每个阶段都与一组插件关联，这些插件在该阶段执行特定的构建任务。Maven的生命周期包括以下三个阶段：
+
+* 清理阶段（clean）：删除上一次构建生成的目录，清理项目。
+* 构建阶段（default）：包括以下几个阶段：
+  * 验证阶段（validate）：验证项目是否正确，并检查所有必需的信息是否可用
+  * 编译阶段（compile）：编译项目源代码
+  * 测试阶段（test）：使用适当的测试框架运行测试
+  * 打包阶段（package）：将编译后的代码打包成可部署的格式，如JAR、WAR等
+  * 集成测试阶段（integration-test）：在集成测试环境中对打包后的代码进行测试
+  * 验收测试阶段（verify）：对集成测试结果进行验证
+  * 安装阶段（install）：将打包好的代码安装到本地仓库，以便其他项目可以使用
+  * 部署阶段（deploy）：将打包好的代码部署到远程仓库，以便其他开发人员可以使用。
+* 站点阶段（site）：生成项目的文档和报告。
+
+生命周期于命令
+
+生命周期定义了一系列阶段，而插件对应执行某个生命周期，插件的目标则是具体的功能
+
 ### compile 构建
 
 使用Maven的命令行工具或集成开发环境（IDE）的插件构建项目。
@@ -295,30 +343,6 @@ mvn compile
 mvn test-compile
 mvn test
 ```
-
-### test 测试
-
-使用Maven的命令行工具或IDE的插件运行项目的单元测试
-
-### package 打包
-
-打包项目：使用Maven的命令行工具或IDE的插件打包项目，生成可执行的jar、war或其他格式的文件。
-
-### install 安装
-
-发布项目到本地或远程仓库，可以方便其他项目使用。
-
-管理多模块项目：对于多模块项目，使用Maven的父子项目管理功能，定义父项目和子项目之间的依赖关系。
-
-管理插件：使用Maven的插件管理功能，管理项目所需的插件，方便开发者扩展构建过程。
-
-管理文档：使用Maven的文档生成插件，自动生成项目的文档。
-
-通过以上步骤，Maven可以对项目进行全面的管理，方便开发者进行项目开发、构建和发布等工作。
-
-## 构建管理
-
-Maven可以自动构建、测试和打包项目。
 
 Maven的构建管理主要包括以下几个方面：
 
@@ -343,80 +367,31 @@ deploy
 
 通过以上构建管理功能，Maven可以实现自动化的项目构建，简化项目管理和维护工作，提高开发效率和质量。
 
-## 插件管理
+### test 测试
 
-Maven可以管理项目所需的插件，方便开发者扩展构建过程。
+使用Maven的命令行工具或IDE的插件运行项目的单元测试
 
-## 清理和发布
+### package 打包
 
-Maven可以清理项目构建过程中生成的临时文件，同时可以发布构建好的项目到本地或远程仓库。
+打包项目：使用Maven的命令行工具或IDE的插件打包项目，生成可执行的jar、war或其他格式的文件。
 
-## 多模块管理
+### install 安装
 
-Maven可以管理多个模块之间的依赖和构建顺序。
+发布项目到本地或远程仓库，可以方便其他项目使用。
 
-## 模板生成
+管理多模块项目：对于多模块项目，使用Maven的父子项目管理功能，定义父项目和子项目之间的依赖关系。
 
-Maven可以根据模板自动生成项目骨架。
+管理插件：使用Maven的插件管理功能，管理项目所需的插件，方便开发者扩展构建过程。
 
-## 生命周期管理
+管理文档：使用Maven的文档生成插件，自动生成项目的文档。
 
-Maven的生命周期是指在构建项目过程中，Maven定义了一系列的阶段（phase）和插件（plugin），每个阶段都与一组插件关联，这些插件在该阶段执行特定的构建任务。Maven的生命周期包括以下三个阶段：
-
-* 清理阶段（clean）：删除上一次构建生成的目录，清理项目。
-* 构建阶段（default）：包括以下几个阶段：
-  * 验证阶段（validate）：验证项目是否正确，并检查所有必需的信息是否可用
-  * 编译阶段（compile）：编译项目源代码
-  * 测试阶段（test）：使用适当的测试框架运行测试
-  * 打包阶段（package）：将编译后的代码打包成可部署的格式，如JAR、WAR等
-  * 集成测试阶段（integration-test）：在集成测试环境中对打包后的代码进行测试
-  * 验收测试阶段（verify）：对集成测试结果进行验证
-  * 安装阶段（install）：将打包好的代码安装到本地仓库，以便其他项目可以使用
-  * 部署阶段（deploy）：将打包好的代码部署到远程仓库，以便其他开发人员可以使用。
-* 站点阶段（site）：生成项目的文档和报告。
-
-生命周期于命令
-
-生命周期定义了一系列阶段，而插件对应执行某个生命周期，插件的目标则是具体的功能
+通过以上步骤，Maven可以对项目进行全面的管理，方便开发者进行项目开发、构建和发布等工作。
 
 ## 其他功能
 
 Maven还提供了其他一些功能，例如源码管理、文档生成和版本管理等。
 
-## 仓库
-
-### 本地仓库
-
-Maven本地仓库是Maven在本地机器上存储构建项目所需的所有依赖项和插件的地方。以下是一些关于Maven本地仓库的知识：
-
-* 默认位置：Maven本地仓库的默认位置是用户主目录下的.m2/repository目录。
-* 仓库结构：Maven本地仓库的结构与远程仓库的结构相同，具有groupId、artifactId和version三个重要的元素。
-* 依赖解析：Maven在构建项目时会先查找本地仓库，如果找不到依赖项，则会从中央仓库或其他配置的远程仓库中下载依赖项。
-* 清理本地仓库：可以通过命令mvn dependency:purge-local-repository来清理本地仓库中不再需要的依赖项。
-* 本地仓库的备份：建议定期备份本地仓库，以避免意外删除或文件损坏导致的依赖项丢失。
-* 更改本地仓库的位置：可以通过在settings.xml文件中修改localRepository元素的值来更改本地仓库的默认位置。
-
-总之，Maven本地仓库是Maven构建项目必不可少的一部分，理解并正确使用它可以提高项目构建的效率和稳定性。
-
-### Nexus仓库
-
-Maven Nexus仓库是一种流行的Maven仓库管理工具，它可以让您轻松地管理Maven仓库。以下是一些关于Maven Nexus仓库的知识：
-
-* Nexus仓库的作用：Nexus仓库可以作为中央仓库的代理，从而提高Maven构建的效率和稳定性。它还可以作为私有仓库，用于存储公司内部的依赖项和插件。
-
-* Nexus仓库的类型：Nexus仓库有三种类型：hosted仓库、proxy仓库和group仓库。hosted仓库是本地仓库，proxy仓库是远程仓库的代理，group仓库是多个仓库的集合。
-
-* Nexus仓库的安装：Nexus仓库可以通过下载二进制文件并解压缩来进行安装。安装后，您可以通过Web界面来管理仓库。
-
-* Nexus仓库的配置：Nexus仓库的配置包括仓库的URL、用户名和密码等信息。您可以通过Web界面或配置文件来进行配置。
-
-* Nexus仓库的使用：在Maven项目中，您可以将Nexus仓库配置为项目的远程仓库，以便Maven在构建项目时下载依赖项和插件。您还可以将Nexus仓库配置为Maven的中央仓库的代理，以提高构建效率。
-
-总之，Maven Nexus仓库是一个强大的Maven仓库管理工具，可以帮助您更好地管理Maven仓库，提高项目构建的效率和稳定性。
-
-[搭建方法](#搭建nexus仓库)
-
-## 附
+## 附录
 
 ### 下载&安装
 
