@@ -3,6 +3,7 @@
 @main_font: "verdana 微软雅黑";
 @default_letter_font: "verdana";
 @default_hanzi_font: "微软雅黑";
+@quote_hanzi_font: "楷体";
 @code_font: "ubuntu mono";
 
 .markdown-preview.markdown-preview {
@@ -388,6 +389,7 @@
     /* QUOTES
 =============================================================================*/
     blockquote {
+        font-family: @code_font, @quote_hanzi_font;
         border-left: 5px dashed #0d0;
         padding: 0 15px;
         color: #080;
@@ -489,6 +491,7 @@
         color: rgb(214, 52, 146);
     }
 }
+
 
 
 
