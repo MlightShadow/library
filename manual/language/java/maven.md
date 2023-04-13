@@ -7,7 +7,11 @@
 * 创建项目：使用Maven的archetype命令创建项目骨架。例如，可以使用以下命令创建一个基于Java的Web项目：
 
     ```shell
-    mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+    mvn archetype:generate \
+     -DgroupId=com.example \
+     -DartifactId=my-webapp \
+     -DarchetypeArtifactId=maven-archetype-webapp \
+     -DinteractiveMode=false
     ```
 
 * 编写代码：在项目目录中编写项目的源代码和配置文件等。
@@ -45,7 +49,11 @@ Maven骨架项目是一种预定义的项目模板，可以帮助您快速创建
 通过以下命令可以生成骨架项目
 
 ```shell
-mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+mvn archetype:generate \
+    -DgroupId=com.example \
+    -DartifactId=my-webapp \
+    -DarchetypeArtifactId=maven-archetype-webapp \
+    -DinteractiveMode=false
 ```
 
 定义过程中需要填入 `groupId`, `artifactId`, `version`, `package` 信息，如果不指定骨架项目的类型`archetypeArtifactId` 则也需要选择，可选项包括以下常用Maven骨架项目：
@@ -313,6 +321,23 @@ mvn clean package
 `archetype`:称为插件，实际上就是某种子命令
 `generate`:称为目标, 具体的一种功能
 
+[官方文档-可用插件](https://maven.apache.org/plugins/index.html)
+
+以下是一些常用的Maven命令：
+
+* mvn clean：清理项目，删除target目录及其他生成的文件。
+* mvn compile：编译项目源代码。
+* mvn test：运行项目的单元测试。
+* mvn package：打包项目，生成jar或war文件。
+* mvn install：将项目安装到本地Maven仓库中，以供其他项目使用。
+* mvn deploy：将项目部署到远程Maven仓库中。
+* mvn dependency:tree：查看项目的依赖关系树。
+* mvn archetype:generate：生成一个Maven项目的基础框架。
+* mvn clean install -DskipTests：跳过测试，直接安装到本地Maven仓库中。
+* mvn clean package -Dmaven.test.skip=true：跳过测试，直接打包项目。
+
+这些命令可以在命令行中执行，也可以在Maven插件中使用。通过使用这些命令，可以更方便地管理和构建Java项目。
+
 ## 生命周期管理
 
 Maven的生命周期是指在构建项目过程中，Maven定义了一系列的阶段（phase）和插件（plugin），每个阶段都与一组插件关联，这些插件在该阶段执行特定的构建任务。Maven的生命周期包括以下三个阶段：
@@ -329,7 +354,7 @@ Maven的生命周期是指在构建项目过程中，Maven定义了一系列的�
   * 部署阶段（deploy）：将打包好的代码部署到远程仓库，以便其他开发人员可以使用。
 * 站点阶段（site）：生成项目的文档和报告。
 
-生命周期于命令
+生命周期与命令
 
 生命周期定义了一系列阶段，而插件对应执行某个生命周期，插件的目标则是具体的功能
 
