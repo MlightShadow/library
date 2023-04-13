@@ -1,4 +1,4 @@
-# markdown cheatsheet
+# Markdown Cheatsheet
 
 本文档适用于检测`markdown`工具和相应`css`样式的效果, 以及速查各类写法
 
@@ -31,6 +31,27 @@
 #### 四级标题
 ##### 五级标题
 ###### 六级标题
+```
+
+标题可以被链接到
+
+[目录](#目录)
+
+```markdown
+[目录](#目录)
+```
+
+**tips**: 如果标题中包含一些特殊的内容(例如: 空格, 大写字母), 则按照以下方式修改链接内容既可实现链接。
+
+
+* 大写字母改成小写
+* 特殊字符全删除
+* 空格改成横线（-）
+
+[Markdown Cheatsheet](#markdown-cheatsheet)
+
+```markdown
+[Markdown Cheatsheet](#markdown-cheatsheet)
 ```
 
 ## 文本
@@ -219,6 +240,12 @@ function jsfunc (data, callback) {
     }
     ```
 ```
+
+在引用中使用代码块
+
+> ```js
+> console.log("hello");
+> ```
 
 ## 链接及图片
 

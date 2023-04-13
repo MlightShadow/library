@@ -42,12 +42,12 @@ mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeA
 
 ```xml
 <dependencies>
-<dependency>
-<groupId>junit</groupId>
-<artifactId>junit</artifactId>
-<version>4.12</version>
-<scope>test</scope>
-</dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+    </dependency>
 </dependencies>
 ```
 
@@ -71,7 +71,7 @@ mvn tomcat7:run
 
 在一个类似`mvn archetype:generate`的命令中：
 `archetype`:称为插件，实际上就是某种子命令
-`generate`:称为目标
+`generate`:称为目标, 具体的一种功能
 
 定义过程中需要填入 `groupId`, `artifactId`, `version`, `package` 信息
 
@@ -81,7 +81,7 @@ mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeA
 
 以上命令可以设置生成的模板
 
-### 父子项目定义
+### 继承
 
 #### 创建父工程
 
@@ -97,10 +97,24 @@ mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeA
         <module>child1</module>
         <module>child2</module>
     </modules>
+    <dependencyManagement>
+        <dependencies>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>dependency1</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>dependency2</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
 ```
 
-其中，groupId、artifactId和version分别指定了父工程的坐标，packaging指定了打包方式为pom，modules指定了子工程的名称。
+其中，groupId、artifactId和version分别指定了父工程的坐标，packaging指定了打包方式为pom，modules指定了子工程的名称, dependencyManagement中列出了需要管理的依赖项。
 
 #### 创建子工程
 
@@ -116,10 +130,16 @@ mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeA
     <!--子工程的groupid不写表示使用父工程设定 同理version也是-->
     <artifactId>child1</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>dependency1</artifactId>
+        </dependency>
+    </dependencies>
 </project>
 ```
 
-其中，parent元素中指定了父工程的坐标，artifactId和version分别指定了子工程的坐标。
+其中，parent元素中指定了父工程的坐标，artifactId和version分别指定了子工程的坐标,dependencies中只列出了需要使用的依赖项，而不需要指定版本号, 如果需要不同于父工程的版本则写上version。
 
 重复步骤2创建其他子工程。
 
@@ -129,9 +149,26 @@ mvn archetype:generate -DgroupId=com.example -DartifactId=my-webapp -DarchetypeA
 mvn clean install
 ```
 
-这样，Maven会自动构建父工程和所有子工程，并将它们安装到本地仓库中。
+这样，Maven会自动构建父工程和所有子工程，并将它们安装到本地仓库中。在子工程中，只需要声明需要使用的依赖项，而不需要指定版本号，Maven会自动从父工程中继承版本号。
 
-通过以上步骤，就可以成功创建一个Maven的父子工程。
+通过以上步骤，就可以使用Maven的父工程来管理依赖，避免在每个子工程中重复声明相同的依赖。
+
+**tips**: 另外父子项目可以多层，不止是两层
+
+### 聚合
+
+Maven聚合是指将多个Maven项目组合成一个大项目的过程。它可以使您在一个地方管理多个相关的子项目，而不是将它们分开管理。聚合可以用于构建和测试子项目，也可以用于生成聚合报告
+
+```xml
+<modules>
+    <module>child1</module>
+    <module>child2</module>
+</modules>
+```
+
+添加聚合后项目会在使用构建和测试命令时根据依赖关系统一管理
+
+**警告**：不要出现循环依赖的情况
 
 ### 约定目录
 
@@ -161,30 +198,30 @@ mvn clean install
 
 ```xml
 <dependencies>
-  <dependency>
-    <groupId>com.example</groupId>
-    <artifactId>my-library</artifactId>
-    <version>1.0.0</version>
-    <scope>compile</scope>
-  </dependency>
-  <dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>servlet-api</artifactId>
-    <version>2.5</version>
-    <scope>provided</scope>
-  </dependency>
-  <dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>8.0.23</version>
-    <scope>runtime</scope>
-  </dependency>
-  <dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.13.2</version>
-    <scope>test</scope>
-  </dependency>
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>my-library</artifactId>
+        <version>1.0.0</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.23</version>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+        <scope>test</scope>
+    </dependency>
 </dependencies>
 ```
 
@@ -208,7 +245,6 @@ Maven依赖传递指的是在Maven项目中，如果一个模块依赖于其他�
 
 需要注意的是，如果不同的依赖项之间存在版本冲突，Maven会尝试解决这些冲突，通常会选择使用最新的版本。同时，Maven还可以通过排除依赖项的方式，显式地指定不使用某些依赖项，以解决版本冲突问题。
 
-
 依赖传递的阻断：
 
 在Maven中，可以通过在pom.xml文件中的依赖项中添加排除元素来排除依赖传递。具体步骤如下：
@@ -217,9 +253,9 @@ Maven依赖传递指的是在Maven项目中，如果一个模块依赖于其他�
 
 ```xml
 <dependency>
-<groupId>org.springframework</groupId>
-<artifactId>spring-core</artifactId>
-<version>5.2.0.RELEASE</version>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-core</artifactId>
+    <version>5.2.0.RELEASE</version>
 </dependency>
 ```
 
@@ -307,7 +343,6 @@ deploy
 
 通过以上构建管理功能，Maven可以实现自动化的项目构建，简化项目管理和维护工作，提高开发效率和质量。
 
-
 ## 插件管理
 
 Maven可以管理项目所需的插件，方便开发者扩展构建过程。
@@ -326,11 +361,60 @@ Maven可以根据模板自动生成项目骨架。
 
 ## 生命周期管理
 
-Maven定义了一套标准的生命周期，可以管理项目构建过程中各个环节的执行顺序。
+Maven的生命周期是指在构建项目过程中，Maven定义了一系列的阶段（phase）和插件（plugin），每个阶段都与一组插件关联，这些插件在该阶段执行特定的构建任务。Maven的生命周期包括以下三个阶段：
+
+* 清理阶段（clean）：删除上一次构建生成的目录，清理项目。
+* 构建阶段（default）：包括以下几个阶段：
+  * 验证阶段（validate）：验证项目是否正确，并检查所有必需的信息是否可用
+  * 编译阶段（compile）：编译项目源代码
+  * 测试阶段（test）：使用适当的测试框架运行测试
+  * 打包阶段（package）：将编译后的代码打包成可部署的格式，如JAR、WAR等
+  * 集成测试阶段（integration-test）：在集成测试环境中对打包后的代码进行测试
+  * 验收测试阶段（verify）：对集成测试结果进行验证
+  * 安装阶段（install）：将打包好的代码安装到本地仓库，以便其他项目可以使用
+  * 部署阶段（deploy）：将打包好的代码部署到远程仓库，以便其他开发人员可以使用。
+* 站点阶段（site）：生成项目的文档和报告。
+
+生命周期于命令
+
+生命周期定义了一系列阶段，而插件对应执行某个生命周期，插件的目标则是具体的功能
 
 ## 其他功能
 
 Maven还提供了其他一些功能，例如源码管理、文档生成和版本管理等。
+
+## 仓库
+
+### 本地仓库
+
+Maven本地仓库是Maven在本地机器上存储构建项目所需的所有依赖项和插件的地方。以下是一些关于Maven本地仓库的知识：
+
+* 默认位置：Maven本地仓库的默认位置是用户主目录下的.m2/repository目录。
+* 仓库结构：Maven本地仓库的结构与远程仓库的结构相同，具有groupId、artifactId和version三个重要的元素。
+* 依赖解析：Maven在构建项目时会先查找本地仓库，如果找不到依赖项，则会从中央仓库或其他配置的远程仓库中下载依赖项。
+* 清理本地仓库：可以通过命令mvn dependency:purge-local-repository来清理本地仓库中不再需要的依赖项。
+* 本地仓库的备份：建议定期备份本地仓库，以避免意外删除或文件损坏导致的依赖项丢失。
+* 更改本地仓库的位置：可以通过在settings.xml文件中修改localRepository元素的值来更改本地仓库的默认位置。
+
+总之，Maven本地仓库是Maven构建项目必不可少的一部分，理解并正确使用它可以提高项目构建的效率和稳定性。
+
+### Nexus仓库
+
+Maven Nexus仓库是一种流行的Maven仓库管理工具，它可以让您轻松地管理Maven仓库。以下是一些关于Maven Nexus仓库的知识：
+
+* Nexus仓库的作用：Nexus仓库可以作为中央仓库的代理，从而提高Maven构建的效率和稳定性。它还可以作为私有仓库，用于存储公司内部的依赖项和插件。
+
+* Nexus仓库的类型：Nexus仓库有三种类型：hosted仓库、proxy仓库和group仓库。hosted仓库是本地仓库，proxy仓库是远程仓库的代理，group仓库是多个仓库的集合。
+
+* Nexus仓库的安装：Nexus仓库可以通过下载二进制文件并解压缩来进行安装。安装后，您可以通过Web界面来管理仓库。
+
+* Nexus仓库的配置：Nexus仓库的配置包括仓库的URL、用户名和密码等信息。您可以通过Web界面或配置文件来进行配置。
+
+* Nexus仓库的使用：在Maven项目中，您可以将Nexus仓库配置为项目的远程仓库，以便Maven在构建项目时下载依赖项和插件。您还可以将Nexus仓库配置为Maven的中央仓库的代理，以提高构建效率。
+
+总之，Maven Nexus仓库是一个强大的Maven仓库管理工具，可以帮助您更好地管理Maven仓库，提高项目构建的效率和稳定性。
+
+[搭建方法](#搭建nexus仓库)
 
 ## 附
 
@@ -428,24 +512,53 @@ export PATH=$PATH:$MAVEN_HOME/bin
 
 各个节点的功能如下：
 
-project：根节点，包含了整个pom文件。
+* project：根节点，包含了整个pom文件。
+* modelVersion：pom文件的版本号，固定为4.0.0。
+* groupId：项目的组ID，通常为公司或组织的域名倒序。
+* artifactId：项目的唯一标识符，通常为项目名称。
+* version：项目的版本号，遵循x.y.z的格式，其中x、y、z分别为主版本号、次版本号和修订版本号。
+* dependencies：项目所需的依赖，包含多个dependency节点，每个节点对应一个依赖。
+* dependency：依赖节点，包含groupId、artifactId、version和scope等子节点。
+* scope：依赖范围，指定依赖在编译、测试或运行时的使用范围。
+* build：项目的构建配置，包含多个plugin节点，每个节点对应一个插件。
+* plugin：插件节点，包含groupId、artifactId、version和configuration等子节点。
+* configuration：插件的配置信息，用于设置插件的参数。
+* properties: 可以使用多个属性来管理项目的配置信息。下面以一个简单的示例来演示如何使用pom属性。
 
-modelVersion：pom文件的版本号，固定为4.0.0。
+    > 例如：
+    >
+    >    ```xml
+    >    <project>
+    >    <groupId>com.example</groupId>
+    >    <artifactId>my-app</artifactId>
+    >    <version>1.0-SNAPSHOT</version>
+    >    <properties>
+    >        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    >        <java.version>1.8</java.version>
+    >        <spring.version>5.2.0.RELEASE</spring.version>
+    >    </properties>
+    >    <dependencies>
+    >        <dependency>
+    >        <groupId>org.springframework</groupId>
+    >        <artifactId>spring-context</artifactId>
+    >        <version>${spring.version}</version>
+    >        </dependency>
+    >    </dependencies>
+    >    </project>
+    >    ```
+    >
+    > 其中，properties元素中定义了三个属性：project.build.sourceEncoding指定了项目的编码格式，java.version指定了Java的版本号，spring.version指定了Spring框架的版本号。在dependencies元素中，我们使用了${spring.version}来引用spring.version属性，从而避免了重复指定版本号。
 
-groupId：项目的组ID，通常为公司或组织的域名倒序。
+### 搭建Nexus仓库
 
-artifactId：项目的唯一标识符，通常为项目名称。
+搭建Nexus仓库需要以下步骤：
 
-version：项目的版本号，遵循x.y.z的格式，其中x、y、z分别为主版本号、次版本号和修订版本号。
+1. 下载Nexus二进制文件：从Sonatype官网下载最新版本的Nexus二进制文件，解压到您选择的目录。
+2. 配置Nexus仓库：打开Nexus的conf/nexus.properties文件，配置Nexus的端口号、数据目录、日志目录等信息。
+3. 启动Nexus：在Nexus的bin目录下，运行nexus.exe（Windows）或nexus脚本（Linux），启动Nexus。
+4. 访问Nexus：在浏览器中输入`http://localhost:8081/nexus`，访问Nexus控制台。首次访问需要输入管理员账号和密码，然后创建一个新的仓库。
+5. 创建仓库：在Nexus控制台中，选择“Repositories”菜单，然后选择“Create repository”按钮，创建一个新的仓库。您可以选择hosted、proxy或group仓库类型，并根据需要配置仓库的名称、URL、存储目录等信息。
+6. 配置仓库：在Nexus控制台中，选择“Settings”菜单，然后选择“Repositories”标签页，配置仓库的各种属性。您可以配置仓库的访问权限、代理设置、存储目录、缓存策略等。
+7. 配置Maven：在Maven项目的pom.xml文件中，添加Nexus仓库的URL和认证信息。
 
-dependencies：项目所需的依赖，包含多个dependency节点，每个节点对应一个依赖。
-
-dependency：依赖节点，包含groupId、artifactId、version和scope等子节点。
-
-scope：依赖范围，指定依赖在编译、测试或运行时的使用范围。
-
-build：项目的构建配置，包含多个plugin节点，每个节点对应一个插件。
-
-plugin：插件节点，包含groupId、artifactId、version和configuration等子节点。
-
-configuration：插件的配置信息，用于设置插件的参数。
+至此，Nexus仓库已经搭建完成，您可以将其作为Maven项目的远程仓库，并使用它来管理依赖项和插件。
