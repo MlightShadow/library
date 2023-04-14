@@ -521,6 +521,55 @@ export PATH=$PATH:$MAVEN_HOME/bin
 * dependency：依赖节点，包含groupId、artifactId、version和scope等子节点。
 * scope：依赖范围，指定依赖在编译、测试或运行时的使用范围。
 * build：项目的构建配置，包含多个plugin节点，每个节点对应一个插件。
+    > pom.xml中的build节点主要有以下几个作用：
+    >
+    > * 配置项目的构建插件和插件的执行顺序。
+    > * 配置项目的输出目录和输出文件名等构建相关的属性。
+    > * 配置项目的构建环境，如Java版本等。
+    > * 配置项目编译、测试、打包等过程中所需的依赖。
+    >
+    > 以下是一个示例POM文件中的build节点：
+    >
+    > ```xml
+    > <build>
+    >     <plugins>
+    >         <plugin>
+    >             <groupId>org.apache.maven.plugins</groupId>
+    >             <artifactId>maven-compiler-plugin</artifactId>
+    >             <version>3.8.1</version>
+    >             <configuration>
+    >                 <source>1.8</source>
+    >                 <target>1.8</target>
+    >             </configuration>
+    >         </plugin>
+    >         <plugin>
+    >             <groupId>org.apache.maven.plugins</groupId>
+    >             <artifactId>maven-surefire-plugin</artifactId>
+    >             <version>2.22.2</version>
+    >             <configuration>
+    >                 <argLine>-Xmx1024m</argLine>
+    >             </configuration>
+    >         </plugin>
+    >     </plugins>
+    >     <resources>
+    >         <resource>
+    >             <directory>src/main/resources</directory>
+    >             <filtering>true</filtering>
+    >         </resource>
+    >     </resources>
+    >     <testResources>
+    >         <testResource>
+    >             <directory>src/test/resources</directory>
+    >             <filtering>true</filtering>
+    >         </testResource>
+    >     </testResources>
+    >     <finalName>my-project</finalName>
+    > </build>
+    > ```
+    >
+    > 上述示例中，build节点主要配置了两个插件：maven-compiler-plugin和maven-surefire-plugin。maven-compiler-plugin用于指定项目的Java版本，并在编译过程中生成对应的字节码文件。maven-surefire-plugin用于执行项目的单元测试，并指定了JVM参数-Xmx1024m。
+    > 此外，build节点还配置了项目的输出目录和输出文件名，以及项目资源目录和测试资源目录的位置和是否需要过滤。
+
 * plugin：插件节点，包含groupId、artifactId、version和configuration等子节点。
 * configuration：插件的配置信息，用于设置插件的参数。
 * properties: 可以使用多个属性来管理项目的配置信息。下面以一个简单的示例来演示如何使用pom属性。
@@ -562,3 +611,29 @@ export PATH=$PATH:$MAVEN_HOME/bin
 7. 配置Maven：在Maven项目的pom.xml文件中，添加Nexus仓库的URL和认证信息。
 
 至此，Nexus仓库已经搭建完成，您可以将其作为Maven项目的远程仓库，并使用它来管理依赖项和插件。
+
+### maven打包部署
+
+Maven 是一个 Java 项目的构建工具，它可以帮助我们自动完成打包、测试、部署等工作。下面是使用 Maven 进行打包部署的基本步骤：
+
+* 在 pom.xml 文件中配置项目信息、依赖库、打包方式等信息。
+* 在终端进入项目根目录，使用 maven 命令进行打包。
+
+```shell
+mvn clean package
+```
+
+* 打包完成后，在 target 目录中会生成一个以项目名命名的 jar 包或 war 包。
+* 如果需要将包部署到服务器，可以使用 scp 命令将包上传到服务器指定目录。
+
+```shell
+scp target/xxx.jar user@xxx.xxx.xxx.xxx:/path/to/dest/
+```
+
+* 进入服务器，使用 java 命令启动文件。
+
+```shell
+java -jar /path/to/xxx.jar
+```
+
+这样就完成了 Maven 打包部署的流程。注意，在进行打包之前，需要确定项目中所有的依赖都已经配置完毕，并且 Maven 在本地配置文件 settings.xml 中正确配置了代理、镜像等相关信息，才能保证打包过程不会出现问题。
