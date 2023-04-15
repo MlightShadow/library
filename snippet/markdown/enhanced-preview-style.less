@@ -1,9 +1,10 @@
 // /* Please visit the URL below for more information: */
 // /* https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-@main_font : 'fira code';
-@default_letter_font : 'fira code';
-@default_hanzi_font : 'fira code';
-@code_font: 'fira code';
+@main_font: "verdana 微软雅黑";
+@default_letter_font: "verdana";
+@default_hanzi_font: "微软雅黑";
+@quote_hanzi_font: "楷体";
+@code_font: "ubuntu mono";
 
 .markdown-preview.markdown-preview {
     font-family: @main_font, @default_letter_font, @default_hanzi_font;
@@ -118,11 +119,11 @@
         margin: 0 auto;
     }
 
-    body>*:first-child {
+    body > *:first-child {
         margin-top: 0 !important;
     }
 
-    body>*:last-child {
+    body > *:last-child {
         margin-bottom: 0 !important;
     }
 
@@ -169,13 +170,13 @@
     }
 
     h1 {
-        font-size: 32px;
+        font-size: 24px;
         color: #000;
         counter-reset: counter_h2;
     }
 
     h2 {
-        font-size: 30px;
+        font-size: 22px;
         border-bottom: 3px dashed rgb(240, 80, 0);
         color: rgb(240, 80, 0);
         text-align: right;
@@ -185,64 +186,64 @@
 
     h2:before {
         color: rgb(240, 80, 0);
-        font-size: 30px;
-        content: '§'counter(counter_h2)' ';
+        font-size: 22px;
+        content: "§" counter(counter_h2) " ";
     }
 
     h3 {
-        font-size: 25px;
+        font-size: 20px;
         color: rgb(84, 161, 48);
         counter-increment: counter_h3;
         counter-reset: counter_h4;
     }
     h3:before {
-        font-size: 25px;
+        font-size: 20px;
         color: rgb(84, 161, 48);
-        content: '§'counter(counter_h2)'.'counter(counter_h3)' ';
+        content: "§" counter(counter_h2) "." counter(counter_h3) " ";
     }
 
     h4 {
-        font-size: 20px;
+        font-size: 18px;
         color: rgb(11, 172, 172);
         counter-increment: counter_h4;
     }
 
-    h4:before
-    {
-        font-size: 20px;
+    h4:before {
+        font-size: 18px;
         color: rgb(11, 172, 172);
-        content: '#'counter(counter_h4)' ';
+        content: "#" counter(counter_h4) " ";
     }
 
     h5 {
-        color: #6aa4df;
-        font-size: 18px;
+        color: #777;
+        font-size: 16px;
+        counter-increment: counter_h5;
     }
 
     h5:before {
-        font-size: 18px;
-        color: #6aa4df;
-        content: '> ';
-    }
-
-    h6 {
         color: #777;
         font-size: 16px;
+        content: counter(counter_h5) "° ";
+    }
+    h6 {
+        color: #6aa4df;
+        font-size: 14px;
+        counter-increment: counter_h6;
     }
 
     h6:before {
-        color: #777;
-        font-size: 16px;
-        content: '- ';
+        font-size: 14px;
+        color: #6aa4df;
+        content: "> ";
     }
 
-    body>h2:first-child,
-    body>h1:first-child,
-    body>h1:first-child+h2,
-    body>h3:first-child,
-    body>h4:first-child,
-    body>h5:first-child,
-    body>h6:first-child {
+    body > h2:first-child,
+    body > h1:first-child,
+    body > h1:first-child + h2,
+    body > h3:first-child,
+    body > h4:first-child,
+    body > h5:first-child,
+    body > h6:first-child {
         margin-top: 0;
         padding-top: 0;
     }
@@ -257,19 +258,19 @@
         padding-top: 0;
     }
 
-    h1+p,
-    h2+p,
-    h3+p,
-    h4+p,
-    h5+p,
-    h6+p {
+    h1 + p,
+    h2 + p,
+    h3 + p,
+    h4 + p,
+    h5 + p,
+    h6 + p {
         margin-top: 10px;
     }
 
     /* LINKS
 =============================================================================*/
     a {
-        color: #4183C4;
+        color: #4183c4;
         text-decoration: none;
     }
 
@@ -284,8 +285,8 @@
         padding-left: 30px;
     }
 
-    ul li> :first-child,
-    ol li> :first-child,
+    ul li > :first-child,
+    ol li > :first-child,
     ul li ul:first-of-type,
     ol li ol:first-of-type,
     ul li ol:first-of-type,
@@ -316,11 +317,11 @@
         padding: 0;
     }
 
-    dl dt>:first-child {
+    dl dt > :first-child {
         margin-top: 0px;
     }
 
-    dl dt>:last-child {
+    dl dt > :last-child {
         margin-bottom: 0px;
     }
 
@@ -329,11 +330,11 @@
         padding: 0 15px;
     }
 
-    dl dd>:first-child {
+    dl dd > :first-child {
         margin-top: 0px;
     }
 
-    dl dd>:last-child {
+    dl dd > :last-child {
         margin-bottom: 0px;
     }
 
@@ -358,7 +359,7 @@
         border-radius: 3px;
     }
 
-    pre>code {
+    pre > code {
         font-family: @code_font;
         color: #333;
         margin: 0;
@@ -388,17 +389,18 @@
     /* QUOTES
 =============================================================================*/
     blockquote {
-        border-left: 5px dashed #0D0;
+        font-family: @code_font, @quote_hanzi_font;
+        border-left: 5px dashed #0d0;
         padding: 0 15px;
         color: #080;
     }
 
-    blockquote>:first-child {
+    blockquote > :first-child {
         margin-top: 0px;
         padding-top: 10px;
     }
 
-    blockquote>:last-child {
+    blockquote > :last-child {
         margin-bottom: 0px;
         padding-bottom: 10px;
     }
@@ -419,7 +421,7 @@
     /* TABLES
 =============================================================================*/
     table {
-        table-layout:fixed;
+        table-layout: fixed;
         border-collapse: collapse !important;
     }
 
@@ -442,7 +444,6 @@
         border-bottom: 2px solid #ccc;
     }
 
-
     table tr:nth-child(2n) {
         background-color: #fbfbfb;
         border-top: 2px dashed #ccc;
@@ -451,22 +452,32 @@
     /* IMAGES
 =============================================================================*/
     img {
-        max-width: 100%
+        max-width: 100%;
     }
 
     /*delete
-===========================================================
-*/
-    p>s {
-        color: #aaa
+========================================================= */
+    s {
+        text-decoration-color: #d14;
+        text-decoration-thickness: 2px;
+        color: #aaa;
+    }
+    p > s {
+        text-decoration-color: #d14;
+        text-decoration-thickness: 2px;
+        color: #aaa;
     }
 
-    p>s>* {
-        color: #aaa
+    p > s > * {
+        text-decoration-color: #d14;
+        text-decoration-thickness: 2px;
+        color: #aaa;
     }
 
-    p>s>*>* {
-        color: #aaa
+    p > s > * > * {
+        text-decoration-color: #d14;
+        text-decoration-thickness: 2px;
+        color: #aaa;
     }
 
     /* 强调
@@ -476,10 +487,13 @@
         color: #f50;
         border-bottom: 2px solid #f50;
     }
-    em{
-        color:rgb(214, 52, 146)
+    em {
+        color: rgb(214, 52, 146);
     }
 }
+
+
+
 
 
 

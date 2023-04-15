@@ -1,4 +1,4 @@
-# markdown cheatsheet
+# Markdown Cheatsheet
 
 本文档适用于检测`markdown`工具和相应`css`样式的效果, 以及速查各类写法
 
@@ -31,6 +31,27 @@
 #### 四级标题
 ##### 五级标题
 ###### 六级标题
+```
+
+标题可以被链接到
+
+[目录](#目录)
+
+```markdown
+[目录](#目录)
+```
+
+**tips**: 如果标题中包含一些特殊的内容(例如: 空格, 大写字母), 则按照以下方式修改链接内容既可实现链接。
+
+
+* 大写字母改成小写
+* 特殊字符全删除
+* 空格改成横线（-）
+
+[Markdown Cheatsheet](#markdown-cheatsheet)
+
+```markdown
+[Markdown Cheatsheet](#markdown-cheatsheet)
 ```
 
 ## 文本
@@ -220,6 +241,12 @@ function jsfunc (data, callback) {
     ```
 ```
 
+在引用中使用代码块
+
+> ```js
+> console.log("hello");
+> ```
+
 ## 链接及图片
 
 ### 链接
@@ -389,3 +416,50 @@ Note right of C: 没人陪我玩
         李四-->王五: 很好!
     ```
 ```
+
+## latex
+
+$\Gamma$、$\iota$、$\sigma$、$\phi$、$\upsilon$、$\Pi$、$\Bbbk$、$\heartsuit$、$\int$、$\oint$
+
+$\tan$、$\sin$、$\cos$、$\lg$、$\arcsin$、$\arctan$、$\min$、$\max$、$\exp$、$\log$
+
+$+$、$-$、$=$、$>$、$<$、$\times$、$\div$、$\equiv$、$\leq$、$\geq$、$\neq$
+
+$\cup$、$\cap$、$\in$、$\notin$、$\ni$、$\subset$、$\subseteq$、$\supset$、$\supseteq$、$\N$、$\Z$、$\R$、$\R$、$\infty$
+
+$f(x)=\frac{P(x)}{Q(x)}$
+
+$2x - 5y =  8$  
+$3x + 9y =  -12$
+$7x \times 2y \neq 3z$
+
+$x^3+x^9+x^y$
+
+$\sqrt{3x-1}+\sqrt[5]{2y^5-4}$
+
+$$\cos (2\theta) = \cos^2 \theta - \sin^2 \theta$$
+
+$$\frac{x}{2y} +\frac{x-y}{x+y} $$
+
+$$\sum_{n=1}^\infty k$$
+
+$$\lim\limits_{x \to \infty} \exp(-x) = 0$$
+
+$$\frac{n!}{k!(n-k)!} = \binom{n}{k}$$
+
+$$
+  \begin{matrix}
+   1 & 2 & 3 \\
+   4 & 5 & 6 \\
+   7 & 8 & 9
+  \end{matrix} 
+$$
+
+$$
+X(m,n)=
+\begin{cases}
+x(n),\\
+x(n-1),\\
+x(n+1)
+\end{cases}
+$$
