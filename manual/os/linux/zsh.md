@@ -2,7 +2,7 @@
 
 ## 安装
 
-使用包管理工具安装zsh 
+使用包管理工具安装zsh
 
 ```shell
 sudo apt-get install zsh
@@ -23,6 +23,20 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 ```
 
 后面的部分主要是为了好看，其实ohmyzsh本身已经带有比较好看的theme了实用为主以下内容就不用继续了
+
+## zsh vi模式
+
+打开.zshrc 编辑
+
+搜索 "plugins" 行并确保 "vi-mode" 插件已启用。如果尚未启用 "vi-mode"，则需要在 "plugins" 行中添加它：
+
+```sh
+plugins=(git vi-mode)
+```
+
+```shell
+source .zshrc
+```
 
 ## powerlevel10k
 
@@ -47,7 +61,8 @@ source .zshrc
 ```shell
 p10k configure
 ```
-会有好几个问题，根据自己的喜好直接回答就可以了
+
+会有几个关于配置的交互选项，根据自己的喜好直接选择就可以了
 
 ## nerd font
 
@@ -57,4 +72,3 @@ p10k configure
 
 1. 如果你是直接使用终端那你肯定需要直接安装这些字体
 2. 你使用本地模拟终端远程到其他计算机终端那你需要在本地安装这些字体
-
