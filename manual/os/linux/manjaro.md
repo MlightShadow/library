@@ -1,3 +1,5 @@
+# manjaro 更新时签名异常
+
 在安装软件包时出现 "manjaro-keyring" 的签名 "unknown trust" 错误是因为 pacman 不认可 manjaro-keyring 包的签名。一般情况下，这个问题可能是由于长时间没有更新 pacman 导致的。
 
 你可以尝试通过以下步骤来解决 "manjaro-keyring" 未知信任的问题：

@@ -8,7 +8,7 @@
 
 ## 配置
 
-添加 `path/to/Neovim/bin` 至环境变量 `path` 中 
+添加 `path/to/Neovim/bin` 至环境变量 `path` 中
 
 在 `~/AppData/Local/` 目录下创建 `nvim` 文件夹并添加`vim.init` 文件
 

@@ -24,7 +24,7 @@
   "name": "应用名称",
   "description": "描述",
   "version": "0.0.1",
-  "keywords": [ "关键字1", "关键字2" ],  
+  "keywords": [ "关键字1", "关键字2" ],
   "window": {
     "title": "标题",
     "icon": "app/static/img/logo.jpg",

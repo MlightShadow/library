@@ -1,6 +1,6 @@
 # 正则表达式
 
-参考文档:  
+参考文档:
 
 * [http://www.regexlab.com/zh/regref.htm](http://www.regexlab.com/zh/regref.htm)
 * [https://www.runoob.com/regexp/regexp-tutorial.html](https://www.runoob.com/regexp/regexp-tutorial.html)
@@ -25,14 +25,14 @@
 
 1. 一些特殊的字符, 参考转义字符章节.
 2. 当使用匹配作为正则保留字符的字符串时可使用`\`转义这类字符
-   > 例如: 匹配 `$`, 其为正则中的尾匹配字符  
+   > 例如: 匹配 `$`, 其为正则中的尾匹配字符
    > 所以当匹配字符串 `$123` 中的`$`时, 应当使用`\$`
 
 ### 通配字符
 
 `.`, `\d`, `\w` 等通配字符用于匹配固定的若干种类字符, `.` 可匹配除`\n`和`\r`之外的任何单个字符, 转义字符请参考转义字符章节
 
-`[]` 用于自定义匹配多种字符  
+`[]` 用于自定义匹配多种字符
 例如:
 
 * `[abc123@_%]`

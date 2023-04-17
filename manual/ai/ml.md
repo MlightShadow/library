@@ -10,7 +10,7 @@
 
 ### 深度学习框架
 
-* python  
+* python
   * TensorFlow
   * Scikit-learn
   * PyTorch

@@ -1,6 +1,6 @@
 # MOD...哦不 老滚5 安装指南
 
-如有侵权请联系本人予以删除  
+如有侵权请联系本人予以删除
 If there is any infringement, please contact me to delete
 
 ## 1.Nexus Mod Manager
@@ -9,7 +9,7 @@ If there is any infringement, please contact me to delete
 
 ## 2.SKSE
 
-这个是老滚一切Mod的基础, 其他还有好多游戏也是以这个为基础的, 我这边已经给你们准备好了 `Skyrim.skse.1.7.2.150104.tool.rar` 直接解压, 把解压后的所有文件直接覆盖到老滚5的根目录覆盖Data文件夹, 之后登录游戏使用 `skse_loader.exe`  
+这个是老滚一切Mod的基础, 其他还有好多游戏也是以这个为基础的, 我这边已经给你们准备好了 `Skyrim.skse.1.7.2.150104.tool.rar` 直接解压, 把解压后的所有文件直接覆盖到老滚5的根目录覆盖Data文件夹, 之后登录游戏使用 `skse_loader.exe`
 
 ## 3.FNIS
 
@@ -27,4 +27,4 @@ If there is any infringement, please contact me to delete
 
 ## 相关资料
 
-[八国联军慈禧太后付费特供版老滚](https://pan.baidu.com/s/1kUJPSMV#list/path=%2F)  
+[八国联军慈禧太后付费特供版老滚](https://pan.baidu.com/s/1kUJPSMV#list/path=%2F)

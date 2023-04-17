@@ -82,16 +82,18 @@ docker -v #查看Docker版本
 #### 镜像导出导入
 
 ##### 导出
+
 一定要带上名字和tag否则导出时会都是none
+
 ```bash
 docker save iamgeName:tag iamgeName:tag > docker_images.tar
 ```
 
 ##### 导入
+
 ```bash
 docker load < docker_images.tar
 ```
-
 
 ### docker免sudo
 
@@ -151,7 +153,6 @@ export CLASSPATH=.$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$JAVA_HOME/lib/to
 docker build -t jdk8:221 .
 ```
 
-
 ### docker制作jenkins镜像
 
 树莓派上没有好用的jenkins镜像所以需要自己做个
@@ -167,7 +168,6 @@ FROM java:8-jdk
 WORKDIR /jenkins_home
 ENTRYPOINT ["java" ,"-jar","/jenkins_home/jenkins.war"]
 ```
-
 
 ### docker起redis
 
@@ -243,53 +243,53 @@ nano /home/pi/docker_conf/nginx/conf.d/default.conf
 `default.conf`配置
 
 ```conf
-server {  
-    listen       80;  
-    server_name  localhost;  
-  
-    #charset koi8-r;  
-    #access_log  /var/log/nginx/log/host.access.log  main;  
-  
-    location / {  
-        root   /usr/share/nginx/html;  
-        index  index.html index.htm;  
-        autoindex  on;  
-        try_files $uri /index/index/page.html;  
-    }  
+server {
+    listen       80;
+    server_name  localhost;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/log/host.access.log  main;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+        autoindex  on;
+        try_files $uri /index/index/page.html;
+    }
 
     location /api {
         proxy_pass http://ip:port/;
     }
 
-    # redirect server error pages to the static page /50x.html  
-    #  
-    error_page   500 502 503 504  /50x.html;  
-    location = /50x.html {  
-        root   /usr/share/nginx/html;  
-    }  
-  
-    # proxy the PHP scripts to Apache listening on 127.0.0.1:80  
-    #  
-    #location ~ \.php$ {  
-    #    proxy_pass   http://127.0.0.1;  
-    #}  
-  
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  
-    #  
-    #location ~ \.php$ {  
-    #    root           html;  
-    #    fastcgi_pass   127.0.0.1:9000;  
-    #    fastcgi_index  index.php;  
-    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;  
-    #    include        fastcgi_params;  
-    #}  
-  
-    # deny access to .htaccess files, if Apache's document root  
-    # concurs with nginx's one  
-    #  
-    #location ~ /\.ht {  
-    #    deny  all;  
-    #}  
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+    #
+    #location ~ \.php$ {
+    #    proxy_pass   http://127.0.0.1;
+    #}
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    #location ~ \.php$ {
+    #    root           html;
+    #    fastcgi_pass   127.0.0.1:9000;
+    #    fastcgi_index  index.php;
+    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    #    include        fastcgi_params;
+    #}
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    #location ~ /\.ht {
+    #    deny  all;
+    #}
 }
 ```
 
@@ -306,7 +306,6 @@ nginx:latest
 ```
 
 注意: 对于容器中的配置多个端口分发请求不要用 127.0.0.1 或者 localhost, 否则只会在容器内转发, 可以使用 0.0.0.0 或者局域网ip
-
 
 ### docker 起 mysql
 
@@ -330,4 +329,3 @@ $ docker rm -f test-mysql
 $ docker run --restart=always -d -v /opt/data/mysql/:/var/lib/mysql -v /etc/mysql/my.cnf:/etc/mysql/my.cnf -p 3306:3306 --name test-mysql -e MYSQL_ROOT_PASSWORD=root mysql
 
 ```
-

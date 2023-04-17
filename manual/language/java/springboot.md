@@ -3,6 +3,7 @@
 [toc]
 
 ## 背景
+
 ### 关于版本
 
 起源于spring4，spring4开始有了纯注解配置
@@ -16,9 +17,8 @@ springboot 是 springcloud 基础
 
 新建 Spring Boot 项目的方法有很多，以下是其中几种常见的方法：
 
-
 * 使用 Spring Initializr：Spring Initializr 是 Spring 官方提供的一个 Web 工具，可以帮助用户快速创建 Spring Boot 项目。具体操作步骤如下：
-  * 打开 https://start.spring.io/ 页面；
+  * 打开 <https://start.spring.io/> 页面；
   选择项目的相关配置，包括项目类型、语言、依赖、版本等；
   * 点击 Generate 按钮，下载生成的项目压缩包；
   * 解压项目压缩包，使用 IDE（如 IntelliJ IDEA、Eclipse）导入项目即可。
@@ -49,7 +49,6 @@ springboot 是 springcloud 基础
   * 进入生成的项目目录，执行 ./gradlew bootRun 或 ./mvnw spring-boot:run 命令启动 Spring Boot 应用程序。
 
 无论使用哪种方法，创建 Spring Boot 项目的关键是要确定项目的类型、依赖和配置等信息。
-
 
 ### pom.xml
 
@@ -132,6 +131,7 @@ TODO
 resource文件会被编译到根目录下即`classpath`
 
 resource下默认命名:
+
 * application.properties
 * application.yml
 * application.yaml
@@ -139,11 +139,13 @@ resource下默认命名:
 以优先级高的为主，在优先级高的文件中没有提及的配置则由优先级低的文件进行补充
 
 配置文件在resource根目录中加载顺序（高->低）：
+
 1. `**/application*.yml`
 2. `**/application*.yaml`
 3. `**/application*.properties`
 
 其他外部加载顺序(低->高)：
+
 1. resource下（根目录）配置文件
 2. 根目录config(放置在resource中编译后在根目录下)
 3. 项目根目录下(多module时parent中)，单项目发布后的父级目录
@@ -151,7 +153,7 @@ resource下默认命名:
 5. 运行时cli命令使用--spring.config.location=./config/ 进行指定 **注意：这种指定的情况下，不会进行互补** 该方法也可以通过设置环境变量的方式实现
 6. 运行时cli命令参数
 
-使用spring.profiles.active来指定当前生效的配置文件 
+使用spring.profiles.active来指定当前生效的配置文件
 
 ```properties
 # application.properties设置dev, 名称自定义
@@ -163,6 +165,7 @@ spring.profiles.active=dev
 代码中注解@Profile("dev")只会在spring.profiles.active=dev时生效
 
 可以通过一些方法设置更低优先级(低于application.properties)的一些配置文件(优先级低->高)
+
 1. @PropertySouurce, 注意只能指定.properties文件, 只能用在配置类上
 2. SpringApplication.setDefaultProperties()
 
@@ -177,6 +180,7 @@ app.setDefaultProperties("");
 #### 属性注入
 
 application.properties
+
 ```properties
 test.string=string
 test.int=1
@@ -184,6 +188,7 @@ test.date=2022-02-05
 ```
 
 application.yaml
+
 ```yaml
 test:
     string: string
@@ -199,12 +204,12 @@ test:
 ```
 
 * @Value
-    * String: `@Value("${string}")`,另外 yaml可以使用`@ConfigurationProperties(prefix="test")` 直接对应属性名进行注入(Relaxed Binding), 对应方式相对松散, 多种命名方式都可以依照赋值上去
-    * Integer: `@Value("${int}")`
-    * Date
-    * List
-    * Map
-    * Object
+  * String: `@Value("${string}")`,另外 yaml可以使用`@ConfigurationProperties(prefix="test")` 直接对应属性名进行注入(Relaxed Binding), 对应方式相对松散, 多种命名方式都可以依照赋值上去
+  * Integer: `@Value("${int}")`
+  * Date
+  * List
+  * Map
+  * Object
 
 使用spring-boot-configuration-processor依赖 可以使yaml文件拥有被@ConfigurationProperties的注解类的提示, 其原理是编译时生成了spring-configuration-metadata.json文件从而可以让yaml知晓哪些属性可以被配置, 不过现在我只看到IDEA中有用 不知道code中是否可以使用毕竟是通过依赖来进行支持
 
@@ -220,6 +225,7 @@ TODO
 ### slf4j
 
 日志框架早期百花齐放 log4j, jul(java.util.logging), ...  后来逐渐出现了日志门面（一组日志定义的统一接口）其中有：
+
 * jcl(jakarta commons logging)
 * slf4j (推荐)
 
@@ -239,6 +245,7 @@ public class Apple {
 如果使用了其他日志门面，例如jcl+jul 可以添加转换依赖，转换为slf4j
 
 #### spring-boot-starter-logging
+
 springboot 推荐 slf4j + logback
 
 默认的info级别的输出
@@ -255,7 +262,7 @@ public class Apple {
     }
 }
 ```
- 
+
 默认的日志输出格式为
 `日期 级别 进程ID --- [线程名] 内容`
 
@@ -280,7 +287,6 @@ TODO 其他日志的配置...
 
 当需要切换日志框架到其他框架，只需要手动排除springboot默认依赖，然后添加新的以来框架并且修改配置文件即可
 
-
 ### Springboot Web
 
 #### 接口服务测试或者调用
@@ -291,19 +297,13 @@ TODO 其他日志的配置...
 
 可以用于restful接口的测试和访问
 
-#### 配置
-
-#### 
-
-#### 
-
 ## 开发杂项
+
 ### 热部署
 
 依赖spring-boot-devtools
 
 在vscode里好像插件本身就有热部署
-
 
 ## 其他
 
@@ -317,7 +317,7 @@ nvim 如何启动spring boot项目
 
 按下回车键执行命令，Spring Boot 项目将会启动。在控制台中可以看到项目启动的日志信息。
 
-打开浏览器，访问 http://localhost:8080/，可以看到 Spring Boot 项目的首页。
+打开浏览器，访问 <http://localhost:8080/，可以看到> Spring Boot 项目的首页。
 
 注意：在执行 :!./mvnw spring-boot:run 命令前，需要确保项目的依赖已经下载完毕。可以在项目根目录下执行 ./mvnw clean install 命令来下载依赖并编译项目。
 
@@ -341,10 +341,10 @@ nvim 启动spring boot项目中的其他main函数
 
 打开 nvim 编辑器，并进入到 Spring Boot 项目的根目录。
 
-在 nvim 编辑器中输入 :!./mvnw spring-boot:run -Dspring-boot.run.main=<main-class> 命令，其中 <main-class> 是要启动的 main 函数所在的类的全限定名（包括包名和类名）。例如，如果要启动 com.example.demo.Main 类中的 main 函数，��么 <main-class> 就应该是 com.example.demo.Main。
+在 nvim 编辑器中输入 `:!./mvnw spring-boot:run -Dspring-boot.run.main=<main-class>` 命令，其中 `<main-class>` 是要启动的 main 函数所在的类的全限定名（包括包名和类名）。例如，如果要启动 com.example.demo.Main 类中的 main 函数，那么 `<main-class>` 就应该是 com.example.demo.Main。
 
 按下回车键执行命令，Spring Boot 项目将会启动。在控制台中可以看到项目启动的日志信息。
 
-打开浏览器，访问 http://localhost:8080/，可以看到 Spring Boot 项目的首页。
+打开浏览器，访问 <http://localhost:8080/，可以看到> Spring Boot 项目的首页。
 
-注意：在执行 :!./mvnw spring-boot:run -Dspring-boot.run.main=<main-class> 命令前，需要确保项目的依赖已经下载完毕。可以在项目根目录下执行 ./mvnw clean install 命令来下载依赖并编译项目。同时，需要确保 <main-class> 参数是正确的，否则启动可能会失败。
+注意：在执行 `:!./mvnw spring-boot:run -Dspring-boot.run.main=<main-class>` 命令前，需要确保项目的依赖已经下载完毕。可以在项目根目录下执行 ./mvnw clean install 命令来下载依赖并编译项目。同时，需要确保 `<main-class>` 参数是正确的，否则启动可能会失败。
