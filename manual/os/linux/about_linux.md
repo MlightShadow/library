@@ -529,3 +529,34 @@ root 的主文件夹, 即是根用户的目录, 与此对应, 普通用户的目
 - 绿底色: 777
 
 ## 附录：GNU/Linux 常用软件
+
+### manjaro 如何在多个版本中设置java
+
+在 Manjaro 中，可以使用 archlinux-java 命令来管理并设置系统中安装的多个 Java 版本。您可以按照以下步骤操作：
+
+首先检查系统上已经安装了哪些 Java 版本，可以使用以下命令：
+
+$ archlinux-java status
+
+此命令将显示所有已知的 Java 安装及其状态。您应该看到输出类似于以下内容：
+
+Available Java environments:
+java-8-openjdk/jre (default)
+java-9-openjdk
+java-11-openjdk
+
+其中，“java-8-openjdk/jre” 是默认的 Java 环境，而 “java-9-openjdk” 和 “java-11-openjdk” 则是可用的备选环境。
+
+要切换到另一个 Java 版本，请使用以下命令：
+
+$ sudo archlinux-java set java-11-openjdk
+
+在这里，我们将当前系统的默认 Java 版本切换为 “java-11-openjdk”。如果您想改用其他版本，请使用相应的版本号替换 “java-11-openjdk”。
+
+在更改后，您可以使用以下命令再次检查当前使用的 Java 版本：
+
+$ java -version
+
+这将输出当前正在使用的 Java 版本信息。
+
+使用 archlinux-java 命令，您可以轻松地在不同的 Java 版本之间切换，并确保正在使用所需的版本。
