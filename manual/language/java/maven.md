@@ -639,3 +639,10 @@ java -jar /path/to/xxx.jar
 ```
 
 这样就完成了 Maven 打包部署的流程。注意，在进行打包之前，需要确定项目中所有的依赖都已经配置完毕，并且 Maven 在本地配置文件 settings.xml 中正确配置了代理、镜像等相关信息，才能保证打包过程不会出现问题。
+
+### 常用模板
+
+```sh
+# spring boot
+mvn archetype:generate -DgroupId=com.company -DartifactId=projectname -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
