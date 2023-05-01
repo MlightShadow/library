@@ -1192,6 +1192,59 @@ public class UserService {
 
 #### redis
 
+Spring Boot 可以简单地与 Redis 进行集成，使您能够利用 Redis 作为分布式缓存。以下是 Spring Boot 集成 Redis 的步骤：
+
+添加 Redis 依赖，添加以下依赖：
+
+```xml
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+```
+
+配置 Redis 连接信息，在 application.properties 文件中配置 Redis 连接信息，例如：
+
+```properties
+# Redis 配置
+spring.redis.host=127.0.0.1
+spring.redis.port=6379
+spring.redis.password=
+spring.redis.database=0
+```
+
+另外，如果需要使用 Redis 集群模式，则需要配置 Redis 集群信息，例如：
+
+```properties
+# Redis 集群配置
+spring.redis.cluster.nodes=127.0.0.1:7000,127.0.0.1:7001,127.0.0.1:7002
+```
+
+使用 RedisTemplate 操作 Redis，Spring Boot 提供了 RedisTemplate 来执行 Redis 操作。您可以在您的代码中注入 RedisTemplate 对象，并使用它执行操作。例如，在以下代码中，我们在 TestRedisController 中注入了 RedisTemplate 对象，并使用它保存一个字符串值：
+
+```java
+@RestController
+public class TestRedisController {
+
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+    @GetMapping("/set")
+    public String setValue() {
+        this.redisTemplate.opsForValue().set("test-key", "test-value");
+        return "test-value saved.";
+    }
+
+    @GetMapping("/get")
+    public String getValue() {
+        return this.redisTemplate.opsForValue().get("test-key");
+    }
+}
+```
+
+完成上述步骤后，您就可以简单地使用 Redis 作为 Spring Boot 应用程序的分布式缓存了。
+
 ### 表现层相关
 
 ### 定时任务相关
