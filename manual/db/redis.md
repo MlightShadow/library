@@ -52,17 +52,81 @@ Redis 的基础知识包括以下几个方面：
 
 ## 命令
 
+Redis的命令非常丰富，以下是一些常用的命令：
+
+- 通用命令：
+  - SETEX：设置键值对并且设定存活时间seconds单位（秒）`set key seconds value`，超时后 get 返回 nil
+  - TTL：查看key的存活时间 `ttl key` 返回整数为剩余存活时间
+  - DEL：删除key `del key`
+  - SETNX：存在key则不做操作，不存在则添加 `setnx key value`
+  - MSET：批量添加 `mset key1 value1 key2 value2 ...`
+  - MGET：批量获取 `mget key1 key2 ...`
+  - SETRANGE：修改key的value根据offset指定索引位置开始 `setrange key offset value`
+- 字符串操作命令：
+  - SET：设置一个键值对 `set key value`
+  - GET：获取一个键的值 `get key`
+  - INCR：将键的值增加1，只能对数值操作 `incr age`
+  - DECR：将键的值减少1，只能对数值操作 `decr age`
+  - INCRBY：对key的值添加increment `incrby key increment`
+  - APPEND：向键的值末尾追加字符串 ``
+- 列表操作命令：
+  - LPUSH key value1 [value2]：在列表的左侧插入一个或多个值。
+  - RPUSH key value1 [value2]：在列表的右侧插入一个或多个值。
+  - LPOP key：移除并返回列表左侧的第一个元素。
+  - RPOP key：移除并返回列表右侧的第一个元素。
+  - LINDEX key index：返回列表中指定位置的元素。
+  - LLEN key：返回列表长度。
+  - LRANGE key start stop：返回列表中指定区间内的元素。
+  - LREM key count value：移除列表中指定值的元素。
+  - LSET key index value：设置指定位置的元素值。
+  - LTRIM key start stop：截取列表指定区间内的元素。
+- 集合操作命令：
+  - SADD：向集合中添加元素
+  - SREM：从集合中删除元素
+  - SMEMBERS：获取集合中的所有元素
+  - SISMEMBER：判断元素是否在集合中
+- 哈希操作命令：
+  - HSET key field value：给指定的哈希表中设置一个字段的值，如果该字段已经存在，那么它的值将被覆盖。
+  - HGET key field：获取指定哈希表中给定字段的值。
+  - HGETALL key：获取指定哈希表中所有字段和值。
+  - HMSET key field1 value1 field2 value2 ...：同时将多个字段设置为它们各自的值。
+  - HMGET key field1 field2 ...：获取所有给定字段的值。
+  - HDEL key field1 field2 ...：删除一个或多个哈希表字段。
+  - HEXISTS key field：检查给定字段是否存在于哈希表中。
+  - HINCRBY key field increment：将哈希表中指定字段的值增加给定的数字。
+  - HKEYS key：获取哈希表中所有的字段。
+  - HVALS key：获取哈希表中所有的值。
+- 有序集合操作命令：
+  - ZADD：向有序集合中添加元素
+  - ZREM：从有序集合中删除元素
+  - ZRANGE：获取有序集合中指定分数范围内的元素
+  - ZSCORE：获取有序集合中指定元素的分数
+
+还有很多其他的命令，包括事务、发布订阅、管道等，可以根据具体需求选择使用。
+
 ## 数据结构
 
-### 字符串
+Redis支持以下五种主要的数据类型：
 
-### 哈希
+1. 字符串（string）：Redis的最基础数据类型，可以存储任何形式的字符串，包括二进制数据。
 
-### 列表
+2. 列表（list）：由一系列按照插入顺序排序的元素组成，可以在列表的两端进行操作，支持各种常见的列表操作，如推入、弹出、修剪、范围获取等。
 
-### 集合
+3. 集合（set）：由一系列无序、唯一的元素组成，支持判断元素是否存在、添加、删除等操作，还支持集合间的交、并、差等操作。
 
-### 有序集合
+4. 哈希（hash）：由多个键值对组成的无序散列表，支持添加、删除、获取单个或多个键值对等操作。
+
+5. 有序集合（sorted set）：由一系列唯一的元素及其对应的分数组成，支持添加、删除、获取单个或多个元素、根据分数获取元素等操作，还支持有序集合的交、并、差等操作。
+
+### 字符串 string
+
+### 哈希 hash
+
+### 列表 list
+
+### 集合 set
+
+### 有序集合 zset(sorted set)
 
 ## 特性
 
@@ -70,7 +134,44 @@ Redis 的基础知识包括以下几个方面：
 
 ### 安装
 
-#### docker compose
+这里简述Windows上的两种方法，以及使用docker-compose的部署方法
+
+#### Windows
+
+Windows 中可以通过两种方式安装 Redis：使用官方提供的 Redis MSI 安装程序或使用 Chocolatey 工具进行安装。
+
+##### 方法1 使用 Redis MSI 安装程序
+
+Redis 官方网站上提供了一个 MSI 安装程序，该程序可以在 Windows 上安装 Redis。
+
+1. 首先下载 Redis MSI 安装程序，可以从 Redis 官方网站上下载<https://redis.io/download>。
+
+2. 双击打开下载好的 MSI 安装程序，按照向导进行安装。
+
+3. 安装完成之后，可以使用 `redis-cli` 命令来启动 Redis 客户端 CLI，也可以使用 `redis-server` 命令来启动 Redis 服务器。默认情况下，Redis 服务器会在本地监听 6379 端口。
+
+##### 方法2 使用 Chocolatey 工具进行安装
+
+Chocolatey 是 Windows 平台上的一个包管理工具，可以使用它来安装 Redis。
+
+1. 首先安装 Chocolatey，可以在 PowerShell 终端中运行以下命令：
+
+   ```sh
+   Set-ExecutionPolicy Bypass -Scope Process -Force; `
+   iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+   ```
+
+2. 安装 Redis，可以在 PowerShell 终端中运行以下命令：
+
+   ```sh
+   choco install redis-64 -version 5.0.7
+   ```
+
+这会安装 Redis 5.0.7 版本并启动 Redis 服务器。默认情况下，Redis 服务器会在本地监听 6379 端口。
+
+总之，Windows 中可以使用 MSI 安装程序或 Chocolatey 工具来安装 Redis，轻松实现在 Windows 平台上运行 Redis 服务器和客户端。
+
+#### docker-compose
 
 在 docker-compose.yml 文件中配置 Redis 服务。示例如下：
 
@@ -98,7 +199,7 @@ Redis 客户端 CLI 是 Redis 自带的命令行工具，可以用于与 Redis �
 
 启动 Redis CLI 非常简单，只需在终端中输入以下命令：
 
-```
+```sh
 redis-cli
 ```
 
@@ -117,13 +218,13 @@ CLI 提供了一个 REPL（Read-Eval-Print Loop）交互式环境，可以使用
 
 另外，CLI 提供了一些高级功能，比如可以使用 `-h` 选项来指定要连接的 Redis 服务器的主机名或 IP 地址：
 
-```
+```sh
 redis-cli -h my_redis_server
 ```
 
 还可以使用 `-p` 选项来指定 Redis 服务器的端口：
 
-```
+```sh
 redis-cli -p 6380
 ```
 
@@ -134,3 +235,55 @@ redis-cli -p 6380
 ### 配置
 
 ### springboot中使用redis
+
+Spring Boot中使用Redis可以通过Jedis或Lettuce等客户端来操作。以下是几个常用的操作方法：
+
+1. 设置key-value：redisTemplate.opsForValue().set(key, value)
+
+2. 获取value：redisTemplate.opsForValue().get(key)
+
+3. 设置过期时间：redisTemplate.expire(key, seconds, TimeUnit.SECONDS)
+
+4. 删除key：redisTemplate.delete(key)
+
+5. 判断key是否存在：redisTemplate.hasKey(key)
+
+6. 设置hash值：redisTemplate.opsForHash().put(key, hashKey, value)
+
+7. 获取hash值：redisTemplate.opsForHash().get(key, hashKey)
+
+8. 删除hash值：redisTemplate.opsForHash().delete(key, hashKey)
+
+9. 设置list值：redisTemplate.opsForList().rightPush(key, value)
+
+10. 获取list值：redisTemplate.opsForList().range(key, start, end)
+
+11. 删除list值：redisTemplate.opsForList().remove(key, count, value)
+
+还有很多其他的操作方法，具体可以参考Spring Boot官方文档或Redis官方文档。
+
+RedisTemplate是Spring封装的一个Redis操作类，它提供了一系列可用的方法来操作Redis数据库。主要的方法有：
+
+1. opsForValue()：操作字符串类型的数据，包括set、get、increment、decrement等方法。
+
+2. opsForList()：操作列表类型的数据，包括leftPush、leftPushAll、rightPush、rightPushAll等方法。
+
+3. opsForSet()：操作集合类型的数据，包括add、remove、pop、move等方法。
+
+4. opsForZSet()：操作有序集合类型的数据，包括add、remove、incrementScore、rank等方法。
+
+5. opsForHash()：操作哈希类型的数据，包括put、get、delete等方法。
+
+6. execute()：通过自定义的RedisCallback、SessionCallback等接口可以操作更加复杂的操作，如事务、流水线等。
+
+7. delete()：删除指定的key。
+
+8. hasKey()：判断指定的key是否存在。
+
+9. expire()：设置key的过期时间。
+
+10. keys()：获取指定正则表达式匹配的key集合。
+
+11. watch()：在事务执行之前监控指定的key，如果在事务执行期间有其他客户端对这些key进行了修改，事务会被回滚。
+
+还有很多其他的方法，具体可以参考Spring官方文档或Redis官方文档。

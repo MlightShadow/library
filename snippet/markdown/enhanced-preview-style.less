@@ -1,10 +1,17 @@
 // /* Please visit the URL below for more information: */
 // /* https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-@main_font: "verdana 微软雅黑";
+@main_font: "verdana 文泉驿等宽微米黑";
 @default_letter_font: "verdana";
-@default_hanzi_font: "微软雅黑";
-@quote_hanzi_font: "楷体";
+@default_hanzi_font: "文泉驿等宽微米黑";
+@quote_hanzi_font: "'文泉驿等宽微米黑'";
 @code_font: "ubuntu mono";
+
+@h1_color: #000;
+@h2_color: #FF6600;
+@h3_color: #669900;
+@h4_color: #6699FF;
+@h5_color: #FF9900;
+@h6_color: #339999;
 
 .markdown-preview.markdown-preview {
     font-family: @main_font, @default_letter_font, @default_hanzi_font;
@@ -171,70 +178,75 @@
 
     h1 {
         font-size: 24px;
-        color: #000;
+        color: @h1_color;
         counter-reset: counter_h2;
+    }
+
+    h1:after{
+        font-size: 12px;
+        content: "";
     }
 
     h2 {
         font-size: 22px;
-        border-bottom: 3px dashed rgb(240, 80, 0);
-        color: rgb(240, 80, 0);
+        border-bottom: 3px dashed @h2_color;
+        color: @h2_color;
         text-align: right;
         counter-increment: counter_h2;
         counter-reset: counter_h3;
     }
 
     h2:before {
-        color: rgb(240, 80, 0);
+        color: @h2_color;
         font-size: 22px;
         content: "§" counter(counter_h2) " ";
     }
 
     h3 {
         font-size: 20px;
-        color: rgb(84, 161, 48);
+        color: @h3_color;
         counter-increment: counter_h3;
         counter-reset: counter_h4;
     }
     h3:before {
         font-size: 20px;
-        color: rgb(84, 161, 48);
+        color: @h3_color;
         content: "§" counter(counter_h2) "." counter(counter_h3) " ";
     }
 
     h4 {
         font-size: 18px;
-        color: rgb(11, 172, 172);
+        color: @h4_color;
         counter-increment: counter_h4;
     }
 
     h4:before {
         font-size: 18px;
-        color: rgb(11, 172, 172);
-        content: "#" counter(counter_h4) " ";
+        color: @h4_color;
+        // content: "#" counter(counter_h4) " ";
     }
 
     h5 {
-        color: #777;
+        color: @h5_color;
         font-size: 16px;
         counter-increment: counter_h5;
     }
 
     h5:before {
-        color: #777;
+        color: @h5_color;
         font-size: 16px;
-        content: counter(counter_h5) "° ";
+        // content: counter(counter_h5) "° ";
     }
     h6 {
-        color: #6aa4df;
+        color: @h6_color;
         font-size: 14px;
         counter-increment: counter_h6;
     }
 
     h6:before {
         font-size: 14px;
-        color: #6aa4df;
-        content: "> ";
+        color: @h6_color;
+        // content: "> ";
     }
 
     body > h2:first-child,
@@ -491,6 +503,7 @@
         color: rgb(214, 52, 146);
     }
 }
+
 
 
 
