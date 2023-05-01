@@ -8,6 +8,12 @@
 sudo pacman -S ranger
 ```
 
+生成ranger的配置文件
+
+```sh
+ranger --copy-config=all
+```
+
 配置ranger
 
 打开ranger配置文件：
@@ -34,6 +40,14 @@ ranger
 按i键显示文件信息
 按Shift + ? 显示ranger的帮助文档
 
+## 配置
+
+### 设置显示版本管理状态
+
+```sh
+set vcs_aware true
+```
+
 ## 插件
 
 ranger支持许多插件和扩展。下面介绍几个常用的ranger插件：
@@ -51,21 +65,6 @@ git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger
 ```shell
 # Enable ranger_devicons plugin
 default_linemode devicons
-```
-
-### ranger-git
-
-ranger-git插件可以在ranger中方便地使用Git命令，如查看Git仓库状态、提交、拉取等。安装方法：
-
-```shell
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_git
-```
-
-然后在ranger的配置文件中添加以下代码：
-
-```shell
-# Enable ranger-git plugin
-default_linemode git
 ```
 
 ### ranger-cd

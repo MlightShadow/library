@@ -34,6 +34,12 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 plugins=(git vi-mode)
 ```
 
+另外我们最好还要设置默认的editor
+
+```sh
+export EDITOR=nvim
+```
+
 ```shell
 source .zshrc
 ```
