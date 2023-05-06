@@ -78,6 +78,8 @@ Redis的命令非常丰富，以下是一些常用的命令：
   - LLEN key：返回列表长度。
   - LRANGE key start stop：返回列表中指定区间内的元素。
   - LREM key count value：移除列表中指定值的元素。
+  - LINSERT key before plvot vlaue: plvot之前插入value
+  - LINSERT key after plvot vlaue: plvot之后插入value
   - LSET key index value：设置指定位置的元素值。
   - LTRIM key start stop：截取列表指定区间内的元素。
 - 集合操作命令：
