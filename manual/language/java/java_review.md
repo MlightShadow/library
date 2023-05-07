@@ -313,7 +313,7 @@ xml 和 注解
 
 * @Component, @Controller, @Service, @Repository: 直接描述在class定义上就行了, 运行过程中会通过反射去创建
 * @Bean: 返回一个对象，可以自己去new
-* @Import: TODO
+* @Import: TODO: 没了解过
 
 #### Spring Bean 作用域
 
@@ -402,6 +402,21 @@ Spring bean的生命周期可以分为以下几个阶段：
 
 需要注意的是，在实例化和属性赋值阶段，Spring会使用反射机制创建bean实例和注入属性值。在初始化和销毁阶段，Spring容器会调用bean的初始化方法和销毁方法，这些方法可以在bean的定义中通过init-method和destroy-method指定。同时，还可以通过实现InitializingBean和DisposableBean接口来定义bean的初始化和销毁方法。
 
+#### Spring Bean的回调方法
+
+Spring Bean的回调方法指的是在Bean实例化和装配过程中，Spring容器会自动调用一些方法，以便我们在这些方法中执行一些初始化或清理操作。具体来说，Spring Bean的回调方法包括以下几种：
+*常用的就是构造函数(contractor),初始化(init),销毁(destroy), 常用的方法是在类定义的方法上使用 @PostContruct @PreDestroy来标注则这些方法就会在初始化前和销毁前调用了*
+
+* 构造函数：Spring容器会在实例化Bean时调用构造函数进行对象的创建。
+* 实现InitializingBean接口的afterPropertiesSet()方法：该方法在Bean属性设置完成后，且Bean已经被实例化后立即调用。
+* 使用@Bean注解的initMethod属性：通过在@Bean注解中设置initMethod属性，指定Bean初始化时需要调用的方法。
+* 实现DisposableBean接口的destroy()方法：该方法在Bean销毁前调用。
+* 使用@Bean注解的destroyMethod属性：通过在@Bean注解中设置destroyMethod属性，指定Bean销毁时需要调用的方法。
+
+另外还有使用xml中init-method方式可以定义
+
+在这些回调方法中，我们可以执行一些初始化或清理操作，比如初始化数据库连接池、清理资源等。注意，在使用@Bean注解指定initMethod和destroyMethod时，需要保证这些方法是无参且公共的方法。
+
 #### spring bean 如何处理并发问题
 
 Spring框架本身不提供处理并发问题的解决方案，但是它提供了一些机制来帮助应用程序开发人员处理并发问题。
@@ -423,6 +438,60 @@ Spring框架本身不提供处理并发问题的解决方案，但是它提供�
 总之，Spring框架提供了一些机制来帮助我们处理并发问题，但具体的解决方案还需要根据具体的应用场景和需求来进行选择。
 
 #### spring bean 实例化的方式
+
+* 构造函数注入（**构造器方式**）：通过构造函数实例化Bean，Spring通过**反射**机制，根据xml或者@Component(@Controller,@Component,@Service,@Repository)这类注解的定义找到一个合适的构造函数，然后通过该构造函数实例化Bean。
+* 实例工厂方法注入(@Bean)：通过实例工厂方法实例化Bean，需要先实例化工厂类，然后通过工厂类的实例方法来实例化Bean。 *个人觉得小面试到这边就行了*
+* 静态工厂方法注入(factory-method)：通过静态工厂方法实例化Bean，Spring通过反射机制，找到一个合适的静态工厂方法，然后通过该静态工厂方法实例化Bean。
+* FactoryBean: 通过实现FactoryBean 接口，重写getObject()方法来实例化对象。
+
+#### Bean的装配
+
+Spring Bean的装配是指将Bean实例化并将其成员变量赋值的过程。Spring提供了多种方式来实现Bean的装配。
+
+##### XML配置文件装配
+
+通过在XML配置文件中定义Bean和Bean之间的依赖关系(property节点ref属性)，Spring容器可以根据配置文件中的信息来自动装配Bean。
+
+##### 自动装配
+
+Spring容器可以自动查找Bean定义中的依赖关系(@Autowired)，并自动装配Bean。 *一般只会问到自动装配*
+
+##### Spring Boot自动装配
+
+Spring Boot提供了大量的自动配置类，可以根据classpath、类名、条件等来自动装配Bean。
+
+##### 注解装配
+
+通过在Bean类中使用注解来标识Bean之间的依赖关系，Spring容器可以根据注解信息来自动装配Bean。
+
+##### Java配置类装配
+
+通过在Java配置类中使用@Bean注解来定义Bean和Bean之间的依赖关系，Spring容器可以根据Java配置类中的信息来自动装配Bean。
+
+##### XML命名空间装配
+
+Spring提供了多种XML命名空间，可以通过配置对应的命名空间来实现Bean的装配。
+
+#### Bean自动装配的方式(xml向)
+
+* no: 不使用自动装配，实际上就是手动装配
+* byName（常用）：容器会自动将Bean的属性名与容器中的Bean的id进行匹配，如果匹配成功，则自动将该Bean注入到当前Bean中对应的属性中。需要在Bean定义中使用autowire="byName"属性开启该自动装配模式。*检测的是set方法的名称*
+* byType（常用）：容器会自动将当前Bean属性的类型与容器中的所有Bean进行匹配，如果匹配成功，则自动将该Bean注入到当前Bean中对应的属性中。需要在Bean定义中使用autowire="byType"属性开启该自动装配模式。*检测的是set方法的类型*
+* constructor：与byType自动装配类似，但是是通过构造函数进行自动装配。需要在Bean定义中使用autowire="constructor"属性开启该自动装配模式。*按照构造函数的类型*
+* default(autodetect)：自动探索，先检测有无构造方法，没有则使用byType。Spring 3.0之后弃用了
+
+#### Spring Bean 循环依赖
+
+Spring Bean解决循环依赖的方式，主要有两种：构造器注入和属性注入。
+Spring容器在处理循环依赖问题时，会优先使用构造器注入，如果无法解决循环依赖问题，才会使用属性注入。在使用属性注入时，需要使用Spring容器的后处理器来完成依赖注入，避免循环依赖问题。
+
+##### 构造器注入
+
+构造器注入是指在Bean实例化时，通过构造器将依赖的Bean作为参数传入，从而解决循环依赖问题。这种方式的优点是在Bean实例化时就完成了依赖注入，避免了后续的循环依赖问题。但是，构造器注入需要在Bean定义时就确定依赖关系，因此不适合循环依赖关系较为复杂的情况。
+
+##### 属性注入
+
+属性注入是指在Bean实例化后，通过属性的setter方法将依赖的Bean注入。这种方式需要先创建Bean实例，再注入属性，因此可以处理循环依赖关系较为复杂的情况。但是，属性注入存在一个问题，即在注入属性前，必须先完成Bean的实例化，因此需要使用Spring容器的后处理器来完成依赖注入。
 
 #### IoC 的加载过程
 
@@ -505,17 +574,17 @@ Spring IOC 的缺点：
 
 是一个基于AOP编程的框架, 旨在降低代码重复的同时降低耦合性(主要用于日志, 事务, 权限, 异常处理等方面)
 *常用的两个aop编程框架 spring aop, AspectJ*
-TODO 在spring aop 和 aspectJ 中实现aop
+TODO: 在spring aop 和 aspectJ 中实现aop
 
-|名称|说明|
-|---|---|
-|Joinpoint（连接点）|指那些被拦截到的点，在 Spring 中，可以被动态代理拦截目标类的方法。|
-|Pointcut（切入点）|指要对哪些 Joinpoint 进行拦截，即被拦截的连接点。|
-|Advice（通知）|指拦截到 Joinpoint 之后要做的事情，即对切入点增强的内容。|
-|Target（目标）|指代理的目标对象。|
-|Weaving（植入）|指把增强代码应用到目标上，生成代理对象的过程。|
-|Proxy（代理）|指生成的代理对象。|
-|Aspect（切面）|切入点和通知的结合。|
+| 名称                | 说明                                                               |
+| ------------------- | ------------------------------------------------------------------ |
+| Joinpoint（连接点） | 指那些被拦截到的点，在 Spring 中，可以被动态代理拦截目标类的方法。 |
+| Pointcut（切入点）  | 指要对哪些 Joinpoint 进行拦截，即被拦截的连接点。                  |
+| Advice（通知）      | 指拦截到 Joinpoint 之后要做的事情，即对切入点增强的内容。          |
+| Target（目标）      | 指代理的目标对象。                                                 |
+| Weaving（植入）     | 指把增强代码应用到目标上，生成代理对象的过程。                     |
+| Proxy（代理）       | 指生成的代理对象。                                                 |
+| Aspect（切面）      | 切入点和通知的结合。                                               |
 
 #### Spring AOP 实现原理
 
