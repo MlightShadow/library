@@ -493,6 +493,8 @@ Spring容器在处理循环依赖问题时，会优先使用构造器注入，�
 
 属性注入是指在Bean实例化后，通过属性的setter方法将依赖的Bean注入。这种方式需要先创建Bean实例，再注入属性，因此可以处理循环依赖关系较为复杂的情况。但是，属性注入存在一个问题，即在注入属性前，必须先完成Bean的实例化，因此需要使用Spring容器的后处理器来完成依赖注入。
 
+#### BeanDefinition是什么
+
 #### IoC 的加载过程
 
 Spring的IoC容器加载过程主要分为三个步骤：
@@ -570,6 +572,12 @@ Spring IOC 的缺点：
 * IOC 容器会将对象的创建和管理交给 Spring 框架处理，可能会导致一定的性能问题。
 * IOC 容器的配置文件较为冗长，可能会影响代码的可读性。
 
+### Spring AOP
+
+#### AOP是什么
+
+面向切面编程
+
 #### 说说 Spring AOP
 
 是一个基于AOP编程的框架, 旨在降低代码重复的同时降低耦合性(主要用于日志, 事务, 权限, 异常处理等方面)
@@ -595,13 +603,102 @@ TODO: 在spring aop 和 aspectJ 中实现aop
 
 这在上面的aop原理中已经包含了, 可以反答aop或者继续深入吧
 
-#### Spring 事务实现方式
+### Spring 事务
 
-xml方式声明管理和annotation注解方式声明管理
+#### Spring 事务支持哪些事务类型,实现方式是怎样的
+
+Spring支持以下几种事务类型：
+
+1. 基于注解的声明性事务：使用@Transactional注解来声明一个方法需要在事务中执行，可以在方法或类级别上使用。*只讲这个好一点*
+2. 基于XML的声明性事务：使用XML文件中的`<tx:advice>`和`<tx:attributes>`标签来声明和配置事务。
+3. 编程式事务（类似jdbc）：使用TransactionTemplate或TransactionManager等编程式API来控制事务的开始、提交或回滚。
+
+实现方式如下：
+
+1. 基于注解的声明性事务：Spring使用AOP来实现声明性事务。当一个被@Transactional注解的方法被调用时，Spring通过AOP动态地创建一个代理对象来管理事务。在方法执行之前，代理对象会开启一个事务，在方法执行之后，代理对象会根据方法的执行结果来决定是提交事务还是回滚事务。*只讲这个好一点*
+2. 基于XML的声明性事务：Spring使用AOP来实现声明性事务，类似于基于注解的声明性事务。在XML配置文件中，可以使用`<tx:advice>`和`<tx:attributes>`标签来声明和配置事务。当一个被配置了事务的方法被调用时，Spring会使用AOP动态地创建一个代理对象来管理事务。
+3. 编程式事务（类似jdbc）：Spring使用TransactionTemplate或TransactionManager等编程式API来实现编程式事务。通过TransactionTemplate或TransactionManager等API，可以编写代码来控制事务的开始、提交或回滚。例如，当一个事务需要跨越多个方法或对象时，可以使用编程式事务来控制事务的边界。
+
+#### 编程式事务
+
+编程式事务是指在代码中显式地控制事务的开启、提交和回滚，而不是使用Spring框架提供的声明式事务管理方式。下面是一个使用编程式事务的示例：
+
+```java
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private PlatformTransactionManager transactionManager;
+
+    @Override
+    public void transferMoney(String fromUser, String toUser, double amount) {
+        TransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
+        TransactionStatus transactionStatus = transactionManager.getTransaction(transactionDefinition);
+        try {
+            userDao.withdrawMoney(fromUser, amount);
+            userDao.depositMoney(toUser, amount);
+            transactionManager.commit(transactionStatus);
+        } catch (Exception e) {
+            transactionManager.rollback(transactionStatus);
+            throw new RuntimeException("Transaction failed", e);
+        }
+    }
+}
+```
+
+在这个示例中，我们使用了`PlatformTransactionManager`接口来管理事务，并在`transferMoney`方法中使用了`TransactionDefinition`和`TransactionStatus`实例来控制事务的开启、提交和回滚。如果在转账过程中发生了任何异常，我们就会回滚事务并抛出一个运行时异常。这个示例中的事务控制是显式的，因为我们在代码中直接调用了事务管理器的方法来控制事务的行为。
+
+#### spring 事务传播
+
+Spring事务传播是指在方法内部调用其他方法时，如何处理事务。Spring框架提供了不同的事务传播级别，可以根据实际情况选择适合的级别。常见的事务传播级别包括：
+
+* REQUIRED（默认）：如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。
+* SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行。
+* MANDATORY：强制要求当前存在事务，如果不存在事务，就抛出异常。
+* REQUIRES_NEW：新建事务，如果当前存在事务，将当前事务挂起。
+* NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就将当前事务挂起。
+* NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。
+* NESTED：如果当前存在事务，则在嵌套事务内执行。如果没有事务，则新建一个事务。嵌套事务是当前事务的一部分，但是可以独立提交或回滚。
+
+#### spring 事务隔离
+
+Spring事务隔离是指多个事务并发执行时，每个事务之间应该相互隔离，不应该互相干扰。Spring框架提供了不同的事务隔离级别，可以根据实际情况选择适合的级别。常见的事务隔离级别包括：
+
+* DEFAULT（默认）：使用数据库默认的事务隔离级别，通常为READ_COMMITTED。
+* READ_UNCOMMITTED：最低的隔离级别，允许读取未提交的数据，可能会导致脏读、不可重复读和幻读。
+* READ_COMMITTED：保证一个事务提交后才能被另一个事务读取，避免脏读，但可能会导致不可重复读和幻读。
+* REPEATABLE_READ：保证在同一个事务中多次读取同一数据时，每次读取的结果都相同，避免不可重复读，但可能会导致幻读。
+* SERIALIZABLE：最高的隔离级别，保证事务串行执行，避免脏读、不可重复读和幻读，但性能较低。
+
+需要注意的是，在使用Spring事务时，事务隔离级别的设置与具体的数据库实现有关。不同的数据库实现可能会有不同的事务隔离级别实现方式。
+
+下面是一个使用Spring事务传播和隔离的例子：
+
+```java
+@Service
+public class UserService {
+
+    @Autowired
+    private UserDao userDao;
+
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
+    public void transferMoney(int fromUserId, int toUserId, double amount) {
+        User fromUser = userDao.getUserById(fromUserId);
+        User toUser = userDao.getUserById(toUserId);
+        fromUser.setBalance(fromUser.getBalance() - amount);
+        toUser.setBalance(toUser.getBalance() + amount);
+        userDao.updateUser(fromUser);
+        userDao.updateUser(toUser);
+    }
+}
+```
+
+在上面的例子中，`transferMoney`方法使用了`@Transactional`注解，设置了事务的传播级别为REQUIRED，即如果当前没有事务，则新建一个事务，如果已经存在一个事务中，则加入到这个事务中；同时，设置了事务的隔离级别为READ_COMMITTED，即保证一个事务提交后才能被另一个事务读取，避免脏读。该方法实现了转账功能，从一个用户账户扣除一定金额并转入另一个用户账户。使用Spring事务机制，可以保证转账操作的原子性、一致性和持久性。
 
 #### Spring 事务底层原理
-
-基于aop
 
 #### 如何自定义注解实现功能
 
@@ -625,11 +722,235 @@ xml方式声明管理和annotation注解方式声明管理
 
 #### Spring 其他产品（Srping Boot、Spring Cloud、Spring Secuirity、Spring Data、Spring AMQP 等）
 
+### spring 注解
+
+spring 的配置发展过程
+2.5 xml
+3.0 javaConfig
+3.0+ springboot
+
+#### spring的配置方式
+
+Spring有三种主要的配置方式：
+
+* 基于**XML**文件的配置：使用XML文件来描述Bean之间的关系和属性。
+* 基于**注解**的配置：使用注解来描述Bean之间的关系和属性，可以使用Java自带的注解或Spring提供的注解。
+* 基于JavaConfig的配置：使用Java类来描述Bean之间的关系和属性，**通常使用@Configuration注解标记Java类，使用@Bean注解来标记Bean的定义方法**。
+
+这三种配置方式可以单独使用，也可以混合使用。*到此为止*每种配置方式都有其优缺点，具体使用哪种方式取决于项目的需求和开发者的个人偏好。
+
+#### javaConfig如何代替spring.xml
+
+Java config是一种基于Java类的配置方式，可以通过Java类来替代XML文件进行Spring配置。
+
+要替代spring.xml，您需要执行以下步骤：
+
+1. 创建一个Java类，使用`@Configuration`注解标记该类。
+2. 在Java类中，使用`@Bean`注解定义Bean。
+3. 将Bean定义添加到Spring容器中，可以使用`AnnotationConfigApplicationContext`或`ApplicationContext`等类来实现。
+
+例如，以下代码展示了如何使用Java config来替代一个简单的spring.xml文件：
+
+```java
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public HelloWorld helloWorld() {
+        return new HelloWorld();
+    }
+
+    @Bean
+    public HelloWorldService helloWorldService() {
+        HelloWorldService service = new HelloWorldService();
+        service.setHelloWorld(helloWorld());
+        return service;
+    }
+
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        HelloWorldService service = context.getBean(HelloWorldService.class);
+        System.out.println(service.getGreeting());
+    }
+}
+```
+
+在上面的代码中，`@Configuration`注解表示该类是一个配置类。`@Bean`注解用于定义Bean。`AppConfig`类定义了一个`HelloWorld` Bean和一个`HelloWorldService` Bean，并将`HelloWorld` Bean注入到`HelloWorldService` Bean中。
+
+在`Main`类中，我们使用`AnnotationConfigApplicationContext`类来加载配置类，并从容器中获取`HelloWorldService` Bean的实例。然后我们调用`getGreeting()`方法来输出“Hello, World!”。
+
+通过Java config，我们可以完全替代XML配置文件，使配置更加简洁、可读性更高。
+
+二者使用的spring 容器不相同
+
+* ClassPathXmlApplicationContext("xml")
+* AnnotationConfigApplicationContext(Config.class)
+
+#### @Component, @Controller, @Repository, @Service 的区别
+
+@Controller (控制器), @Repository (数据访问), @Service (业务逻辑) 的原注解就是@Component 主要为了可读性而分成多个
+
+#### @Import有哪些用法
+
+Spring的Import注解可以用于导入一个或多个配置类，以便在当前配置类中使用它们定义的bean。
+
+具体来说，当一个配置类使用了Import注解导入了其他配置类时，Spring会将这些配置类中定义的bean合并到当前配置类中，从而使得在当前配置类中可以使用这些bean。
+
+Import注解可以用于多种情况，例如：
+
+1. 在配置类中使用Import注解导入其他配置类，以便在当前配置类中使用这些配置类中定义的bean。
+
+2. 在@Configuration注解的配置类中使用Import注解导入其他@Configuration注解的配置类，以便将其定义的bean合并到当前配置类中。
+
+3. 在@Configuration注解的配置类中使用Import注解导入普通的Java类，以便在当前配置类中使用这些Java类中定义的@Bean方法。需要配置类实现一个ImportSelector接口才能实现
+
+总之，Import注解可以帮助我们更好地组织和管理Spring配置，提高代码的可读性和可维护性。
+
+好的，下面我来举个例子，说明一下Spring的Import注解的用法和作用。
+
+假设我们有两个配置类，分别是AppConfig1和AppConfig2，它们分别定义了一些bean：
+
+```java
+@Configuration
+public class AppConfig1 {
+    @Bean
+    public UserService userService() {
+        return new UserServiceImpl();
+    }
+    // other beans...
+}
+
+@Configuration
+public class AppConfig2 {
+    @Bean
+    public ProductService productService() {
+        return new ProductServiceImpl();
+    }
+    // other beans...
+}
+```
+
+现在，我们想在一个新的配置类中使用这两个配置类中定义的bean，我们可以使用Import注解将它们导入到新的配置类中：
+
+```java
+@Configuration
+@Import({AppConfig1.class, AppConfig2.class})
+public class AppConfig3 {
+    // use beans from AppConfig1 and AppConfig2...
+}
+```
+
+在上面的代码中，我们使用@Import注解将AppConfig1和AppConfig2导入到AppConfig3中，这样在AppConfig3中就可以使用这两个配置类中定义的bean了。
+
+需要注意的是，如果导入的配置类中有重复定义的bean，那么后面导入的配置类中定义的bean会覆盖前面导入的配置类中定义的同名bean。
+
+是的，使用@Import注解将其他配置类导入到主配置类中，可以将其他配置类中定义的所有bean注册到IOC容器中，从而可以在主配置类中直接使用这些bean。在示例代码中，我们使用了@Import注解将Config1和Config2导入到主配置类Config3中，这样我们可以直接在Config3中使用Config1和Config2中定义的bean。最后，我们只需要将Config3注册到IOC容器中，就可以使用所有三个配置类中定义的bean了。
+
+总之，使用Import注解可以方便地组织和管理Spring配置，提高代码的可读性和可维护性。
+
+#### 如何在自动注入(Autowired)没有找到依赖Bean的时候如何不报错
+
+* @Autowired的属性required设置为false即可 `@Autowired(required = false)`
+* @Nullable注解标记依赖项为可选的。
+
+#### 如何在自动注入(Autowired)找到多个依赖Bean的时候如何不报错
+
+* 在想要使用的bean上使用@Primary
+* 使用@Qualifier注解指定具体的bean名称
+
+#### @Autowired的作用
+
+@Autowired注解是Spring框架中常用的依赖注入方式之一，它的作用是自动装配一个bean，从而避免手动编写大量的代码来实现依赖注入。
+
+具体来说，@Autowired注解可以用于在Spring管理的bean中自动装配其他bean的依赖关系，通常用在成员变量、构造函数、Setter方法上。在使用@Autowired注解时，Spring会通过IOC容器查找匹配(查找的优先级 类型 > 名称)的bean，并将其注入到目标bean中。
+
+和xml不同@Autowried不需要在注入的类中提供set方法
+
+举个例子，假设我们有一个Service类，其中需要一个Dao类的实例来进行数据访问操作。我们可以在Service类中使用@Autowired注解自动装配Dao类实例，而不需要手动创建Dao类的实例并将其传递给Service类。
+
+```java
+@Service
+public class UserService {
+    
+    @Autowired
+    private UserDao userDao;
+    
+    // ...
+}
+```
+
+在上面的示例中，@Autowired注解被用于自动装配UserService类中的userDao成员变量，Spring会自动查找匹配的UserDao实例，并将其注入到UserService类中。
+
+需要注意的是，如果有多个匹配的bean，Spring会抛出异常，此时需要使用@Qualifier注解指定具体的bean名称。另外，如果没有找到匹配的bean，可以使用@Nullable注解标记依赖项为可选的。
+
+#### @Autowired 和 @Resource的区别
+
+@Autowired和@Resource都是Spring框架中常用的依赖注入方式，它们都可以用来自动装配bean。但是它们之间有一些区别。
+
+* 来源不同
+
+    @Autowired注解是Spring框架提供的，而@Resource注解是Java EE(jdk)提供的。因此，使用@Autowired注解会更加依赖Spring框架，而@Resource注解是Java EE标准，更具通用性。
+
+* 依赖装配方式不同
+
+    @Autowired注解是按照先byType再byName的方式进行依赖装配。而@Resource注解是按照先byName再byType的方式进行依赖装配。如果没有指定name属性，那么默认使用成员变量名作为bean名称进行匹配。
+    *答到这边差不多了*
+
+* 支持的范围不同
+
+    @Autowired注解只能用于装配Spring管理的bean，而@Resource注解可以用于装配任意的Java EE组件，如Servlet、EJB和JMS等。
+
+* 用法略有不同
+
+    使用@Autowired注解时，通常需要结合@Qualifier注解使用，以指定具体的bean名称。例如：
+
+    ```java
+    @Autowired
+    @Qualifier("userDao")
+    private UserDao userDao;
+    ```
+
+    而@Resource注解提供了name属性，可以直接指定bean名称。例如：
+
+    ```java
+    @Resource(name="userDao")
+    private UserDao userDao;
+    ```
+
+需要注意的是，@Autowired和@Resource注解都可以用于成员变量、构造函数、Setter方法上。但是在构造函数上使用@Autowired注解时，Spring会自动选择合适的构造函数进行注入，而@Resource不支持这种用法。
+
+#### 第三方类配置成Bean
+
+有以下几种方法将第三方类配置成Spring Bean:
+
+1. 使用XML文件配置：在XML文件中使用`<bean>`标签配置第三方类的Bean definition。
+2. 使用注解配置：使用@Component、@Service、@Repository或@Controller等注解将第三方类标记为Spring Bean。
+3. 使用Java config配置：使用@Configuration和@Bean注解将第三方类的实例化和配置过程定义在Java类中。
+4. 使用Import注解：使用Import注解将第三方类定义的@Configuration类导入到当前配置类中，从而将第三方类配置成Spring Bean。
+
+无论使用哪种方法，都需要确保第三方类的构造函数和成员变量都是合理的，并且可以正确地注入依赖关系。同时，建议对第三方类进行单元测试以确保其正常工作。
+
 ### Netty
+
+Netty是一个开源的、高性能的、异步的、事件驱动的网络应用程序框架，用于快速开发可维护的高性能协议服务器和客户端。Netty基于Java NIO技术，提供了简单易用的API，支持多种传输协议（如TCP、UDP和HTTP）以及多种编解码器（如Protobuf、Json和XML），可以很方便地实现网络通信和协议处理。Netty的优势在于其高度的可定制性、灵活性和扩展性，适用于各种网络应用开发场景。
 
 #### 为什么选择 Netty
 
 #### 说说业务中，Netty 的使用场景
+
+#### 什么是NIO
+
+NIO（New I/O）是Java NIO（New Input/Output）包的缩写，是Java SE 1.4版本中引入的一种新的I/O API。相比于传统的Java I/O API，NIO提供了更高效、更灵活的I/O操作方式，支持非阻塞I/O操作、缓冲区操作、选择器等特性，可以大大提高网络通信和文件I/O操作的性能和可扩展性。NIO的主要特点包括：
+
+1. 支持非阻塞I/O操作，可以在单线程中处理多个连接；
+2. 缓冲区操作，可以减少I/O操作次数，提高性能；
+3. 选择器，可以实现单线程监控多个通道的I/O事件，提高效率；
+4. 支持分散/聚集I/O操作，可以将多个缓冲区的数据集中在一起进行传输。
+
+总之，NIO是Java中一种高效的I/O操作方式，可以用于高性能的网络编程和文件I/O操作。
 
 #### 原生的 NIO 在 JDK 1.7 版本存在 epoll bug
 
