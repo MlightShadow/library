@@ -1689,7 +1689,6 @@ public class UserService {
 
 无论使用哪种方法，都需要确保第三方类的构造函数和成员变量都是合理的，并且可以正确地注入依赖关系。同时，建议对第三方类进行单元测试以确保其正常工作。
 
-<<<<<<< HEAD
 ### spring 多线程
 
 #### spring线程池
@@ -1858,7 +1857,7 @@ public void myMethod() {
 在这个示例中，我们首先使用`@Autowired`注解注入了一个`LockRegistry`实例。然后在`myMethod()`方法中，我们使用`LockRegistry`实例的`obtain()`方法来获取一个名为`myLock`的锁对象。在`try...finally`语句块中，我们使用锁对象的`lock()`方法来获取锁，在锁保护的代码块中执行相应的共享资源操作，最后使用`unlock()`方法释放锁。
 
 需要注意的是，这个示例中使用的是默认的锁实现，即Java中的重入锁（`ReentrantLock`）。如果需要使用其他类型的锁，例如读写锁、公平锁等，可以使用`LockRegistry`的其他方法来获取相应类型的锁对象。
-=======
+
 ### Spring MVC
 
 #### Spring MVC中Controller是不是单例(是否线程安全) 如果不是怎么解决
@@ -1948,7 +1947,6 @@ MapperProxy对象中包含了一个SqlSession对象，它是Mybatis中用于执�
 例如，假设有一个UserMapper接口，其中包含一个selectUserById方法。Mybatis会将selectUserById方法映射为一个SQL语句，该SQL语句会根据传入的参数查询相应的用户信息。当调用selectUserById方法时，Mybatis会根据该方法的参数自动生成相应的SQL语句，并通过SqlSession对象执行该SQL语句，最终返回查询结果。
 
 总之，Mybatis通过接口映射的方式来管理mapper接口，将mapper接口的方法名和参数与XML映射文件中的SQL语句进行映射，并通过SqlSession对象执行相应的操作。
->>>>>>> 29a453f6a2b95a6703c68c6e4393c929ba9eb301
 
 ### Netty
 
