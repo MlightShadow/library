@@ -174,6 +174,96 @@ Hash算法在数据安全领域有着广泛的应用，例如密码学、数字�
 
 ### 集合
 
+#### java中常用的数据结构
+
+Java 中常用的数据结构有：
+
+* 数组（Array）：一组按照顺序排列的相同类型元素的集合。
+* 链表（Linked List）：一组按照顺序排列的元素的集合，每个节点都包含一个指向下一个节点的指针。
+* 堆栈（Stack）：一种数据结构，按照先进后出（Last In First Out）的原则存储数据。
+* 队列（Queue）：一种数据结构，按照先进先出（First In First Out）的原则存储数据。
+* 集合（Collection）：一组对象的容器，包括 List、Set、Queue。
+* Map：一种键值对的数据结构，其中每个键都唯一对应一个值。
+* 树（Tree）：一种非线性数据结构，可以用于表示具有层次关系的数据。
+* 图（Graph）：一种非线性数据结构，用于表示一组对象之间的关系。
+
+#### java 常用集合
+
+Java 常用的集合有以下几种：
+
+* ArrayList：基于数组实现的可变长度的列表，支持快速随机访问和增删元素操作。
+* LinkedList：基于链表实现的可变长度的列表，支持快速插入、删除元素操作，但是随机访问效率较低。
+* HashSet：基于哈希表实现的无序集合，不允许重复元素，支持快速插入、删除和查找操作。
+* TreeSet：基于红黑树实现的有序集合，不允许重复元素，支持快速插入、删除和查找操作，同时支持自然排序和自定义排序。
+* HashMap：基于哈希表实现的键值对集合，不允许重复键，支持快速插入、删除和查找操作。
+* TreeMap：基于红黑树实现的键值对集合，不允许重复键，支持快速插入、删除和查找操作，同时支持自然排序和自定义排序。
+* Queue：队列接口，常用的实现类有 LinkedList 和 ArrayDeque。
+* Stack：栈接口，常用
+* LinkedHashMap：基于哈希表和双向链表实现的有序映射，可以按照插入顺序或者访问顺序进行排序。
+* IdentityHashMap：基于对象引用的哈希表实现的映射，使用 == 运算符而不是 equals() 方法来比较键对象。
+* WeakHashMap：基于对象弱引用的哈希表实现的映射，键对象被垃圾回收器回收时相应的键值对也会被删除。
+* PriorityQueue：基于堆实现的优先队列。
+* ArrayDeque：基于数组实现的双端队列。
+* ConcurrentHashMap：线程安全的哈希表实现。
+* ConcurrentSkipListMap 和 ConcurrentSkipListSet：基于跳表实现的有序映射和有序集合，支持高并发的访问。
+* EnumMap 和 EnumSet：分别是基于枚举类型的映射和集合。
+
+#### 使用treemap排序
+
+Java TreeMap 是一种基于红黑树实现的有序 Map，可以根据键的自然顺序或自定义顺序进行排序。 TreeMap 采用红黑树作为内部实现，具有 O(log n) 的时间复杂度。
+
+当创建 TreeMap 对象时，可以通过自定义 Comparator 实现对键的排序。如果不指定 Comparator，则根据键的自然顺序进行排序。
+
+下面是一个例子，演示如何使用 TreeMap 来进行排序：
+
+```java
+import java.util.Comparator;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class TreeMapExample {
+
+    public static void main(String[] args) {
+        
+        // 定义一个 TreeMap，按键的自然顺序排序
+        Map<Integer, String> treeMap = new TreeMap<>();
+        
+        // 添加元素
+        treeMap.put(5, "E");
+        treeMap.put(1, "A");
+        treeMap.put(4, "D");
+        treeMap.put(2, "B");
+        treeMap.put(3, "C");
+        
+        // 打印元素
+        System.out.println(treeMap); // 输出 {1=A, 2=B, 3=C, 4=D, 5=E}
+        
+        // 定义一个自定义的 Comparator，按键的逆序排列
+        Comparator<Integer> reverseComparator = new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2.compareTo(o1);
+            }
+        };
+        
+        // 使用自定义的 Comparator 创建一个 TreeMap，按键的逆序排列
+        Map<Integer, String> reverseTreeMap = new TreeMap<>(reverseComparator);
+        
+        // 添加元素
+        reverseTreeMap.put(5, "E");
+        reverseTreeMap.put(1, "A");
+        reverseTreeMap.put(4, "D");
+        reverseTreeMap.put(2, "B");
+        reverseTreeMap.put(3, "C");
+        
+        // 打印元素
+        System.out.println(reverseTreeMap); // 输出 {5=E, 4=D, 3=C, 2=B, 1=A}
+    }
+}
+```
+
+在上面的例子中，我们首先创建了一个 TreeMap 对象，按键的自然顺序进行排序。然后，我们创建了一个自定义的 Comparator，按键的逆序排列。最后，我们使用自定义的 Comparator 创建了一个新的 TreeMap 对象，按键的逆序排列。
+
 #### List, Set 和 Map 区别
 
 Set 是不能有重复的, 其本质是数组, 可以通过equals()方法对比, 可以通过contaians()方法获取set是否包含某一对象
@@ -900,7 +990,7 @@ dog: 8
 
 ## 框架篇
 
-### Spring
+### Spring IoC
 
 #### Spring优缺点
 
@@ -1345,6 +1435,27 @@ public class UserService {
 
 #### Spring 事务底层原理
 
+#### Spring 事务失效
+
+Spring事务失效可能有以下几个原因：
+
+* 事务注解未被正确配置
+    当使用基于注解的事务管理时，必须确保事务注解被正确配置。例如，@Transactional注解可能未被正确添加到需要进行事务管理的方法上。
+
+* 事务传播行为设置错误
+    事务传播行为描述了事务如何在方法调用之间传播。如果事务传播行为被错误地设置，可能会导致事务失效。例如，当使用PROPAGATION_REQUIRES_NEW传播行为时，Spring将会为每个方法调用创建一个新的事务，而不是在现有事务上继续执行。如果该设置错误，将导致事务失效。
+
+* 数据库隔离级别设置错误
+    当使用Spring事务管理器时，必须确保数据库隔离级别被正确设置。如果隔离级别设置错误，可能会导致事务失效。
+
+* 数据库连接池配置错误
+    数据源配置问题也可能导致事务失效。例如，如果连接池配置不正确，可能会导致数据库连接超时或者无法获得连接，从而导致事务失效。
+
+* 异常处理不正确
+    当事务中发生异常时，必须确保异常被正确处理。如果异常未被正确处理，可能会导致事务失效。例如，如果未正确捕获并处理异常，事务可能会回滚。如果异常被正确处理，可以避免事务回滚。
+
+总之，Spring事务失效的原因可能有很多种，需要仔细检查配置，并进行适当的调试和排除故障。
+
 #### 如何自定义注解实现功能
 
 #### Spring MVC 运行流程, Spring MVC 启动流程
@@ -1578,6 +1689,7 @@ public class UserService {
 
 无论使用哪种方法，都需要确保第三方类的构造函数和成员变量都是合理的，并且可以正确地注入依赖关系。同时，建议对第三方类进行单元测试以确保其正常工作。
 
+<<<<<<< HEAD
 ### spring 多线程
 
 #### spring线程池
@@ -1746,6 +1858,97 @@ public void myMethod() {
 在这个示例中，我们首先使用`@Autowired`注解注入了一个`LockRegistry`实例。然后在`myMethod()`方法中，我们使用`LockRegistry`实例的`obtain()`方法来获取一个名为`myLock`的锁对象。在`try...finally`语句块中，我们使用锁对象的`lock()`方法来获取锁，在锁保护的代码块中执行相应的共享资源操作，最后使用`unlock()`方法释放锁。
 
 需要注意的是，这个示例中使用的是默认的锁实现，即Java中的重入锁（`ReentrantLock`）。如果需要使用其他类型的锁，例如读写锁、公平锁等，可以使用`LockRegistry`的其他方法来获取相应类型的锁对象。
+=======
+### Spring MVC
+
+#### Spring MVC中Controller是不是单例(是否线程安全) 如果不是怎么解决
+
+是的，Spring MVC 中的 Controller 默认是单例模式，因此需要注意线程安全问题。
+
+如果 Controller 中存在线程安全问题，可以通过以下方式进行解决：
+
+* 将 Controller 中的成员变量改为方法内部变量，避免多线程同时操作同一个成员变量。
+* 使用ThreadLocal来解决线程安全问题。ThreadLocal是线程本地变量，每个线程都有自己的变量副本，互不干扰。
+* 如果需要在 Controller 中使用非线程安全的对象，可以使用@Scope注解将其设置为每次请求都创建一个新的对象实例，这样就可以避免多线程同时操作同一个对象。
+* 也可以使用synchronized关键字来保证方法的原子性，但是过多的使用synchronized会影响性能。
+
+综上所述，需要在使用 Spring MVC 中的 Controller 时，注意线程安全问题，并根据具体情况采取相应的解决方案。
+
+#### Spring MVC 的拦截器和过滤器
+
+Spring MVC 中的拦截器和 Servlet 中的过滤器都是用来处理请求的，但是它们在功能和使用上存在一些区别。
+
+* 拦截器是 Spring MVC 框架中的一部分(不依赖servlet容器)，它是基于 Java 的反射机制的，可以在请求处理之前和之后进行一些处理操作，比如记录日志、权限检查、字符编码转换等。拦截器只能拦截请求到达 Spring MVC 的控制器(Controller)之前和之后的过程，不能拦截请求到 Servlet 的过程。
+
+* 过滤器是 Servlet 规范中的一部分，它可以在请求到达 Servlet 之前和之后进行一些处理操作，比如记录日志、字符编码转换、压缩响应等。过滤器可以拦截请求到达 Servlet 的过程，并且可以拦截请求到达任何一个 Servlet 的过程，不管是 Spring MVC 的控制器还是其他 Servlet。
+
+因此，如果只需要拦截请求到达 Spring MVC 的控制器之前和之后的过程，并且使用 Spring MVC 框架，可以选择使用拦截器；如果需要拦截请求到达任何一个 Servlet 的过程，或者使用其他框架，可以选择使用过滤器。
+
+在 Spring MVC 中，拦截器和过滤器的执行顺序是不同的。下面是它们的执行顺序：
+
+* 过滤器的执行顺序：
+  * 执行过滤器链中的第一个过滤器前，先执行过滤器链中的所有 Filter 的 init() 方法。
+  * 执行过滤器链中的每一个过滤器的 doFilter() 方法。
+  * 执行过滤器链中的最后一个过滤器后，再执行过滤器链中的所有 Filter 的 destroy() 方法。
+
+* 拦截器的执行顺序：
+  * 执行 HandlerMapping 中的拦截器链中的每一个拦截器的 preHandle() 方法。
+  * 执行 HandlerAdapter 调用控制器方法。
+  * 执行 HandlerMapping 中的拦截器链中的每一个拦截器的 postHandle() 方法。
+  * 执行 HandlerMapping 中的拦截器链中的每一个拦截器的 afterCompletion() 方法。
+
+需要注意的是，拦截器是基于 AOP 的，它只能在 Spring MVC 中使用。而过滤器是 Servlet 规范中的一部分，可以在任何 Servlet 环境中使用。
+
+#### spring mvc中 servlet 和 controller
+
+在 Spring MVC 中，Controller 是一个特殊的 Bean，用于处理请求并返回响应。Controller 通常被用来实现 MVC 模式中的控制器，负责处理用户请求、调用业务逻辑并将结果返回给用户。Controller 可以支持多种类型的请求格式，如 JSON、XML、HTML 等，并可以通过视图解析器将结果渲染为用户可读的页面。
+
+而 Servlet 是 Java Web 开发中的一种基础技术，它是一个运行在 Web 服务器上的 Java 类，用于处理客户端请求并返回响应。Servlet 可以接收 HTTP 请求、解析请求参数、调用业务逻辑并将结果返回给客户端。Servlet 通常被用来实现 Web 应用程序中的控制器，但它比 Controller 更底层，需要手动处理请求参数、响应头等细节。
+
+在 Spring MVC 中，Controller 是基于 Servlet 技术实现的，它可以理解为是 Servlet 的一种扩展。与传统的 Servlet 相比，Spring MVC 的 Controller 更加注重分离关注点，将业务逻辑和请求处理分别处理，从而使得代码更加清晰、可读和可维护。同时，Spring MVC 也支持与传统的 Servlet 技术共存，可以在同一个 Web 应用程序中同时使用 Controller 和 Servlet。
+
+#### Spring Boot 配置类来设置 Spring MVC
+
+在 Spring Boot 中，你可以通过配置类来设置 Spring MVC。一般情况下，这个配置类需要包含以下内容：
+
+* WebMvcConfigurer 接口：配置 Spring MVC 的属性和行为。
+* ResourceHandlerRegistry：配置静态资源的处理器。
+* ViewResolver：配置视图解析器。
+* InterceptorRegistry：配置拦截器。
+* MessageConverter：配置消息转换器。
+* ExceptionHandler：配置异常处理器。
+* CorsRegistry：配置跨域访问。
+
+需要注意的是，在 Spring Boot 中，你可以通过 Application 类来设置 Spring MVC 的配置类，也可以在配置类中使用 @ComponentScan 注解来扫描所有的控制器类。
+
+### SpringBoot核心注解
+
+Spring Boot 中有很多核心注解，以下是一些常用的注解：
+
+* `@SpringBootApplication`: 这个注解是Spring Boot应用程序的主要注解，它可以用来替代`@Configuration`、`@EnableAutoConfiguration`和`@ComponentScan`三个注解。
+* `@RestController`: 这个注解用来标识一个类是Spring MVC中的Controller，它会自动将返回的数据转换为json格式。
+* `@RequestMapping`: 这个注解用来映射请求的URL和方法，可以用来定义接口的访问路径。
+* `@Autowired`: 这个注解用来自动装配Spring容器中的Bean，可以省略 `setter/getter` 方法。
+* `@Service`: 这个注解用于标注业务层组件，与`@Component`注解功能相同。
+* `@Repository`: 这个注解用于标注数据访问层组件，与`@Component`注解功能相同。
+* `@Component`: 这个注解用于标注一个组件，可以被自动扫描并装配到Spring容器中。
+
+### MyBatis
+
+#### MyBatis是如何管理Mapper接口的
+
+Mybatis通过接口映射的方式来管理mapper接口。
+
+在Mybatis中，mapper接口被映射为一个MapperProxy对象。当调用mapper接口的方法时，Mybatis会通过MapperProxy对象来代理实现对应的SQL操作。
+
+MapperProxy对象中包含了一个SqlSession对象，它是Mybatis中用于执行SQL操作的核心对象。MapperProxy对象会将mapper接口的方法名和参数传递给SqlSession对象，并根据XML映射文件中的SQL语句执行相应的操作。
+
+在XML映射文件中，Mybatis会将mapper接口的方法名和参数与SQL语句进行映射。通过这种方式，Mybatis能够根据mapper接口的方法名和参数自动生成SQL语句，并执行相应的操作。
+
+例如，假设有一个UserMapper接口，其中包含一个selectUserById方法。Mybatis会将selectUserById方法映射为一个SQL语句，该SQL语句会根据传入的参数查询相应的用户信息。当调用selectUserById方法时，Mybatis会根据该方法的参数自动生成相应的SQL语句，并通过SqlSession对象执行该SQL语句，最终返回查询结果。
+
+总之，Mybatis通过接口映射的方式来管理mapper接口，将mapper接口的方法名和参数与XML映射文件中的SQL语句进行映射，并通过SqlSession对象执行相应的操作。
+>>>>>>> 29a453f6a2b95a6703c68c6e4393c929ba9eb301
 
 ### Netty
 
