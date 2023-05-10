@@ -112,6 +112,66 @@ out.println(str1 == ""); // true
 out.println(str1 == str3); // false
 ```
 
+#### 什么是hash
+
+Hash是一种将任意长度的消息压缩到某一固定长度的消息摘要算法。Hash算法的输入可以是任意长度的数据，输出是一个固定长度的哈希值。Hash算法的核心思想是将数据映射到一个哈希值，这个哈希值可以用来校验数据的完整性和一致性。
+
+Hash算法具有以下特点：
+
+1. 不可逆性：Hash算法是不可逆的，即无法从哈希值推导出原始数据。
+
+2. 唯一性：不同的输入数据会产生不同的哈希值。
+
+3. 散列性：Hash算法的输出值尽可能地分布在哈希值空间中，从而减小哈希冲突的概率。
+
+Hash算法在数据安全领域有着广泛的应用，例如密码学、数字签名、数据完整性校验等。常见的Hash算法有MD5、SHA-1、SHA-256等。
+
+在Java中，获取Hash值的方式主要有两种：
+
+1. 使用hashCode()方法
+
+    Object类的hashCode()方法可以返回一个对象的哈希码。该方法返回一个整型值，代表该对象的哈希码。默认情况下，hashCode()方法返回的是对象的内存地址。
+
+    例如：
+
+    ```java
+    String str = "Hello World";
+    int hashCode = str.hashCode();
+    System.out.println(hashCode);
+    ```
+
+    输出结果：
+
+    ```txt
+    69609650
+    ```
+
+2. 使用MessageDigest类
+
+    Java中的MessageDigest类提供了多种哈希算法，包括MD5、SHA-1、SHA-256等。可以使用该类来计算任意数据的哈希值。
+
+    例如：
+
+    ```java
+    String str = "Hello World";
+    MessageDigest md = MessageDigest.getInstance("MD5");
+    md.update(str.getBytes());
+    byte[] mdBytes = md.digest();
+    StringBuffer sb = new StringBuffer();
+    for (byte b : mdBytes) {
+        sb.append(Integer.toHexString((b & 0xff)));
+    }
+    System.out.println(sb.toString());
+    ```
+
+    输出结果：
+
+    ```txt
+    ed076287532e86365e841e92bfc50d8c
+    ```
+
+以上代码使用了MD5算法来计算字符串"Hello World"的哈希值，并将结果转换成16进制字符串输出。注意，使用MessageDigest类计算哈希值时，需要先将原始数据转换成字节数组，并通过调用update()方法将其传递给MessageDigest对象。最后，通过调用digest()方法获取哈希值的字节数组，并将其转换成字符串输出。
+
 ### 集合
 
 #### List, Set 和 Map 区别
@@ -147,7 +207,193 @@ hashMap: 是由数组和链表组成的, 谈到哈希碰撞的问题: 通过精�
 
 #### 创建线程的方式及实现
 
+Java创建线程的方式有两种：继承Thread类和实现Runnable接口。
+
+##### 继承Thread类
+
+创建线程的步骤如下：
+
+* 创建一个类，继承Thread类，并重写run方法；
+* 在run方法中编写线程的执行代码；
+* 创建该类的对象，并调用其start方法启动线程。
+
+示例代码如下：
+
+```java
+public class MyThread extends Thread {
+    @Override
+    public void run() {
+        // 线程执行的代码
+        System.out.println("MyThread is running.");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        MyThread myThread = new MyThread();
+        myThread.start();
+    }
+}
+```
+
+##### 实现Runnable接口
+
+创建线程的步骤如下：
+
+* 创建一个类，实现Runnable接口，并重写run方法；
+* 在run方法中编写线程的执行代码；
+* 创建该类的对象，并将其作为参数传递给Thread类的构造方法中；
+* 调用Thread类的start方法启动线程。
+
+示例代码如下：
+
+```java
+public class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        // 线程执行的代码
+        System.out.println("MyRunnable is running.");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        MyRunnable myRunnable = new MyRunnable();
+        Thread thread = new Thread(myRunnable);
+        thread.start();
+    }
+}
+```
+
+两种方式都可以创建线程，但是实现Runnable接口比继承Thread类更好，因为Java是单继承的，在继承Thread类的同时可能会继承其他类，而实现Runnable接口可以避免这种限制。此外，实现Runnable接口还可以实现线程池等高级特性。
+
+##### Callable 和Future 实现多线程
+
+使用 `Callable` 和 `Future` 接口可以实现多线程编程，具体步骤如下：
+
+1. 实现 `Callable` 接口，并重写 `call` 方法，在该方法中编写需要在新线程中执行的代码
+
+    ```java
+    class MyCallable implements Callable<Integer> {
+        @Override
+        public Integer call() throws Exception {
+            // do some computation
+            return result;
+        }
+    }
+    ```
+
+2. 创建 `ExecutorService` 对象，该对象用于管理线程池，可以控制线程池的大小等属性
+
+    ```java
+    ExecutorService executor = Executors.newFixedThreadPool(10);
+    ```
+
+3. 创建 `Future` 对象，该对象用于获取线程执行结果
+
+    ```java
+    Future<Integer> future = executor.submit(new MyCallable());
+    ```
+
+4. 在需要获取线程执行结果的地方调用 `get` 方法
+
+    ```java
+    Integer result = future.get();
+    ```
+
+在这个示例中，我们首先定义了一个实现了 `Callable` 接口的 `MyCallable` 类，在该类中重写了 `call` 方法，实现了需要在新线程中执行的代码。然后我们创建了一个 `ExecutorService` 对象，该对象用于管理线程池，我们使用 `newFixedThreadPool` 方法创建了一个固定大小为 10 的线程池。接着，我们使用 `submit` 方法提交了一个 `MyCallable` 对象，该方法会返回一个 `Future` 对象，我们可以通过该对象获取线程执行结果。最后，在需要获取线程执行结果的地方，我们调用了 `get` 方法，等待线程执行完毕并返回结果。
+
+需要注意的是，在使用 `Callable` 和 `Future` 接口时，需要处理可能抛出的异常，例如在 `call` 方法中可能会抛出异常，需要使用 `try...catch` 语句块来捕获异常。同时，调用 `get` 方法时也可能会抛出异常，例如当线程执行过程中被中断或超时时，需要处理相应的异常。
+
+#### java 线程设置优先级
+
+Java中线程的优先级通过Thread类的setPriority()方法来设置，其中优先级范围是1到10，1是最低优先级，10是最高优先级。默认情况下，线程的优先级是5。
+
+以下是设置线程优先级的示例代码：
+
+Thread t = new Thread();
+t.setPriority(8);
+
+需要注意的是，优先级较高的线程并不一定会比优先级较低的线程先执行完毕，因为线程的执行顺序是由操作系统决定的。因此，在编写多线程程序时，不要过度依赖线程优先级，更应该关注线程间的协作与同步。
+
+使用`Runnable`接口实现多线程时，需要将`Runnable`对象作为参数传递给`Thread`类的构造方法中，然后调用`Thread`类的`setPriority()`方法来设置线程优先级。
+
+以下是使用`Runnable`接口实现多线程并设置优先级的示例代码：
+
+```java
+public class MyRunnable implements Runnable {
+    public void run() {
+        // 线程执行的代码
+    }
+}
+
+MyRunnable myRunnable = new MyRunnable();
+Thread t = new Thread(myRunnable);
+t.setPriority(8);
+t.start();
+```
+
+与使用`Thread`类直接创建线程的方式相比，使用`Runnable`接口实现多线程需要多一步将`Runnable`对象传递给`Thread`类的构造方法中，但其优点在于可以避免单继承的限制，使得程序更加灵活。
+
+需要注意的是，与使用`Thread`类直接创建线程的方式一样，优先级较高的线程并不一定会比优先级较低的线程先执行完毕，因为线程的执行顺序是由操作系统决定的。因此，在编写多线程程序时，不要过度依赖线程优先级，更应该关注线程间的协作与同步。
+
+使用`Callable`接口实现多线程时，需要将`Callable`对象作为参数传递给`FutureTask`类的构造方法中，然后调用`Thread`类的`setPriority()`方法来设置线程优先级。
+
+以下是使用`Callable`接口实现多线程并设置优先级的示例代码：
+
+```java
+public class MyCallable implements Callable<Integer> {
+    public Integer call() throws Exception {
+        // 线程执行的代码
+    }
+}
+
+MyCallable myCallable = new MyCallable();
+FutureTask<Integer> task = new FutureTask<>(myCallable);
+Thread t = new Thread(task);
+t.setPriority(8);
+t.start();
+```
+
+与使用`Runnable`接口实现多线程相比，使用`Callable`接口实现多线程需要多一步将`Callable`对象传递给`FutureTask`类的构造方法中，并且`Callable`接口的`call()`方法可以抛出异常，需要进行异常处理。
+
+需要注意的是，与使用`Thread`类直接创建线程的方式一样，优先级较高的线程并不一定会比优先级较低的线程先执行完毕，因为线程的执行顺序是由操作系统决定的。因此，在编写多线程程序时，不要过度依赖线程优先级，更应该关注线程间的协作与同步。
+
 #### sleep() 、join（）、yield（）有什么区别
+
+在Java中，sleep、join和yield都是线程的控制方法，但它们的作用和使用场景不同。
+
+* sleep方法
+    sleep方法是线程类中的静态方法，它让当前线程暂停执行指定的时间，让出CPU时间片，让其他线程有机会执行。在指定的时间到期后，当前线程会重新进入就绪状态，等待CPU的调度。一般情况下，sleep方法用于线程需要暂停一段时间，以等待某些资源准备好或者执行某些计算任务的时候。
+
+* join方法
+    join方法是线程类中的实例方法，用于等待当前线程执行完成，等待期间会阻塞当前线程，直到被等待的线程执行完成或者等待时间到期。一般情况下，join方法用于等待其他线程执行完毕后再执行当前线程，或者等待某些资源的释放。
+
+* yield方法
+    yield方法是线程类中的静态方法，它让当前线程让出CPU时间片，让其他线程有机会执行。与sleep方法不同的是，yield方法不会让当前线程暂停执行，而是直接进入就绪状态，等待CPU的调度。一般情况下，yield方法用于线程需要暂停一段时间，以等待其他线程执行完成，或者让优先级较低的线程有机会执行。
+
+综上所述，sleep方法和yield方法都是让当前线程让出CPU时间片，但sleep方法会暂停执行一段时间，而yield方法则直接进入就绪状态。join方法则是让当前线程等待其他线程执行完毕后再执行。
+
+#### 设置守护线程
+
+Java中的守护线程（Daemon Thread）是一种特殊类型的线程，它的作用是为其他线程提供服务。当Java虚拟机中只剩下守护线程时，Java虚拟机会自动退出。
+
+守护线程的特点是与普通线程相比，具有较低的优先级，并且在Java虚拟机中运行时，如果所有非守护线程都结束了，则守护线程也会自动结束。因此，Java中的守护线程通常用于为其他线程提供后台服务的场景。
+
+在Java中，通过设置Thread对象的setDaemon方法来创建守护线程。例如，以下代码创建了一个守护线程：
+
+```java
+Thread thread = new Thread(new Runnable() {
+    @Override
+    public void run() {
+        // 守护线程的具体逻辑
+    }
+});
+thread.setDaemon(true);
+thread.start();
+```
+
+需要注意的是，一旦一个线程被设置为守护线程后，就不能再改变其状态。因此，在设置守护线程之前，一定要确保该线程不会对其他线程产生影响。
 
 #### 说说 CountDownLatch 原理
 
@@ -161,7 +407,86 @@ hashMap: 是由数组和链表组成的, 谈到哈希碰撞的问题: 通过精�
 
 #### ThreadLocal 原理分析
 
+ThreadLocal 是 Java 中的一个线程本地变量工具类，它提供了一种线程安全的方式来存储线程本地数据。ThreadLocal 变量通常被定义为私有静态类型，它们在多线程环境下为不同的线程提供了独立的变量副本，并且在每个线程中都可以访问该变量副本。
+
+ThreadLocal 的原理是，每个 Thread 对象内部都维护了一个 ThreadLocalMap 对象，ThreadLocalMap 是 ThreadLocal 的实现类，它是一个 key-value 对，其中 key 是 ThreadLocal 对象的弱引用，value 是线程本地变量的值。当调用 ThreadLocal 的 set() 方法时，ThreadLocal 会将当前线程作为 key，将要设置的值作为 value，存储到当前线程的 ThreadLocalMap 对象中。当需要获取线程本地变量的值时，ThreadLocal 会先获取当前线程，然后从当前线程的 ThreadLocalMap 对象中获取对应的 value 值。
+
+由于每个线程内部都有一个 ThreadLocalMap 对象来存储线程本地变量的值，因此不同的线程之间访问的是不同的值，从而实现了线程本地变量的隔离。
+
+需要注意的是，由于 ThreadLocalMap 中的 key 是 ThreadLocal 对象的弱引用，因此如果 ThreadLocal 没有被其他对象引用，那么它可能会被垃圾回收器回收，但是 ThreadLocalMap 中的 value 却不会被回收，这可能会导致内存泄露问题，因此在使用 ThreadLocal 时需要特别注意内存泄露问题的处理。
+
 #### 讲讲线程池的实现原理
+
+Java线程池是通过ThreadPoolExecutor类来实现的。ThreadPoolExecutor类是一个线程池的实现，它提供了一系列的构造方法和参数，可以根据需求来创建不同类型的线程池。
+
+ThreadPoolExecutor类的构造方法可以接收以下参数：
+
+* corePoolSize：核心线程数，即在池中一直保持运行的线程数量。
+* maximumPoolSize：最大线程数，即池中允许的最大线程数量。
+* keepAliveTime：线程池中线程空闲后的存活时间。
+* unit：存活时间的时间单位。
+* workQueue：任务队列，用于保存等待执行的任务。
+* threadFactory：线程工厂，用于创建新线程。
+* handler：饱和策略，用于处理当任务队列已满并且线程池中的线程数达到最大值时采取的策略。
+
+线程池的使用可以通过以下步骤来实现：
+
+1. 创建ThreadPoolExecutor对象，指定核心线程数、最大线程数、任务队列等参数。
+2. 创建Runnable或Callable任务对象。
+3. 将任务对象添加到线程池中执行。
+4. 关闭线程池。
+
+线程池的作用是通过复用线程来提高程序的执行效率和资源的利用率，避免线程频繁创建和销毁的开销，同时还可以控制线程的数量和执行顺序，保证程序的稳定性和可靠性。
+
+下面是一个简单的ThreadPoolExecutor的例子，以创建一个固定大小的线程池为例：
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ThreadPoolExample {
+    public static void main(String[] args) {
+        // 创建固定大小的线程池
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        
+        // 向线程池中添加任务
+        for (int i = 0; i < 10; i++) {
+            executorService.submit(new Task(i));
+        }
+        
+        // 关闭线程池
+        executorService.shutdown();
+    }
+}
+
+class Task implements Runnable {
+    private int id;
+    
+    public Task(int id) {
+        this.id = id;
+    }
+    
+    @Override
+    public void run() {
+        System.out.println("Task " + id + " is running on thread " + Thread.currentThread().getName());
+    }
+}
+```
+
+上面的例子中，我们使用了ExecutorService接口的实现类Executors来创建了一个固定大小为5的线程池，然后通过for循环向线程池中添加了10个任务（这里使用了实现Runnable接口的Task类），最后调用shutdown()方法来关闭线程池。
+
+在运行时，我们可以看到线程池中只有5个线程在运行，这是因为线程池大小为5，所以只会同时运行5个任务，其余的任务会在等待队列中等待执行。当某个线程执行完任务后，会去等待队列中取出一个任务继续执行。同时，我们也可以看到不同的任务会在不同的线程上执行，这是因为线程池会自动分配线程来执行任务。
+
+当你调用ThreadPoolExecutor的submit()方法添加任务时，任务会被添加到线程池的任务队列中，但并不一定会立即执行。线程池会根据自己的调度策略来决定何时开始执行任务。如果线程池中有空闲线程，任务可能会立即执行。如果没有空闲线程，则任务会等待直到有空闲线程可用。
+
+线程池的调度策略包括以下几种：
+
+* 直接提交：每个任务都会立即执行，不会将任务添加到队列中。
+* FIFO：按照任务提交的顺序依次执行。
+* LIFO：按照任务提交的顺序的相反顺序执行。
+* 优先级：根据任务的优先级来执行任务。
+
+你可以通过ThreadPoolExecutor的构造函数或者方法来设置线程池的调度策略。
 
 #### 线程池的几种方式
 
@@ -173,15 +498,195 @@ hashMap: 是由数组和链表组成的, 谈到哈希碰撞的问题: 通过精�
 
 #### volatile 实现原理
 
+`volatile` 是 Java 中的关键字，用于修饰变量。使用 `volatile` 关键字修饰的变量，可以保证多个线程之间对该变量的读写操作都是可见的，即一个线程修改了该变量的值，其他线程可以立即看到最新的值。`volatile` 关键字可以保证变量在多线程环境下的可见性，但是不能保证原子性，也就是说，使用 `volatile` 关键字修饰的变量，虽然可以保证多个线程之间对该变量的读写操作都是可见的，但是不能保证多个线程同时对该变量进行读写操作时的正确性。
+
 #### synchronize 实现原理
+
+`synchronized` 是 Java 中的关键字，用于实现多线程同步。在 Java 中，每个对象都有一个内置的锁，也称为监视器锁或管程。当一个线程尝试访问被 `synchronized` 关键字修饰的方法或代码块时，它必须先获得该对象的锁，如果该锁已经被其他线程占用，那么当前线程就会进入阻塞状态，直到获得该锁为止。
+
+`synchronized` 实现的原理是通过 Java 虚拟机中的监视器机制来实现的。每个对象都有一个与之关联的监视器锁，当一个线程访问一个被 `synchronized` 关键字修饰的方法或代码块时，它必须先获得该对象的监视器锁，如果该锁已经被其他线程占用，那么当前线程就会进入阻塞状态，直到该锁被释放为止。
+
+在 Java 中，`synchronized` 关键字可以用于方法和代码块的修饰。当一个方法被 `synchronized` 关键字修饰时，该方法的所有代码都会被锁定，即使该方法中有多个代码块也是如此。当一个代码块被 `synchronized` 关键字修饰时，只有该代码块中的代码会被锁定，其他代码不受影响。
 
 #### synchronized 与 lock 的区别
 
+在 Java 中，`Lock` 和 `synchronized` 都是用于实现多线程同步的机制，它们的主要区别如下：
+
+1. 锁的获取和释放方式不同：使用 `synchronized` 关键字来实现同步时，锁的获取和释放是由 Java 虚拟机自动进行的，而使用 `Lock` 接口来实现同步时，则需要手动调用 `lock()` 方法来获取锁，调用 `unlock()` 方法来释放锁。
+
+2. `Lock` 接口提供了更多的功能：`Lock` 接口提供了一些 `synchronized` 关键字不具备的功能，如可重入锁、公平锁、读写锁等。
+
+3. 性能方面的差异：在低竞争情况下，`synchronized` 关键字的性能要比 `Lock` 接口好，在高竞争情况下，`Lock` 接口的性能要比 `synchronized` 关键字好。
+
+4. 使用方式的差异：`synchronized` 关键字的使用方式比较简单，只需要在方法或代码块前加上 `synchronized` 关键字即可，而使用 `Lock` 接口需要手动创建一个 `Lock` 对象，并在需要同步的代码块前后调用 `lock()` 和 `unlock()` 方法。
+
+总的来说，`Lock` 接口提供了比 `synchronized` 关键字更多的功能和更细粒度的控制，但是使用起来比 `synchronized` 关键字更麻烦，需要手动管理锁的获取和释放，而且容易出现死锁等问题。因此，对于普通的多线程同步问题，建议使用 `synchronized` 关键字来实现同步，对于需要更高级的同步功能，可以考虑使用 `Lock` 接口。
+
+#### 常见锁类型
+
+常见的锁的类型有以下几种：
+
+1. `synchronized` 关键字：Java 内置的关键字，可以用来实现代码块或方法的同步，保证在同一时刻只有一个线程可以执行。
+
+2. `ReentrantLock` 类：Java 提供的一个可重入锁，可以替代 `synchronized` 关键字，在功能上更加灵活，例如可以实现公平锁和非公平锁。
+
+3. `ReadWriteLock` 接口：Java 提供的读写锁接口，可以实现读写分离，提高多线程读取效率。
+
+4. `StampedLock` 类：Java 8 新增的一种锁机制，可以实现乐观读锁、悲观读锁和写锁等，提高了读取效率。
+
+5. `Semaphore` 类：Java 提供的一种计数信号量机制，可以控制同时访问某个资源的线程数。
+
+6. `CountDownLatch` 类：Java 提供的一种倒计时计数器，可以让某个线程等待其他线程执行完毕后再执行。
+
+7. `CyclicBarrier` 类：Java 提供的一种同步辅助类，可以让一组线程相互等待，直到到达某个公共屏障点后再继续执行。
+
+8. `Exchanger` 类：Java 提供的一种线程间数据交换工具类，可以让两个线程交换彼此的数据。
+
+Java中常见的锁实现有以下几种：
+
+1. synchronized关键字：synchronized是Java语言内置的一种锁机制，可以用来实现对共享资源的互斥访问。它可以作用于方法或代码块，保证同一时刻只有一个线程执行被锁定的代码。
+
+2. ReentrantLock类：ReentrantLock是Java提供的一个可重入锁实现，它可以用来替代synchronized关键字，提供更细粒度的锁控制。ReentrantLock提供了公平锁和非公平锁两种模式。
+
+3. ReadWriteLock接口：ReadWriteLock是Java提供的读写锁接口，它可以用来实现对共享资源的读写操作的并发控制。ReadWriteLock允许多个线程同时读取共享资源，但只允许一个线程写入共享资源。
+
+4. StampedLock类：StampedLock是Java8新增的一种锁机制，它提供了一种乐观的读锁模式，可以在读多写少的场景中提高并发性能。
+
+5. synchronized和Lock的Condition接口：synchronized和Lock都提供了Condition接口，可以用来实现线程之间的通信。Condition接口可以让线程在特定的条件下等待或唤醒。
+
+这些锁实现各有优缺点，需要根据具体的使用场景选择合适的锁机制。在使用锁的过程中，需要注意锁的粒度、并发性能、死锁等问题。同时，使用锁的过程中还需要遵循一些最佳实践，例如尽量减小锁的持有时间，避免重复加锁等。
+
 #### CAS 乐观锁
+
+CAS（Compare-and-Swap）是一种乐观锁，它是一种无锁的同步机制，常用于实现并发算法。CAS 操作包含三个操作数：内存位置 V，旧的预期值 A 和新值 B。当执行 CAS 操作时，只有当内存位置 V 的值等于预期值 A 时，才会将内存位置 V 的值更新为新值 B，否则不进行任何操作。这个操作是原子的，因此可以保证多线程环境下的数据一致性。
+
+CAS 操作的一般流程如下：
+
+1. 获取内存位置 V 的值；
+2. 判断内存位置 V 的值是否等于预期值 A；
+3. 如果等于预期值 A，则将内存位置 V 的值更新为新值 B；
+4. 如果不等于预期值 A，则返回到第 1 步，重新执行操作。
+
+CAS 操作的优点是避免了线程阻塞和上下文切换的开销，因为它是无锁的同步机制。但是，由于 CAS 操作需要不断地进行重试，所以如果同时有多个线程在进行 CAS 操作，就会出现多个线程同时修改同一个内存位置的情况，这称为 ABA 问题。为了解决 ABA 问题，可以使用版本号或时间戳等机制，每次更新内存位置时都将版本号或时间戳加 1，这样就可以避免多个线程同时修改同一个内存位置的问题。
 
 #### ABA 问题
 
+ABA 问题指的是在并发编程中，当一个值从 A 变成 B，又从 B 变成 A，最后再变成了 B，那么如果只是简单地比较值，就会出现错误。因为这个时候，比较值是一样的，但实际上这个值已经被修改了两次，可能会导致程序出现意料之外的结果。
+
+举个例子，假设有两个线程 A 和 B，初始时一个共享变量的值为 1。线程 A 将这个变量的值修改为 2，然后又将其修改为 1；在此期间，线程 B 将这个变量的值修改为 3，然后又将其修改为 1。此时，如果只是比较值，就会认为线程 B 并没有修改共享变量的值，但实际上它已经修改了共享变量的值，并且修改了两次。
+
+为了解决 ABA 问题，可以使用一些技术手段，例如增加版本号、时间戳等机制，在每次修改共享变量时都将版本号或时间戳加 1，这样就可以避免多个线程同时修改同一个内存位置的问题。另外，Java 中的 `AtomicStampedReference` 类和 `AtomicMarkableReference` 类可以用来解决 ABA 问题。
+
 #### 乐观锁的业务场景及实现方式
+
+乐观锁是一种基于冲突检测的并发控制机制，它在处理多个并发事务时，假设事务之间不会产生冲突，因此不会加锁，而是在提交事务前检查数据是否被其他事务修改过。如果检测到冲突，则放弃当前操作，否则提交事务。
+
+乐观锁适用于并发更新冲突不频繁的业务场景，例如：
+
+1. 读多写少的场景，例如新闻网站的文章浏览和编辑，大多数用户只是浏览文章，只有少数用户同时编辑同一篇文章，此时采用乐观锁就能提高并发性能。
+
+2. 数据库中的数据版本控制，例如通过在表中增加一个版本号字段来实现乐观锁，每次更新记录时将版本号加 1，当检测到版本号不一致时就放弃当前操作。
+
+3. 在分布式系统中，如果两个节点同时更新同一个数据，可以使用乐观锁来避免冲突，例如通过版本号或时间戳来检测数据是否被其他节点修改过。
+
+需要注意的是，乐观锁虽然能提高并发性能，但是在并发更新冲突频繁的场景下，乐观锁的重试次数会增加，从而导致性能下降。因此，在选择乐观锁时，需要根据业务场景和实际情况来进行评估和选择。
+
+#### 悲观锁
+
+悲观锁是一种保守的锁策略，它假设在整个并发环境中，多个线程会频繁地互相干扰，因此每次访问共享资源时都要先获取锁，以保证线程安全。悲观锁的典型实现是使用 synchronized 关键字，它可以保证同一时刻只有一个线程能够获得锁，其他线程必须等待锁的释放才能继续执行。
+
+悲观锁的优点是实现简单，容易理解和使用，可以有效地解决并发访问共享资源的问题。但是悲观锁的缺点也非常明显，它需要频繁地加锁和释放锁，这样会带来较大的性能开销，尤其是在高并发场景下。此外，悲观锁容易引起死锁问题，因为如果一个线程在等待锁的时候被阻塞了，那么其他线程也可能被阻塞，导致整个程序停滞不前。
+
+#### 其他锁思想
+
+除了悲观锁和乐观锁之外，还有一些其他的锁思想，例如：
+
+1. 自旋锁：自旋锁是一种轻量级的锁，在等待锁的过程中，不断地检查锁是否被释放。如果锁被其他线程占用，则当前线程会一直循环等待，直到获取到锁为止。自旋锁适用于锁的持有时间比较短的场景，可以避免线程进入内核态的开销，从而提高并发性能。
+
+2. 可重入锁：可重入锁是一种可重复获取的锁，同一个线程在持有锁的情况下，可以再次获取锁，而不会导致死锁。可重入锁适用于需要递归调用同步方法的场景，可以避免死锁和线程阻塞的问题。
+
+3. 公平锁和非公平锁：公平锁和非公平锁是针对锁的获取顺序的不同策略。公平锁会按照线程的请求顺序来获取锁，线程会进入一个队列中等待获取锁；而非公平锁则会优先考虑已经请求过锁的线程，如果当前锁被释放了，则优先给已经请求过锁的线程分配锁。公平锁能够保证线程获取锁的顺序，但是会导致线程上下文切换的开销增加，而非公平锁则能够提高并发性能，但是可能会导致某些线程长时间等待锁。
+
+4. 分段锁：分段锁是一种并发控制机制，它将一个锁分成多个小锁，每个小锁控制一部分数据，不同的线程可以同时访问不同的小锁，从而提高并发性能。分段锁适用于数据结构中有多个独立的部分，例如 ConcurrentHashMap 就使用了分段锁来实现高效的并发访问。
+
+不同的锁思想适用于不同的业务场景，需要根据实际情况选择合适的锁。
+
+#### java实现了哪些锁思想
+
+Java 实现了多种锁思想，包括：
+
+1. 悲观锁：使用 synchronized 关键字实现的锁，它假设在整个并发环境中，多个线程会频繁地互相干扰，因此每次访问共享资源时都要先获取锁，以保证线程安全。
+
+2. 乐观锁：使用 CAS（Compare and Swap）机制实现的锁，它假设在整个并发环境中，多个线程不会频繁地互相干扰，因此每次访问共享资源时不需要获取锁，而是通过 CAS 操作来判断是否能够进行修改，如果能够进行修改，则直接更新数据，否则重试或者放弃。
+    Java 中的 CAS（Compare and Swap）操作主要使用了 sun.misc.Unsafe 类的 compareAndSwapXXX 方法实现，目前已经被 java.util.concurrent.atomic 包中的类所封装，提供了一系列原子操作的支持，比如 AtomicBoolean、AtomicInteger、AtomicLong 等。
+
+    CAS 操作的实现原理是基于硬件的原子性操作实现的，它可以保证在多线程环境下，对于共享资源的修改操作是线程安全的。CAS 操作的基本思想是先读取共享资源的值，然后判断该值是否和期望值相等，如果相等，则进行修改操作，否则返回失败，重新尝试。
+
+    CAS 操作的优点是可以避免加锁操作的开销，并且可以保证同时只有一个线程能够修改共享资源，从而保证线程安全。但是 CAS 操作也有一些缺点，比如在高并发场景下，CAS 的失败次数会比较多，从而导致性能下降，同时也存在 ABA 问题，需要额外的解决方案来避免这种问题的发生。
+
+    当多个线程同时对同一数据进行修改时，为了避免数据的不一致性，我们可以使用乐观锁来解决这个问题。乐观锁的基本思想是，每次修改数据时，都要先读取数据并记录版本号，然后进行修改。当写入数据时，检查版本号是否被其他线程修改，如果版本号不一致，则说明数据已经被其他线程修改，此时需要重试。
+
+    下面是一个使用Java实现乐观锁的示例：
+
+    ```java
+    public class OptimisticLockExample {
+        private int value;
+        private int version;
+
+        public synchronized void update(int newValue) {
+            if (version == getVersion()) {
+                value = newValue;
+                version++;
+            } else {
+                throw new RuntimeException("Data has been modified by other thread.");
+            }
+        }
+
+        public synchronized int getValue() {
+            return value;
+        }
+
+        public synchronized int getVersion() {
+            return version;
+        }
+    }
+    ```
+
+    在上面的示例中，我们定义了一个包含值和版本号的类，其中`update`方法用于更新值，`getValue`方法用于获取值，`getVersion`方法用于获取版本号。在`update`方法中，我们首先获取当前版本号，然后判断当前版本号是否与实际版本号相同，如果相同，则更新值并增加版本号，否则抛出异常。
+
+    需要注意的是，由于乐观锁是一种无阻塞的锁，因此在并发量较大的情况下，可能会出现大量重试的情况，从而导致性能下降。因此，在实际使用中，需要根据实际情况来选择合适的锁机制。
+
+3. 自旋锁：在获取锁的时候，如果发现资源已经被其他线程占用，那么不是进入阻塞状态，而是采用循环等待的方式进行等待，不断地尝试获取锁，直到获取成功或者超时。
+
+    ```java
+    import java.util.concurrent.atomic.AtomicReference;
+
+    public class SpinLock {
+        private AtomicReference<Thread> owner = new AtomicReference<>();
+        
+        public void lock() {
+            Thread currentThread = Thread.currentThread();
+            while (!owner.compareAndSet(null, currentThread)) {
+                // 自旋等待锁释放
+            }
+        }
+        
+        public void unlock() {
+            Thread currentThread = Thread.currentThread();
+            owner.compareAndSet(currentThread, null);
+        }
+    }
+    ```
+
+    这个自旋锁的实现使用了`AtomicReference`类来维护锁的状态。当一个线程请求锁时，它会不断地自旋等待锁释放，直到它成功地将`owner`的值从`null`修改为当前线程。当一个线程释放锁时，它会把`owner`的值设置为`null`。
+
+    需要注意的是，自旋锁会一直占用CPU资源，因此在实际使用中需要谨慎考虑它的使用场景，以避免出现性能问题。
+
+4. 读写锁：允许多个线程同时读取共享资源，但是在写入共享资源时必须互斥，只允许一个线程进行写入操作，以保证数据的一致性和线程安全。
+
+5. 分段锁：将共享资源分成多个段，每个段都有自己的锁，可以允许多个线程同时访问不同的段，从而提高并发性能。
+
+6. 偏向锁：假设在大多数情况下，共享资源只会被一个线程访问，因此在第一次获取锁的时候，会将锁标记为偏向锁，并将当前线程的 ID 记录在锁的头部，以后如果再有其他线程来访问该共享资源，只需要判断锁的状态即可，不需要再进行加锁操作，从而提高并发性能。
 
 ## 核心篇
 
@@ -189,11 +694,75 @@ hashMap: 是由数组和链表组成的, 谈到哈希碰撞的问题: 通过精�
 
 #### MySQL 索引使用的注意事项
 
+数据库索引是一种数据结构，用于提高数据库查询的效率。在MySQL中，索引分为聚集索引和非聚集索引两种类型。聚集索引是按照主键进行排序的索引，而非聚集索引则是按照二级索引的键值进行排序的索引。
+
+创建索引的语法如下：
+
+```sql
+CREATE [UNIQUE] INDEX index_name ON table_name (column1, column2, ...);
+```
+
+其中，`index_name`为索引名称，`table_name`为表名，`column1`、`column2`等为需要索引的列名。
+
+在创建索引时，需要注意以下几点：
+
+1. 索引不是越多越好，过多的索引会增加维护成本和空间占用。
+2. 需要根据实际查询情况来选择需要建立的索引。
+3. 需要注意索引的选择性，即索引列的不同取值占比。选择性越高的索引效果越好。
+4. 需要避免在查询中对索引列进行函数、计算、类型转换等操作，这会使索引失效。
+5. 需要注意索引的大小限制，MySQL中InnoDB引擎的索引大小限制为767字节。
+
+另外，MySQL中还提供了一些用于优化查询效率的技术，如覆盖索引、联合索引、前缀索引等，需要根据具体情况进行选择和使用。
+
 #### 说说反模式设计
 
 #### 说说 SQL 优化之道
 
 #### MySQL 遇到的死锁问题
+
+#### MySQL 存储引擎
+
+MySQL支持多种存储引擎，每种存储引擎都有其特点和适用场景。以下是MySQL常用的几种存储引擎的区别：
+
+1. InnoDB：默认的存储引擎，支持ACID事务，提供行级锁定和外键约束，适合于大多数应用程序。
+
+2. MyISAM：不支持事务和外键约束，但速度快，适合于读密集型应用。
+
+3. Memory：将数据存储在内存中，速度非常快，但数据不能持久化，适合于缓存表和临时表。
+
+4. CSV：将数据以CSV格式存储在文件中，适合于数据交换和导入导出操作。
+
+5. Archive：压缩数据以减小存储空间，但不支持索引，只适用于存储归档数据。
+
+6. Blackhole：不存储任何数据，只用于复制和分析操作。
+
+7. Federated：允许在多个MySQL服务器之间共享表格数据，但不支持事务和外键约束。
+
+需要注意的是，不同的存储引擎对于并发性、数据完整性、事务支持、索引类型和空间占用等方面的处理方式可能不同，需要根据具体应用场景进行选择。
+
+#### InnoDB
+
+InnoDB是MySQL默认的存储引擎，也是最常用的存储引擎之一。相较于其他存储引擎，InnoDB具有以下特点：
+
+1. 支持ACID事务：InnoDB支持事务的提交和回滚，可以保证数据的完整性和一致性。
+
+2. 支持行级锁：InnoDB采用行级锁来实现并发控制，能够大幅提高并发性能。
+
+3. 支持外键约束：InnoDB支持外键约束，可以保证表与表之间的数据一致性。
+
+4. 支持MVCC：InnoDB采用多版本并发控制（MVCC）机制，可以在读操作和写操作之间实现隔离性。
+
+5. 支持可重复读：InnoDB默认采用可重复读隔离级别，可以保证相同的查询结果在事务执行过程中不会改变。
+
+6. 支持自适应哈希索引：InnoDB可以根据查询模式自动调整哈希索引结构，提高查询性能。
+
+7. 支持热备份：InnoDB支持在线热备份，可以在不停止数据库服务的情况下进行备份。
+
+需要注意的是，InnoDB对于内存和磁盘的使用方式与其他存储引擎不同，需要根据具体应用场景进行配置和优化。同时，InnoDB也存在一些性能问题，如写入性能、锁竞争等，需要进行特殊处理和优化。
+
+#### MyISAM
+
+MyISAM是MySQL数据库的一种存储引擎，它是MySQL早期版本默认的存储引擎。MyISAM的特点是速度快、易于管理、表级锁定等。MyISAM的表在磁盘上以文件形式存储，每个表对应两个文件，一个是MYD文件，用于存储表数据，另一个是MYI文件，用于存储表索引。MyISAM对于读密集型的应用程序具有很好的性能，但在写操作比较频繁的情况下，由于表级锁定会导致并发性能不佳，因此不适合高并发、高负载的应用程序。此外，MyISAM还存在一些其他的限制，例如不支持事务和外键等。因此，在实际应用中，MyISAM往往被InnoDB等更先进的存储引擎所取代。
 
 #### 存储引擎的 InnoDB 与 MyISAM
 
@@ -203,6 +772,14 @@ hashMap: 是由数组和链表组成的, 谈到哈希碰撞的问题: 通过精�
 
 #### 聚集索引与非聚集索引的区别
 
+聚集索引和非聚集索引都是MySQL数据库中的索引类型，它们的主要区别在于索引的组织方式和存储结构。
+
+聚集索引是按照索引字段的顺序来组织数据的，也就是说，聚集索引决定了数据在磁盘上的物理存储顺序。在InnoDB存储引擎中，**聚集索引就是主键索引**，也就是说，如果表定义了主键，则主键索引就是聚集索引。**聚集索引的优点是可以提高查询效率，因为所有的数据都按照索引顺序存储，因此可以更快地定位到需要查询的数据。但缺点是更新操作比较慢**，因为每次更新都需要将数据移动到新的位置。
+
+非聚集索引则是将索引字段和数据地址分开存储的，也就是说，非聚集索引不直接决定数据在磁盘上的存储顺序，而是通过指向数据地址的指针来定位数据。在InnoDB存储引擎中，除了主键索引之外的所有索引都是非聚集索引。**非聚集索引的优点是更新操作比较快，因为只需要修改索引，而不需要移动数据。但缺点是查询效率相对较低**，因为需要先从索引中定位到数据地址，再通过数据地址来获取数据。
+
+综上所述，聚集索引和非聚集索引各有优缺点，在实际应用中需要根据具体情况选择适合的索引类型。
+
 #### limit 20000 加载很慢怎么解决
 
 #### 选择合适的分布式主键方案
@@ -211,11 +788,79 @@ hashMap: 是由数组和链表组成的, 谈到哈希碰撞的问题: 通过精�
 
 #### ObjectId 规则
 
+#### elasticsearch 和mongodb
+
+Elasticsearch（以下简称ES）和MongoDB（以下简称Mangodb）都是非关系型数据库，但是它们有着不同的设计理念和应用场景。
+
+ES是一种全文搜索引擎，它基于Lucene搜索引擎构建，具有快速高效的全文搜索和分析能力。ES支持分布式部署和水平扩展，可以处理大规模的数据，并且支持实时数据搜索和分析。ES的应用场景主要是搜索引擎、日志分析、监控和安全等领域。
+
+Mangodb是一种面向文档的数据库，它支持动态模式和丰富的查询语言，可以存储和查询各种类型的数据。Mangodb采用的是分布式的集群架构，可以处理大规模的数据，并且支持高可用性和数据复制等功能。Mangodb的应用场景主要是Web应用、社交网络、物联网和大数据应用等领域。
+
+总的来说，ES适合处理需要快速高效的全文搜索和分析的数据，而Mangodb适合处理各种类型的数据，并且支持动态模式和丰富的查询语言。选择哪种数据库取决于具体的应用场景和需求。
+
 #### 聊聊 MongoDB 使用场景
+
+MongoDB是一种非关系型数据库，它的设计目标是面向文档的存储。MongoDB的使用场景包括但不限于以下几个方面：
+
+1. 大数据量的存储和处理：MongoDB可以存储海量的数据，而且它的性能非常高效，能够快速地进行数据的读写和处理。
+
+2. 分布式存储和处理：MongoDB具有分布式的特点，可以将数据分散存储在不同的服务器上，从而实现分布式存储和处理，提高系统的容错性和可伸缩性。
+
+3. Web应用程序的数据存储：MongoDB可以作为Web应用程序的数据存储，使用MongoDB可以方便地存储和管理Web应用程序所需要的数据，如用户信息、日志数据等。
+
+4. 实时数据处理：MongoDB支持实时的数据处理，能够快速地处理实时数据，如日志数据、传感器数据等。
+
+总之，MongoDB适用于需要高效处理大数据量、分布式存储和处理、实时数据处理等场景，尤其是面向文档的数据存储和处理，比如Web应用程序、物联网等。
+
+#### 聊聊 ElasticSearch 使用场景
+
+Elasticsearch是一个基于Lucene的分布式搜索和分析引擎，它的使用场景包括但不限于以下几个方面：
+
+1. 日志分析：Elasticsearch可以快速地处理大量的日志数据，并提供实时的搜索和分析功能，方便用户快速定位和解决问题。
+
+2. 企业搜索：Elasticsearch可以作为企业内部数据的搜索引擎，包括文档、邮件、数据库、Web等多种数据源，能够快速地搜索和过滤数据。
+
+3. 数据可视化：Elasticsearch可以与Kibana集成，实现数据的可视化展示和分析，方便用户更直观地了解数据的趋势和变化。
+
+4. 地理信息系统：Elasticsearch支持地理信息数据的存储和搜索，可以快速地查找某个地理位置周围的其他地理位置信息。
+
+5. 实时数据处理：Elasticsearch支持实时的数据处理和搜索，能够快速地处理流式数据，如传感器数据、网络数据、移动应用数据等。
+
+总之，Elasticsearch适用于需要高效搜索和分析大量数据、实时数据处理、地理信息系统等场景，尤其是面向文档和数据可视化的应用，比如企业搜索、日志分析、数据可视化等。
 
 #### 倒排索引
 
-#### 聊聊 ElasticSearch 使用场景
+倒排索引（Inverted Index）是一种常用的索引结构，用于支持文本检索。相对于传统的索引结构，如B树、哈希等，倒排索引是一种基于文本内容的索引结构，它将文本中出现的每个单词都作为一个索引项，然后将每个索引项所在的文本位置都记录下来，以便于在检索时快速定位到对应的文本位置。
+
+具体来说，倒排索引的数据结构通常由两个部分组成，一个是词典（Dictionary），用于存储所有出现过的单词以及它们对应的索引项；另一个是倒排表（Posting List），用于存储每个单词对应的所有文本位置信息。
+
+例如，如果有一个文本内容为“the quick brown fox jumps over the lazy dog”，那么倒排索引会将其分解成如下的索引项：
+
+```txt
+the: 1
+quick: 2
+brown: 3
+fox: 4
+jumps: 5
+over: 6
+lazy: 7
+dog: 8
+```
+
+其中，每个索引项后面的数字表示该单词出现在文本中的位置。倒排表则将每个单词对应的位置信息记录下来，如下所示：
+
+```txt
+the: 1
+quick: 2
+brown: 3
+fox: 4
+jumps: 5
+over: 6
+lazy: 7
+dog: 8
+```
+
+倒排索引在文本检索中应用广泛，例如搜索引擎、全文检索等都是基于倒排索引实现的。
 
 ### 缓存使用
 
@@ -933,6 +1578,175 @@ public class UserService {
 
 无论使用哪种方法，都需要确保第三方类的构造函数和成员变量都是合理的，并且可以正确地注入依赖关系。同时，建议对第三方类进行单元测试以确保其正常工作。
 
+### spring 多线程
+
+#### spring线程池
+
+Spring框架提供了一个ThreadPoolTaskExecutor类来实现线程池，它实现了Java的Executor接口，可以用于执行异步任务。
+
+使用ThreadPoolTaskExecutor可以在Spring应用程序中创建线程池，可以设置线程池的核心线程数、最大线程数、等待队列、线程的超时时间等参数。线程池中的线程可以执行Runnable或Callable任务。
+
+以下是使用ThreadPoolTaskExecutor创建线程池的示例：
+
+```java
+@Configuration
+@EnableAsync
+public class AppConfig implements AsyncConfigurer {
+
+    @Override
+    public Executor getAsyncExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(10);
+        executor.setMaxPoolSize(20);
+        executor.setQueueCapacity(200);
+        executor.setThreadNamePrefix("mythreadpool-");
+        executor.initialize();
+        return executor;
+    }
+
+    @Override
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+        return new SimpleAsyncUncaughtExceptionHandler();
+    }
+}
+```
+
+使用@EnableAsync注解启用异步任务处理，实现AsyncConfigurer接口并实现getAsyncExecutor方法来创建线程池。
+
+关于线程调度，Spring框架提供了一个TaskScheduler接口，用于定时执行任务。TaskScheduler接口有多个实现类，包括ThreadPoolTaskScheduler（基于线程池的调度器）、ConcurrentTaskScheduler（基于Java并发包的调度器）和CronTaskScheduler（基于cron表达式的调度器）等。
+
+以下是使用ThreadPoolTaskScheduler创建基于线程池的调度器的示例：
+
+```java
+@Configuration
+@EnableScheduling
+public class AppConfig implements SchedulingConfigurer {
+
+    @Override
+    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+        ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+        taskScheduler.setPoolSize(10);
+        taskScheduler.setThreadNamePrefix("myscheduler-");
+        taskScheduler.initialize();
+        taskRegistrar.setTaskScheduler(taskScheduler);
+    }
+}
+```
+
+使用@EnableScheduling注解启用定时任务处理，实现SchedulingConfigurer接口并实现configureTasks方法来创建基于线程池的调度器。
+
+@Async是Spring框架提供的一种异步执行方法的方式。它可以将一个方法标记为异步执行，这样当这个方法被调用时，Spring框架会自动将其放入一个线程池中执行，而不会阻塞主线程的执行。
+
+使用@Async需要在Spring容器中配置一个TaskExecutor，该TaskExecutor负责管理线程池，可以通过配置不同的TaskExecutor来实现不同的线程池配置，例如线程池大小、队列大小等参数。
+
+使用@SpringAsync的步骤如下：
+
+1. 在Spring配置文件中配置一个TaskExecutor。
+
+2. 在需要异步执行的方法上添加@Async注解。
+
+下面是一个简单的例子：
+
+```java
+@Service
+public class MyService {
+
+  @Autowired
+  private TaskExecutor taskExecutor;
+
+  @Async
+  public void asyncMethod() {
+    // 异步执行的方法体
+  }
+
+  public void normalMethod() {
+    // 同步执行的方法体
+  }
+}
+```
+
+在上面的例子中，asyncMethod()方法被标记为异步执行，而normalMethod()方法则是同步执行的。
+
+注意，@Async注解只能用在public方法上，因为Spring需要通过代理来实现异步执行的功能，而只有public方法才能被代理。
+
+当一个使用了@Async注解的方法被调用时，Spring框架会将它封装成一个异步任务，并将这个任务提交给TaskExecutor去执行。TaskExecutor会将任务放入一个线程池中，线程池中的线程会去执行这个任务。
+
+具体来说，TaskExecutor会从线程池中取出一个线程，然后将异步任务交给这个线程去执行。如果线程池中没有可用的线程，那么这个异步任务就会被放入一个等待队列中，等待有空闲的线程时再去执行。
+
+在Spring中，可以使用多种TaskExecutor来实现异步执行功能。例如，可以使用ThreadPoolTaskExecutor来创建一个基于线程池的TaskExecutor，它可以配置线程池大小、队列大小、线程名称前缀等参数，以及使用不同的拒绝策略来处理任务队列已满的情况。
+
+下面是一个简单的ThreadPoolTaskExecutor的配置示例：
+
+```java
+@Configuration
+@EnableAsync
+public class AppConfig implements AsyncConfigurer {
+
+  @Override
+  public Executor getAsyncExecutor() {
+    ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+    executor.setCorePoolSize(10);
+    executor.setMaxPoolSize(50);
+    executor.setQueueCapacity(100);
+    executor.setThreadNamePrefix("MyExecutor-");
+    executor.initialize();
+    return executor;
+  }
+}
+```
+
+在上面的配置中，我们创建了一个ThreadPoolTaskExecutor，设置了核心线程数为10，最大线程数为50，队列容量为100，线程名称前缀为"MyExecutor-"。然后，我们实现了AsyncConfigurer接口，将这个ThreadPoolTaskExecutor返回，这样就可以在应用中使用@Async注解来标记异步方法了。
+
+#### spring 线程与锁
+
+Spring框架本身不提供线程锁的实现，但是它可以集成Java中的锁实现，或者提供一些便捷的锁工具类，来简化锁的使用。
+
+例如，Spring提供了一个名为`LockRegistry`的接口，它可以用来管理锁。`LockRegistry`提供了`obtain`方法，可以获取一个锁对象。在获取锁对象之后，可以使用Java中的`synchronized`关键字或者`ReentrantLock`等锁机制来对共享资源进行互斥访问。
+
+另外，Spring还提供了一些基于注解的锁实现，例如`@Lock`注解可以用来在方法或者代码块上加锁，保证同一时刻只有一个线程执行被锁定的代码。`@Lock`注解可以配置锁的名称、锁的超时时间等属性，非常灵活。
+
+除此之外，Spring还提供了一些其他锁相关的工具类，例如`LockTemplate`、`Mutex`等，可以帮助我们方便地管理锁的状态，提高并发性能。
+
+`@Lock`注解是Spring框架提供的一个基于注解的锁实现。该注解可以用于方法或代码块上，用于保护某些共享资源在同一时间只能被一个线程访问。使用`@Lock`注解可以避免在代码中显式地使用锁对象，从而简化代码，并提高可读性和可维护性。
+
+`@Lock`注解的使用方法如下：
+
+```java
+@Lock("myLock")
+public void myMethod() {
+    // do something
+}
+```
+
+在这个例子中，我们使用了`@Lock`注解来保护`myMethod()`方法的执行。`@Lock`注解的参数是锁的名称，可以是任意字符串。当多个线程尝试执行带有`@Lock`注解的方法时，只有其中一个线程能够获得锁，其他线程需要等待该锁被释放后才能执行。
+
+`@Lock`注解还提供了其他一些可选参数，例如`timeOut`属性可以指定锁的超时时间，`lockType`属性可以指定锁的类型，例如读写锁、公平锁等。在使用`@Lock`注解时，需要根据实际需求选择合适的锁类型和参数。
+
+需要注意的是，使用`@Lock`注解会影响方法的执行效率，因为每个线程都需要等待锁被释放才能继续执行。因此，在使用`@Lock`注解的时候，需要权衡锁的粒度和并发性能，避免出现性能瓶颈。
+
+`myLock`是一个锁的名称，可以是任意字符串，在使用`@Lock`注解时需要指定相应的锁名称。在Spring中，可以使用`LockRegistry`来管理锁，这个接口可以用来获取和释放锁。
+
+下面是一个简单的示例，演示如何在Spring中使用`LockRegistry`来获取和释放锁：
+
+```java
+@Autowired
+LockRegistry lockRegistry;
+
+public void myMethod() {
+    Lock lock = lockRegistry.obtain("myLock");
+    try {
+        lock.lock();
+        // do something
+    } finally {
+        lock.unlock();
+    }
+}
+```
+
+在这个示例中，我们首先使用`@Autowired`注解注入了一个`LockRegistry`实例。然后在`myMethod()`方法中，我们使用`LockRegistry`实例的`obtain()`方法来获取一个名为`myLock`的锁对象。在`try...finally`语句块中，我们使用锁对象的`lock()`方法来获取锁，在锁保护的代码块中执行相应的共享资源操作，最后使用`unlock()`方法释放锁。
+
+需要注意的是，这个示例中使用的是默认的锁实现，即Java中的重入锁（`ReentrantLock`）。如果需要使用其他类型的锁，例如读写锁、公平锁等，可以使用`LockRegistry`的其他方法来获取相应类型的锁对象。
+
 ### Netty
 
 Netty是一个开源的、高性能的、异步的、事件驱动的网络应用程序框架，用于快速开发可维护的高性能协议服务器和客户端。Netty基于Java NIO技术，提供了简单易用的API，支持多种传输协议（如TCP、UDP和HTTP）以及多种编解码器（如Protobuf、Json和XML），可以很方便地实现网络通信和协议处理。Netty的优势在于其高度的可定制性、灵活性和扩展性，适用于各种网络应用开发场景。
@@ -1014,15 +1828,100 @@ NIO（New I/O）是Java NIO（New Input/Output）包的缩写，是Java SE 1.4�
 
 #### Session 分布式方案
 
+Session分布式方案主要是为了解决单个应用服务器无法承载大量Session数据带来的问题，例如单点故障、性能瓶颈等。常见的Session分布式方案有以下几种：
+
+1. 数据库存储方案：将Session数据存储到共享数据库中，所有应用服务器都可以访问该数据库，实现Session的共享。这种方案实现简单，但是对于高并发和大量Session数据的应用来说，数据库的性能可能成为瓶颈。
+
+2. 缓存存储方案：将Session数据存储到共享缓存中，所有应用服务器都可以访问该缓存，实现Session的共享。这种方案相比数据库存储方案性能更好，但是缓存的容量和性能也是限制因素。
+
+3. 分布式存储方案：将Session数据存储到分布式存储系统中，例如Redis Cluster、Hazelcast等，所有应用服务器都可以访问该分布式存储系统，实现Session的共享。这种方案相比前两种方案性能更好，同时也可以支持更大规模的Session数据。
+
+需要注意的是，在使用Session分布式方案时，应该注意Session数据的一致性和容错性问题，例如负载均衡器的Session粘滞策略、Session数据的备份和恢复等。
+
 #### 分布式锁的场景
 
 #### 分布式锁的实现方案
 
 #### 分布式事务
 
+分布式事务是指在分布式系统中，跨越多个节点的事务操作，保证所有节点的操作要么全部成功，要么全部失败。在分布式系统中，由于存在网络延迟、节点故障等因素，分布式事务的实现比本地事务更加困难。
+
+目前常见的分布式事务实现方式有两种：
+
+1. **两阶段提交**（Two-Phase Commit，2PC）：2PC是一种基于协调者-参与者模型的分布式事务协议，事务的提交分为两个阶段：准备阶段和提交阶段。在准备阶段，协调者向所有参与者发送事务准备请求，并等待所有参与者的响应。在所有参与者都准备就绪后，协调者向所有参与者发送事务提交请求，参与者执行事务操作并向协调者发送操作结果。在协调者接收到所有参与者的操作结果后，如果所有参与者都成功执行了事务操作，则协调者向所有参与者发送事务提交通知，否则协调者向所有参与者发送事务回滚通知。2PC的优点是实现简单、可靠性高，但是存在单点故障和阻塞问题。
+
+2. **补偿事务**（Compensating Transaction）：补偿事务是一种基于本地事务的分布式事务实现方式，每个分布式事务被视为一系列本地事务的集合，每个本地事务都有对应的回滚操作。当分布式事务出现异常时，可以执行回滚操作以保证数据的一致性。补偿事务的优点是实现灵活，可以避免2PC的阻塞问题，但是实现复杂度较高，需要保证每个本地事务的回滚操作正确执行。
+
+需要注意的是，在使用分布式事务时，应该选择适合自己场景的实现方式，同时注意事务的性能和可靠性问题，尽可能避免数据的不一致性。
+
+Spring Cloud分布式事务是一种在分布式架构下保证数据一致性的解决方案。在分布式系统中，由于各个节点的独立性和并发性，可能会导致数据不一致的问题。为了解决这个问题，Spring Cloud提供了一些解决方案，如分布式事务管理框架、消息中间件等。
+
+其中，分布式事务管理框架主要包括两种实现方式：XA和TCC。**XA协议是一种两阶段提交的协议**，它能够保证分布式事务的原子性和一致性，但是由于需要协调多个节点的状态，性能较差。而**TCC机制则是一种基于补偿的事务机制**，它通过在分布式系统中定义“Try-Confirm-Cancel”三个阶段，实现分布式事务管理。
+
+在Spring Cloud中，常用的分布式事务管理框架包括**Seata**和Hmily。Seata是一个开源的分布式事务解决方案，它支持XA和TCC两种事务模式，并提供了高可用、高性能的分布式事务管理功能。Hmily则是一种轻量级的分布式事务解决方案，它采用TCC机制实现分布式事务管理，具有性能高、可扩展性好等优点。
+
+总之，Spring Cloud分布式事务是一种保证分布式系统数据一致性的重要解决方案，它可以帮助开发者快速解决分布式事务管理问题，提高系统的可靠性和稳定性。
+
 #### 集群与负载均衡的算法与实现
 
+Spring Cloud Alibaba提供了一种基于Nacos的服务注册与发现功能，同时也提供了一种自动化的负载均衡解决方案——Spring Cloud LoadBalancer。
+
+Spring Cloud LoadBalancer是一个基于Ribbon实现的客户端负载均衡器，它可以自动从Nacos Server中获取服务列表，并根据一定的负载均衡策略，将请求分发到不同的服务实例中。在使用Spring Cloud LoadBalancer时，我们只需要在应用程序中添加相应的依赖和配置，就可以实现自动化的负载均衡功能。
+
+具体来说，使用Spring Cloud LoadBalancer可以分为以下几个步骤：
+
+1. 在项目中添加相应的依赖，如spring-cloud-starter-alibaba-nacos-discovery和spring-cloud-starter-alibaba-loadbalancer等。
+
+2. 配置服务注册和发现功能，包括注册中心地址、服务名称等。
+
+3. 配置负载均衡策略，如随机算法、轮询算法等。
+
+4. 在代码中使用@LoadBalanced注解，开启负载均衡功能。
+
+例如，以下代码演示了如何使用Spring Cloud LoadBalancer实现负载均衡功能：
+
+```java
+@RestController
+public class TestController {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @GetMapping("/test")
+    public String test() {
+        String result = restTemplate.getForObject("http://service-provider/test", String.class);
+        return result;
+    }
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+```
+
+在上述代码中，我们通过配置@LoadBalanced注解，开启了RestTemplate的负载均衡功能。当我们调用"http://service-provider/test"时，Spring Cloud LoadBalancer会自动从Nacos Server中获取服务列表，并根据负载均衡策略，将请求分配到不同的服务实例中。
+
+总之，Spring Cloud Alibaba提供了一种自动化的负载均衡解决方案——Spring Cloud LoadBalancer，它可以帮助我们快速实现负载均衡功能，提高系统的可用性和性能。
+
 #### 说说分库与分表设计
+
+分库与分表是一种常见的数据库水平扩展的方式，可以在处理大量数据和高并发访问的情况下提高数据库的性能和可扩展性。
+
+在设计分库与分表时，需要考虑以下几个因素：
+
+1. 数据库设计：在分库与分表之前，需要先设计好数据库结构和数据模型。这包括表的字段设计、索引设计、数据类型选择等。
+
+2. 分库策略：分库策略是指将数据按照某种规则分布到不同的数据库中。常见的分库策略有按照用户ID、按照日期、按照地理位置等。需要根据实际情况选择合适的分库策略。
+
+3. 分表策略：分表策略是指将同一张表的数据按照某种规则分散到不同的物理表中。常见的分表策略有按照日期、按照数据类型、按照数据量等。需要根据实际情况选择合适的分表策略。
+
+4. 业务逻辑：在分库与分表之后，需要重新设计业务逻辑，确保在多个数据库和表之间的数据一致性和正确性。
+
+5. 性能优化：在实际应用中，需要根据实际情况对分库和分表进行性能优化。例如，可以使用缓存技术、分片技术、读写分离等方式提高数据库的性能和可扩展性。
+
+总的来说，分库与分表是一种有效的数据库水平扩展方式，但需要根据实际情况进行设计和优化。需要考虑数据模型、分库分表策略、业务逻辑和性能优化等方面的因素。
 
 #### 分库与分表带来的分布式困境与应对之策
 
@@ -1036,11 +1935,63 @@ NIO（New I/O）是Java NIO（New Input/Output）包的缩写，是Java SE 1.4�
 
 #### HTTPS 原理剖析
 
+HTTPS全称是Hyper Text Transfer Protocol Secure，是HTTP的安全版本。HTTPS是一种通过加密和认证方式保护在网络上进行数据传输的协议。它使用 SSL/TLS 协议来加密数据，使得数据传输过程中的信息无法被窃听、篡改或伪造。 HTTPS通常用于安全敏感的网站，如网上银行、电子商务等网站。与HTTP相比，HTTPS的安全性更高，但会稍微降低一些传输速度。
+
+##### https配置方法
+
+实现HTTPS需要经过以下步骤：
+
+1. 申请SSL证书：SSL证书是用来加密和认证网站身份的，可以通过第三方机构（如Symantec、Comodo、Let's Encrypt等）或自建证书颁发机构（CA）来获得SSL证书。
+
+2. 配置Web服务器：需要在Web服务器上进行配置，以支持HTTPS。具体操作方式会因所用的Web服务器而异，例如在Apache上可以通过配置文件修改。
+
+3. 修改网站代码：需要将网站代码中所有HTTP链接修改为HTTPS链接，以确保网站的所有资源都可以通过HTTPS访问。
+
+4. 测试：经过以上步骤后，需要对HTTPS进行测试，以确保所有的HTTP请求都被正确地重定向到HTTPS，并且所有的资源都可以通过HTTPS访问。
+
+要注意的是，HTTPS的实现需要一定的技术和资源，对于小型网站或个人网站可能不太实用，但对于安全性要求较高的商业网站或政府机构等，使用HTTPS是非常必要的。
+
+##### https原理
+
+HTTPS的原理是通过 SSL/TLS 协议来实现数据加密和身份认证。SSL/TLS 协议是一种在传输层提供安全性的协议，它利用公钥和私钥对数据进行加密和解密，从而保证数据在传输过程中的安全性。具体来说，HTTPS的原理可以分为以下几个步骤：
+
+1. 客户端向服务器发送请求：客户端（浏览器）向服务器发送HTTPS请求，请求中包含HTTPS协议版本号、加密算法列表、随机数等信息。
+
+2. 服务器返回证书：服务器返回数字证书，证书中包含服务器的公钥，以及证书颁发机构（CA）等信息。客户端通过证书验证服务器的身份信息。
+
+3. 协商加密算法：客户端和服务器协商选择一种加密算法，用于对数据进行加密和解密。在 SSL/TLS 中，常用的加密算法有 RSA、AES、DES、RC4 等。
+
+4. 建立安全连接：客户端使用服务器的公钥对随机数进行加密，然后将加密后的密文发送给服务器。服务器使用自己的私钥对密文进行解密，得到随机数。客户端和服务器使用这个随机数生成对称密钥，用于对数据进行加密和解密。此时，客户端和服务器之间的通信已经是加密的。
+
+5. 客户端向服务器发送请求：客户端使用建立好的安全连接向服务器发送HTTP请求，请求中包含HTTP报文和加密后的数据。
+
+6. 服务器返回响应：服务器使用对称密钥对响应数据进行加密，然后将加密后的密文发送给客户端。
+
+7. 客户端解密响应：客户端使用对称密钥对密文进行解密，得到原始的响应数据。客户端和服务器之间的通信结束。
+
+通过以上步骤，HTTPS可以确保数据在传输过程中的安全性和完整性，同时也可以防止中间人攻击等安全问题。
+
 #### HTTPS 降级攻击
+
+HTTPS 降级攻击是一种网络攻击，攻击者试图使得一个HTTPS连接降级为HTTP连接，从而窃取敏感信息或者进行其他恶意行为。攻击者通常会使用中间人攻击的手段，劫持HTTPS通信，然后向客户端和服务器发送伪造的信息，导致HTTPS连接降级为HTTP连接。这样的话，攻击者就可以窃取用户的敏感信息，例如登录凭证、信用卡号等。
+
+为了防止HTTPS降级攻击，可以采取以下措施：
+
+1. 使用HSTS：HSTS（HTTP Strict Transport Security）是一种安全协议，可以强制客户端在与网站通信时始终使用HTTPS协议，从而防止降级攻击。网站可以通过在HTTP响应头中添加HSTS指令来启用HSTS。
+
+2. 禁用旧版协议：网站可以禁用TLS 1.0/1.1等旧版协议，只使用TLS 1.2及以上的协议，从而防止降级攻击。
+
+3. 监测网络流量：可以使用网络流量监测工具，及时发现和阻止降级攻击。
+
+4. 加强认证：网站可以采用双因素认证或其他认证措施，增强用户的身份认证，从而防止攻击者窃取用户的敏感信息。
+
+总之，防止HTTPS降级攻击需要不断加强安全措施，保护用户的数据安全。
 
 #### 授权与认证
 
 #### 基于角色的访问控制
+
+rbac
 
 #### 基于数据的访问控制
 
@@ -1120,6 +2071,42 @@ NIO（New I/O）是Java NIO（New Input/Output）包的缩写，是Java SE 1.4�
 
 #### 你觉得你们项目还有哪些不足的地方
 
+#### 排查工具
+
+Java常见排查工具有：
+
+1. jstack：用于生成Java虚拟机线程的快照，可以用来查看线程状态、死锁等问题。
+
+2. jmap：用于生成Java虚拟机堆转储快照，可以用来查看内存占用情况、对象分布等信息。
+
+3. jstat：用于监视Java虚拟机的各种运行时状态，如垃圾回收、类加载、线程状态等。
+
+4. jconsole：一个Java虚拟机监视和管理控制台，可以用来查看Java虚拟机的性能指标、线程状态、内存使用情况等。
+
+5. VisualVM：一个功能强大的Java虚拟机监视和性能分析工具，支持多种插件和扩展，可以用来分析内存泄漏、性能瓶颈等问题。
+
+6. Java Flight Recorder（JFR）：一个Java虚拟机的事件记录器，可以用来记录和分析Java虚拟机在运行过程中的各种事件和性能指标。
+
+7. GC日志分析工具：如G1LogViewer、GCEasy等，用于分析Java虚拟机的垃圾回收日志，可以帮助定位内存泄漏、GC瓶颈等问题。
+
+8. jps是Java Virtual Machine Process Status Tool的缩写，是JDK自带的命令行工具，可以列出当前系统中所有正在运行的Java进程的进程ID和主类名。可以使用jps命令来确定Java进程的进程ID，然后再使用其他工具来进行排查。
+
+    例如，可以使用以下命令列出当前系统中所有正在运行的Java进程的进程ID和主类名：
+
+    ```sh
+    jps -l
+    ```
+
+    也可以只列出进程ID：
+
+    ```sh
+    jps -v
+    ```
+
+    其中，-v选项可以列出JVM参数，-l选项可以列出完整的主类名。
+
+除了上述工具，还有一些第三方工具，如AppDynamics、New Relic等，可以提供更全面的应用程序性能监控和分析。
+
 #### 你是否遇到过 CPU 100% ，如何排查与解决
 
 #### 你是否遇到过 内存 OOM ，如何排查与解决
@@ -1129,3 +2116,15 @@ NIO（New I/O）是Java NIO（New Input/Output）包的缩写，是Java SE 1.4�
 #### 说说你对开发运维的实践
 
 #### 介绍下工作中的一个对自己最有价值的项目，以及在这个过程中的角色
+
+### 系统篇
+
+#### k8s 和 docker compose
+
+Kubernetes和Docker Compose都是用于容器编排的工具，但它们之间有很大的差异。
+
+Docker Compose是一个简单的工具，用于定义和运行多个Docker容器的应用程序。它通过一个YAML文件定义应用程序的服务、网络和存储等组件，然后使用docker-compose命令来启动、停止和管理这些组件。Docker Compose适用于单机场景，不支持高可用和动态扩容等特性。
+
+Kubernetes是一个开源容器编排平台，用于自动化部署、扩展和管理容器化应用程序。它将容器组织成逻辑单元，称为Pod，可以自动处理容器的运行、复制、网络和存储等方面的问题。Kubernetes支持多节点和多集群的部署，具有高可用、自动扩容和自动恢复等特性。
+
+虽然Kubernetes比Docker Compose更复杂，但它更适合于生产环境中的容器编排和管理。如果你只是在本地测试或开发应用程序，那么Docker Compose可能是更好的选择。
