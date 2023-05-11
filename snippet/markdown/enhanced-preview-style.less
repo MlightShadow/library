@@ -10,7 +10,7 @@
 @h2_color: #FF6600;
 @h3_color: #669900;
 @h4_color: #6699FF;
-@h5_color: #FF9900;
+@h5_color: #BB66CC;
 @h6_color: #339999;
 
 .markdown-preview.markdown-preview {
@@ -228,23 +228,23 @@
 
     h5 {
         color: @h5_color;
-        font-size: 16px;
+        font-size: 15px;
         counter-increment: counter_h5;
     }
 
     h5:before {
         color: @h5_color;
-        font-size: 16px;
+        font-size: 15px;
         // content: counter(counter_h5) "° ";
     }
     h6 {
         color: @h6_color;
-        font-size: 14px;
+        font-size: 13px;
         counter-increment: counter_h6;
     }
 
     h6:before {
-        font-size: 14px;
+        font-size: 13px;
         color: @h6_color;
         // content: "> ";
     }
@@ -500,9 +500,11 @@
         border-bottom: 2px solid #f50;
     }
     em {
-        color: rgb(214, 52, 146);
+        // color: rgb(214, 52, 146);
+        color: #bbb;
     }
 }
+
 
 
 

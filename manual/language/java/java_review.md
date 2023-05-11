@@ -1,8 +1,9 @@
 # java面试复习手册
 
-[toc]
-
+*文稿中以这个字体展示的内容* 都是吐槽，或者个人见解请仔细甄别
 [题目-参考资料](https://juejin.im/post/5a94a8ca6fb9a0635c049e67)
+
+[toc]
 
 ## 基础篇
 
@@ -632,63 +633,51 @@ class Task implements Runnable {
 
 #### synchronized 实现原理
 
-`synchronized` 是 Java 中的关键字，用于实现多线程同步。在 Java 中，每个对象都有一个内置的锁，也称为监视器锁或管程。当一个线程尝试访问被 `synchronized` 关键字修饰的方法或代码块时，它必须先获得该对象的锁，如果该锁已经被其他线程占用，那么当前线程就会进入阻塞状态，直到获得该锁为止。
-
-`synchronized` 实现的原理是通过 Java 虚拟机中的监视器机制来实现的。每个对象都有一个与之关联的监视器锁，当一个线程访问一个被 `synchronized` 关键字修饰的方法或代码块时，它必须先获得该对象的监视器锁，如果该锁已经被其他线程占用，那么当前线程就会进入阻塞状态，直到该锁被释放为止。
+`synchronized` 实现的原理是通过 Java 虚拟机中的监视器机制来实现的。**每个对象都有一个与之关联的监视器锁，当一个线程访问一个被 `synchronized` 关键字修饰的方法或代码块时，它必须先获得该对象的监视器锁**，如果该锁已经被其他线程占用，那么当前线程就会进入阻塞状态，直到该锁被释放为止。
 
 在 Java 中，`synchronized` 关键字可以用于方法和代码块的修饰。当一个方法被 `synchronized` 关键字修饰时，该方法的所有代码都会被锁定，即使该方法中有多个代码块也是如此。当一个代码块被 `synchronized` 关键字修饰时，只有该代码块中的代码会被锁定，其他代码不受影响。
 
 #### synchronized 与 lock 的区别
 
-在 Java 中，`Lock` 和 `synchronized` 都是用于实现多线程同步的机制，它们的主要区别如下：
+`Lock` 和 `synchronized` 都是用于实现多线程同步的机制。**`Lock` 接口提供了比 `synchronized` 关键字更多的功能和更细粒度的控制，但是使用起来比 `synchronized` 关键字更麻烦，需要手动管理锁的获取和释放，而且容易出现死锁等问题。** 因此，对于普通的多线程同步问题，建议使用 `synchronized` 关键字来实现同步，对于需要更高级的同步功能，可以考虑使用 `Lock` 接口。
 
-1. 锁的获取和释放方式不同：使用 `synchronized` 关键字来实现同步时，锁的获取和释放是由 Java 虚拟机自动进行的，而使用 `Lock` 接口来实现同步时，则需要手动调用 `lock()` 方法来获取锁，调用 `unlock()` 方法来释放锁。
+它们的主要区别如下：
 
-2. `Lock` 接口提供了更多的功能：`Lock` 接口提供了一些 `synchronized` 关键字不具备的功能，如可重入锁、公平锁、读写锁等。
+* 锁的获取和释放方式不同：使用 `synchronized` 关键字来实现同步时，锁的获取和释放是由 Java 虚拟机自动进行的，而使用 `Lock` 接口来实现同步时，则需要手动调用 `lock()` 方法来获取锁，调用 `unlock()` 方法来释放锁。
 
-3. 性能方面的差异：在低竞争情况下，`synchronized` 关键字的性能要比 `Lock` 接口好，在高竞争情况下，`Lock` 接口的性能要比 `synchronized` 关键字好。
+* `Lock` 接口提供了更多的功能：`Lock` 接口提供了一些 `synchronized` 关键字不具备的功能，如可重入锁、公平锁、读写锁等。
 
-4. 使用方式的差异：`synchronized` 关键字的使用方式比较简单，只需要在方法或代码块前加上 `synchronized` 关键字即可，而使用 `Lock` 接口需要手动创建一个 `Lock` 对象，并在需要同步的代码块前后调用 `lock()` 和 `unlock()` 方法。
+* 性能方面的差异：在低竞争情况下，`synchronized` 关键字的性能要比 `Lock` 接口好，在高竞争情况下，`Lock` 接口的性能要比 `synchronized` 关键字好。
 
-总的来说，`Lock` 接口提供了比 `synchronized` 关键字更多的功能和更细粒度的控制，但是使用起来比 `synchronized` 关键字更麻烦，需要手动管理锁的获取和释放，而且容易出现死锁等问题。因此，对于普通的多线程同步问题，建议使用 `synchronized` 关键字来实现同步，对于需要更高级的同步功能，可以考虑使用 `Lock` 接口。
+* 使用方式的差异：`synchronized` 关键字的使用方式比较简单，只需要在方法或代码块前加上 `synchronized` 关键字即可，而使用 `Lock` 接口需要手动创建一个 `Lock` 对象，并在需要同步的代码块前后调用 `lock()` 和 `unlock()` 方法。
 
-#### 常见锁类型
+#### java中常见的锁实现
 
 常见的锁的类型有以下几种：
 
-1. `synchronized` 关键字：Java 内置的关键字，可以用来实现代码块或方法的同步，保证在同一时刻只有一个线程可以执行。
+* `synchronized` 关键字：Java 内置的关键字，可以用来实现对共享资源的互斥访问。它可以作用于方法或代码块，保证同一时刻只有一个线程执行被锁定的代码。
 
-2. `ReentrantLock` 类：Java 提供的一个可重入锁，可以替代 `synchronized` 关键字，在功能上更加灵活，例如可以实现公平锁和非公平锁。
+* `ReentrantLock` 类：Java 提供的一个可重入锁，可以替代 `synchronized` 关键字，在功能上更加灵活，提供更细粒度的锁控制，提供了公平锁和非公平锁两种模式。
 
-3. `ReadWriteLock` 接口：Java 提供的读写锁接口，可以实现读写分离，提高多线程读取效率。
+* `ReadWriteLock` 接口：Java 提供的读写锁接口，它可以用来实现对共享资源的读写操作的并发控制，可以实现读写分离，提高多线程读取效率。ReadWriteLock允许多个线程同时读取共享资源，但只允许一个线程写入共享资源。
 
-4. `StampedLock` 类：Java 8 新增的一种锁机制，可以实现乐观读锁、悲观读锁和写锁等，提高了读取效率。
+* `StampedLock` 类：Java 8 新增的一种锁机制，可以实现乐观读锁、悲观读锁和写锁等，提高了读取效率。
 
-5. `Semaphore` 类：Java 提供的一种计数信号量机制，可以控制同时访问某个资源的线程数。
+* `Semaphore` 类：Java 提供的一种计数信号量机制，可以控制同时访问某个资源的线程数。
 
-6. `CountDownLatch` 类：Java 提供的一种倒计时计数器，可以让某个线程等待其他线程执行完毕后再执行。
+* `CountDownLatch` 类：Java 提供的一种倒计时计数器，可以让某个线程等待其他线程执行完毕后再执行。
 
-7. `CyclicBarrier` 类：Java 提供的一种同步辅助类，可以让一组线程相互等待，直到到达某个公共屏障点后再继续执行。
+* `CyclicBarrier` 类：Java 提供的一种同步辅助类，可以让一组线程相互等待，直到到达某个公共屏障点后再继续执行。
 
-8. `Exchanger` 类：Java 提供的一种线程间数据交换工具类，可以让两个线程交换彼此的数据。
+* `Exchanger` 类：Java 提供的一种线程间数据交换工具类，可以让两个线程交换彼此的数据。
 
-Java中常见的锁实现有以下几种：
-
-1. synchronized关键字：synchronized是Java语言内置的一种锁机制，可以用来实现对共享资源的互斥访问。它可以作用于方法或代码块，保证同一时刻只有一个线程执行被锁定的代码。
-
-2. ReentrantLock类：ReentrantLock是Java提供的一个可重入锁实现，它可以用来替代synchronized关键字，提供更细粒度的锁控制。ReentrantLock提供了公平锁和非公平锁两种模式。
-
-3. ReadWriteLock接口：ReadWriteLock是Java提供的读写锁接口，它可以用来实现对共享资源的读写操作的并发控制。ReadWriteLock允许多个线程同时读取共享资源，但只允许一个线程写入共享资源。
-
-4. StampedLock类：StampedLock是Java8新增的一种锁机制，它提供了一种乐观的读锁模式，可以在读多写少的场景中提高并发性能。
-
-5. synchronized和Lock的Condition接口：synchronized和Lock都提供了Condition接口，可以用来实现线程之间的通信。Condition接口可以让线程在特定的条件下等待或唤醒。
+* `Lock`的`Condition`接口：`Condition`接口可以让线程在特定的条件下等待或唤醒。
 
 这些锁实现各有优缺点，需要根据具体的使用场景选择合适的锁机制。在使用锁的过程中，需要注意锁的粒度、并发性能、死锁等问题。同时，使用锁的过程中还需要遵循一些最佳实践，例如尽量减小锁的持有时间，避免重复加锁等。
 
 #### CAS 乐观锁
 
-CAS（Compare-and-Swap）是一种乐观锁，它是一种无锁的同步机制，常用于实现并发算法。CAS 操作包含三个操作数：内存位置 V，旧的预期值 A 和新值 B。当执行 CAS 操作时，只有当内存位置 V 的值等于预期值 A 时，才会将内存位置 V 的值更新为新值 B，否则不进行任何操作。这个操作是原子的，因此可以保证多线程环境下的数据一致性。
+CAS（Compare-and-Swap）是一种乐观锁，**它是一种无锁的同步机制**，常用于实现并发算法。CAS 操作包含三个操作数：内存位置 V，旧的预期值 A 和新值 B。当执行 CAS 操作时，**只有当内存位置 V 的值等于预期值 A 时，才会将内存位置 V 的值更新为新值 B，否则不进行任何操作。** 这个操作是原子的，因此可以保证多线程环境下的数据一致性。
 
 CAS 操作的一般流程如下：
 
@@ -709,21 +698,21 @@ ABA 问题指的是在并发编程中，当一个值从 A 变成 B，又从 B �
 
 #### 乐观锁的业务场景及实现方式
 
-乐观锁是一种基于冲突检测的并发控制机制，它在处理多个并发事务时，假设事务之间不会产生冲突，因此不会加锁，而是在提交事务前检查数据是否被其他事务修改过。如果检测到冲突，则放弃当前操作，否则提交事务。
+乐观锁是一种基于冲突检测的并发控制机制，它在处理多个并发事务时，**假设事务之间不会产生冲突，因此不会加锁，而是在提交事务前检查数据是否被其他事务修改过。如果检测到冲突，则放弃当前操作，否则提交事务。**
 
 乐观锁适用于并发更新冲突不频繁的业务场景，例如：
 
-1. 读多写少的场景，例如新闻网站的文章浏览和编辑，大多数用户只是浏览文章，只有少数用户同时编辑同一篇文章，此时采用乐观锁就能提高并发性能。
+1. **读多写少的场景**，例如新闻网站的文章浏览和编辑，大多数用户只是浏览文章，只有少数用户同时编辑同一篇文章，此时采用乐观锁就能提高并发性能。
 
 2. 数据库中的数据版本控制，例如通过在表中增加一个版本号字段来实现乐观锁，每次更新记录时将版本号加 1，当检测到版本号不一致时就放弃当前操作。
 
 3. 在分布式系统中，如果两个节点同时更新同一个数据，可以使用乐观锁来避免冲突，例如通过版本号或时间戳来检测数据是否被其他节点修改过。
 
-需要注意的是，乐观锁虽然能提高并发性能，但是在并发更新冲突频繁的场景下，乐观锁的重试次数会增加，从而导致性能下降。因此，在选择乐观锁时，需要根据业务场景和实际情况来进行评估和选择。
+需要注意的是，乐观锁虽然能提高并发性能，但是在**并发更新冲突频繁的场景下，乐观锁的重试次数会增加，从而导致性能下降。** 因此，在选择乐观锁时，需要根据业务场景和实际情况来进行评估和选择。
 
 #### 悲观锁
 
-悲观锁是一种保守的锁策略，它假设在整个并发环境中，多个线程会频繁地互相干扰，因此每次访问共享资源时都要先获取锁，以保证线程安全。悲观锁的典型实现是使用 synchronized 关键字，它可以保证同一时刻只有一个线程能够获得锁，其他线程必须等待锁的释放才能继续执行。
+悲观锁是一种保守的锁策略，它假设在整个并发环境中，多个线程会频繁地互相干扰，因此每次访问共享资源时都要先获取锁，以保证线程安全。**悲观锁的典型实现是使用 synchronized 关键字，它可以保证同一时刻只有一个线程能够获得锁，其他线程必须等待锁的释放才能继续执行。**
 
 悲观锁的优点是实现简单，容易理解和使用，可以有效地解决并发访问共享资源的问题。但是悲观锁的缺点也非常明显，它需要频繁地加锁和释放锁，这样会带来较大的性能开销，尤其是在高并发场景下。此外，悲观锁容易引起死锁问题，因为如果一个线程在等待锁的时候被阻塞了，那么其他线程也可能被阻塞，导致整个程序停滞不前。
 
@@ -731,7 +720,7 @@ ABA 问题指的是在并发编程中，当一个值从 A 变成 B，又从 B �
 
 除了悲观锁和乐观锁之外，还有一些其他的锁思想，例如：
 
-1. 自旋锁：自旋锁是一种轻量级的锁，在等待锁的过程中，不断地检查锁是否被释放。如果锁被其他线程占用，则当前线程会一直循环等待，直到获取到锁为止。自旋锁适用于锁的持有时间比较短的场景，可以避免线程进入内核态的开销，从而提高并发性能。
+1. 自旋锁：**自旋锁是一种轻量级的锁，在等待锁的过程中，不断地检查锁是否被释放。如果锁被其他线程占用，则当前线程会一直循环等待，直到获取到锁为止。** 自旋锁适用于锁的持有时间比较短的场景，可以避免线程进入内核态的开销，从而提高并发性能。
 
 2. 可重入锁：可重入锁是一种可重复获取的锁，同一个线程在持有锁的情况下，可以再次获取锁，而不会导致死锁。可重入锁适用于需要递归调用同步方法的场景，可以避免死锁和线程阻塞的问题。
 
@@ -745,7 +734,7 @@ ABA 问题指的是在并发编程中，当一个值从 A 变成 B，又从 B �
 
 Java 实现了多种锁思想，包括：
 
-1. 悲观锁：使用 synchronized 关键字实现的锁，它假设在整个并发环境中，多个线程会频繁地互相干扰，因此每次访问共享资源时都要先获取锁，以保证线程安全。
+1. **悲观锁**：使用 synchronized 关键字实现的锁，它假设在整个并发环境中，多个线程会频繁地互相干扰，因此每次访问共享资源时都要先获取锁，以保证线程安全。
 
 2. 乐观锁：使用 CAS（Compare and Swap）机制实现的锁，它假设在整个并发环境中，多个线程不会频繁地互相干扰，因此每次访问共享资源时不需要获取锁，而是通过 CAS 操作来判断是否能够进行修改，如果能够进行修改，则直接更新数据，否则重试或者放弃。
     Java 中的 CAS（Compare and Swap）操作主要使用了 sun.misc.Unsafe 类的 compareAndSwapXXX 方法实现，目前已经被 java.util.concurrent.atomic 包中的类所封装，提供了一系列原子操作的支持，比如 AtomicBoolean、AtomicInteger、AtomicLong 等。
@@ -824,7 +813,7 @@ Java 实现了多种锁思想，包括：
 
 #### MySQL 索引使用的注意事项
 
-数据库索引是一种数据结构，用于提高数据库查询的效率。在MySQL中，索引分为聚集索引和非聚集索引两种类型。聚集索引是按照主键进行排序的索引，而非聚集索引则是按照二级索引的键值进行排序的索引。
+数据库索引是一种数据结构，用于提高数据库查询的效率。**在MySQL中，索引分为聚集索引和非聚集索引两种类型。** 聚集索引是按照主键进行排序的索引，而非聚集索引则是按照二级索引的键值进行排序的索引。
 
 创建索引的语法如下：
 
@@ -854,9 +843,9 @@ CREATE [UNIQUE] INDEX index_name ON table_name (column1, column2, ...);
 
 MySQL支持多种存储引擎，每种存储引擎都有其特点和适用场景。以下是MySQL常用的几种存储引擎的区别：
 
-1. InnoDB：默认的存储引擎，支持ACID事务，提供行级锁定和外键约束，适合于大多数应用程序。
+1. **InnoDB**：默认的存储引擎，支持ACID事务，提供行级锁定和外键约束，适合于大多数应用程序。
 
-2. MyISAM：不支持事务和外键约束，但速度快，适合于读密集型应用。
+2. **MyISAM**：不支持事务和外键约束，但速度快，适合于读密集型应用。
 
 3. Memory：将数据存储在内存中，速度非常快，但数据不能持久化，适合于缓存表和临时表。
 
@@ -870,7 +859,7 @@ MySQL支持多种存储引擎，每种存储引擎都有其特点和适用场景
 
 需要注意的是，不同的存储引擎对于并发性、数据完整性、事务支持、索引类型和空间占用等方面的处理方式可能不同，需要根据具体应用场景进行选择。
 
-#### InnoDB
+##### InnoDB
 
 InnoDB是MySQL默认的存储引擎，也是最常用的存储引擎之一。相较于其他存储引擎，InnoDB具有以下特点：
 
@@ -890,9 +879,9 @@ InnoDB是MySQL默认的存储引擎，也是最常用的存储引擎之一。相
 
 需要注意的是，InnoDB对于内存和磁盘的使用方式与其他存储引擎不同，需要根据具体应用场景进行配置和优化。同时，InnoDB也存在一些性能问题，如写入性能、锁竞争等，需要进行特殊处理和优化。
 
-#### MyISAM
+##### MyISAM
 
-MyISAM是MySQL数据库的一种存储引擎，它是MySQL早期版本默认的存储引擎。MyISAM的特点是速度快、易于管理、表级锁定等。MyISAM的表在磁盘上以文件形式存储，每个表对应两个文件，一个是MYD文件，用于存储表数据，另一个是MYI文件，用于存储表索引。MyISAM对于读密集型的应用程序具有很好的性能，但在写操作比较频繁的情况下，由于表级锁定会导致并发性能不佳，因此不适合高并发、高负载的应用程序。此外，MyISAM还存在一些其他的限制，例如不支持事务和外键等。因此，在实际应用中，MyISAM往往被InnoDB等更先进的存储引擎所取代。
+MyISAM是MySQL数据库的一种存储引擎，它是MySQL早期版本默认的存储引擎。MyISAM的特点是速度快、易于管理、表级锁定等。MyISAM的表在磁盘上以文件形式存储，每个表对应两个文件，一个是MYD文件，用于存储表数据，另一个是MYI文件，用于存储表索引。MyISAM对于读密集型的应用程序具有很好的性能，但在写操作比较频繁的情况下，由于表级锁定会导致并发性能不佳，因此不适合高并发、高负载的应用程序。此外，MyISAM还存在一些其他的限制，例如不支持事务和外键等。因此，**在实际应用中，MyISAM往往被InnoDB等更先进的存储引擎所取代。**
 
 #### 存储引擎的 InnoDB 与 MyISAM
 
@@ -908,7 +897,7 @@ InnoDB 和 MyISAM 都是 MySQL 数据库的存储引擎，它们有以下几个�
 
 5. 空间占用：MyISAM 的表结构比 InnoDB 更简单，因此它的磁盘空间占用更小。而 InnoDB 的表结构相对更复杂，因此它的磁盘空间占用更大。
 
-总的来说，如果你的应用需要支持事务、外键约束和高并发读写操作，那么选择 InnoDB 更为合适；如果你的应用是读密集型的，可以考虑使用 MyISAM。
+**总的来说，如果你的应用需要支持事务、外键约束和高并发读写操作，那么选择 InnoDB 更为合适；如果你的应用是读密集型的，可以考虑使用 MyISAM。**
 
 #### 数据库索引的原理
 
@@ -1044,7 +1033,7 @@ dog: 8
 
 ## 框架篇
 
-### Spring IoC
+### Spring
 
 #### Spring优缺点
 
@@ -1059,6 +1048,8 @@ Spring 的缺点：
 * 学习曲线较陡峭，需要掌握大量的知识点才能熟练使用。配置文件变得越来越复杂，需要花费一定的时间和精力。
 * 运行时负载较重，可能会影响应用的性能，对于一些小型项目，可能会显得过于臃肿。
 * 需要依赖大量的第三方库和插件，有时会出现版本冲突等问题。
+
+### Spring IoC
 
 #### 什么是 Spring IOC 容器
 
@@ -1092,17 +1083,19 @@ bean就是对象，被spring ioc 管理的对象就是bean
 
 xml 和 注解
 
-##### xml方式配置bean
+* xml配置
 
-```xml
-<bean class="com.company.project.CustomClass" id="">
-```
+    ```xml
+    <bean class="com.company.project.CustomClass" id="">
+    ```
 
-##### 主要的注解配置方式
+* 注解配置
 
-* @Component, @Controller, @Service, @Repository: 直接描述在class定义上就行了, 运行过程中会通过反射去创建
-* @Bean: 返回一个对象，可以自己去new
-* @Import: TODO: 没了解过
+    注解配置方法主要是如下配置方法
+
+  * @Component, @Controller, @Service, @Repository: 直接描述在class定义上就行了, 运行过程中会通过反射去创建
+  * @Bean: 返回一个对象，可以自己去new
+  * @Import: TODO: 没了解过
 
 #### Spring Bean 作用域
 
@@ -1115,61 +1108,64 @@ xml 和 注解
 * globalSession：每个全局 HTTP 会话都会创建一个新的 Bean 实例，仅在基于 Portlet 的 Web 应用中可用。
 * application：每个 ServletContext 上下文中只存在一个 Bean 实例，仅在 Web 应用中可用。
 
-具体的配置方式如下所示：
-
-```xml
-<!-- 配置 singleton 作用域的 Bean -->
-<bean id="singletonBean" class="com.example.SingletonBean" scope="singleton"/>
-<!-- 配置 prototype 作用域的 Bean -->
-<bean id="prototypeBean" class="com.example.PrototypeBean" scope="prototype"/>
-<!-- 配置 request 作用域的 Bean -->
-<bean id="requestBean" class="com.example.RequestBean" scope="request"/>
-<!-- 配置 session 作用域的 Bean -->
-<bean id="sessionBean" class="com.example.SessionBean" scope="session"/>
-<!-- 配置 globalSession 作用域的 Bean -->
-<bean id="globalSessionBean" class="com.example.GlobalSessionBean" scope="globalSession"/>
-<!-- 配置 application 作用域的 Bean -->
-<bean id="applicationBean" class="com.example.ApplicationBean" scope="application"/>
-```
-
 需要注意的是，不同作用域的 Bean 在生命周期和使用方式上有很大的不同，因此需要根据实际需求进行选择和配置。
 
-在Spring中，我们可以使用`@Scope`注解来配置Bean的作用域。`@Scope`注解可以用在类级别上，也可以用在方法级别上。
+两种配置方法分别是 xml 和注解配置:
 
-```java
-@Service
-@Scope("prototype")
-public class MyService {
-    // ...
-}
-```
+* xml 配置 bean 作用域
 
-在方法级别上，`@Scope`注解可以用来覆盖类级别上的作用域设置，实现更细粒度的控制。举个例子：
+    具体的配置方式如下所示：
 
-```java
-@Service
-@Scope("singleton")
-public class MyService {
-    // ...
+    ```xml
+    <!-- 配置 singleton 作用域的 Bean -->
+    <bean id="singletonBean" class="com.example.SingletonBean" scope="singleton"/>
+    <!-- 配置 prototype 作用域的 Bean -->
+    <bean id="prototypeBean" class="com.example.PrototypeBean" scope="prototype"/>
+    <!-- 配置 request 作用域的 Bean -->
+    <bean id="requestBean" class="com.example.RequestBean" scope="request"/>
+    <!-- 配置 session 作用域的 Bean -->
+    <bean id="sessionBean" class="com.example.SessionBean" scope="session"/>
+    <!-- 配置 globalSession 作用域的 Bean -->
+    <bean id="globalSessionBean" class="com.example.GlobalSessionBean" scope="globalSession"/>
+    <!-- 配置 application 作用域的 Bean -->
+    <bean id="applicationBean" class="com.example.ApplicationBean" scope="application"/>
+    ```
 
+* 在Spring中，我们可以使用`@Scope`注解来配置Bean的作用域。`@Scope`注解可以用在类级别上，也可以用在方法级别上。
+
+    ```java
+    @Service
     @Scope("prototype")
-    public void doSomething() {
+    public class MyService {
         // ...
     }
-}
-```
+    ```
 
-在上面的例子中，`MyService`类的作用域是`singleton`，但是`doSomething`方法的作用域是`prototype`，也就是每次调用该方法都会创建一个新的实例。
+    在方法级别上，`@Scope`注解可以用来覆盖类级别上的作用域设置，实现更细粒度的控制。举个例子：
+
+    ```java
+    @Service
+    @Scope("singleton")
+    public class MyService {
+        // ...
+
+        @Scope("prototype")
+        public void doSomething() {
+            // ...
+        }
+    }
+    ```
+
+    在上面的例子中，`MyService`类的作用域是`singleton`，但是`doSomething`方法的作用域是`prototype`，也就是每次调用该方法都会创建一个新的实例。
 
 #### Spring 单例 Bean 的优势
 
 减少内存使用，减少反射开支，垃圾回收也少
 
-#### bean 线程安全么
+#### Spring Bean 线程安全么
 
-省流: *烂不烂问厨房，安全不安全问作用域*
-
-在Spring中，Bean的线程安全性取决于Bean的作用域。如果一个Bean的作用域是singleton（默认作用域），那么该Bean就是线程不安全的，因为它是在整个应用程序上下文中共享的。多个线程可以同时访问和修改它，这可能会导致数据不一致或其他问题。
+*省流: 烂不烂问厨房，安全不安全问作用域*
+在Spring中，Bean的线程安全性取决于Bean的作用域。**如果一个Bean的作用域是singleton（默认作用域），那么该Bean就是线程不安全的，** 因为它是在整个应用程序上下文中共享的。多个线程可以同时访问和修改它，这可能会导致数据不一致或其他问题。
 
 **tip**: 把成员变量放在单例的方法中会线程安全，单例bean的方法是prototype的所以可以达到线程安全
 
@@ -1210,19 +1206,19 @@ Spring Bean的回调方法指的是在Bean实例化和装配过程中，Spring�
 
 Spring框架本身不提供处理并发问题的解决方案，但是它提供了一些机制来帮助应用程序开发人员处理并发问题。
 
-##### 作用域
+* 改变作用域
+    首先，可以通过设置Bean的作用域来控制并发访问。如前面所述，对于单例Bean，需要注意多线程并发访问的问题。如果需要多线程访问同一个Bean实例，可以使用线程安全的代码保证数据的一致性。如果需要避免并发访问问题，可以将Bean的作用域设置为prototype，这样每个线程都会获得一个独立的Bean实例。
 
-首先，可以通过设置Bean的作用域来控制并发访问。如前面所述，对于单例Bean，需要注意多线程并发访问的问题。如果需要多线程访问同一个Bean实例，可以使用线程安全的代码保证数据的一致性。如果需要避免并发访问问题，可以将Bean的作用域设置为prototype，这样每个线程都会获得一个独立的Bean实例。
+* `@Synchronized` 和 同步锁
+    其次，Spring提供了一个注解`@Synchronized`，它可以用于方法级别，将方法标记为同步方法，以确保多个线程不会同时访问该方法。这个注解的实现方式和Java中的`synchronized` (同步锁) 关键字是类似的，它会在方法上加锁，确保同一时间只有一个线程可以执行该方法。
+    [章节链接：synchronized-实现原理](#synchronized-实现原理)
 
-##### @Synchronized 和 同步锁
+* ThreadLocal *一般情况不推荐*
+    是一个Java中的线程局部变量，它提供了一种线程安全的方式来存储每个线程的独立副本。在Spring中，我们可以使用ThreadLocal来存储每个线程中的Bean实例，从而保证线程安全。具体地说，我们可以在Bean定义中使用`@Scope("thread")`注解来声明一个Bean的作用域为线程级别，然后通过ThreadLocal来存储每个线程中的Bean实例。这样，每个线程都有自己的Bean实例，互不干扰，从而实现线程安全。
+    [章节链接：threadlocal-原理分析](#threadlocal-原理分析)
 
-其次，Spring提供了一个注解`@Synchronized`，它可以用于方法级别，将方法标记为同步方法，以确保多个线程不会同时访问该方法。这个注解的实现方式和Java中的`synchronized` (同步锁) 关键字是类似的，它会在方法上加锁，确保同一时间只有一个线程可以执行该方法。
-
-##### ThreadLocal
-
-是一个Java中的线程局部变量，它提供了一种线程安全的方式来存储每个线程的独立副本。在Spring中，我们可以使用ThreadLocal来存储每个线程中的Bean实例，从而保证线程安全。具体地说，我们可以在Bean定义中使用`@Scope("thread")`注解来声明一个Bean的作用域为线程级别，然后通过ThreadLocal来存储每个线程中的Bean实例。这样，每个线程都有自己的Bean实例，互不干扰，从而实现线程安全。
-
-最后，使用Spring提供的事务管理机制可以帮助我们处理并发问题。事务管理可以确保多个线程之间的数据一致性，并提供了一些机制来确保事务的隔离性和原子性。可以使用Spring提供的声明式事务管理或编程式事务管理来实现事务管理。
+* 事务管理机制 *有点杀鸡用牛刀的感觉*
+    使用Spring提供的事务管理机制可以帮助我们处理并发问题。事务管理可以确保多个线程之间的数据一致性，并提供了一些机制来确保事务的隔离性和原子性。可以使用Spring提供的声明式事务管理或编程式事务管理来实现事务管理。
 
 总之，Spring框架提供了一些机制来帮助我们处理并发问题，但具体的解决方案还需要根据具体的应用场景和需求来进行选择。
 
@@ -1237,29 +1233,18 @@ Spring框架本身不提供处理并发问题的解决方案，但是它提供�
 
 Spring Bean的装配是指将Bean实例化并将其成员变量赋值的过程。Spring提供了多种方式来实现Bean的装配。
 
-##### XML配置文件装配
-
-通过在XML配置文件中定义Bean和Bean之间的依赖关系(property节点ref属性)，Spring容器可以根据配置文件中的信息来自动装配Bean。
-
-##### 自动装配
-
-Spring容器可以自动查找Bean定义中的依赖关系(@Autowired)，并自动装配Bean。 *一般只会问到自动装配*
-
-##### Spring Boot自动装配
-
-Spring Boot提供了大量的自动配置类，可以根据classpath、类名、条件等来自动装配Bean。
-
-##### 注解装配
-
-通过在Bean类中使用注解来标识Bean之间的依赖关系，Spring容器可以根据注解信息来自动装配Bean。
-
-##### Java配置类装配
-
-通过在Java配置类中使用@Bean注解来定义Bean和Bean之间的依赖关系，Spring容器可以根据Java配置类中的信息来自动装配Bean。
-
-##### XML命名空间装配
-
-Spring提供了多种XML命名空间，可以通过配置对应的命名空间来实现Bean的装配。
+* XML配置文件装配
+    通过在XML配置文件中定义Bean和Bean之间的依赖关系(property节点ref属性)，Spring容器可以根据配置文件中的信息来自动装配Bean。
+* 自动装配
+    Spring容器可以自动查找Bean定义中的依赖关系(@Autowired)，并自动装配Bean。 *一般只会问到自动装配*
+* Spring Boot自动装配
+    Spring Boot提供了大量的自动配置类，可以根据classpath、类名、条件等来自动装配Bean。
+* 注解装配
+    通过在Bean类中使用注解来标识Bean之间的依赖关系，Spring容器可以根据注解信息来自动装配Bean。
+* Java配置类装配
+    通过在Java配置类中使用@Bean注解来定义Bean和Bean之间的依赖关系，Spring容器可以根据Java配置类中的信息来自动装配Bean。
+* XML命名空间装配
+    Spring提供了多种XML命名空间，可以通过配置对应的命名空间来实现Bean的装配。
 
 #### Bean自动装配的方式(xml向)
 
@@ -1274,12 +1259,10 @@ Spring提供了多种XML命名空间，可以通过配置对应的命名空间�
 Spring Bean解决循环依赖的方式，主要有两种：构造器注入和属性注入。
 Spring容器在处理循环依赖问题时，会优先使用构造器注入，如果无法解决循环依赖问题，才会使用属性注入。在使用属性注入时，需要使用Spring容器的后处理器来完成依赖注入，避免循环依赖问题。
 
-##### 构造器注入
-
+* 构造器注入
 构造器注入是指在Bean实例化时，通过构造器将依赖的Bean作为参数传入，从而解决循环依赖问题。这种方式的优点是在Bean实例化时就完成了依赖注入，避免了后续的循环依赖问题。但是，构造器注入需要在Bean定义时就确定依赖关系，因此不适合循环依赖关系较为复杂的情况。
 
-##### 属性注入
-
+* 属性注入
 属性注入是指在Bean实例化后，通过属性的setter方法将依赖的Bean注入。这种方式需要先创建Bean实例，再注入属性，因此可以处理循环依赖关系较为复杂的情况。但是，属性注入存在一个问题，即在注入属性前，必须先完成Bean的实例化，因此需要使用Spring容器的后处理器来完成依赖注入。
 
 #### BeanDefinition是什么
@@ -1310,17 +1293,15 @@ Spring IOC（Inversion of Control，控制反转）的实现依赖于Java的反�
 
 IoC（Inversion of Control，控制反转）和DI（Dependency Injection，依赖注入）是Spring框架中的两个重要概念。
 
-##### IoC
+IoC通过反转控制权实现对象的生命周期和依赖关系的管理，DI通过构造函数或属性注入实现对象之间的依赖关系的管理。两者相互配合，可以有效地降低应用程序的耦合度和复杂度，提高应用程序的可维护性和灵活性。
 
+需要注意的是当提到IoC和DI的关系时，可以认为是**通过DI来实现了IoC这一设计理念**
+
+* IoC
 IoC指的是通过反转应用程序的控制权，将对象的创建和依赖关系的管理交给Spring IOC容器来完成。在传统的应用程序中，对象的创建和依赖关系是由程序员手动管理的，而在Spring中，我们只需要将需要管理的对象交给Spring IOC容器，让它来管理对象的生命周期和依赖关系，从而实现了应用程序的解耦和灵活性。
 
-##### DI
-
+* DI
 DI指的是将依赖对象通过构造函数或属性注入的方式传递到需要使用它的对象中。通过DI，我们可以将对象之间的依赖关系从应用程序中解耦出来，降低了应用程序的耦合度和复杂度。Spring IOC容器会负责查找需要注入的依赖对象，并将它们注入到需要使用它们的对象中，从而完成依赖注入。
-
-需要注意的是当提到ioc和di的关系时，可以认为是**通过di来实现了ioc这一设计理念**
-
-总之，IoC和DI都是Spring框架中的重要概念，IoC通过反转控制权实现对象的生命周期和依赖关系的管理，DI通过构造函数或属性注入实现对象之间的依赖关系的管理。两者相互配合，可以有效地降低应用程序的耦合度和复杂度，提高应用程序的可维护性和灵活性。
 
 #### 实现DI的方式
 
@@ -1408,24 +1389,24 @@ Spring支持以下几种事务类型：
 2. 基于XML的声明性事务：Spring使用AOP来实现声明性事务，类似于基于注解的声明性事务。在XML配置文件中，可以使用`<tx:advice>`和`<tx:attributes>`标签来声明和配置事务。当一个被配置了事务的方法被调用时，Spring会使用AOP动态地创建一个代理对象来管理事务。
 3. 编程式事务（类似jdbc）：Spring使用TransactionTemplate或TransactionManager等编程式API来实现编程式事务。通过TransactionTemplate或TransactionManager等API，可以编写代码来控制事务的开始、提交或回滚。例如，当一个事务需要跨越多个方法或对象时，可以使用编程式事务来控制事务的边界。
 
-#### 编程式事务
+#### 描述编程式事务
 
 编程式事务是指在代码中显式地控制事务的开启、提交和回滚，而不是使用Spring框架提供的声明式事务管理方式。下面是一个使用编程式事务的示例：
 
 ```java
 @Service
 public class UserServiceImpl implements UserService {
-
     @Autowired
     private UserDao userDao;
-
     @Autowired
     private PlatformTransactionManager transactionManager;
 
     @Override
     public void transferMoney(String fromUser, String toUser, double amount) {
-        TransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
-        TransactionStatus transactionStatus = transactionManager.getTransaction(transactionDefinition);
+        TransactionDefinition transactionDefinition =
+            new DefaultTransactionDefinition();
+        TransactionStatus transactionStatus =
+            transactionManager.getTransaction(transactionDefinition);
         try {
             userDao.withdrawMoney(fromUser, amount);
             userDao.depositMoney(toUser, amount);
@@ -1469,11 +1450,11 @@ Spring事务隔离是指多个事务并发执行时，每个事务之间应该�
 ```java
 @Service
 public class UserService {
-
     @Autowired
     private UserDao userDao;
 
-    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
+    @Transactional(propagation = Propagation.REQUIRED,
+        isolation = Isolation.READ_COMMITTED)
     public void transferMoney(int fromUserId, int toUserId, double amount) {
         User fromUser = userDao.getUserById(fromUserId);
         User toUser = userDao.getUserById(toUserId);
@@ -1564,19 +1545,16 @@ Java config是一种基于Java类的配置方式，可以通过Java类来替代X
 ```java
 @Configuration
 public class AppConfig {
-
     @Bean
     public HelloWorld helloWorld() {
         return new HelloWorld();
     }
-
     @Bean
     public HelloWorldService helloWorldService() {
         HelloWorldService service = new HelloWorldService();
         service.setHelloWorld(helloWorld());
         return service;
     }
-
 }
 
 public class Main {
@@ -1611,11 +1589,9 @@ Spring的Import注解可以用于导入一个或多个配置类，以便在当�
 
 Import注解可以用于多种情况，例如：
 
-1. 在配置类中使用Import注解导入其他配置类，以便在当前配置类中使用这些配置类中定义的bean。
-
-2. 在@Configuration注解的配置类中使用Import注解导入其他@Configuration注解的配置类，以便将其定义的bean合并到当前配置类中。
-
-3. 在@Configuration注解的配置类中使用Import注解导入普通的Java类，以便在当前配置类中使用这些Java类中定义的@Bean方法。需要配置类实现一个ImportSelector接口才能实现
+* **在配置类中使用Import注解导入其他配置类**，以便在当前配置类中使用这些配置类中定义的bean。
+* 在@Configuration注解的配置类中使用Import注解导入其他@Configuration注解的配置类，以便将其**定义的bean合并到当前配置类中**。
+* **在@Configuration注解的配置类中使用Import注解导入普通的Java类**，以便在当前配置类中使用这些Java类中定义的@Bean方法。需要配置类实现一个ImportSelector接口才能实现
 
 总之，Import注解可以帮助我们更好地组织和管理Spring配置，提高代码的可读性和可维护性。
 
@@ -1744,6 +1720,148 @@ public class UserService {
 无论使用哪种方法，都需要确保第三方类的构造函数和成员变量都是合理的，并且可以正确地注入依赖关系。同时，建议对第三方类进行单元测试以确保其正常工作。
 
 ### spring 多线程
+
+#### 使用@Async时等待所有子线程调用结束
+
+通过主进程循环等待的方式来实现
+
+```java
+List<Future<String>> async_task_list = new List<Future<String>>();
+boolean async_done = false;
+while (!async_done) {
+    Thread.sleep(100);
+    for(String data : datalist ){
+        Future<String> async_task = taskService.task(data);
+        async_task_list.add(async_task);
+    }
+
+    int task_done = 0;
+    for (Future<String> async_task : async_task_list) {
+        if (async_task.isDone()) {
+            task_done++;
+        }
+    }
+    if (task_done == async_task_list.size()) {
+        async_done = true;
+    }
+}
+```
+
+使用@Async注解将方法标记为异步执行，它会在调用该方法时立即返回，并启动一个新的线程来处理该方法的执行。但是，如果需要等待异步方法完成后再继续主线程的执行，可以使用CompletableFuture对象。
+
+首先，在需要等待异步方法完成执行的地方创建一个CompletableFuture对象：
+
+```java
+CompletableFuture<Void> future = new CompletableFuture<>();
+```
+
+然后，在@Async方法的末尾添加一行代码以通知CompletableFuture对象已经完成：
+
+```java
+future.complete(null);
+```
+
+接下来，在主线程中使用future.get()方法等待异步方法执行完成，并阻塞主线程的执行：
+
+```java
+future.get();
+```
+
+完整示例代码如下：
+
+```java
+@Component
+public class MyService {
+
+    @Async
+    public void asyncMethod() {
+        // 异步执行的方法体
+    }
+
+}
+
+@Service
+public class MyOtherService {
+
+    private final MyService myService;
+
+    @Autowired
+    public MyOtherService(MyService myService) {
+        this.myService = myService;
+    }
+
+    public void doSomething() throws InterruptedException, ExecutionException {
+        CompletableFuture<Void> future = new CompletableFuture<>();
+        myService.asyncMethod();
+        future.complete(null);
+        future.get(); // 等待异步方法执行完成
+        // 继续主线程的执行
+    }
+
+}
+```
+
+如果有多个异步方法需要等待，可以使用CompletableFuture.allOf()方法来等待它们全部完成。
+
+首先，创建一个`List<CompletableFuture<Void>>`对象，把所有的异步方法返回的CompletableFuture对象都添加到列表中：
+
+```java
+List<CompletableFuture<Void>> futures = new ArrayList<>();
+futures.add(myService.asyncMethod1());
+futures.add(myService.asyncMethod2());
+futures.add(myService.asyncMethod3());
+```
+
+然后，使用CompletableFuture.allOf()方法等待所有异步方法执行完成：
+
+```java
+CompletableFuture<Void> allFutures = CompletableFuture.allOf(
+    futures.toArray(new CompletableFuture[futures.size()])
+);
+allFutures.get(); // 等待所有异步方法执行完成
+```
+
+完整示例代码如下：
+
+```java
+@Service
+public class MyOtherService {
+
+    private final MyService myService;
+
+    @Autowired
+    public MyOtherService(MyService myService) {
+        this.myService = myService;
+    }
+
+    public void doSomething() throws InterruptedException, ExecutionException {
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
+        futures.add(myService.asyncMethod1());
+        futures.add(myService.asyncMethod2());
+        futures.add(myService.asyncMethod3());
+        CompletableFuture<Void> allFutures = CompletableFuture.allOf(
+            futures.toArray(new CompletableFuture[futures.size()])
+        );
+        allFutures.get(); // 等待所有异步方法执行完成
+        // 继续主线程的执行
+    }
+
+}
+```
+
+注意：如果需要获取每个异步方法的返回值，可以将CompletableFuture<Void>替换为CompletableFuture<T>，其中T是异步方法的返回类型。然后，在异步方法执行完成后，可以使用CompletableFuture.join()方法获取返回值。例如：
+
+```java
+List<CompletableFuture<String>> futures = new ArrayList<>();
+futures.add(myService.asyncMethod1());
+futures.add(myService.asyncMethod2());
+futures.add(myService.asyncMethod3());
+CompletableFuture<Void> allFutures = CompletableFuture.allOf(
+    futures.toArray(new CompletableFuture[futures.size()])
+);
+allFutures.get(); // 等待所有异步方法执行完成
+List<String> results = futures.stream().map(CompletableFuture::join).collect(Collectors.toList());
+```
 
 #### spring线程池
 
