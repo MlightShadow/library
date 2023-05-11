@@ -297,7 +297,13 @@ hashMap: 是由数组和链表组成的, 谈到哈希碰撞的问题: 通过精�
 
 #### 创建线程的方式及实现
 
-Java创建线程的方式有两种：继承Thread类和实现Runnable接口。
+Java创建线程的方式有三种：
+
+* 继承Thread类
+* 实现Runnable接口
+* 通过callable 和 future实现。
+
+实现Runnable接口比继承Thread类更好，因为Java是单继承的，在继承Thread类的同时可能会继承其他类，而实现Runnable接口可以避免这种限制。此外，实现Runnable接口还可以实现线程池等高级特性。
 
 ##### 继承Thread类
 
@@ -355,8 +361,6 @@ public class Test {
 }
 ```
 
-两种方式都可以创建线程，但是实现Runnable接口比继承Thread类更好，因为Java是单继承的，在继承Thread类的同时可能会继承其他类，而实现Runnable接口可以避免这种限制。此外，实现Runnable接口还可以实现线程池等高级特性。
-
 ##### Callable 和Future 实现多线程
 
 使用 `Callable` 和 `Future` 接口可以实现多线程编程，具体步骤如下：
@@ -399,12 +403,20 @@ public class Test {
 
 Java中线程的优先级通过Thread类的setPriority()方法来设置，其中优先级范围是1到10，1是最低优先级，10是最高优先级。默认情况下，线程的优先级是5。
 
+由于优先级需要通过thread对象来进行设置所以不论是哪种方式创建线程最终都需要传递给thread对象来进行设置
+
+##### thread方式
+
 以下是设置线程优先级的示例代码：
 
+```java
 Thread t = new Thread();
 t.setPriority(8);
+```
 
 需要注意的是，优先级较高的线程并不一定会比优先级较低的线程先执行完毕，因为线程的执行顺序是由操作系统决定的。因此，在编写多线程程序时，不要过度依赖线程优先级，更应该关注线程间的协作与同步。
+
+##### runnable方式
 
 使用`Runnable`接口实现多线程时，需要将`Runnable`对象作为参数传递给`Thread`类的构造方法中，然后调用`Thread`类的`setPriority()`方法来设置线程优先级。
 
@@ -426,6 +438,8 @@ t.start();
 与使用`Thread`类直接创建线程的方式相比，使用`Runnable`接口实现多线程需要多一步将`Runnable`对象传递给`Thread`类的构造方法中，但其优点在于可以避免单继承的限制，使得程序更加灵活。
 
 需要注意的是，与使用`Thread`类直接创建线程的方式一样，优先级较高的线程并不一定会比优先级较低的线程先执行完毕，因为线程的执行顺序是由操作系统决定的。因此，在编写多线程程序时，不要过度依赖线程优先级，更应该关注线程间的协作与同步。
+
+##### callable方式
 
 使用`Callable`接口实现多线程时，需要将`Callable`对象作为参数传递给`FutureTask`类的构造方法中，然后调用`Thread`类的`setPriority()`方法来设置线程优先级。
 
@@ -449,7 +463,7 @@ t.start();
 
 需要注意的是，与使用`Thread`类直接创建线程的方式一样，优先级较高的线程并不一定会比优先级较低的线程先执行完毕，因为线程的执行顺序是由操作系统决定的。因此，在编写多线程程序时，不要过度依赖线程优先级，更应该关注线程间的协作与同步。
 
-#### sleep() 、join（）、yield（）有什么区别
+#### 线程控制方法sleep,join,yield有什么区别
 
 在Java中，sleep、join和yield都是线程的控制方法，但它们的作用和使用场景不同。
 
@@ -462,6 +476,7 @@ t.start();
 * yield方法
     yield方法是线程类中的静态方法，它让当前线程让出CPU时间片，让其他线程有机会执行。与sleep方法不同的是，yield方法不会让当前线程暂停执行，而是直接进入就绪状态，等待CPU的调度。一般情况下，yield方法用于线程需要暂停一段时间，以等待其他线程执行完成，或者让优先级较低的线程有机会执行。
 
+**tip**: yield方法也用于让各个线程执行能够更加平均化
 综上所述，sleep方法和yield方法都是让当前线程让出CPU时间片，但sleep方法会暂停执行一段时间，而yield方法则直接进入就绪状态。join方法则是让当前线程等待其他线程执行完毕后再执行。
 
 #### 设置守护线程
@@ -497,13 +512,38 @@ thread.start();
 
 #### ThreadLocal 原理分析
 
-ThreadLocal 是 Java 中的一个线程本地变量工具类，它提供了一种线程安全的方式来存储线程本地数据。ThreadLocal 变量通常被定义为私有静态类型，它们在多线程环境下为不同的线程提供了独立的变量副本，并且在每个线程中都可以访问该变量副本。
+ThreadLocal 是一个线程级别的数据存储类，它提供了一种线程安全的方式来存储每个线程本地化的变量。这些变量的值只能被同一个线程读取和修改，其他线程无法访问。
 
 ThreadLocal 的原理是，每个 Thread 对象内部都维护了一个 ThreadLocalMap 对象，ThreadLocalMap 是 ThreadLocal 的实现类，它是一个 key-value 对，其中 key 是 ThreadLocal 对象的弱引用，value 是线程本地变量的值。当调用 ThreadLocal 的 set() 方法时，ThreadLocal 会将当前线程作为 key，将要设置的值作为 value，存储到当前线程的 ThreadLocalMap 对象中。当需要获取线程本地变量的值时，ThreadLocal 会先获取当前线程，然后从当前线程的 ThreadLocalMap 对象中获取对应的 value 值。
 
 由于每个线程内部都有一个 ThreadLocalMap 对象来存储线程本地变量的值，因此不同的线程之间访问的是不同的值，从而实现了线程本地变量的隔离。
 
-需要注意的是，由于 ThreadLocalMap 中的 key 是 ThreadLocal 对象的弱引用，因此如果 ThreadLocal 没有被其他对象引用，那么它可能会被垃圾回收器回收，但是 ThreadLocalMap 中的 value 却不会被回收，这可能会导致内存泄露问题，因此在使用 ThreadLocal 时需要特别注意内存泄露问题的处理。
+需要注意的是，由于 ThreadLocalMap 中的 key 是 ThreadLocal 对象的弱引用，因此如果 ThreadLocal 没有被其他对象引用，那么它可能会被垃圾回收器回收，但是 ThreadLocalMap 中的 value 却不会被回收，这可能会导致内存泄露问题，因此在使用 ThreadLocal 时需要特别注意内存泄露问题的处理。如果必须使用 ThreadLocal，那么就要确保在使用完毕后，将其值设为 null，以便释放内存空间。
+
+下面是一个 ThreadLocal 的示例：
+
+```java
+public class ThreadLocalDemo {
+    private static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
+
+    public static void main(String[] args) {
+        Thread t1 = new Thread(() -> {
+            threadLocal.set("Thread t1");
+            System.out.println(Thread.currentThread().getName() + " : " + threadLocal.get());
+        }, "t1");
+
+        Thread t2 = new Thread(() -> {
+            threadLocal.set("Thread t2");
+            System.out.println(Thread.currentThread().getName() + " : " + threadLocal.get());
+        }, "t2");
+
+        t1.start();
+        t2.start();
+    }
+}
+```
+
+在这个示例中，我们创建了一个 ThreadLocal 对象，并在两个不同的线程中设置了不同的值。由于 ThreadLocal 是线程级别的，因此每个线程可以独立地访问和修改自己的值，而不会影响其他线程的值。在这个示例中，t1 线程访问的是 "Thread t1"，而 t2 线程访问的是 "Thread t2"。
 
 #### 讲讲线程池的实现原理
 
@@ -588,9 +628,9 @@ class Task implements Runnable {
 
 #### volatile 实现原理
 
-`volatile` 是 Java 中的关键字，用于修饰变量。使用 `volatile` 关键字修饰的变量，可以保证多个线程之间对该变量的读写操作都是可见的，即一个线程修改了该变量的值，其他线程可以立即看到最新的值。`volatile` 关键字可以保证变量在多线程环境下的可见性，但是不能保证原子性，也就是说，使用 `volatile` 关键字修饰的变量，虽然可以保证多个线程之间对该变量的读写操作都是可见的，但是不能保证多个线程同时对该变量进行读写操作时的正确性。
+`volatile` 是 Java 中的关键字，用于修饰变量。使用 `volatile` 关键字修饰的变量，可以保证多个线程之间对该变量的读写操作都是可见的，即一个线程修改了该变量的值，其他线程可以立即看到最新的值。**`volatile` 关键字可以保证变量在多线程环境下的可见性，但是不能保证原子性**，也就是说，使用 `volatile` 关键字修饰的变量，虽然可以保证多个线程之间对该变量的读写操作都是可见的，但是不能保证多个线程同时对该变量进行读写操作时的正确性。
 
-#### synchronize 实现原理
+#### synchronized 实现原理
 
 `synchronized` 是 Java 中的关键字，用于实现多线程同步。在 Java 中，每个对象都有一个内置的锁，也称为监视器锁或管程。当一个线程尝试访问被 `synchronized` 关键字修饰的方法或代码块时，它必须先获得该对象的锁，如果该锁已经被其他线程占用，那么当前线程就会进入阻塞状态，直到获得该锁为止。
 
