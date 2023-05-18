@@ -1,7 +1,6 @@
 # java面试复习手册
 
 *文稿中以这个字体展示的内容* 都是吐槽，或者个人见解请仔细甄别
-[题目-参考资料](https://juejin.im/post/5a94a8ca6fb9a0635c049e67)
 
 [toc]
 
@@ -293,6 +292,26 @@ hashMap: 是由数组和链表组成的, 谈到哈希碰撞的问题: 通过精�
 #### HashMap 的工作原理及代码实现
 
 #### ConcurrentHashMap 的工作原理及代码实现
+
+### jvm
+
+#### jvm常见的优化内容
+
+1. 调整内存分配：通过设置堆内存大小和非堆内存大小，以及调整垃圾回收机制，可以优化内存使用效率。
+
+2. 调整垃圾回收机制：通过调整垃圾回收机制的参数，如回收算法、触发条件、回收频率等，可以优化垃圾回收效率和内存使用效率。
+
+3. 使用并发垃圾回收器：并发垃圾回收器可以在垃圾回收时不影响程序的正常执行，从而提高程序的性能。
+
+4. 使用JIT编译器：JIT编译器可以将代码在运行时编译成本地机器码，从而提高程序的执行效率。
+
+5. 调整线程池大小和优先级：通过调整线程池的大小和优先级，可以优化多线程程序的性能和稳定性。
+
+6. 使用缓存和缓存技术：通过使用缓存和缓存技术，可以减少对数据库和文件系统的访问，从而提高程序的执行效率。
+
+7. 使用异步IO技术：异步IO技术可以在IO操作时不阻塞线程，从而提高程序的并发性和执行效率。
+
+8. 使用代码优化技巧：如避免过多的对象创建和销毁、避免过多的方法调用、避免过多的异常处理等，可以优化程序的执行效率。
 
 ### 线程
 
@@ -1009,6 +1028,87 @@ dog: 8
 
 #### Redis 集群方案与实现
 
+这里提供一个使用 Redis 集群的 Java 示例代码：
+
+```java
+import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.JedisCluster;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class RedisClusterExample {
+
+    public static void main(String[] args) {
+        // 创建节点集合
+        Set<HostAndPort> nodes = new HashSet<>();
+        nodes.add(new HostAndPort("127.0.0.1", 7000));
+        nodes.add(new HostAndPort("127.0.0.1", 7001));
+        nodes.add(new HostAndPort("127.0.0.1", 7002));
+        nodes.add(new HostAndPort("127.0.0.1", 7003));
+        nodes.add(new HostAndPort("127.0.0.1", 7004));
+        nodes.add(new HostAndPort("127.0.0.1", 7005));
+
+        // 创建 JedisCluster 对象
+        JedisCluster jedisCluster = new JedisCluster(nodes);
+
+        // 执行操作
+        jedisCluster.set("key", "value");
+        String result = jedisCluster.get("key");
+        System.out.println(result);
+
+        // 关闭连接
+        jedisCluster.close();
+    }
+}
+```
+
+上面的代码中，首先创建了一个节点集合 `nodes`，其中包含了 Redis 集群的各个节点的地址和端口号。然后使用这个节点集合创建了一个 JedisCluster 对象 `jedisCluster`，通过这个对象可以执行各种 Redis 操作。最后，使用 `close()` 方法关闭连接。
+
+JedisCluster 是 Redis 官方推荐的 Java 集群客户端，它可以自动将数据分片存储到不同的 Redis 节点中，并提供了一些简单易用的 API，方便我们进行 Redis 集群的操作。在使用 JedisCluster 时，我们只需要指定集群中任意一个节点的 IP 和端口号即可，JedisCluster 会自动发现集群中的其他节点，并将数据按照一定规则分配到不同的节点上。下面是 JedisCluster 的一些操作：
+
+1. 获取 JedisCluster 实例：
+
+    ```java
+    Set<HostAndPort> nodes = new HashSet<>();
+    nodes.add(new HostAndPort("127.0.0.1", 7001));
+    nodes.add(new HostAndPort("127.0.0.1", 7002));
+    nodes.add(new HostAndPort("127.0.0.1", 7003));
+    nodes.add(new HostAndPort("127.0.0.1", 7004));
+    nodes.add(new HostAndPort("127.0.0.1", 7005));
+    nodes.add(new HostAndPort("127.0.0.1", 7006));
+    JedisCluster jedisCluster = new JedisCluster(nodes);
+    ```
+
+2. 对键值对进行操作：
+
+    ```java
+    jedisCluster.set("key", "value");
+    String value = jedisCluster.get("key");
+    ```
+
+3. 执行 Lua 脚本：
+
+    ```java
+    String script = "return redis.call('get', KEYS[1])";
+    List<String> keys = Arrays.asList("key");
+    List<String> args = new ArrayList<>();
+    args.add("value");
+    Object result = jedisCluster.eval(script, keys, args);
+    ```
+
+4. 批量操作：
+
+    ```java
+    Map<String, String> map = new HashMap<>();
+    map.put("key1", "value1");
+    map.put("key2", "value2");
+    jedisCluster.mset(map);
+    List<String> values = jedisCluster.mget("key1", "key2");
+    ```
+
+总之，JedisCluster 提供了与单机版 Redis 客户端类似的 API，并且能够自动处理 Redis 集群中的数据分片和故障转移等问题，从而简化了我们使用 Redis 集群的过程。
+
 #### Redis 为什么是单线程的
 
 #### 缓存奔溃
@@ -1048,6 +1148,18 @@ Spring 的缺点：
 * 学习曲线较陡峭，需要掌握大量的知识点才能熟练使用。配置文件变得越来越复杂，需要花费一定的时间和精力。
 * 运行时负载较重，可能会影响应用的性能，对于一些小型项目，可能会显得过于臃肿。
 * 需要依赖大量的第三方库和插件，有时会出现版本冲突等问题。
+
+#### spring 有哪些启动类
+
+Spring 有多个启动类，这些启动类用于不同的场景和目的，以下是一些常用的启动类：
+
+* `SpringApplication`：用于创建 Spring 应用程序的主类，它可以自动配置 Spring 环境，并支持多种应用程序类型，如 Web 应用、命令行应用等。
+
+* `SpringApplicationBuilder`：用于构建 Spring 应用程序的主类，它可以创建一个嵌套的 Spring 应用程序上下文，支持自定义配置和属性。
+
+* `ServletInitializer`：用于配置 Servlet 应用程序的启动类，它可以将 Spring 应用程序部署到 Web 容器中，例如 Tomcat、Jetty 等。
+
+* `SpringBootServletInitializer`：用于配置 Spring Boot 应用程序的启动类，它
 
 ### Spring IoC
 
@@ -2092,7 +2204,7 @@ Spring MVC 中的拦截器和 Servlet 中的过滤器都是用来处理请求的
 
 需要注意的是，在 Spring Boot 中，你可以通过 Application 类来设置 Spring MVC 的配置类，也可以在配置类中使用 @ComponentScan 注解来扫描所有的控制器类。
 
-### SpringBoot核心注解
+#### SpringBoot核心注解
 
 Spring Boot 中有很多核心注解，以下是一些常用的注解：
 
@@ -2103,6 +2215,25 @@ Spring Boot 中有很多核心注解，以下是一些常用的注解：
 * `@Service`: 这个注解用于标注业务层组件，与`@Component`注解功能相同。
 * `@Repository`: 这个注解用于标注数据访问层组件，与`@Component`注解功能相同。
 * `@Component`: 这个注解用于标注一个组件，可以被自动扫描并装配到Spring容器中。
+
+#### spring boot 热部署
+
+Spring Boot 支持热部署，可以在不重启应用程序的情况下进行代码的修改和更新。下面是一些常见的实现方式：
+
+* Spring Boot DevTools：使用 Spring Boot DevTools 可以实现热部署。DevTools 提供了一个开发者工具，可以在开发阶段自动重启应用程序，以便让应用程序更快地更新和部署。只需在 pom.xml 文件中添加以下依赖即可：
+
+    ```xml
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
+    ```
+
+* JRebel：JRebel 是一款商业软件，可以实现热部署和快速重新加载 Java 应用程序的代码和资源。JRebel 可以在应用程序运行时重新加载类，并且不需要重启应用程序。可以在 JRebel 官网上了解更多信息。
+
+* 使用插件：可以使用一些插件，如 Spring Loaded、DCEVM 和 Javassist 等，来实现热部署。这些插件可以在应用程序运行时动态地替换和重新加载类。但是这些插件并不是 Spring Boot 官方支持的方式，使用插件可能会带来一些不稳定性和安全性问题，需要自行权衡利弊。
+
+总之，Spring Boot 支持多种方式实现热部署，开发人员可以根据自己的需求选择适合自己的方式。
 
 ### MyBatis
 
