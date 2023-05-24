@@ -129,7 +129,7 @@ Hash算法在数据安全领域有着广泛的应用，例如密码学、数字�
 
 在Java中，获取Hash值的方式主要有两种：
 
-1. 使用**hashCode()**方法
+1. 使用 **hashCode()** 方法
 
     Object类的hashCode()方法可以返回一个对象的哈希码。该方法返回一个整型值，代表该对象的哈希码。默认情况下，hashCode()方法返回的是对象的内存地址。
 
@@ -2091,6 +2091,257 @@ Spring MVC 中的拦截器和 Servlet 中的过滤器都是用来处理请求的
 * CorsRegistry：配置跨域访问。
 
 需要注意的是，在 Spring Boot 中，你可以通过 Application 类来设置 Spring MVC 的配置类，也可以在配置类中使用 @ComponentScan 注解来扫描所有的控制器类。
+
+### spring boot 配置登录拦截器
+
+好的，以下是一个简单的 Spring Boot 登录拦截器的例子：
+
+* 创建一个登录拦截器类，实现 HandlerInterceptor 接口。
+
+    ```java
+    @Component
+    public class LoginInterceptor implements HandlerInterceptor {
+        
+        @Override
+        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+            HttpSession session = request.getSession();
+            Object user = session.getAttribute("user");
+            if (user == null) {
+                response.sendRedirect("/login");
+                return false;
+            }
+            return true;
+        }
+    }
+    ```
+
+* 在 Spring Boot 配置类中注册登录拦截器。
+
+    ```java
+    @Configuration
+    public class WebConfig implements WebMvcConfigurer {
+        
+        @Autowired
+        private LoginInterceptor loginInterceptor;
+        
+        @Override
+        public void addInterceptors(InterceptorRegistry registry) {
+            registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/login");
+        }
+    }
+    ```
+
+* 在 Spring Boot 控制器类中添加登录方法。
+
+    ```java
+    @Controller
+    public class LoginController {
+        
+        @PostMapping("/login")
+        public String login(HttpServletRequest request, String username, String password) {
+            // 验证用户名和密码
+            if ("admin".equals(username) && "123456".equals(password)) {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", username);
+                return "redirect:/home";
+            }
+            return "redirect:/login";
+        }
+    }
+    ```
+
+* 在 Spring Boot 控制器类中添加首页方法。
+
+    ```java
+    @Controller
+    public class HomeController {
+        
+        @GetMapping("/home")
+        public String home() {
+            return "home";
+        }
+    }
+    ```
+
+* 在 src/main/resources/templates 目录下创建 login.html 和 home.html 页面。
+
+    login.html：
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+    </head>
+    <body>
+        <form method="post" action="/login">
+            <input type="text" name="username">
+            <input type="password" name="password">
+            <button type="submit">Login</button>
+        </form>
+    </body>
+    </html>
+    ```
+
+    home.html：
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+    </head>
+    <body>
+        <h1>Welcome to home page!</h1>
+    </body>
+    </html>
+    ```
+
+完成以上步骤后，访问 <http://localhost:8080/home> 页面时会被拦截，跳转到 <http://localhost:8080/login> 页面，输入用户名和密码后才能访问首页。
+
+
+### spring boot 中统一处理 exception
+
+Spring Boot 提供了多种方式来统一处理异常，其中最常用的方式是使用 @ControllerAdvice 和 @ExceptionHandler 注解。
+
+@ControllerAdvice 注解用来定义一个全局的异常处理器，可以处理所有 Controller 中抛出的异常。在该类中，可以使用 @ExceptionHandler 注解定义对应的异常处理方法，当 Controller 中抛出对应的异常时，会自动调用该方法进行处理。
+
+例如，我们可以创建一个全局异常处理器类并使用 @ControllerAdvice 注解进行标记：
+
+```java
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
+    }
+}
+```
+
+在上述代码中，我们使用 @ExceptionHandler 注解标记了一个处理 Exception 类型异常的方法，当 Controller 中出现 Exception 异常时，会自动调用该方法进行处理。
+
+另外，Spring Boot 还提供了其他的异常处理方式，例如使用 @RestControllerAdvice 注解来定义一个全局的异常处理器并返回 JSON 格式的错误信息，以及使用 @ResponseStatus 注解来定义特定异常的 HTTP 状态码等。
+
+### spring boot 中使用 shiro 和 spring security
+
+Shiro 和 Spring Security 都是用于安全认证和授权的框架，它们都提供了一系列的 API 和工具，帮助我们实现安全相关的功能。下面是它们之间的一些比较：
+
+1. Spring Security 是 Spring 家族的一部分，Shiro 是 Apache 的一个独立项目。
+2. Spring Security 的配置相对复杂，需要大量的 XML 配置或 Java 配置，而 Shiro 的配置相对简单，大多数情况下只需要配置一个 INI 文件即可。
+3. Spring Security 集成了 Spring 框架的依赖注入和 AOP 功能，而 Shiro 不依赖于任何框架。
+4. Spring Security 有更多的扩展点和功能，对于大型企业级应用来说更加适用，而 Shiro 更适合于小型应用和快速开发。
+5. Spring Security 的文档相对完善，社区活跃度高，有更多的开发者使用和贡献，而 Shiro 文档相对简单，但也有一些优秀的使用案例和资料。
+
+总的来说，选择使用哪个框架取决于具体的应用场景和需求。如果你的应用已经使用了 Spring 框架，那么使用 Spring Security 可能更为方便；如果你需要一个更简单和灵活的安全框架，那么选择 Shiro 可能更为合适。
+
+这里给出一个 Shiro 的例子和一个 Spring Security 的例子，以便更好地理解它们的使用方式和区别。
+
+Shiro 的例子：
+
+1. 配置 shiro.ini 文件，定义用户、角色和权限信息。
+
+    ```ini
+    [users]
+    admin=admin,admin
+    user=user,password
+
+    [roles]
+    admin=*
+    user=user:read
+
+    [urls]
+    /** = authc
+    ```
+
+2. 在应用中使用 Shiro 进行认证和授权。
+
+    ```java
+    // 获取当前用户的 Subject 对象
+    Subject currentUser = SecurityUtils.getSubject();
+
+    // 判断用户是否已经登录
+    if (!currentUser.isAuthenticated()) {
+        // 封装用户的认证信息
+        UsernamePasswordToken token = new UsernamePasswordToken("user", "password");
+        // 进行用户认证
+        currentUser.login(token);
+    }
+
+    // 判断用户是否具有指定的角色
+    if (currentUser.hasRole("admin")) {
+        // 执行管理员操作
+    }
+
+    // 判断用户是否具有指定的权限
+    if (currentUser.isPermitted("user:read")) {
+        // 执行用户读取操作
+    }
+    ```
+
+Spring Security 的例子：
+
+1. 配置 Spring Security，定义用户、角色和权限信息。
+
+    ```java
+    @Configuration
+    @EnableWebSecurity
+    public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http
+                .authorizeRequests()
+                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/user/**").hasRole("USER")
+                    .anyRequest().authenticated()
+                    .and()
+                .formLogin()
+                    .and()
+                .httpBasic();
+        }
+
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth
+                .inMemoryAuthentication()
+                    .withUser("admin").password("{noop}admin").roles("ADMIN")
+                    .and()
+                    .withUser("user").password("{noop}password").roles("USER");
+        }
+    }
+    ```
+
+2. 在应用中使用 Spring Security 进行认证和授权。
+
+    ```java
+    // 获取当前用户的 Authentication 对象
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    // 判断用户是否已经登录
+    if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+        // 封装用户的认证信息
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken("user", "password");
+        // 进行用户认证
+        authentication = authenticationManager.authenticate(token);
+        // 将认证信息设置到 SecurityContext 中
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+    }
+
+    // 判断用户是否具有指定的角色
+    if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+        // 执行管理员操作
+    }
+
+    // 判断用户是否具有指定的权限
+    if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("user:read"))) {
+        // 执行用户读取操作
+    }
+    ```
+
+需要注意的是，这里的示例代码仅供参考，实际应用中需要根据具体的业务需求进行调整和优化。
 
 ### SpringBoot核心注解
 
