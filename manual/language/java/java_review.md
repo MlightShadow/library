@@ -1961,7 +1961,7 @@ public class MyOtherService {
 }
 ```
 
-注意：如果需要获取每个异步方法的返回值，可以将CompletableFuture<Void>替换为CompletableFuture<T>，其中T是异步方法的返回类型。然后，在异步方法执行完成后，可以使用CompletableFuture.join()方法获取返回值。例如：
+注意：如果需要获取每个异步方法的返回值，可以将`CompletableFuture<Void>`替换为`CompletableFuture<T>`，其中T是异步方法的返回类型。然后，在异步方法执行完成后，可以使用CompletableFuture.join()方法获取返回值。例如：
 
 ```java
 List<CompletableFuture<String>> futures = new ArrayList<>();
