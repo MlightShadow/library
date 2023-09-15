@@ -1,7 +1,10 @@
 {
+    // editor ============================================================
     "editor.renderWhitespace": "all",
     "editor.fontFamily": "UbuntuMono Nerd Font Mono, 楷体",
     "editor.fontSize": 16,
+    "editor.tabSize": 4,
+    "editor.indentSize": "tabSize",
     "editor.fontWeight": "600",
     "editor.fontLigatures": true,
     "editor.wordWrap": "bounded",
@@ -17,11 +20,12 @@
     "editor.minimap.scale": 2,
     "editor.lineNumbers": "relative",
     "editor.smoothScrolling": true,
-    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "phase",
     "editor.cursorWidth": 3,
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": "active",
+    // terminal ===========================================================
     "terminal.external.windowsExec": "D:\\Git\\bin\\bash.exe",
     "terminal.integrated.profiles.windows": {
         "PowerShell": {
@@ -34,14 +38,14 @@
         }
     },
     "terminal.integrated.defaultProfile.windows": "Git-Bash",
+    // vim simular ======================================================
+    "vim.hlsearch": true,
     "highlightLine.borderStyle": "dashed",
     "highlightLine.borderWidth": "2px",
     "highlightLine.borderColor": "#f761eb",
-    "svn.path": "D:\\svn\\bin\\svn.exe",
     "[vue]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "prettier.tabWidth": 4,
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
@@ -51,51 +55,77 @@
     "[javascript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
+    "[less]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.tabWidth": 4,
+    // theme ============================================================
     "workbench.colorCustomizations": {
         "editorLineNumber.activeForeground": "#f761eb",
         "editorLineNumber.foreground": "#73d0ff",
         "editorCursor.foreground": "#f761eb"
     },
-    "[less]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "codesnap.containerPadding": "0em",
-    "codesnap.showWindowControls": false,
-    "codesnap.roundedCorners": false,
-    "java.jdt.ls.java.home": "D:\\jdk-17.0.2",
-    "java.configuration.runtimes": [
-        {
-            "name": "JavaSE-17",
-            "path": "D:\\jdk-17.0.2",
-        },
-        {
-            "name": "JavaSE-1.8",
-            "path": "D:\\jdk8",
-            "default": true
-        },
-    ],
-    "maven.terminal.customEnv": [
-        {
-            "environmentVariable": "JAVA_HOME",
-            "value": "D:\\jdk-17.0.2"
-        }
-    ],
-    "java.configuration.maven.globalSettings": "D:\\apache-maven-3.8.5\\conf\\settings.xml",
-    "maven.executable.path": "D:\\apache-maven-3.8.5\\bin\\mvn",
-    "[markdown]": {
-        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
-    },
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Sunset Theme",
-    "git.mergeEditor": false,
-    "leetcode.workspaceFolder": "C:\\Users\\Administrator\\.leetcode",
-    "leetcode.endpoint": "leetcode-cn",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Atom One Light",
     "vscode_custom_css.imports": [
-        "file:///C:/Users/Administrator/vscode_custom.css"
+        "file:///C:/Users/flynn/vscode_custom.css"
     ],
     "screencastMode.verticalOffset": 10,
     "screencastMode.keyboardOverlayTimeout": 500,
     "screencastMode.fontSize": 20,
+    // java =============================================================
+    "java.jdt.ls.java.home": "D:\\java\\jdk-20",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-20",
+            "path": "D:\\java\\jdk-20",
+        },
+        {
+            "name": "JavaSE-17",
+            "path": "D:\\java\\jdk-17",
+            "default": true
+        },
+        {
+            "name": "JavaSE-1.8",
+            "path": "D:\\java\\jdk1.8u281",
+        }
+    ],
+    "maven.terminal.customEnv": [
+        {
+            "environmentVariable": "JAVA_HOME",
+            "value": "D:\\java\\jdk-20"
+        }
+    ],
+    "java.configuration.maven.globalSettings": "D:\\maven\\apache-maven-3.9.2\\conf\\settings.xml",
+    "maven.executable.path": "D:\\maven\\apache-maven-3.9.2\\bin\\mvn",
+    "boot-java.rewrite.reconcile": true,
+    "java.project.encoding": "setDefault",
+    // other ===============================================================
+    "hexeditor.columnWidth": 16,
+    "hexeditor.showDecodedText": true,
+    "hexeditor.defaultEndianness": "little",
+    "hexeditor.inspectorType": "aside",
+    "window.commandCenter": false,
+    "Codegeex.Explanation.LanguagePreference": "zh-CN",
+    "Codegeex.Privacy": true,
+    "Codegeex.EnableExtension": false,
+    "editor.codeActionsOnSave": {
+
+    },
+    "gitlens.graph.layout": "editor",
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "git.mergeEditor": false,
+    "leetcode.workspaceFolder": "C:\\Users\\Administrator\\.leetcode",
+    "leetcode.endpoint": "leetcode-cn",
     "rss.accounts": {
         "5bcbf860-4dca-11ed-adba-25db2d81e034": {
             "name": "Default",
@@ -103,5 +133,9 @@
             "feeds": []
         }
     },
-    "window.menuBarVisibility": "compact"
+    "window.menuBarVisibility": "compact",
+    "svn.path": "D:\\svn\\bin\\svn.exe",
+    "codesnap.containerPadding": "0em",
+    "codesnap.showWindowControls": false,
+    "codesnap.roundedCorners": false
 }
