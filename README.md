@@ -13,7 +13,14 @@
 
 ## 站点
 
-* [releaseeye](https://releaseeye.info/)
+### 常用官方文档地址
+
+* [postgressql doc](https://www.postgresql.org/docs/)
+
+### 参考
+
+* [emoji cheat sheet https://www.emojicopy.com/](https://www.emojicopy.com/)  
+* [Quick Reference](https://quickref.cn/)
 
 ### 日常
 
@@ -55,25 +62,31 @@
 
 ### 在线工具网站汇总
 
-* [emoji cheat sheet https://www.emojicopy.com/](https://www.emojicopy.com/)  
-* [sweethome3d 家装设计](http://www.sweethome3d.com/)
-* [基于机器学习的信息抽取和检索系统 magi](https://magi.com)
-* [www.keybr.com](https://www.keybr.com/)
+* [在线画图工具](https://app.diagrams.net/)
+* [正则可视化](https://regex-vis.com/)
+* [andi-search](https://andisearch.com/) 带ai的搜索
 * [多种高级语言转换汇编的学习站点godbolt](https://godbolt.org/)
-* [在线视频编辑站点storycreatorapp](https://storycreatorapp.com/)
-* [basic-english](http://ogden.basic-english.org/)
-* [口语学习网站 easypronunciation](https://easypronunciation.com/zh/)
 * [geometrize 图片几何化](https://www.geometrize.co.uk/)
+* [在线PS](https://www.photopea.com/)
+* [sweethome3d 家装设计](http://www.sweethome3d.com/)
+* [www.keybr.com](https://www.keybr.com/)
+* [在线视频编辑站点storycreatorapp](https://storycreatorapp.com/)
+
+---
+
+* [基于机器学习的信息抽取和检索系统 magi](https://magi.com) 挂了, 悲
 
 ### 学习站
 
-- [鸟哥的 Linux 私房菜](http://cn.linux.vbird.org/)
-- [腾讯云开发者手册](https://cloud.tencent.com/developer/devdocs)
-- [runoob](https://www.runoob.com/)
-- [c.biancheng.net](http://c.biancheng.net/)
-- [设计模式](https://refactoringguru.cn/design-patterns)
+* [鸟哥的 Linux 私房菜](http://cn.linux.vbird.org/)
+* [腾讯云开发者手册](https://cloud.tencent.com/developer/devdocs)
+* [runoob](https://www.runoob.com/)
+* [c.biancheng.net](http://c.biancheng.net/)
+* [设计模式](https://refactoringguru.cn/design-patterns)
+* [basic-english](http://ogden.basic-english.org/)
+* [口语学习网站 easypronunciation](https://easypronunciation.com/zh/)
 
-### 镜像&下载站 
+### 镜像&下载站
 
 * [阿里-mirrors.aliyun.com](https://developer.aliyun.com/mirror/) 推荐
 * [huaweicloud](https://mirrors.huaweicloud.com/) 推荐
