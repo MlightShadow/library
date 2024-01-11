@@ -51,7 +51,38 @@ todo 真值表
 
 ## 函数式
 
+## lambda
+
 ## 流式
+
+在Java中，Stream是一个用于处理集合的抽象概念。它提供了一种高效、声明式的方式来处理数据集合。通过使用Stream，你可以轻松地对集合进行过滤、映射、排序、计数等操作。
+
+Stream接口的主要方法是filter(), map(), reduce(), collect()等。这些方法可以用于处理数据流，并对流中的元素进行转换和聚合操作。
+
+下面是一个简单的示例，展示了如何使用Java的Stream来处理一个整数列表：
+
+```java
+import java.util.Arrays;  
+import java.util.List;  
+import java.util.stream.Collectors;  
+  
+public class StreamExample {  
+    public static void main(String[] args) {  
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);  
+  
+        // 使用filter方法过滤出偶数  
+        List<Integer> evenNumbers = numbers.stream()  
+                                            .filter(num -> num % 2 == 0)  
+                                            .collect(Collectors.toList());  
+  
+        System.out.println("Even numbers: " + evenNumbers);  
+    }  
+}
+```
+
+在上面的示例中，我们创建了一个整数列表numbers。然后，我们使用stream()方法将该列表转换为一个流。接下来，我们使用filter()方法过滤出偶数，并使用collect()方法将结果收集到一个新的列表中。最后，我们打印出偶数列表。
+
+这只是Java Stream的一个简单示例。你可以使用Stream进行更复杂的操作，例如对流中的元素进行转换、排序、分组等。
 
 ## 异常
 
