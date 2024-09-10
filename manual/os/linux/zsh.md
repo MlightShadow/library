@@ -49,7 +49,8 @@ source .zshrc
 安装
 
 ```shell
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
 在.zshrc中设置theme
@@ -74,7 +75,7 @@ p10k configure
 
 这部分内容其实经常会遇到，终端很多主题都会用到一些特殊字符，所以需要一款较好的字体来解决这些问题，否则各种美化主题安装完成后全都显示为框框就很尴尬，这边直接推荐 nerd font 字体
 
-这边解决这样一个问题你需要在哪里安装这些字体
+你需要在哪里安装这些字体
 
 1. 如果你是直接使用终端那你肯定需要直接安装这些字体
 2. 你使用本地模拟终端远程到其他计算机终端那你需要在本地安装这些字体
