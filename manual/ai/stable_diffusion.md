@@ -10,13 +10,45 @@
 
 ### cuda
 
+#### TensorRT (TRT)
+
 ### mps
+
+#### webui x openvino
+
+在game.intel.com找到文章[intel-arc-graphics-generative-ai-art](https://game.intel.com/us/stories/intel-arc-graphics-generative-ai-art/)可以找到 [Installation-on-Intel-Silicon](https://github.com/openvinotoolkit/stable-diffusion-webui/wiki/Installation-on-Intel-Silicon)的链接, 其中就包含windows，和linux的安装方法。
+
+clone仓库之后有，使用steam++整体下载还是下的来的，一直通过重启steam++和重新执行webui-user.bat/sh的方式尝试安装，最终安装成功。
+
+但是启动后在网页切换模型就报错，提示是需要下载`clip-vit-large-patch14`但是没法访问 [huggingface.co](huggingface.co)，在魔塔找到了一个仓库可以下载[clip-vit-large-patch14](https://www.modelscope.cn/models/AI-ModelScope/clip-vit-large-patch14/files)
+
+git下载的方式让我直呼别致
+
+下载之后 放入openai/clip-vit-large-patch14 路径或者自己修改代码中的这个路径符合你自己的位置也可以。
+
+好了现在我可以切模型了，可以cpu跑了但是gpu跑就报错
+
+```error
+OSError: We couldn't connect to 'https://huggingface.co' to load this file, couldn't find it in the cached files and it looks like CompVis/stable-diffusion-safety-checker is not the path to a directory containing a file named config.json. Checkout your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.
+Time taken: 10.8 sec.
+```
+
+应该我需要下载
+CompVis/stable-diffusion-safety-checker
+
+但是实际上这套东西已经在 clip-vit-large-patch14 上下载了
+
+只要把 `config.json`, `preprocessor_config.json` `pytorch_model.bin` 装入目录即可
+
+提示词实际上 xxx/yyy的 yyy需要一致，之前应该都是插件帮我完成这个事的
 
 ### rocm
 
 ## 低秩微调
 
 ### lora
+
+sdxl 模型训练需要注意：
 
 ## prompt
 

@@ -4,3 +4,8 @@
 
 应用安装位置`C:\Program Files\Windowsapps\`
 应用数据位置`C:\Users\flynn\AppData\Local\Packages\`
+
+
+uac
+
+msconfig
