@@ -9,3 +9,7 @@
 uac
 
 msconfig
+
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings
+FlightSettingsMaxPauseDays

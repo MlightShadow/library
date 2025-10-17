@@ -1,5 +1,21 @@
 # pve
 
+## 虚拟机迁移
+
+### 通过 qcow2 文件
+
+根据虚拟机raw磁盘文件转化为 qcow2 文件，并保存到其他位置。
+
+```bash
+qemu-img convert -f raw -O qcow2 /dev/pve/vm-100-disk-0 /mnt/win_share/fnOS.qcow2
+```
+
+创建一个空虚拟机, 并且将qcow2文件导入到新的存储位置，最终挂载到虚拟机中。
+
+```bash
+ qm importdisk 100 /mnt/win_share/fnOS.qcow2 local-lvm
+```
+
 ## pve 关闭订阅弹窗
 
 ```bash
